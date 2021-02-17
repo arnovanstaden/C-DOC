@@ -213,3 +213,19 @@ a {
   -moz-box-shadow: 15px 15px 15px rgba(10, 10, 10, 0.05);
   box-shadow: 15px 15px 15px rgba(10, 10, 10, 0.05);
 }
+
+
+// Next Images Fix
+.image {
+
+  div {
+    position: relative !important;
+
+    img {
+      position: relative !important;
+      object-fit: cover;
+      height: auto !important;
+      width: 100%;
+    }
+  }
+}
