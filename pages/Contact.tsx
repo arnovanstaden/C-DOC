@@ -1,41 +1,55 @@
 // Components
 import Layout from "../components/Layout/Layout";
-import Section from "../components/Section/Section";
+import ContactDetails from "../components/Contact/Contact";
 import Landing from "../components/Landing/Landing";
 
 // Styles
-import styles from '../styles/pages/Home.module.scss';
+import styles from '../styles/pages/contact.module.scss';
 
 export default function Contact() {
     return (
         <Layout
             head={{
-                title: "C-DOC | Commercial Diving and Offshore Consultancy",
+                title: "Contact | C-DOC",
                 description: "C-DOC Provides Effective Medical Support to the Diving and Maritime Industry.",
                 canonical: "/"
             }}
         >
             <Landing
                 imageURL="/images/pages/contact/landing.jpeg"
+                custom={true}
             >
-                <h1>Providing Effective <span>Medical Support</span> to the Diving and Maritime Industry.</h1>
-                <p>The C-DOC team remain committed and dedicated to safety and competence in the commercial diving community through effective education, consulting, equipment design and usage. We offer:</p>
-                <ul>
-                    <li>
-                        <img src="/images/other/red-cross.svg" alt="red cross" />
-              Consultation &amp; Skills Training
-
-                    </li>
-                    <li>
-                        <img src="/images/other/red-cross.svg" alt="red cross" />
-                Medical Kits for Vessels &amp; Diving Operations
-                    </li>
-                    <li>
-                        <img src="/images/other/red-cross.svg" alt="red cross" />
-                Maritime Pharmaceutical Services
-                    </li>
-                </ul>
+                <ContactDetails />
             </Landing>
+
+            <div className={styles.grid}>
+                <div className={styles.map}>
+                    <iframe src="https://snazzymaps.com/embed/289040">
+                    </iframe>
+                </div>
+                <div className={styles.form}>
+                    <div className="heading heading--small">
+                        <h1>Send us a Message </h1>
+                        <span />
+                    </div>
+                    <form data-netlify="true" name="contact" method="post">
+                        <input type="hidden" name="contact" value="contact" />
+                        <div className={styles.row}>
+                            <label htmlFor="Name">Your Name</label>
+                            <input type="text" name="Name" placeholder="Your Name" required />
+                        </div>
+                        <div className={styles.row}>
+                            <label htmlFor="Email">Your Email</label>
+                            <input type="email" name="Email" placeholder="Your Email" required />
+                        </div>
+                        <div className={styles.row}>
+                            <label htmlFor="Message">Your Message</label>
+                            <textarea name="Message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
         </Layout>
     )
 }

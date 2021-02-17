@@ -9,10 +9,12 @@ export default function Footer() {
         <footer className={styles.footer}>
             <div className="container">
                 <div className={styles.grid}>
-                    <div className={styles.logo}>
-                        <img src="/images/logos/logo-small.png" alt="C-Doc Logo" />
-                        <p>Commercial Diving and <br /> Offshore Consultancy</p>
-                    </div>
+                    <Link href="/">
+                        <a className={styles.logo}>
+                            <img src="/images/logos/logo-small.png" alt="C-Doc Logo" />
+                            <p>Commercial Diving and <br /> Offshore Consultancy</p>
+                        </a>
+                    </Link>
                     <div className={styles.nav}>
                         <ul>
                             <li>

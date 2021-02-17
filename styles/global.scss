@@ -170,8 +170,9 @@ a {
   flex-direction: column;
   margin-bottom: 4rem;
 
-  &--left {
+  &--small {
     align-items: flex-start;
+    margin-bottom: 2rem;
   }
 
   h1 {
