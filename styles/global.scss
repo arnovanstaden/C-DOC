@@ -72,15 +72,6 @@ a {
   position: relative;
   cursor: pointer;
 
-  &::before,
-  &::after {
-    box-sizing: inherit;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-
   a {
     display: flex;
     align-items: center;
@@ -116,32 +107,6 @@ a {
       color: $red;
     }
 
-    &::before,
-    &::after {
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      // transform-origin: center;
-    }
-
-    &::before {
-      border-top: 2px solid $red;
-      border-bottom: 2px solid $red;
-      transform: scale3d(0, 1, 1);
-    }
-
-    &::after {
-      border-left: 2px solid $red;
-      border-right: 2px solid $red;
-      transform: scale3d(1, 0, 1); // Shrink only height
-    }
-
-    &:hover::before,
-    &:hover::after {
-      transform: scale3d(1, 1, 1); // Show full-size
-      transition: transform 0.4s ease-in-out;
-    }
   }
 
   &--border {
@@ -189,6 +154,12 @@ a {
     background-color: $red;
     border: none;
     display: block;
+  }
+
+  p {
+    font-weight: 300;
+    margin: 0;
+    margin-top: 1.5rem;
   }
 
 }
@@ -245,7 +216,7 @@ a {
 
 
 // Next Images Fix
-.image {
+.next-image {
 
   div {
     position: relative !important;
@@ -253,8 +224,15 @@ a {
     img {
       position: relative !important;
       object-fit: cover;
+      object-position: center top;
       height: auto !important;
       width: 100%;
     }
+  }
+
+  &--fill {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 }

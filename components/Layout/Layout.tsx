@@ -1,8 +1,12 @@
 import Head from 'next/head';
 
+// Components
+import Header from "../Header/Header";
+
 export default function Layout({
     children,
     head,
+    noLanding
 }: {
     children: React.ReactNode
     head: {
@@ -11,6 +15,7 @@ export default function Layout({
         canonical: string,
         robots?: boolean
     }
+    noLanding?: boolean
 }) {
     const date = new Date();
     const currentYear = date.getFullYear();
@@ -42,6 +47,7 @@ export default function Layout({
                 <meta property="og:image:alt" content="C-DOC Logo" />
             </Head>
             <main>
+                {noLanding ? <Header /> : null}
                 {children}
             </main>
         </>

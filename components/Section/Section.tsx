@@ -5,19 +5,21 @@ import styles from "./section.module.scss";
 type TSection = {
     children: React.ReactNode;
     heading?: string;
+    subHeading?: string;
     classNameProp?: string;
     idProp?: string;
     dark?: boolean
 }
 
-export default function Section(props: TSection) {
+export default function Section({ children, heading, subHeading, classNameProp, idProp, dark }: TSection) {
 
     const SectionHeading = (): JSX.Element => {
-        if (props.heading) {
+        if (heading) {
             return (
                 <div className="heading">
-                    <h1>{props.heading}</h1>
+                    <h1>{heading}</h1>
                     <span />
+                    {subHeading ? <p>{subHeading}</p> : null}
                 </div>
             )
         }
@@ -26,15 +28,15 @@ export default function Section(props: TSection) {
 
     const sectionClasses = ClassNames(
         styles.section,
-        props.classNameProp ? props.classNameProp : "",
-        props.dark ? styles.dark : ""
+        classNameProp ? classNameProp : "",
+        dark ? styles.dark : ""
     )
     return (
-        <section className={sectionClasses} id={props.idProp ? props.idProp : ""}>
-            {props.heading ? <img className={styles.cross} src="/images/other/red-cross.svg" alt="Red Cross" /> : null}
+        <section className={sectionClasses} id={idProp ? idProp : ""}>
+            {heading ? <img className={styles.cross} src="/images/other/red-cross.svg" alt="Red Cross" /> : null}
             <div className="container">
                 <SectionHeading />
-                {props.children}
+                {children}
             </div>
         </section>
     )

@@ -11,8 +11,8 @@ export default function Contact() {
         <Layout
             head={{
                 title: "Contact | C-DOC",
-                description: "C-DOC Provides Effective Medical Support to the Diving and Maritime Industry.",
-                canonical: "/"
+                description: "Don't hesitate to get in touch with us if you require more information regarding our services, courses or the products we provide.",
+                canonical: "/contact"
             }}
         >
             <Landing
