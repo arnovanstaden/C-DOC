@@ -11,13 +11,11 @@ type TSection = {
 }
 
 export default function Section(props: TSection) {
-    console.log(props)
-
 
     const SectionHeading = (): JSX.Element => {
         if (props.heading) {
             return (
-                <div className={styles.heading}>
+                <div className="heading">
                     <h1>{props.heading}</h1>
                     <span />
                 </div>

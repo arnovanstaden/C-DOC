@@ -4,9 +4,10 @@ import Link from "next/link";
 // Components
 import Layout from "../components/Layout/Layout";
 import Section from "../components/Section/Section";
+import Landing from "../components/Landing/Landing";
 
 // Styles
-import styles from '../styles/pages/Home.module.scss';
+import styles from '../styles/pages/home.module.scss';
 
 export default function Home() {
   return (
@@ -17,6 +18,32 @@ export default function Home() {
         canonical: "/"
       }}
     >
+      <Landing
+        imageURL="/images/pages/home/landing.jpeg"
+      >
+        <h1>Providing Effective <span>Medical Support</span> to the Diving and Maritime Industry.</h1>
+        <p>The C-DOC team remain committed and dedicated to safety and competence in the commercial diving community through effective education, consulting, equipment design and usage. We offer:</p>
+        <ul>
+          <li>
+            <img src="/images/other/red-cross.svg" alt="red cross" />
+            Consultation &amp; Skills Training
+
+          </li>
+          <li>
+            <img src="/images/other/red-cross.svg" alt="red cross" />
+              Medical Kits for Vessels &amp; Diving Operations
+          </li>
+          <li>
+            <img src="/images/other/red-cross.svg" alt="red cross" />
+              Maritime Pharmaceutical Services
+          </li>
+        </ul>
+        <Link href="/services">
+          <button className="button button--border">
+            <a>Learn More</a>
+          </button>
+        </Link>
+      </Landing>
 
       <Section
         heading="Our Services"
@@ -120,7 +147,7 @@ export default function Home() {
             <iframe src="https://snazzymaps.com/embed/289040"></iframe>
           </div>
           <div className={styles.details}>
-            <div className={styles.heading}>
+            <div className="heading heading--left">
               <h1>Contact Us</h1>
               <span />
             </div>
