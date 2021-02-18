@@ -30,6 +30,14 @@
             p {
                 margin: 0;
                 margin-top: 1rem;
+
+                span {
+                    color: $red;
+                }
+
+                &:last-child {
+                    margin: 0;
+                }
             }
 
             ul {

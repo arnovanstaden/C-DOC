@@ -29,7 +29,7 @@ export default function Contact() {
                 </div>
                 <div className={styles.form}>
                     <div className="heading heading--small">
-                        <h1>Send us a Message </h1>
+                        <h1>Send us a Message.</h1>
                         <span />
                     </div>
                     <form data-netlify="true" name="contact" method="post">

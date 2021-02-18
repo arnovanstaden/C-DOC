@@ -21,6 +21,7 @@ export default function News() {
             <Section
                 heading="News &amp; Articles"
                 subHeading="Stay up to date with the latest news and articles from C-DOC"
+                noCross={true}
             >
                 <div className={styles.grid}>
                     <Article />

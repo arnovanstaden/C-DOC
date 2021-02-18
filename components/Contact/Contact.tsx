@@ -7,7 +7,7 @@ export default function Contact() {
 
         <div className={styles.details}>
             <div className="heading heading--small">
-                <h1>Contact Us</h1>
+                <h1>Contact Us.</h1>
                 <span />
             </div>
             <p>Don't hesitate to get in touch with us if you require more information regarding our services, courses or the products we provide.</p>

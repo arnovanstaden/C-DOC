@@ -11,7 +11,7 @@ export default function Footer() {
                 <div className={styles.grid}>
                     <Link href="/">
                         <a className={styles.logo}>
-                            <img src="/images/logos/logo-small.png" alt="C-Doc Logo" />
+                            <img src="/images/logos/logo.png" alt="C-Doc Logo" />
                             <p>Commercial Diving and <br /> Offshore Consultancy</p>
                         </a>
                     </Link>

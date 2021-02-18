@@ -220,6 +220,8 @@ a {
 
   div {
     position: relative !important;
+    width: 100%;
+    height: 100%;
 
     img {
       position: relative !important;
@@ -227,6 +229,7 @@ a {
       object-position: center top;
       height: auto !important;
       width: 100%;
+      height: 100%;
     }
   }
 

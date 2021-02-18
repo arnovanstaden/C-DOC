@@ -6,10 +6,10 @@ import Header from "../Header/Header";
 // Styles
 import styles from "./landing.module.scss";
 
-type TLanding = {
-    children: React.ReactNode;
-    imageURL: string;
-    custom?: boolean;
+interface TLanding {
+    children: React.ReactNode,
+    imageURL: string,
+    custom?: boolean,
 }
 
 

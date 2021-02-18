@@ -1,4 +1,8 @@
 import ClassNames from "classnames";
+
+// Components
+import Cross from "../Cross/Cross";
+
 // Styles
 import styles from "./section.module.scss";
 
@@ -8,10 +12,11 @@ type TSection = {
     subHeading?: string;
     classNameProp?: string;
     idProp?: string;
-    dark?: boolean
+    dark?: boolean;
+    noCross?: boolean
 }
 
-export default function Section({ children, heading, subHeading, classNameProp, idProp, dark }: TSection) {
+export default function Section({ children, heading, subHeading, noCross, classNameProp, idProp, dark }: TSection) {
 
     const SectionHeading = (): JSX.Element => {
         if (heading) {
@@ -33,7 +38,7 @@ export default function Section({ children, heading, subHeading, classNameProp, 
     )
     return (
         <section className={sectionClasses} id={idProp ? idProp : ""}>
-            {heading ? <img className={styles.cross} src="/images/other/red-cross.svg" alt="Red Cross" /> : null}
+            {!noCross ? <Cross classNameProp={styles.cross} size="2rem" /> : null}
             <div className="container">
                 <SectionHeading />
                 {children}

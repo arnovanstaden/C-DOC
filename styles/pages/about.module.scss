@@ -1,1 +1,102 @@
 @import "../variables.scss";
+
+.story {
+    p {
+        text-align: center;
+        padding: 0 5rem;
+    }
+}
+
+.team {
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+    }
+}
+
+.memberships {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 20vh);
+        gap: 2.5rem 1.5rem;
+
+        .image {
+            display: flex;
+            align-items: center;
+
+            div {
+                position: static !important;
+                width: 100%;
+
+                img {
+                    position: static !important;
+                    object-fit: contain;
+                    object-position: center top;
+                    height: auto !important;
+                    width: 100%;
+                    max-height: unset !important;
+                }
+            }
+        }
+    }
+}
+
+
+.partnership {
+
+    .intro {
+        margin-bottom: 3rem;
+
+        p {
+            text-align: center;
+
+            span {
+                color: $red;
+            }
+        }
+    }
+
+    .grid {
+        display: grid;
+        gap: 4rem;
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 3rem;
+
+        .text {
+            padding: 2rem;
+            background-color: $white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            p {
+                margin: 0;
+                margin-top: 1.5rem;
+            }
+        }
+
+    }
+
+    .button {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.value {
+    padding: 4rem 2rem;
+    background-color: $darkgrey;
+    display: flex;
+    justify-content: center;
+    color: $white !important;
+    flex-direction: column;
+    text-align: center;
+
+    p {
+        padding: 0 4rem;
+        margin: 0;
+    }
+}

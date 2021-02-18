@@ -6,6 +6,8 @@ import Layout from "../components/Layout/Layout";
 import Section from "../components/Section/Section";
 import Landing from "../components/Landing/Landing";
 import Contact from "../components/Contact/Contact";
+import Stats from "../components/Stats/Stats";
+import Cross from "../components/Cross/Cross";
 
 // Styles
 import styles from '../styles/pages/home.module.scss';
@@ -23,20 +25,20 @@ export default function Home() {
         imageURL="/images/pages/home/landing.jpeg"
       >
         <h1>Providing Effective <span>Medical Support</span> to the Diving and Maritime Industry.</h1>
-        <p>The C-DOC team remain committed and dedicated to safety and competence in the commercial diving community through effective education, consulting, equipment design and usage. We offer:</p>
+        <p>The C-DOC team remain <span>committed and dedicated to safety and competence</span> in the commercial diving community through effective education, consulting, equipment design and usage. We offer:</p>
         <ul>
           <li>
-            <img src="/images/other/red-cross.svg" alt="red cross" />
+            <Cross />
             Consultation &amp; Skills Training
 
           </li>
           <li>
-            <img src="/images/other/red-cross.svg" alt="red cross" />
-              Medical Kits for Vessels &amp; Diving Operations
+            <Cross />
+            Medical Kits for Vessels &amp; Diving Operations
           </li>
           <li>
-            <img src="/images/other/red-cross.svg" alt="red cross" />
-              Maritime Pharmaceutical Services
+            <Cross />
+            Maritime Pharmaceutical Services
           </li>
         </ul>
         <Link href="/services">
@@ -47,7 +49,7 @@ export default function Home() {
       </Landing>
 
       <Section
-        heading="Our Services"
+        heading="Our Services."
         classNameProp={styles.services}
       >
         <div className={styles.intro}>
@@ -58,45 +60,53 @@ export default function Home() {
         <div className={styles.grid}>
 
           <Link href="services#consulting">
-            <a className={styles.item}>
-              <div className={styles.image}>
-                <Image src="/images/pages/home/consulting.jpeg" layout="fill" alt="C-Doc Service Image - Training" />
-              </div>
-              <div className={styles.text}>
-                <h3>Consulting</h3>
-                <p>We offer solutions for Diving Medical Emergency Response Planning. Ensuring the right people with right training and right equipment to ensure optimal outcomes We can do videos and blogs that fall under here or sell consulting session time </p>
-                <span className={styles.border}></span>
-              </div>
+            <a >
+              <article className={styles.item}>
+                <div className={styles.image}>
+                  <Image src="/images/pages/home/consulting.jpeg" layout="fill" alt="C-Doc Service Image - Training" />
+                </div>
+                <div className={styles.text}>
+                  <h3>Consulting</h3>
+                  <p>We offer solutions for Diving Medical Emergency Response Planning. Ensuring the right people with right training and right equipment to ensure optimal outcomes We can do videos and blogs that fall under here or sell consulting session time </p>
+                  <span className={styles.border}></span>
+                </div>
+              </article>
             </a>
           </Link>
           <Link href="services#training">
-            <a className={styles.item}>
-              <div className={styles.image}>
-                <Image src="/images/pages/home/training.jpeg" layout="fill" alt="C-Doc Service Image - Training" />
-              </div>
-              <div className={styles.text}>
-                <h3>Training</h3>
-                <p>We offer online and face to face skills development highlighting the barriers that exist in the remote diving and hyperbaric environments. Promoting standardised care for all those involved in diving operations.</p>
-                <span className={styles.border}></span>
-              </div>
+            <a>
+              <article className={styles.item}>
+
+                <div className={styles.image}>
+                  <Image src="/images/pages/home/training.jpeg" layout="fill" alt="C-Doc Service Image - Training" />
+                </div>
+                <div className={styles.text}>
+                  <h3>Training</h3>
+                  <p>We offer online and face to face skills development highlighting the barriers that exist in the remote diving and hyperbaric environments. Promoting standardised care for all those involved in diving operations.</p>
+                  <span className={styles.border}></span>
+                </div>
+              </article>
             </a>
           </Link>
           <Link href="services#products">
             <a className={styles.item}>
-              <div className={styles.image}>
-                <Image src="/images/pages/home/products.jpeg" layout="fill" alt="C-Doc Service Image - Products" />
-              </div>
-              <div className={styles.text}>
-                <h3>Products</h3>
-                <p>The C-DOC health and safety team design products with the specific knowledge and experience of commercial diving operations </p>
-              </div>
+              <article className={styles.item}>
+
+                <div className={styles.image}>
+                  <Image src="/images/pages/home/products.jpeg" layout="fill" alt="C-Doc Service Image - Products" />
+                </div>
+                <div className={styles.text}>
+                  <h3>Products</h3>
+                  <p>The C-DOC health and safety team design products with the specific knowledge and experience of commercial diving operations </p>
+                </div>
+              </article>
             </a>
           </Link>
         </div>
       </Section>
 
       <Section
-        heading="About Us"
+        heading="About Us."
         dark={true}
         classNameProp={styles.about}
       >
@@ -141,7 +151,7 @@ export default function Home() {
 
       <Section
         classNameProp={styles.contact}
-      // fullScreen={true}
+        noCross={true}
       >
         <div className={styles.grid}>
           <div className={styles.map}>
@@ -153,22 +163,7 @@ export default function Home() {
         </div>
       </Section>
 
-
-      <section className={styles.stats}>
-        <div className={styles.item}>
-          <h3>99+</h3>
-          <p>Trainees Successfully Completed Our Courses</p>
-        </div>
-        <div className={styles.item}>
-          <h3>99+</h3>
-          <p>Medical Equipment Packages Sold</p>
-        </div>
-        <div className={styles.item}>
-          <h3>99+</h3>
-          <p>Years of Collective Team Experience</p>
-        </div>
-      </section>
-
+      <Stats />
     </Layout >
   )
 }
