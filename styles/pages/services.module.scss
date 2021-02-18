@@ -1,1 +1,10 @@
 @import "../variables.scss";
+
+.grid {
+    display: flex;
+
+    .left {
+        width: 50%;
+
+    }
+}
