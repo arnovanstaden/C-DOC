@@ -1,0 +1,28 @@
+@import "../variables.scss";
+
+.categories {
+    display: flex;
+    justify-content: center;
+    column-gap: 2rem;
+
+    .button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        padding: 0.5rem 1rem;
+        border: 1.5px solid $darkgrey;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: 0.3s ease-out;
+
+        &:hover {
+            border-color: $red;
+        }
+
+        &.active {
+            border-color: $red;
+            background-color: $red;
+            color: $white;
+        }
+    }
+}
