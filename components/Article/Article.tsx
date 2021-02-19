@@ -19,7 +19,7 @@ export default function Article() {
                     <p>Research by: <span>James Boyle</span></p>
                 </aside>
                 <div className={styles.read}>
-                    <button className={styles.button}>
+                    <button className="button-grow">
                         <a>
                             <span>Read</span>
                             <i className="icon-arrow-right"></i>

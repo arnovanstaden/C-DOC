@@ -89,6 +89,10 @@ a {
   &:hover {
     background-color: transparent;
     transition: 0.3s ease;
+
+    a {
+      color: $darkgrey;
+    }
   }
 
   &:focus {
@@ -125,6 +129,56 @@ a {
       }
     }
   }
+}
+
+.button-grow {
+  border: 2px solid $red;
+  padding: 0;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+  background-color: transparent;
+
+  a {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1.25rem;
+    color: $darkgrey;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: inherit;
+
+    span {
+      margin-right: 0.5rem;
+      transition: inherit;
+    }
+
+    i {
+      transition: inherit;
+    }
+  }
+
+
+  &:hover {
+    background-color: $red;
+
+    a {
+      color: $white;
+
+      span {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &.light {
+    a {
+      color: $white;
+
+    }
+  }
+
 }
 
 // Section Heading

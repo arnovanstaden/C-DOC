@@ -130,6 +130,11 @@ export default function Services() {
                 idProp="equipment"
                 dark={true}
             >
+                <div className={styles.button}>
+                    <button className="button">
+                        <a>Order/Enquire About Equipment</a>
+                    </button>
+                </div>
                 <div className={styles.grid}>
                     <InfoBlock>
                         <h4>Medical Equipment </h4>
@@ -226,6 +231,21 @@ export default function Services() {
                         </ul>
                         <p>Components are easily identifiable and manageable to maximize the use throughout the dive spreads.</p>
                     </InfoBlock>
+                    <div className={styles.catalogue}>
+                        <div className={styles.image}>
+                            <Image src="/images/pages/services/catalogue.jpeg" layout="responsive" alt="Article Image" width={600} height="auto" />
+                        </div>
+                        <div className={styles.text}>
+                            <h5>Medical Equipment</h5>
+                            <p>If you’d like to request a quotation or obtain more information regarding any of the medical equipment we provide, please fill out our order form.</p>
+                            <button className="button-grow light">
+                                <a>
+                                    <span>Product Catalogue</span>
+                                    <i className="icon-arrow-right"></i>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </Section>
 
