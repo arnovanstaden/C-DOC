@@ -2,6 +2,7 @@ import Head from 'next/head';
 
 // Components
 import Header from "../Header/Header";
+import Nav from "../Nav/Nav";
 
 export default function Layout({
     children,
@@ -48,6 +49,7 @@ export default function Layout({
             </Head>
             <main>
                 {noLanding ? <Header /> : null}
+                <Nav />
                 {children}
             </main>
         </>

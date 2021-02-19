@@ -30,7 +30,6 @@ export default function Home() {
           <li>
             <Cross />
             Consultation &amp; Skills Training
-
           </li>
           <li>
             <Cross />
@@ -59,8 +58,8 @@ export default function Home() {
         </div>
         <div className={styles.grid}>
 
-          <Link href="services#consulting">
-            <a >
+          <Link href="/services#consulting">
+            <a>
               <article className={styles.item}>
                 <div className={styles.image}>
                   <Image src="/images/pages/home/consulting.jpeg" layout="fill" alt="C-Doc Service Image - Training" />
@@ -68,12 +67,11 @@ export default function Home() {
                 <div className={styles.text}>
                   <h3>Consulting</h3>
                   <p>We offer solutions for Diving Medical Emergency Response Planning. Ensuring the right people with right training and right equipment to ensure optimal outcomes We can do videos and blogs that fall under here or sell consulting session time </p>
-                  <span className={styles.border}></span>
                 </div>
               </article>
             </a>
           </Link>
-          <Link href="services#training">
+          <Link href="/services#training">
             <a>
               <article className={styles.item}>
 
@@ -83,20 +81,19 @@ export default function Home() {
                 <div className={styles.text}>
                   <h3>Training</h3>
                   <p>We offer online and face to face skills development highlighting the barriers that exist in the remote diving and hyperbaric environments. Promoting standardised care for all those involved in diving operations.</p>
-                  <span className={styles.border}></span>
                 </div>
               </article>
             </a>
           </Link>
-          <Link href="services#products">
-            <a className={styles.item}>
+          <Link href="/services#equipment">
+            <a>
               <article className={styles.item}>
 
                 <div className={styles.image}>
                   <Image src="/images/pages/home/products.jpeg" layout="fill" alt="C-Doc Service Image - Products" />
                 </div>
                 <div className={styles.text}>
-                  <h3>Products</h3>
+                  <h3>Equipment</h3>
                   <p>The C-DOC health and safety team design products with the specific knowledge and experience of commercial diving operations </p>
                 </div>
               </article>

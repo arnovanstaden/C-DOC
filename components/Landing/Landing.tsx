@@ -2,6 +2,7 @@ import Image from "next/image"
 
 // Components
 import Header from "../Header/Header";
+import Nav from "../Nav/Nav";
 
 // Styles
 import styles from "./landing.module.scss";
@@ -17,7 +18,7 @@ export default function Landing(props: TLanding) {
     return (
         <section className={styles.landing}>
             <div className={styles.content}>
-                <Header />
+                <Header noNav />
                 {props.custom ? props.children :
                     <div className={styles.text}>
                         {props.children}
@@ -25,6 +26,7 @@ export default function Landing(props: TLanding) {
                 }
             </div>
             <div className={styles.image}>
+                <Nav />
                 <Image layout="fill" objectFit="cover" alt="C-DOC Landing Image" src={props.imageURL} />
             </div>
         </section>
