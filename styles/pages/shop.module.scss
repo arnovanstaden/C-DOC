@@ -1,28 +1,42 @@
 @import "../variables.scss";
 
-.categories {
-    display: flex;
-    justify-content: center;
-    column-gap: 2rem;
+.shop {
+    padding-top: 4rem;
+    min-height: 60vh;
 
-    .button {
-        background-color: transparent;
-        border: none;
-        outline: none;
-        padding: 0.5rem 1rem;
-        border: 1.5px solid $darkgrey;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: 0.3s ease-out;
+    .categories {
+        display: flex;
+        justify-content: center;
+        column-gap: 2rem;
 
-        &:hover {
-            border-color: $red;
-        }
+        .button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            padding: 0.5rem 1rem;
+            border: 1.5px solid $darkgrey;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s ease-out;
 
-        &.active {
-            border-color: $red;
-            background-color: $red;
-            color: $white;
+            &:hover {
+                border-color: $red;
+            }
+
+            &.active {
+                border-color: $red;
+                background-color: $red;
+                color: $white;
+            }
         }
     }
+
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
 }

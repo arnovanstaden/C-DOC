@@ -6,6 +6,7 @@ import styles from '../styles/pages/shop.module.scss';
 // Components
 import Layout from "../components/Layout/Layout";
 import Section from "../components/Section/Section";
+import Product from "../components/Product/Product";
 
 export default function Shop() {
     return (
@@ -36,6 +37,13 @@ export default function Shop() {
                     <div className={styles.filter}>
 
                     </div>
+                </div>
+                <div className={styles.grid}>
+                    <Product name="Stretcher" price={500} />
+                    <Product name="This" price={300} />
+                    <Product name="This" price={300} />
+                    <Product name="That" price={300} />
+                    <Product name="That" price={300} />
                 </div>
             </Section>
         </Layout>
