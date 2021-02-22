@@ -14,7 +14,7 @@ import styles from '../styles/pages/about.module.scss';
 // Data
 import teamMembers from "../assets/data/team.json";
 
-export default function About() {
+export default function about() {
     return (
         <Layout
             head={{

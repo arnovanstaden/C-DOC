@@ -132,7 +132,7 @@
 
 // export default Cart
 
-export default function Cart() {
+export default function cart() {
     return <div></div>
 }
 

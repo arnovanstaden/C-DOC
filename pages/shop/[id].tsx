@@ -12,7 +12,7 @@ import styles from "../../styles/pages/shop/[id].module.scss";
 
 
 
-export default function Project({ product }) {
+export default function product({ product }) {
     // State
     const [tab, setTab] = useState("Description");
     const [quantity, setQuantity] = useState(1);

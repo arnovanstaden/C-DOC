@@ -11,7 +11,7 @@ import Layout from "../components/Layout/Layout";
 import Section from "../components/Section/Section";
 import Article from "../components/Article/Article";
 
-export default function News({ articles }) {
+export default function news({ articles }) {
     return (
         <Layout
             head={{
