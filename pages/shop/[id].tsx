@@ -74,7 +74,7 @@ export default function Project({ product }) {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const res = await fetch(`${process.env.API_URL}/products/${params.id}`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${params.id}`)
     const product = await res.json()
     return {
         props: {
@@ -84,7 +84,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export async function getStaticPaths() {
-    const res = await fetch(`${process.env.API_URL}/products`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`)
     const products = await res.json()
     const paths = products.map((product) => `/shop/${product.id}`)
     return { paths, fallback: false }

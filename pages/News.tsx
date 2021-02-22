@@ -38,7 +38,7 @@ export default function News({ articles }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const res = await fetch(`${process.env.API_URL}/articles`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`)
     const articles = await res.json()
 
     if (!articles) {
