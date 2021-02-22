@@ -7,8 +7,8 @@ export default function Article() {
     return (
         <article className={styles.article}>
             <div className={styles.image}>
-                <div className="next-image next-image--fill">
-                    <Image src="/images/pages/home/courses.jpeg" layout="fill" alt="Article Image" />
+                <div className="next-image next-image--intrinsic">
+                    <Image src="/images/pages/home/courses.jpeg" width={500} height="auto" alt="Article Image" />
                 </div>
             </div>
             <div className={styles.content}>
