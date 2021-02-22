@@ -5,14 +5,26 @@
         text-align: center;
         padding: 0 5rem;
     }
+
+    @media screen and (max-width: 991px) {
+        p {
+            padding: 0;
+        }
+    }
 }
 
 .team {
     .grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 1fr;
         gap: 2rem;
+    }
+
+    @media screen and (max-width: 768px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
     }
 }
 
@@ -20,26 +32,26 @@
     .grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 20vh);
-        gap: 2.5rem 1.5rem;
+        grid-auto-rows: 1fr;
+        gap: 2rem;
 
         .image {
-            display: flex;
-            align-items: center;
-
-            div {
-                position: static !important;
-                width: 100%;
-
-                img {
-                    position: static !important;
-                    object-fit: contain;
-                    object-position: center top;
-                    height: auto !important;
-                    width: 100%;
-                    max-height: unset !important;
-                }
+            img {
+                object-fit: contain !important;
+                max-height: 12vh !important;
             }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        .grid {
+            grid-template-columns: 1fr;
         }
     }
 }
@@ -84,6 +96,12 @@
         display: flex;
         justify-content: center;
     }
+
+    @media screen and (max-width: 991px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+    }
 }
 
 .value {
@@ -99,5 +117,11 @@
         padding: 0 4rem;
         margin: 0;
         margin-top: -2rem;
+    }
+
+    @media screen and (max-width: 768px) {
+        p {
+            padding: 0;
+        }
     }
 }

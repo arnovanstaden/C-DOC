@@ -74,22 +74,34 @@ export default function About() {
             >
                 <div className={styles.grid}>
                     <div className={styles.image}>
-                        <Image src="/images/pages/about/memberships/01-DMER.jpg" alt="Membership Logo" layout="fill" />
+                        <div className="next-image next-image--intrinsic">
+                            <Image src="/images/pages/about/memberships/01-DMER.jpg" alt="Membership Logo" width={500} height="auto" />
+                        </div>
                     </div>
                     <div className={styles.image}>
-                        <Image src="/images/pages/about/memberships/02-IMCA.jpg" alt="Membership Logo" layout="fill" />
+                        <div className="next-image next-image--intrinsic">
+                            <Image src="/images/pages/about/memberships/02-IMCA.jpg" alt="Membership Logo" width={500} height="auto" />
+                        </div>
                     </div>
                     <div className={styles.image}>
-                        <Image src="/images/pages/about/memberships/03-SAOGA.png" alt="Membership Logo" layout="fill" />
+                        <div className="next-image next-image--intrinsic">
+                            <Image src="/images/pages/about/memberships/03-SAOGA.png" alt="Membership Logo" width={500} height="auto" />
+                        </div>
                     </div>
                     <div className={styles.image}>
-                        <Image src="/images/pages/about/memberships/04-SAUHMA.jpg" alt="Membership Logo" layout="fill" />
+                        <div className="next-image next-image--intrinsic">
+                            <Image src="/images/pages/about/memberships/04-SAUHMA.jpg" alt="Membership Logo" width={500} height="auto" />
+                        </div>
                     </div>
                     <div className={styles.image}>
-                        <Image src="/images/pages/about/memberships/05-Oceans Alive.png" alt="Membership Logo" layout="fill" />
+                        <div className="next-image next-image--intrinsic">
+                            <Image src="/images/pages/about/memberships/05-Oceans Alive.png" alt="Membership Logo" width={500} height="auto" />
+                        </div>
                     </div>
                     <div className={styles.image}>
-                        <Image src="/images/pages/about/memberships/06-SAAMBR.jpg" alt="Membership Logo" layout="fill" />
+                        <div className="next-image next-image--intrinsic">
+                            <Image src="/images/pages/about/memberships/06-SAAMBR.jpg" alt="Membership Logo" width={500} height="auto" />
+                        </div>
                     </div>
                 </div>
             </Section>

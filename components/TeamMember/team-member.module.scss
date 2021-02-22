@@ -4,37 +4,37 @@
     padding: 2rem;
     background-color: $white;
     border: 4px solid transparent;
-    width: 30%;
     box-sizing: border-box;
     transition: 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
 
     .image {
-        width: 100%;
-        height: 35vh;
+        width: 6rem;
+        height: 6rem;
+        overflow: hidden;
     }
 
-    h4 {
-        font-weight: 600;
-        font-size: 1.2rem;
-        margin: 0;
-        margin-bottom: 0.5rem;
-        margin-top: 1rem;
-    }
-
-    p {
-        display: flex;
-        align-items: center;
-        margin: 0;
-
-        img {
-            width: 1rem;
-            margin-right: 0.5rem;
+    .text {
+        h4 {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin: 0;
+            margin-bottom: 0.5rem;
         }
 
-        span {
-            color: $lightgrey;
-            font-weight: 600;
-            font-size: 0.9rem;
+        p {
+            display: flex;
+            align-items: center;
+            margin: 0;
+
+            span {
+                color: $lightgrey;
+                font-weight: 600;
+                font-size: 0.9rem;
+                margin-left: 0.5rem;
+            }
         }
     }
 

@@ -20,15 +20,17 @@ export default function TeamMember({ member }: TeamMember) {
         <article className={styles.member}>
 
             <div className={styles.image}>
-                <div className="next-image next-image--fill">
-                    <Image layout="fill" src={`/images/pages/about/team/${imageName}`} alt={`Team member Image - ${member.name}`} />
+                <div className="next-image next-image--intrinsic">
+                    <Image width={200} height={200} src={`/images/pages/about/team/${imageName}`} alt={`C-DOC Team member Image - ${member.name}`} />
                 </div>
             </div>
-            <h4>{member.name}</h4>
-            <p>
-                <Cross />
-                <span>{member.position}</span>
-            </p>
+            <div className={styles.text}>
+                <h4>{member.name}</h4>
+                <p>
+                    <Cross />
+                    <span>{member.position}</span>
+                </p>
+            </div>
         </article>
     )
 }
