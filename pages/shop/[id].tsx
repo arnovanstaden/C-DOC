@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // Components
 import Layout from "../../components/Layout/Layout";
 import Section from "../../components/Section/Section";
@@ -8,6 +10,9 @@ import styles from "../../styles/pages/[product].module.scss";
 
 
 export default function Project({ product }) {
+    // State
+    const [quantity, setQuantity] = useState(1)
+
     return (
         <Layout
             head={{
@@ -39,7 +44,7 @@ export default function Project({ product }) {
                         </p>
                         <div className={styles.cart}>
                             <div className={styles.quantity}>
-                                <input type="number" name="" id="" value="1" />
+                                <input min={1} type="number" name="quantity" value={quantity} onChange={e => setQuantity(e.target.value)} />
                                 <span>
                                     <i className="icon-arrow_drop_up"></i>
                                     <i className="icon-arrow_drop_down"></i>

@@ -7,8 +7,12 @@
 
     .image {
         width: 25%;
-        // min-height: 35vh;
-        overflow: hidden;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
     }
 
     .content {

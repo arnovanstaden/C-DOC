@@ -1,26 +1,36 @@
 import Image from "next/image";
+import { convertImage } from "../../utils/utils";
 
 // Styles
 import styles from "./article.module.scss";
 
-export default function Article() {
+interface IArticle {
+    article: {
+        name: string,
+        description: string,
+        author: string,
+        researcher: string,
+        image: string,
+        file: string
+    }
+}
+
+export default function Article({ article }: IArticle) {
     return (
         <article className={styles.article}>
             <div className={styles.image}>
-                <div className="next-image next-image--intrinsic">
-                    <Image src="/images/pages/home/courses.jpeg" width={500} height="auto" alt="Article Image" />
-                </div>
+                <img src={convertImage(article.image, 400)} alt="Article Image" />
             </div>
             <div className={styles.content}>
-                <h3>Reaching new depths of diver safety</h3>
-                <p><span>South Africa’s SEADOG Commercial Diving School is attracting record numbers of students and professional divers. As Managing Director Bridget Thomson discusses, this is stabilising the business and helping the company focus more on the medical side of the business</span>...</p>
+                <h3>{article.name}</h3>
+                <p>{article.description}</p>
                 <aside>
-                    <p>Written by: <span>Will Daynes</span></p>
-                    <p>Research by: <span>James Boyle</span></p>
+                    <p>Written by: <span>{article.author}</span></p>
+                    <p>Research by: <span>{article.researcher}</span></p>
                 </aside>
                 <div className={styles.read}>
                     <button className="button-grow">
-                        <a>
+                        <a target="blank" href={article.file}>
                             <span>Read</span>
                             <i className="icon-arrow-right"></i>
                         </a>

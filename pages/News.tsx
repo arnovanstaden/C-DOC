@@ -1,4 +1,7 @@
 import Image from "next/image";
+import { useState } from "react";
+import { GetStaticProps } from 'next'
+
 
 // Styles
 import styles from '../styles/pages/news.module.scss';
@@ -8,7 +11,7 @@ import Layout from "../components/Layout/Layout";
 import Section from "../components/Section/Section";
 import Article from "../components/Article/Article";
 
-export default function News() {
+export default function News({ articles }) {
     return (
         <Layout
             head={{
@@ -25,9 +28,28 @@ export default function News() {
                 classNameProp={styles.news}
             >
                 <div className={styles.grid}>
-                    <Article />
+                    {articles.map((article, index) => (
+                        <Article article={article} key={index} />
+                    ))}
                 </div>
             </Section>
         </Layout>
     )
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+    const res = await fetch(`${process.env.API_URL}/articles`)
+    const articles = await res.json()
+
+    if (!articles) {
+        return {
+            notFound: true,
+        }
+    }
+
+    return {
+        props: {
+            articles
+        },
+    }
 }
