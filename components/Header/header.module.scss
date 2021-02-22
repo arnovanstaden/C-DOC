@@ -24,45 +24,78 @@
         }
     }
 
-    .button {
-        background-color: transparent;
-        border: none;
-        outline: none;
-        border-left: 0.25px solid $lightgrey;
-        padding: 0.5rem;
+    .options {
         display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        cursor: pointer;
-        transition: 0.3s ease-out;
+        align-items: center;
 
-        div {
-            height: 3px;
-            background-color: $lightgrey;
-            margin-bottom: 3px;
-            transition: 0.3s ease-out;
+        .cart {
+            padding-right: 0.5rem;
+            display: flex;
+            align-items: center;
 
-            &:nth-child(1) {
-                width: 1.25rem;
+            span {
+                background-color: $red;
+                padding: 0.1rem 0.25rem;
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: $white;
+                margin-right: 0.5rem;
             }
 
-            &:nth-child(2) {
-                width: 1.5rem;
-            }
-
-            &:nth-child(3) {
-                width: 1rem;
-                margin-bottom: 0;
+            i {
+                color: $lightgrey;
+                font-size: 1.5rem;
             }
         }
 
-        &:hover {
-            padding-left: 1rem;
-            border-color: $white;
+        .button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            border-left: 0.25px solid $lightgrey;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            cursor: pointer;
+            transition: 0.3s ease-out;
 
             div {
-                width: 1.5rem;
-                background-color: $red;
+                height: 3px;
+                background-color: $lightgrey;
+                margin-bottom: 3px;
+                transition: 0.3s ease-out;
+
+                &:nth-child(1) {
+                    width: 1.25rem;
+                }
+
+                &:nth-child(2) {
+                    width: 1.5rem;
+                }
+
+                &:nth-child(3) {
+                    width: 1rem;
+                    margin-bottom: 0;
+                }
+            }
+
+            &:hover {
+                padding-left: 1rem;
+                border-color: $white;
+
+                div {
+                    width: 1.5rem;
+                    background-color: $red;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        .logo {
+            p {
+                display: none;
             }
         }
     }

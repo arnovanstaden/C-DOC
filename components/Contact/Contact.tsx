@@ -3,7 +3,7 @@
 import styles from "./contact.module.scss";
 
 interface IContact {
-    page?: boolean
+    page?: boolean;
 }
 
 export default function Contact({ page }: IContact) {

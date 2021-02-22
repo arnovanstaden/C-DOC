@@ -5,32 +5,30 @@ import { convertImage } from "../../utils/utils";
 import styles from "./article.module.scss";
 
 interface IArticle {
-    article: {
-        name: string,
-        description: string,
-        author: string,
-        researcher: string,
-        image: string,
-        file: string
-    }
+    name: string;
+    description: string;
+    author: string;
+    researcher: string;
+    image: string;
+    file: string;
 }
 
-export default function Article({ article }: IArticle) {
+export default function Article(props: IArticle) {
     return (
         <article className={styles.article}>
             <div className={styles.image}>
-                <img src={convertImage(article.image, 400)} alt="Article Image" />
+                <img src={convertImage(props.image, 400)} alt="Article Image" />
             </div>
             <div className={styles.content}>
-                <h3>{article.name}</h3>
-                <p>{article.description}</p>
+                <h3>{props.name}</h3>
+                <p>{props.description}</p>
                 <aside>
-                    <p>Written by: <span>{article.author}</span></p>
-                    <p>Research by: <span>{article.researcher}</span></p>
+                    <p>Written by: <span>{props.author}</span></p>
+                    <p>Research by: <span>{props.researcher}</span></p>
                 </aside>
                 <div className={styles.read}>
                     <button className="button-grow">
-                        <a target="blank" href={article.file}>
+                        <a target="blank" href={props.file}>
                             <span>Read</span>
                             <i className="icon-arrow-right"></i>
                         </a>

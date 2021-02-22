@@ -29,7 +29,7 @@ export default function News({ articles }) {
             >
                 <div className={styles.grid}>
                     {articles.map((article, index) => (
-                        <Article article={article} key={index} />
+                        <Article {...article} key={index} />
                     ))}
                 </div>
             </Section>
@@ -37,7 +37,7 @@ export default function News({ articles }) {
     )
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
     const res = await fetch(`${process.env.API_URL}/articles`)
     const articles = await res.json()
 

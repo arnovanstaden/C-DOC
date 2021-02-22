@@ -7,28 +7,26 @@ import Cross from "../Cross/Cross";
 import styles from "./team-member.module.scss";
 
 interface TeamMember {
-    member: {
-        name: string,
-        position: string
-    }
+    name: string;
+    position: string;
 }
 
-export default function TeamMember({ member }: TeamMember) {
-    const imageName = member.name.slice(0, member.name.indexOf(" ")).toLocaleLowerCase() + ".jpg";
+export default function TeamMember({ name, position }: TeamMember) {
+    const imageName = name.slice(0, name.indexOf(" ")).toLocaleLowerCase() + ".jpg";
 
     return (
         <article className={styles.member}>
 
             <div className={styles.image}>
                 <div className="next-image next-image--intrinsic">
-                    <Image width={200} height={200} src={`/images/pages/about/team/${imageName}`} alt={`C-DOC Team member Image - ${member.name}`} />
+                    <Image width={200} height={200} src={`/images/pages/about/team/${imageName}`} alt={`C-DOC Team member Image - ${name}`} />
                 </div>
             </div>
             <div className={styles.text}>
-                <h4>{member.name}</h4>
+                <h4>{name}</h4>
                 <p>
                     <Cross />
-                    <span>{member.position}</span>
+                    <span>{position}</span>
                 </p>
             </div>
         </article>

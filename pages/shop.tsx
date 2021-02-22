@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { GetStaticProps } from 'next'
+
 
 // Styles
 import styles from '../styles/pages/shop.module.scss';
@@ -9,7 +11,7 @@ import Layout from "../components/Layout/Layout";
 import Section from "../components/Section/Section";
 import Product from "../components/Product/Product";
 
-export default function Shop() {
+export default function Shop({ products }) {
     return (
         <Layout
             head={{
@@ -18,6 +20,7 @@ export default function Shop() {
                 canonical: "/shop"
             }}
             noLanding={true}
+            shop={true}
         >
             <Section
                 heading="Shop"
@@ -40,11 +43,9 @@ export default function Shop() {
                     </div>
                 </div>
                 <div className={styles.grid}>
-                    <Product name="Stretcher" price={500} />
-                    <Product name="This" price={300} />
-                    <Product name="This" price={300} />
-                    <Product name="That" price={300} />
-                    <Product name="That" price={300} />
+                    {products.map((product, index) => (
+                        <Product {...product} key={index} />
+                    ))}
                 </div>
             </Section>
 
@@ -64,4 +65,14 @@ export default function Shop() {
             </section>
         </Layout>
     )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+    const res = await fetch(`${process.env.API_URL}/products`)
+    const products = await res.json()
+    return {
+        props: {
+            products,
+        },
+    }
 }

@@ -1,9 +1,28 @@
 import { sendNotification } from "../components/Notification/Notification"
 
+// Types
+
+interface ICart {
+    id: string;
+    quantity: number;
+    price: number;
+}
+
+export interface IProduct {
+    id: string;
+    name: string;
+    description: string;
+    details: string;
+    visibility: boolean;
+    price: number;
+    category: string
+    thumbnail: string;
+}
+
 
 // INTERNAL HELPER FUNCTIONS
 
-const searchCart = (productID) => {
+export const searchCart = (productID: string): number => {
     let currentCart = getCart();
     let searchResults = 0;
     if (currentCart !== null) {
@@ -16,7 +35,7 @@ const searchCart = (productID) => {
     return searchResults
 }
 
-const showCart = () => {
+export const showCart = () => {
     let currentCart = getCart();
     console.log(`Current Cart:`);
     console.log(currentCart)
@@ -24,7 +43,7 @@ const showCart = () => {
 
 // CART FUNCTIONS
 
-const updateCart = (product, quantity) => {
+export const updateCart = (product: IProduct, quantity: number) => {
     // Get Current Cart
     let currentCart = getCart();
 
@@ -62,10 +81,9 @@ const updateCart = (product, quantity) => {
     }
     showCart()
     sendNotification("Item added to your cart")
-
 }
 
-const removeFromCart = (product) => {
+export const removeFromCart = (product: IProduct) => {
     // Get Current Cart & Index of Item
     let currentCart = getCart();
     let index = currentCart.findIndex((item => item.id === product.id));
@@ -80,7 +98,7 @@ const removeFromCart = (product) => {
 
 }
 
-const getCart = () => {
+export const getCart = (): ICart[] => {
     let currentCart
     if (typeof window !== 'undefined') {
         currentCart = JSON.parse(localStorage.getItem("cart"));
@@ -88,7 +106,7 @@ const getCart = () => {
     return currentCart
 }
 
-const getCartTotal = () => {
+export const getCartTotal = (): number => {
     let currentCart = getCart();
     let total = 0;
     currentCart.forEach(item => {
@@ -98,18 +116,8 @@ const getCartTotal = () => {
 }
 
 
-const clearCart = () => {
+export const clearCart = () => {
     if (typeof window !== 'undefined') {
         localStorage.removeItem("cart");
     }
-}
-
-
-export {
-    updateCart,
-    removeFromCart,
-    showCart,
-    getCart,
-    getCartTotal,
-    clearCart
 }

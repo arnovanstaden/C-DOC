@@ -5,7 +5,11 @@ import { handleNavToggle } from "../../utils/utils"
 import styles from "./header.module.scss";
 import navStyles from "../Nav/nav.module.scss";
 
-export default function Header() {
+interface IHeader {
+    shop?: boolean
+}
+
+export default function Header({ shop }: IHeader) {
 
     return (
         <header className={styles.header}>
@@ -15,11 +19,21 @@ export default function Header() {
                     <p>Commercial Diving and <br /> Offshore Consultancy</p>
                 </a>
             </Link>
-            <button className={styles.button} onClick={() => handleNavToggle()}>
-                <div></div>
-                <div></div>
-                <div></div>
-            </button>
+            <div className={styles.options}>
+                {shop ?
+                    <Link href="/shop/cart">
+                        <a className={styles.cart}>
+                            <span>0</span>
+                            <i className="icon-local_grocery_store"></i>
+                        </a>
+                    </Link>
+                    : null}
+                <button className={styles.button} onClick={() => handleNavToggle()}>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </button>
+            </div>
         </header>
     )
 }

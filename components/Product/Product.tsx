@@ -5,13 +5,14 @@ import Link from "next/link";
 import styles from "./product.module.scss";
 
 interface IProduct {
-    name: string,
-    price: number
+    name: string;
+    price: number;
+    id: string;
 }
 
-export default function Product({ name, price }: IProduct) {
+export default function Product({ name, price, id }: IProduct) {
     return (
-        <Link href="/">
+        <Link href={`/shop/${id}`}>
             <a className={styles.product}>
                 <img src="/images/stretcher.png" alt="" />
                 <h4>{name}</h4>

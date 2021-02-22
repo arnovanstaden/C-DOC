@@ -63,7 +63,7 @@ export default function About() {
             >
                 <div className={styles.grid}>
                     {teamMembers.map((member, index) => (
-                        <TeamMember key={index} member={member} />
+                        <TeamMember key={index} {...member} />
                     ))}
                 </div>
             </Section>

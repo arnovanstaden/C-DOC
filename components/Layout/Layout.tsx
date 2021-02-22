@@ -3,29 +3,30 @@
 import Header from "../Header/Header";
 import Head from "../Head/Head";
 import Nav from "../Nav/Nav";
+import Notification from "../Notification/Notification";
 
-export default function Layout({
-    children,
-    head,
-    noLanding
-}: {
-    children: React.ReactNode
+interface ILayout {
+    children: React.ReactNode;
     head: {
-        title: string,
-        description: string,
-        canonical: string,
-        robots?: boolean
+        title: string;
+        description: string;
+        canonical: string;
+        robots?: boolean;
     }
-    noLanding?: boolean
-}) {
+    noLanding?: boolean;
+    shop?: boolean;
+}
+
+export default function Layout(props: ILayout) {
 
     return (
         <>
-            <Head head={head} />
+            <Head {...props.head} />
             <main>
-                {noLanding ? <Header /> : null}
+                {props.noLanding ? <Header shop={props.shop} /> : null}
                 <Nav />
-                {children}
+                {props.children}
+                <Notification />
             </main>
         </>
     )

@@ -8,9 +8,9 @@ import Nav from "../Nav/Nav";
 import styles from "./landing.module.scss";
 
 interface TLanding {
-    children: React.ReactNode,
-    imageURL: string,
-    custom?: boolean,
+    children: React.ReactNode;
+    imageURL: string;
+    custom?: boolean;
 }
 
 

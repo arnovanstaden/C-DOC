@@ -6,7 +6,7 @@ import Cross from "../Cross/Cross";
 // Styles
 import styles from "./section.module.scss";
 
-type TSection = {
+interface ISection {
     children: React.ReactNode;
     heading?: string;
     subHeading?: string;
@@ -16,7 +16,7 @@ type TSection = {
     noCross?: boolean
 }
 
-export default function Section({ children, heading, subHeading, noCross, classNameProp, idProp, dark }: TSection) {
+export default function Section({ children, heading, subHeading, noCross, classNameProp, idProp, dark }: ISection) {
 
     const SectionHeading = (): JSX.Element => {
         if (heading) {
