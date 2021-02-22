@@ -6,7 +6,7 @@ import Landing from "../components/Landing/Landing";
 // Styles
 import styles from '../styles/pages/contact.module.scss';
 
-export default function Contact() {
+export default function contact() {
     return (
         <Layout
             head={{

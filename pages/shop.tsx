@@ -10,7 +10,7 @@ import Layout from "../components/Layout/Layout";
 import Section from "../components/Section/Section";
 import Product from "../components/Product/Product";
 
-export default function Shop({ products }) {
+export default function shop({ products }) {
     console.log(products)
     return (
         <Layout

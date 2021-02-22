@@ -12,7 +12,7 @@ import Cross from "../components/Cross/Cross";
 // Styles
 import styles from '../styles/pages/services.module.scss';
 
-export default function Services() {
+export default function services() {
     return (
         <Layout
             head={{
