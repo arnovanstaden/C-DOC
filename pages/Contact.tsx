@@ -19,7 +19,7 @@ export default function Contact() {
                 imageURL="/images/pages/contact/landing.jpeg"
                 custom={true}
             >
-                <ContactDetails />
+                <ContactDetails page />
             </Landing>
 
             <div className={styles.grid}>
@@ -46,7 +46,9 @@ export default function Contact() {
                             <label htmlFor="Message">Your Message</label>
                             <textarea name="Message" placeholder="Your Message" required></textarea>
                         </div>
-                        <button type="submit">Send</button>
+                        <button type="submit" className="button">
+                            <p>Send</p>
+                        </button>
                     </form>
                 </div>
             </div>

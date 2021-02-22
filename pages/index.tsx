@@ -137,8 +137,8 @@ export default function Home() {
                 <Image src="/images/pages/home/team.jpg" layout="fill" objectFit="cover" alt="C-Doc Service Image - Consulting" />
               </div>
               <div className={styles.text}>
-                <h3>Our Courses</h3>
-                <p>C-DOC training centre in Saldanha Bay has been established since 1999 offering training to support commercial diving competency and safety. </p>
+                <h3>Meet The Team</h3>
+                <p>The C-DOC occupational health team brings together industry specialists with a broad background and skills set to compliment quality assured training.  </p>
               </div>
             </a>
           </Link>

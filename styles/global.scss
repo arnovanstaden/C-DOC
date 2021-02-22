@@ -72,7 +72,8 @@ a {
   position: relative;
   cursor: pointer;
 
-  a {
+  a,
+  p {
     display: flex;
     align-items: center;
     padding: 0.5rem 1.25rem;
@@ -80,6 +81,7 @@ a {
     font-size: 0.8rem;
     font-weight: 400;
     cursor: pointer;
+    margin: 0;
 
     i {
       margin-right: 0.5rem;
@@ -90,7 +92,8 @@ a {
     background-color: transparent;
     transition: 0.3s ease;
 
-    a {
+    a,
+    p {
       color: $darkgrey;
     }
   }
@@ -103,7 +106,8 @@ a {
     background-color: transparent;
     border-color: transparent;
 
-    a {
+    a,
+    p {
       padding: 0.7rem 1.45rem;
     }
 
@@ -116,7 +120,8 @@ a {
   &--border {
     background-color: transparent;
 
-    a {
+    a,
+    p {
       color: $red;
       font-weight: 600;
     }
@@ -124,7 +129,8 @@ a {
     &:hover {
       background-color: $red;
 
-      a {
+      a,
+      p {
         color: $white;
       }
     }

@@ -40,3 +40,19 @@
     }
 
 }
+
+.equipment {
+    padding: 4rem 2rem;
+    background-color: $darkgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white !important;
+    flex-direction: column;
+    text-align: center;
+
+    p {
+        padding: 0 4rem;
+        margin: -2rem 0 2rem 0
+    }
+}

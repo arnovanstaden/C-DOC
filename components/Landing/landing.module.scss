@@ -13,8 +13,9 @@
             justify-content: center;
             align-items: flex-start;
             flex-direction: column;
-            padding: 1rem 4rem 0 2rem;
+            padding: 0rem 4rem 0 2rem;
             box-sizing: border-box;
+            height: 80%;
 
             h1 {
                 font-weight: 600;
@@ -79,6 +80,29 @@
                 height: auto !important;
                 width: 100%;
             }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        flex-wrap: wrap;
+
+        .content {
+            width: 100%;
+
+            .text {
+                height: unset;
+                padding: 3rem 1rem;
+                align-items: center;
+                text-align: center;
+
+                ul li {
+                    justify-content: center;
+                }
+            }
+        }
+
+        .image {
+            width: 100%;
         }
     }
 }

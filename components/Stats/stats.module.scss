@@ -3,28 +3,48 @@
 .stats {
     padding: 4rem 2rem;
     background-color: $darkgrey;
-    display: flex;
-    justify-content: center;
 
-    .item {
-        text-align: center;
-        padding: 1rem 3rem;
-        border-right: 0.5px solid $white;
+    .grid {
+        display: flex;
+        justify-content: center;
 
-        &:last-child {
-            border-right: none;
+        .item {
+            text-align: center;
+            padding: 1rem 3rem;
+            border-right: 0.5px solid $white;
+
+            &:last-child {
+                border-right: none;
+            }
+
+            h3 {
+                color: $red;
+                font-size: 3rem;
+                margin: 0;
+            }
+
+            p {
+                color: $white;
+                margin: 0;
+                margin-top: 1rem;
+            }
         }
+    }
 
-        h3 {
-            color: $red;
-            font-size: 3rem;
-            margin: 0;
-        }
+    @media screen and (max-width: 768px) {
+        .grid {
+            flex-direction: column;
 
-        p {
-            color: $white;
-            margin: 0;
-            margin-top: 1rem;
+            .item {
+                text-align: center;
+                padding: 3rem 1rem;
+                border-bottom: 0.5px solid $white;
+                border-right: none;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
         }
     }
 }

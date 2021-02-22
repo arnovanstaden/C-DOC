@@ -2,10 +2,14 @@
 // Styles
 import styles from "./contact.module.scss";
 
-export default function Contact() {
+interface IContact {
+    page?: boolean
+}
+
+export default function Contact({ page }: IContact) {
     return (
 
-        <div className={styles.details}>
+        <div className={`${styles.details} ${page ? styles.page : ""}`}>
             <div className="heading heading--small">
                 <h1>Contact Us.</h1>
                 <span />
