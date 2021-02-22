@@ -10,7 +10,7 @@ import Stats from "../components/Stats/Stats";
 import Cross from "../components/Cross/Cross";
 
 // Styles
-import styles from '../styles/pages/home.module.scss';
+import styles from '../styles/pages/index.module.scss';
 
 export default function Home() {
   return (
