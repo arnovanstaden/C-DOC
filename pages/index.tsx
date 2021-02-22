@@ -134,7 +134,7 @@ export default function Home() {
           <Link href="/about#team">
             <a className={`${styles.item} ${styles.imageBlock}`}>
               <div className={styles.image}>
-                <Image src="/images/pages/home/team.jpg" layout="fill" objectFit="cover" alt="C-Doc Service Image - Consulting" />
+                <Image src="/images/pages/home/team.jpeg" layout="fill" objectFit="cover" alt="C-Doc Service Image - Consulting" />
               </div>
               <div className={styles.text}>
                 <h3>Meet The Team</h3>
