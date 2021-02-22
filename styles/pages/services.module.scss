@@ -7,35 +7,64 @@
         .item {
             width: 50%;
             padding: 0.5rem 2rem;
-        }
 
-        .left {
-            border-right: 4px solid $red;
-            text-align: right;
-        }
-
-        .right {
-
-            h5 {
-                margin: 0;
-                font-size: 1.1rem;
-                font-weight: 500;
+            &.left {
+                border-right: 4px solid $red;
+                text-align: right;
             }
 
-            ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
+            &.right {
 
-                li {
-                    display: flex;
-                    align-items: center;
-                    margin: 0.5rem 0;
-                    font-weight: 600;
+                h5 {
+                    margin: 0;
+                    font-size: 1.1rem;
+                    font-weight: 500;
+                }
 
-                    img {
-                        width: 1rem;
-                        margin-right: 0.5rem;
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+
+                    li {
+                        display: flex;
+                        align-items: center;
+                        margin: 0.5rem 0;
+                        font-weight: 600;
+
+                        img {
+                            width: 1rem;
+                            margin-right: 0.5rem;
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    @media screen and (max-width: 991px) {
+        .grid {
+            flex-wrap: wrap;
+
+            .item {
+                width: 100%;
+                padding: 2rem 0;
+
+                &.left {
+                    border-right: none;
+                    border-bottom: 4px solid $red;
+                    text-align: center;
+                }
+
+                &.right {
+                    text-align: center;
+
+                    ul {
+                        li {
+                            justify-content: center;
+                        }
                     }
                 }
             }
@@ -70,6 +99,10 @@
             }
         }
     }
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
 }
 
 .consulting,
@@ -81,15 +114,14 @@
     }
 
     .grid {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 3rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 3rem;
         margin-top: 3rem;
     }
 
     .catalogue {
-        width: calc(80% + 3rem);
+        grid-column: 1/3;
         position: relative;
 
         .image {
@@ -142,6 +174,17 @@
             p {
                 margin: 1rem 0 2rem 0;
             }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .grid {
+            grid-template-columns: 1fr;
+
+            .catalogue {
+                grid-column: 1/2;
+            }
+
         }
     }
 }
