@@ -62,7 +62,9 @@ export default function Home() {
             <a>
               <article className={styles.item}>
                 <div className={styles.image}>
-                  <Image src="/images/pages/home/consulting.jpeg" layout="fill" alt="C-Doc Service Image - Training" />
+                  <div className="next-image next-image--intrinsic">
+                    <Image src="/images/pages/home/consulting.jpeg" width={400} height="auto" alt="C-Doc Service Image - Training" />
+                  </div>
                 </div>
                 <div className={styles.text}>
                   <h3>Consulting</h3>
@@ -74,9 +76,10 @@ export default function Home() {
           <Link href="/services#training">
             <a>
               <article className={styles.item}>
-
                 <div className={styles.image}>
-                  <Image src="/images/pages/home/training.jpeg" layout="fill" alt="C-Doc Service Image - Training" />
+                  <div className="next-image next-image--intrinsic">
+                    <Image src="/images/pages/home/training.jpeg" width={400} height="auto" alt="C-Doc Service Image - Training" />
+                  </div>
                 </div>
                 <div className={styles.text}>
                   <h3>Training</h3>
@@ -88,9 +91,10 @@ export default function Home() {
           <Link href="/services#equipment">
             <a>
               <article className={styles.item}>
-
                 <div className={styles.image}>
-                  <Image src="/images/pages/home/products.jpeg" layout="fill" alt="C-Doc Service Image - Products" />
+                  <div className="next-image next-image--intrinsic">
+                    <Image src="/images/pages/home/products.jpeg" width={400} height="auto" alt="C-Doc Service Image - Products" />
+                  </div>
                 </div>
                 <div className={styles.text}>
                   <h3>Equipment</h3>
@@ -111,7 +115,9 @@ export default function Home() {
           <Link href="/services#training">
             <a className={`${styles.item} ${styles.imageBlock}`}>
               <div className={styles.image}>
-                <Image src="/images/pages/home/courses.jpeg" layout="fill" objectFit="cover" alt="C-Doc Service Image - Consulting" />
+                <div className="next-image next-image--intrinsic">
+                  <Image src="/images/pages/home/courses.jpeg" width={500} height="auto" objectFit="cover" alt="C-Doc Service Image - Consulting" />
+                </div>
               </div>
               <div className={styles.text}>
                 <h3>Our Courses</h3>
@@ -134,7 +140,9 @@ export default function Home() {
           <Link href="/about#team">
             <a className={`${styles.item} ${styles.imageBlock}`}>
               <div className={styles.image}>
-                <Image src="/images/pages/home/team.jpeg" layout="fill" objectFit="cover" alt="C-Doc Service Image - Consulting" />
+                <div className="next-image next-image--intrinsic">
+                  <Image src="/images/pages/home/team.jpeg" width={800} height="auto" objectFit="cover" alt="C-Doc Service Image - Consulting" />
+                </div>
               </div>
               <div className={styles.text}>
                 <h3>Meet The Team</h3>

@@ -26,8 +26,9 @@ export default function Landing(props: TLanding) {
                 }
             </div>
             <div className={styles.image}>
-                <Nav />
-                <Image layout="fill" objectFit="cover" alt="C-DOC Landing Image" src={props.imageURL} />
+                <div className="next-image next-image--intrinsic">
+                    <Image width={1000} height="auto" alt="C-DOC Landing Image" src={props.imageURL} />
+                </div>
             </div>
         </section>
     )

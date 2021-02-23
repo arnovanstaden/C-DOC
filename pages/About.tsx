@@ -7,7 +7,6 @@ import Landing from "../components/Landing/Landing";
 import TeamMember from "../components/TeamMember/TeamMember";
 import Cross from "../components/Cross/Cross";
 
-
 // Styles
 import styles from '../styles/pages/about.module.scss';
 
@@ -49,7 +48,6 @@ export default function about() {
                 heading="Our Story."
                 classNameProp={styles.story}
                 idProp="story"
-
             >
                 <p>C-DOC’s founder member and subject matter expert is Bridget Thomson. Bridget and her highly skilled and experienced team remain committed and dedicated to safety and competence in the commercial diving community through effective education, consulting, equipment design and usage. The team strive to ensure continued improvement and development for competency and safety in all dive operations inshore and offshore.</p>
 
@@ -75,22 +73,22 @@ export default function about() {
                 <div className={styles.grid}>
                     <div className={styles.image}>
                         <div className="next-image next-image--intrinsic">
-                            <Image src="/images/pages/about/memberships/01-DMER.jpg" alt="Membership Logo" width={500} height="auto" />
+                            <Image src="/images/pages/about/memberships/01-DMER.jpg" alt="Membership Logo" width={400} height="auto" />
                         </div>
                     </div>
                     <div className={styles.image}>
                         <div className="next-image next-image--intrinsic">
-                            <Image src="/images/pages/about/memberships/02-IMCA.jpg" alt="Membership Logo" width={500} height="auto" />
+                            <Image src="/images/pages/about/memberships/02-IMCA.jpg" alt="Membership Logo" width={400} height="auto" />
                         </div>
                     </div>
                     <div className={styles.image}>
                         <div className="next-image next-image--intrinsic">
-                            <Image src="/images/pages/about/memberships/03-SAOGA.png" alt="Membership Logo" width={500} height="auto" />
+                            <Image src="/images/pages/about/memberships/03-SAOGA.png" alt="Membership Logo" width={400} height="auto" />
                         </div>
                     </div>
                     <div className={styles.image}>
                         <div className="next-image next-image--intrinsic">
-                            <Image src="/images/pages/about/memberships/04-SAUHMA.jpg" alt="Membership Logo" width={500} height="auto" />
+                            <Image src="/images/pages/about/memberships/04-SAUHMA.jpg" alt="Membership Logo" width={400} height="auto" />
                         </div>
                     </div>
                     <div className={styles.image}>
@@ -120,8 +118,8 @@ export default function about() {
                         <p> D+MER is an online blended learning and competence management system, in order to ensure anyone who is expected to use a certain piece of equipment is familiar with and trained in use of that equipment.</p>
                     </div>
                     <div className={styles.image}>
-                        <div className="next-image next-image--fill">
-                            <Image src="/images/pages/about/partnership.jpeg" layout="fill" alt="Article Image" />
+                        <div className="next-image next-image--intrinsic">
+                            <Image width={500} height="auto" src="/images/pages/about/partnership.jpeg" alt="Article Image" />
                         </div>
                     </div>
                     <div className={styles.text}>
