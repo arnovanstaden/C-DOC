@@ -11,7 +11,6 @@ import Section from "../components/Section/Section";
 import Product from "../components/Product/Product";
 
 export default function shop({ products }) {
-    console.log(products)
     return (
         <Layout
             head={{
@@ -68,11 +67,12 @@ export default function shop({ products }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`)
-    const products = await res.json()
+    const productResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
+    const products = await productResponse.json();
+
     return {
         props: {
-            products,
+            products
         },
     }
 }

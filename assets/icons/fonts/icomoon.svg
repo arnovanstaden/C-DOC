@@ -22,4 +22,6 @@
 <glyph unicode="&#xe90c;" glyph-name="arrow_drop_down" d="M298 512.667h428l-214-214z" />
 <glyph unicode="&#xe90d;" glyph-name="arrow_drop_up" d="M298 340.667l214 214 214-214h-428z" />
 <glyph unicode="&#xe90e;" glyph-name="arrow_drop_up1" d="M298 340.667l214 214 214-214h-428z" />
+<glyph unicode="&#xe90f;" glyph-name="add" d="M810 384.667h-256v-256h-84v256h-256v84h256v256h84v-256h256v-84z" />
+<glyph unicode="&#xe910;" glyph-name="remove" d="M810 384.667h-596v84h596v-84z" />
 </font></defs></svg>

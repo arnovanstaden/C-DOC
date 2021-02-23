@@ -137,7 +137,8 @@ export default function about() {
             </Section>
 
             <section className={styles.value}>
-                <div className="heading">                <h1>Value for Money.</h1>
+                <div className="heading">
+                    <h1>Value for Money.</h1>
                     <span />
                 </div>
                 <p>C-DOC services and products are designed to support companies to meet their audit compliance and strengthen their operational dive teams in order to move people and their performance in new directions. </p>

@@ -1,1 +1,74 @@
 @import "../../styles/variables.scss";
+
+.grid {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid $red;
+    position: relative;
+    padding: 1rem;
+
+    .item {
+        display: flex;
+        align-items: center;
+
+        .image {
+            margin-right: 0.5rem;
+
+            img {
+                width: 3rem;
+            }
+        }
+
+        .details {
+            .name {
+                margin: 0;
+                font-size: 1.1rem;
+                font-weight: 600;
+            }
+
+            .category {
+                color: $red;
+                margin: 0;
+                margin-top: 0.25rem;
+                font-weight: 600;
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    .quantity {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+
+        i {
+            font-weight: 400;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: 0.3s ease-out;
+
+            &:hover {
+                color: $red;
+            }
+        }
+    }
+
+    .price {
+        margin: 0;
+        color: $red;
+    }
+
+    .total {
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+
+
+    .remove {
+        cursor: pointer;
+        transition: 0.3s ease-out;
+    }
+}

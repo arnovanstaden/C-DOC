@@ -1,14 +1,18 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import { updateCart, removeFromCart } from "../../utils/cart";
-
+import { updateCart, removeFromCart, ICartItem, IProduct } from "../../utils/cart";
 
 // Styles
-import styles from "./cart-item.module.scss"
+import styles from "./cart-item.module.scss";
 
-const CartItem = (props) => {
-    const product = props.product;
-    const [quantity, setQuantity] = useState(props.quantity);
+// Interfaces
+interface ICartItemProps {
+    item: ICartItem,
+    product: IProduct
+}
+
+const CartItem = ({ item, product }: ICartItemProps) => {
+    const [quantity, setQuantity] = useState(item.quantity);
     const [total, setTotal] = useState(product.price * quantity);
 
     const minusQuantity = () => {
@@ -33,7 +37,7 @@ const CartItem = (props) => {
 
     const handleItemRemove = () => {
         removeFromCart(product);
-        props.handleCartChange()
+        // props.handleCartChange()
     }
 
     return (
@@ -43,21 +47,19 @@ const CartItem = (props) => {
                     <img src={product.thumbnail} alt="" />
                 </div>
                 <div className={styles.details}>
-                    <h5>{product.name}</h5>
-                    <p>{product.category}</p>
+                    <p className={styles.name}>{product.name}</p>
+                    <p className={styles.category}>{product.category}</p>
                 </div>
             </div>
             <div className={styles.quantity}>
-                <i className="material-icons" onClick={() => minusQuantity()}>remove</i>
+                <i className="icon-remove" onClick={() => minusQuantity()}></i>
                 <p id="cart-item-quantity">{quantity}</p>
-                <i className="material-icons" onClick={() => plusQuantity()}>add</i>
+                <i className="icon-add" onClick={() => plusQuantity()}></i>
             </div>
             <p className={styles.price}>R {product.price}</p>
-            <div className={styles.total}>
-                <p>R {total}</p>
-            </div>
-            <i className={`${styles.remove} material-icons`} onClick={() => handleItemRemove()}>close</i>
-        </div >
+            <p className={styles.total}>R {total}</p>
+            <i className={`${styles.remove} icon-clear`} onClick={() => handleItemRemove()}></i>
+        </div>
     )
 }
 

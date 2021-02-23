@@ -1,8 +1,8 @@
-import { sendNotification } from "../components/Notification/Notification"
+import { sendNotification } from "../components/Notification/Notification";
 
-// Types
+// Interfaces
 
-interface ICart {
+export interface ICartItem {
     id: string;
     quantity: number;
     price: number;
@@ -21,6 +21,10 @@ export interface IProduct {
 
 
 // INTERNAL HELPER FUNCTIONS
+
+export const getCartLength = (): number => {
+    return getCart().length;
+}
 
 export const searchCart = (productID: string): number => {
     let currentCart = getCart();
@@ -98,7 +102,7 @@ export const removeFromCart = (product: IProduct) => {
 
 }
 
-export const getCart = (): ICart[] => {
+export const getCart = (): ICartItem[] => {
     let currentCart
     if (typeof window !== 'undefined') {
         currentCart = JSON.parse(localStorage.getItem("cart"));
