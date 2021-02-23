@@ -14,17 +14,7 @@ import styles from "../../styles/pages/shop/[id].module.scss";
 
 export default function product({ product }) {
     // State
-    const [tab, setTab] = useState("Description");
     const [quantity, setQuantity] = useState(1);
-
-    const handleTabChange = (clickedElement) => {
-        const tabs = document.querySelectorAll(`.${styles.details} p`);
-        tabs.forEach((elem) => {
-            elem.classList.remove(styles.active)
-        })
-        clickedElement.target.classList.add(styles.active);
-        setTab(clickedElement.target.textContent)
-    }
 
     return (
         <Layout
@@ -50,11 +40,10 @@ export default function product({ product }) {
                         <h2 className={styles.name}>{product.name}</h2>
                         <p className={styles.price}>R {product.price}</p>
                         <div className={styles.details}>
-                            <p className={styles.active} onClick={(e) => handleTabChange(e)}>Description</p>
-                            <p onClick={(e) => handleTabChange(e)}>Details</p>
+                            <p className={styles.active}>Description</p>
                         </div>
                         <p className={styles.detailsContent}>
-                            {tab === "Description" ? product.description : product.details}
+                            product.description
                         </p>
                         <div className={styles.cart}>
                             <div className={styles.quantity}>

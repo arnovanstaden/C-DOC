@@ -1,4 +1,4 @@
-import { getCart, getCartTotal } from "../../utils/cart";
+import { getCart, getCartTotal, checkCartValidity } from "../../utils/cart";
 import { GetStaticProps } from 'next'
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -15,7 +15,7 @@ import Checkout from "../../components/Checkout/Checkout";
 import styles from "../../styles/pages/cart/index.module.scss";
 
 export default function Cart({ products, shopSettings }) {
-
+    checkCartValidity(products)
     // State
     const [loading, setLoading] = useState(true)
     const [cart, setCart] = useState(getCart());
@@ -61,7 +61,7 @@ export default function Cart({ products, shopSettings }) {
             return (
                 <>
                     <div className={styles.items}>
-                        {!cart ?
+                        {!cart || cart.length < 1 ?
                             <p>Your Cart is Empty :(</p>
                             : cart.map((item, index) => (
                                 <CartItem
@@ -87,9 +87,12 @@ export default function Cart({ products, shopSettings }) {
                             <a>Back to Shop</a>
                         </button>
                     </Link>
-                    <button className="button" onClick={() => handleCheckoutShow()}>
-                        <p>Checkout</p>
-                    </button>
+                    {!cart || cart.length < 1 ?
+                        null
+                        : <button className="button" onClick={() => handleCheckoutShow()}>
+                            <p>Checkout</p>
+                        </button>
+                    }
                 </div>
             )
         } else {

@@ -21,7 +21,7 @@ export default function Header({ shop }: IHeader) {
             </Link>
             <div className={styles.options}>
                 {shop ?
-                    <Link href="/shop/cart">
+                    <Link href="/cart/">
                         <a className={styles.cart}>
                             <i className="icon-local_grocery_store"></i>
                         </a>

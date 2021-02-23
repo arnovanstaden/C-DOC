@@ -91,7 +91,7 @@ export const updateCart = (product: IProduct, quantity: number) => {
     sendNotification("Cart Updated")
 }
 
-export const removeFromCart = (product: IProduct) => {
+export const removeFromCart = (product) => {
     // Get Current Cart & Index of Item
     let currentCart = getCart();
     let index = currentCart.findIndex((item => item.id === product.id));
@@ -112,6 +112,19 @@ export const getCart = (): ICartItem[] => {
         currentCart = JSON.parse(localStorage.getItem("cart"));
     }
     return currentCart
+}
+
+export const checkCartValidity = (products) => {
+    let currentCart = getCart();
+
+    if (currentCart) {
+        currentCart.forEach(item => {
+            let itemFound = products.find(product => product.id === item.id)
+            if (!itemFound) {
+                removeFromCart(item)
+            }
+        })
+    }
 }
 
 export const getCartTotal = (): number => {
