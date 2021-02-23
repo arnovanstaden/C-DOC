@@ -1,6 +1,8 @@
 import { getCart } from "../../utils/cart";
 import { GetStaticProps } from 'next';
 import Link from "next/link";
+import { useState, useEffect } from "react";
+
 
 
 // Components
@@ -9,15 +11,37 @@ import Section from "../../components/Section/Section";
 import Layout from "../../components/Layout/Layout";
 
 // Styles
-import styles from "../../styles/pages/shop/cart.module.scss";
+import styles from "../../styles/pages/cart/index.module.scss";
 
 export default function Cart({ products, shopSettings }) {
-    const cart = getCart();
+
+    // State
+    const [isLoading, setLoading] = useState(true);
+    const [cart, setCart] = useState(getCart());
+    const [showCart, setShowCart] = useState(true);
+    const [showCheckout, setShowCheckout] = useState(false);
 
     // Helpers
     const getProduct = (item) => {
         let product = products.find(product => product.id === item.id);
         return product
+    }
+
+    // Handlers
+    const handleCartChange = (() => {
+        setCart(getCart())
+    })
+
+    const handleCheckoutShow = () => {
+        // Check Quants
+        setShowCart(false)
+        setShowCheckout(true)
+        handleCartChange();
+    }
+
+    const handleCartShow = () => {
+        setShowCheckout(false)
+        setShowCart(true)
     }
 
     return (
@@ -33,16 +57,21 @@ export default function Cart({ products, shopSettings }) {
         >
             <Section
                 heading="Your Cart"
-                subHeading="These are the items in your cart:"
                 noCross={true}
+                classNameProp={styles.cart}
             >
-                <div className={styles.cart}>
+                <div className={styles.grid}>
                     <div className={styles.items}>
-                        {cart ?
-                            cart.map((item, index) => (
-                                <CartItem item={item} product={getProduct(item)} key={index} />
+                        {cart === undefined || cart.length === 0 ?
+                            <p>Your Cart is Empty :(</p>
+                            : cart.map((item, index) => (
+                                <CartItem
+                                    item={item}
+                                    product={getProduct(item)}
+                                    key={index}
+                                    handleCartChange={() => handleCartChange()} />
                             ))
-                            : <p>There are no items in your cart</p>}
+                        }
                     </div>
                     <div className={styles.options}>
                         <Link href="/shop">

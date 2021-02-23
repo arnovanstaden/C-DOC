@@ -8,10 +8,11 @@ import styles from "./cart-item.module.scss";
 // Interfaces
 interface ICartItemProps {
     item: ICartItem,
-    product: IProduct
+    product: IProduct,
+    handleCartChange: () => void
 }
 
-const CartItem = ({ item, product }: ICartItemProps) => {
+const CartItem = ({ item, product, handleCartChange }: ICartItemProps) => {
     const [quantity, setQuantity] = useState(item.quantity);
     const [total, setTotal] = useState(product.price * quantity);
 
@@ -37,7 +38,7 @@ const CartItem = ({ item, product }: ICartItemProps) => {
 
     const handleItemRemove = () => {
         removeFromCart(product);
-        // props.handleCartChange()
+        handleCartChange()
     }
 
     return (

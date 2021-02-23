@@ -23,7 +23,11 @@ export interface IProduct {
 // INTERNAL HELPER FUNCTIONS
 
 export const getCartLength = (): number => {
-    return getCart().length;
+    if (getCart() === undefined || getCart().length === 0) {
+        return 0
+    } else {
+        return getCart().length;
+    }
 }
 
 export const searchCart = (productID: string): number => {
@@ -84,7 +88,7 @@ export const updateCart = (product: IProduct, quantity: number) => {
         localStorage.setItem("cart", JSON.stringify(currentCart));
     }
     showCart()
-    sendNotification("Item added to your cart")
+    sendNotification("Cart Updated")
 }
 
 export const removeFromCart = (product: IProduct) => {

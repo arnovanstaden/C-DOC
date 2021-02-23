@@ -23,7 +23,6 @@ export default function Header({ shop }: IHeader) {
                 {shop ?
                     <Link href="/shop/cart">
                         <a className={styles.cart}>
-                            <span>{getCartLength()}</span>
                             <i className="icon-local_grocery_store"></i>
                         </a>
                     </Link>
