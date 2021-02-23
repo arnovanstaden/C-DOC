@@ -1,5 +1,5 @@
-import { getCart } from "../../utils/cart";
-import { GetStaticProps } from 'next';
+import { getCart, getCartTotal } from "../../utils/cart";
+import { GetStaticProps } from 'next'
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import CartItem from "../../components/CartItem/CartItem";
 import Section from "../../components/Section/Section";
 import Layout from "../../components/Layout/Layout";
+import Checkout from "../../components/Checkout/Checkout";
 
 // Styles
 import styles from "../../styles/pages/cart/index.module.scss";
@@ -16,10 +17,17 @@ import styles from "../../styles/pages/cart/index.module.scss";
 export default function Cart({ products, shopSettings }) {
 
     // State
-    const [isLoading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true)
     const [cart, setCart] = useState(getCart());
     const [showCart, setShowCart] = useState(true);
-    const [showCheckout, setShowCheckout] = useState(false);
+    const [total, setTotal] = useState(getCartTotal());
+
+
+    // Hydrate Cart
+    useEffect(() => {
+        setLoading(false)
+    }, [])
+
 
     // Helpers
     const getProduct = (item) => {
@@ -32,16 +40,67 @@ export default function Cart({ products, shopSettings }) {
         setCart(getCart())
     })
 
+    const handleCartTotalUpdate = (() => {
+        setTotal(getCartTotal())
+    })
+
     const handleCheckoutShow = () => {
         // Check Quants
         setShowCart(false)
-        setShowCheckout(true)
         handleCartChange();
     }
 
     const handleCartShow = () => {
-        setShowCheckout(false)
         setShowCart(true)
+    }
+
+
+    // Components
+    const CartItemGrid = () => {
+        if (!loading) {
+            return (
+                <>
+                    <div className={styles.items}>
+                        {!cart ?
+                            <p>Your Cart is Empty :(</p>
+                            : cart.map((item, index) => (
+                                <CartItem
+                                    item={item}
+                                    product={getProduct(item)}
+                                    key={index}
+                                    handleCartChange={() => handleCartChange()} />
+                            ))
+                        }
+                    </div>
+                </>
+            )
+        }
+        return null
+    }
+
+    const Options = () => {
+        if (showCart) {
+            return (
+                <div className={styles.options}>
+                    <Link href="/shop">
+                        <button className="button button--border">
+                            <a>Back to Shop</a>
+                        </button>
+                    </Link>
+                    <button className="button" onClick={() => handleCheckoutShow()}>
+                        <p>Checkout</p>
+                    </button>
+                </div>
+            )
+        } else {
+            return (
+                <div className={styles.options}>
+                    <button className="button button--border" onClick={() => handleCartShow()}>
+                        <a>Back to Cart</a>
+                    </button>
+                </div>
+            )
+        }
     }
 
     return (
@@ -61,31 +120,11 @@ export default function Cart({ products, shopSettings }) {
                 classNameProp={styles.cart}
             >
                 <div className={styles.grid}>
-                    <div className={styles.items}>
-                        {cart === undefined || cart.length === 0 ?
-                            <p>Your Cart is Empty :(</p>
-                            : cart.map((item, index) => (
-                                <CartItem
-                                    item={item}
-                                    product={getProduct(item)}
-                                    key={index}
-                                    handleCartChange={() => handleCartChange()} />
-                            ))
-                        }
-                    </div>
-                    <div className={styles.options}>
-                        <Link href="/shop">
-                            <button className="button button--border">
-                                <a>Back to Shop</a>
-                            </button>
-                        </Link>
-                        <button className="button">
-                            <p>Checkout</p>
-                        </button>
-                    </div>
+                    {showCart ? <CartItemGrid /> : <Checkout deliveryFee={shopSettings.deliveryFee} />}
+                    <Options />
                 </div>
             </Section>
-        </Layout>
+        </Layout >
     )
 }
 
@@ -103,3 +142,4 @@ export const getStaticProps: GetStaticProps = async () => {
         },
     }
 }
+

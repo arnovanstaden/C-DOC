@@ -1,5 +1,4 @@
-import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { updateCart, removeFromCart, ICartItem, IProduct } from "../../utils/cart";
 
 // Styles
@@ -7,9 +6,9 @@ import styles from "./cart-item.module.scss";
 
 // Interfaces
 interface ICartItemProps {
-    item: ICartItem,
-    product: IProduct,
-    handleCartChange: () => void
+    item: ICartItem;
+    product: IProduct;
+    handleCartChange: () => void;
 }
 
 const CartItem = ({ item, product, handleCartChange }: ICartItemProps) => {

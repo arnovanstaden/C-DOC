@@ -117,9 +117,11 @@ export const getCart = (): ICartItem[] => {
 export const getCartTotal = (): number => {
     let currentCart = getCart();
     let total = 0;
-    currentCart.forEach(item => {
-        total += (item.price * item.quantity)
-    })
+    if (currentCart) {
+        currentCart.forEach(item => {
+            total += (item.price * item.quantity)
+        })
+    }
     return total
 }
 

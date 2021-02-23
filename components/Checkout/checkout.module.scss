@@ -1,0 +1,84 @@
+@import "../../styles/variables.scss";
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+
+    .form {
+
+        .row {
+            display: flex;
+            column-gap: 2rem;
+            margin-bottom: 1rem;
+
+            >div {
+                width: 50%;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                border: 1.5px solid $lightgrey;
+                padding: 0.5rem;
+                font-family: $font;
+                resize: none;
+                transition: 0.3s ease;
+                outline: none;
+                box-sizing: border-box;
+
+                &:focus {
+                    border-color: $red;
+                    font-weight: 600;
+                }
+            }
+
+            textarea {
+                height: 6rem;
+            }
+        }
+    }
+
+    .summary {
+        background-color: rgba($lightgrey, 0.2);
+        align-self: flex-start;
+        padding: 2rem;
+
+        h2 {
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin: 0;
+            margin-bottom: 1rem;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 0.5rem;
+
+            p {
+                margin: 0;
+            }
+
+            h6 {
+                font-weight: 600;
+                font-size: 1.1rem;
+                margin: 0;
+            }
+        }
+
+        .total {
+            border-top: 1px solid $darkgrey;
+            padding: 0.5rem;
+
+            h6 {
+                color: $red;
+            }
+        }
+
+        button {
+            float: right;
+            margin-top: 1rem;
+        }
+    }
+}

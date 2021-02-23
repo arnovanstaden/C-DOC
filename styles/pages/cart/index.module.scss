@@ -5,11 +5,6 @@
 
     .grid {
 
-        &.open {
-            width: 50%;
-            border-left: 0.25rem solid $red;
-        }
-
         .items {
             display: flex;
             flex-wrap: wrap;
