@@ -8,11 +8,25 @@ import Landing from "../components/Landing/Landing";
 import Stats from "../components/Stats/Stats";
 import InfoBlock from "../components/InfoBlock/InfoBlock";
 import Cross from "../components/Cross/Cross";
+import Catalogue from "../components/Catalogue/Catalogue";
 
 // Styles
 import styles from '../styles/pages/services.module.scss';
+import catalogueStyles from "../components/Catalogue/catalogue.module.scss";
 
 export default function services() {
+
+    const handleCatalogueToggle = () => {
+        const nav = document.querySelector(`.${catalogueStyles.catalogue}`);
+        if (nav.classList.contains(catalogueStyles.open)) {
+            nav.classList.remove(catalogueStyles.open);
+            document.body.classList.remove("noscroll")
+        } else {
+            nav.classList.add(catalogueStyles.open);
+            document.body.classList.add("noscroll")
+        }
+    }
+
     return (
         <Layout
             head={{
@@ -131,8 +145,8 @@ export default function services() {
                 dark={true}
             >
                 <div className={styles.button}>
-                    <button className="button">
-                        <a>Order/Enquire About Equipment</a>
+                    <button className="button" onClick={() => handleCatalogueToggle()}>
+                        <a>Equipment Enquiries</a>
                     </button>
                 </div>
                 <div className={styles.grid}>
@@ -237,10 +251,10 @@ export default function services() {
                         </div>
                         <div className={styles.text}>
                             <h5>Medical Equipment</h5>
-                            <p>If you’d like to request a quotation or obtain more information regarding any of the medical equipment we provide, please fill out our order form.</p>
-                            <button className="button-grow light">
+                            <p>If you’d like to request a quotation or obtain more information regarding any of the medical equipment we provide, please fill out our enquiry form.</p>
+                            <button className="button-grow light" onClick={() => handleCatalogueToggle()}>
                                 <a>
-                                    <span>Product Catalogue</span>
+                                    <span>Equipment Enquiries</span>
                                     <i className="icon-arrow-right"></i>
                                 </a>
                             </button>
@@ -248,7 +262,7 @@ export default function services() {
                     </div>
                 </div>
             </Section>
-
+            <Catalogue handleCatalogueToggle={() => handleCatalogueToggle()} />
         </Layout >
     )
 }

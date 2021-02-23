@@ -17,7 +17,9 @@ export default function Product({ name, price, id, thumbnail }: IProduct) {
     return (
         <Link href={`/shop/${id}`}>
             <a className={styles.product}>
-                <img src={convertImage(thumbnail, 300)} alt="" />
+                <div className={styles.image}>
+                    <img src={convertImage(thumbnail, 300)} alt="" />
+                </div>
                 <h4>{name}</h4>
                 <p>R {price}</p>
             </a>

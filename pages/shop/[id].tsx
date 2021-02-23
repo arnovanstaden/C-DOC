@@ -43,7 +43,7 @@ export default function product({ product }) {
                             <p className={styles.active}>Description</p>
                         </div>
                         <p className={styles.detailsContent}>
-                            product.description
+                            {product.description}
                         </p>
                         <div className={styles.cart}>
                             <div className={styles.quantity}>
@@ -57,7 +57,6 @@ export default function product({ product }) {
                     </div>
                 </div>
             </Section>
-
         </Layout>
     )
 }
