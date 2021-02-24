@@ -12,7 +12,8 @@ export default function Success() {
 
     useEffect(() => {
         clearCart()
-    }, [])
+    }, []);
+
     return (
         <Layout
             head={{
@@ -21,6 +22,8 @@ export default function Success() {
                 canonical: "/success",
                 robots: false
             }}
+            noLanding={true}
+
         >
 
             <Section
