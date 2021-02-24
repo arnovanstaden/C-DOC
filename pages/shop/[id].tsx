@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GetStaticProps } from 'next';
 import { convertImage } from "../../utils/utils";
 import { updateCart } from "../../utils/cart";
+import Link from "next/link";
 
 // Components
 import Layout from "../../components/Layout/Layout";
@@ -31,6 +32,13 @@ export default function Product({ product }) {
                 noCross={true}
                 classNameProp={styles.product}
             >
+                <div className={styles.shop}>
+                    <Link href="/shop">
+                        <button className="button button--border">
+                            <a>Back to Shop</a>
+                        </button>
+                    </Link>
+                </div>
                 <div className={styles.grid}>
                     <div className={styles.image}>
                         <img src={convertImage(product.thumbnail, 800)} alt="" />
@@ -42,8 +50,9 @@ export default function Product({ product }) {
                         <div className={styles.details}>
                             <p className={styles.active}>Description</p>
                         </div>
-                        <p className={styles.detailsContent}>
+                        <p className={styles.description}>
                             {product.description}
+                            {product.digital ? <span>This is a Digital Product</span> : null}
                         </p>
                         <div className={styles.cart}>
                             <div className={styles.quantity}>

@@ -35,6 +35,15 @@
                 font-weight: 600;
                 font-size: 0.8rem;
             }
+
+            .digital {
+                margin-top: 0.25rem;
+                font-size: 0.7rem;
+                background-color: $red;
+                color: $white;
+                padding: 0.25rem 0.5rem;
+                display: inline-block;
+            }
         }
     }
 

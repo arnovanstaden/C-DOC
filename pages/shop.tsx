@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GetStaticProps } from 'next';
+import { useState, useEffect } from "react"
 
 // Styles
 import styles from '../styles/pages/shop.module.scss';
@@ -11,6 +12,37 @@ import Section from "../components/Section/Section";
 import Product from "../components/Product/Product";
 
 export default function Shop({ products }) {
+
+    const [filter, setFilter] = useState("All Products")
+
+
+    const handleFilter = (clickedElement) => {
+
+        // Active Category
+        const tabs = document.querySelectorAll(`.${styles.categories} button`);
+        tabs.forEach((elem) => {
+            elem.classList.remove(styles.active)
+        })
+        clickedElement.target.classList.add(styles.active);
+        setFilter(clickedElement.target.textContent)
+
+
+        // Filter
+        // let productGrid = document.querySelector(`.${styles.productGrid}`).children;
+        // for (let j = 0; j < productGrid.length; j++) {
+        //     // Remove Old Filter
+        //     productGrid[j].classList.remove(`${styles.hideFilter}`)
+        //     let category = productGrid[j].getAttribute("data-category");
+        //     if (category !== activeCategory) {
+        //         productGrid[j].classList.add(`${styles.hideFilter}`)
+        //     }
+        // }
+    }
+
+    useEffect(() => {
+        console.log("Filter Changed");
+    }, [filter])
+
     return (
         <Layout
             head={{
@@ -28,9 +60,9 @@ export default function Shop({ products }) {
                 classNameProp={styles.shop}
             >
                 <div className={styles.categories}>
-                    <button className={`${styles.button} ${styles.active}`}>All Products</button>
-                    <button className={styles.button}>Medical Equipment</button>
-                    <button className={styles.button}>Clothing &amp; Gear</button>
+                    <button className={`${styles.button} ${styles.active}`} onClick={(e) => handleFilter(e)}>All Products</button>
+                    <button className={styles.button} onClick={(e) => handleFilter(e)}>Medical Equipment</button>
+                    <button className={styles.button} onClick={(e) => handleFilter(e)}>Clothing &amp; Gear</button>
                 </div>
                 <div className={styles.filter}>
                     <div className={styles.search}>
@@ -42,7 +74,7 @@ export default function Shop({ products }) {
                 </div>
                 <div className={styles.grid}>
                     {products.map((product, index) => (
-                        <Product {...product} key={index} />
+                        (filter === "All Products" || filter === product.category) ? < Product {...product} key={index} /> : null
                     ))}
                 </div>
             </Section>

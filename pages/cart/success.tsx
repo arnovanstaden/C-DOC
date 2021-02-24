@@ -20,6 +20,7 @@ export default function Success() {
                 heading="Success."
                 classNameProp={styles.success}
             >
+                {/* CLEART CART */}
                 <p>Your transaction has been successful</p>
             </Section>
         </Layout>

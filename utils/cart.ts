@@ -17,6 +17,8 @@ export interface IProduct {
     price: number;
     category: string
     thumbnail: string;
+    digital?: boolean;
+    document?: string
 }
 
 

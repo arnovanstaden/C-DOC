@@ -122,10 +122,12 @@ export default function Cart({ products, shopSettings }) {
                 noCross={true}
                 classNameProp={styles.cart}
             >
-                <div className={styles.grid}>
-                    {showCart ? <CartItemGrid /> : <Checkout deliveryFee={shopSettings.deliveryFee} />}
-                    <Options />
-                </div>
+                {!loading ?
+                    <div className={styles.grid}>
+                        {showCart ? <CartItemGrid /> : <Checkout deliveryFee={shopSettings.deliveryFee} />}
+                        <Options />
+                    </div>
+                    : null}
             </Section>
         </Layout >
     )

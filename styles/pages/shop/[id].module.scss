@@ -1,6 +1,12 @@
 @import "../../variables.scss";
 
 .product {
+    padding-top: 4rem;
+
+    .shop {
+        margin-bottom: 2rem;
+    }
+
     .grid {
         display: flex;
 
@@ -60,17 +66,20 @@
                     margin: 0;
                     padding: 0 0.5rem 0.5rem 0.5rem;
                     cursor: pointer;
-
-                    &.active {
-                        border-bottom: 2px solid $red;
-                        color: $red;
-                    }
                 }
+            }
 
-                &Content {
-                    font-weight: 300;
-                    color: $lightgrey;
-                    font-size: 0.9rem;
+
+            .description {
+                font-weight: 300;
+                color: $lightgrey;
+                font-size: 0.9rem;
+
+                span {
+                    color: $red;
+                    margin-top: 0.5rem;
+                    display: block;
+                    font-weight: 600;
                 }
             }
 

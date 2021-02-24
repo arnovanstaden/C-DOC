@@ -1,27 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { convertImage } from "../../utils/utils";
+import { IProduct } from "../../utils/cart";
 
 
 // Styles 
 import styles from "./product.module.scss";
 
-interface IProduct {
-    name: string;
-    price: number;
-    id: string;
-    thumbnail: string;
-}
+export default function Product(product: IProduct) {
 
-export default function Product({ name, price, id, thumbnail }: IProduct) {
+
     return (
-        <Link href={`/shop/${id}`}>
-            <a className={styles.product}>
+        <Link href={`/shop/${product.id}`}>
+            <a className={styles.product} data-category={product.category}>
                 <div className={styles.image}>
-                    <img src={convertImage(thumbnail, 300)} alt="" />
+                    <img src={convertImage(product.thumbnail, 300)} alt="" />
                 </div>
-                <h4>{name}</h4>
-                <p>R {price}</p>
+                <h4>{product.name}</h4>
+                <p>R {product.price}</p>
             </a>
         </Link>
     )

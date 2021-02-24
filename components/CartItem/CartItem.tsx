@@ -49,6 +49,7 @@ const CartItem = ({ item, product, handleCartChange }: ICartItemProps) => {
                 <div className={styles.details}>
                     <p className={styles.name}>{product.name}</p>
                     <p className={styles.category}>{product.category}</p>
+                    {product.digital ? <p className={styles.digital}>Digital Product</p> : null}
                 </div>
             </div>
             <div className={styles.quantity}>
