@@ -17,7 +17,7 @@ export default function Contact() {
         const formData = new FormData(form);
         formData.forEach((value, key) => enquiry[key] = value);
 
-        fetch(`${process.env.NEXT_PUBLIC_LOCAL_API_URL}/enquiry/contact`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/enquiry/contact`, {
             method: "post",
             body: JSON.stringify(enquiry),
             headers: {

@@ -48,7 +48,7 @@ export default function Checkout({ deliveryFee }: ICheckout) {
         order.amount_gross = calcTotal();
 
         // Send Order
-        fetch(`${process.env.NEXT_PUBLIC_LOCAL_API_URL}/orders/confirmation`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders/confirmation`, {
             method: "post",
             body: JSON.stringify(order),
             headers: {

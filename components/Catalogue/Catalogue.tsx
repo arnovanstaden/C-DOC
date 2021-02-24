@@ -20,7 +20,7 @@ export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
         let formData = new FormData(form);
         formData.forEach((value, key) => enquiry[key] = value);
 
-        fetch("http://localhost:8000/enquiry/catalogue", {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/enquiry/catalogue`, {
             method: "post",
             body: JSON.stringify(enquiry),
             headers: {
@@ -50,15 +50,15 @@ export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
                             <div className={styles.type}>
                                 <div className={styles.row}>
                                     <label>Request a Quotation</label>
-                                    <input type="radio" name="type" value="Request a quotation" required />
+                                    <input type="radio" name="Type" value="Request a quotation" required />
                                 </div>
                                 <div className={styles.row}>
                                     <label>Request More Information</label>
-                                    <input type="radio" name="type" value="Request more information" required />
+                                    <input type="radio" name="Type" value="Request more information" required />
                                 </div>
                                 <div className={styles.row}>
                                     <label>Request Advertising Space in Helpful Hints</label>
-                                    <input type="radio" name="type" value="Request Advertising Space in Helpful Hints" required />
+                                    <input type="radio" name="Type" value="Request Advertising Space in Helpful Hints" required />
                                 </div>
                             </div>
                             <div className={styles.image}>
@@ -227,9 +227,9 @@ export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
                             </div>
 
                         </div>
-
-
-                        <button type="submit" onClick={(e) => submitCatalogue(e)}>Submit</button>
+                        <button className="button" type="submit" onClick={(e) => submitCatalogue(e)}>
+                            <p>Submit</p>
+                        </button>
                     </form>
                 </div>
 
