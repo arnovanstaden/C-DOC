@@ -77,7 +77,7 @@ export default function Checkout({ deliveryFee }: ICheckout) {
     return (
         <div className={styles.grid}>
             <div className={styles.form}>
-                <form action="https://sandbox.payfast.co.za/eng/process" method="POST" id="checkout-form">
+                <form action="https://www.payfast.co.za/eng/process" method="POST" id="checkout-form">
                     <div className={styles.row}>
                         <div>
                             <input type="text" name="name_first" placeholder="First Name" required />
@@ -112,7 +112,6 @@ export default function Checkout({ deliveryFee }: ICheckout) {
                     <input type="hidden" name="merchant_key" value={process.env.NEXT_PUBLIC_PAYFAST_MERCHANT_KEY} />
                     <input type="hidden" name="return_url" value="http://www.c-doc.co.za/success" />
                     <input type="hidden" name="cancel_url" value="http://www.c-doc.co.za/cart" />
-                    <input type="hidden" name="notify_url" value="https://c-doc.herokuapp.com/orders/" />
                     <input type="hidden" name="item_name" value="C-DOC Cart" />
                     <input type="hidden" name="amount" value="" />
                     <input type="hidden" name="custom_str1" value="" />
