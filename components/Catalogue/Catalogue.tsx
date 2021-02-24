@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { sendNotification } from "../Notification/Notification";
 
 // Styles
 import styles from "./catalogue.module.scss";
@@ -17,12 +18,9 @@ export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
         }
         e.preventDefault();
         let formData = new FormData(form);
-        // for (let entry of formData.entries()) {
-        //     console.log(entry)
-        // }
         formData.forEach((value, key) => enquiry[key] = value);
 
-        fetch("http://localhost:8000/catalogue", {
+        fetch("http://localhost:8000/enquiry/catalogue", {
             method: "post",
             body: JSON.stringify(enquiry),
             headers: {
@@ -30,9 +28,8 @@ export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
                 'Content-Type': 'application/json'
             }
         })
-            .then(response => response.json())
             .then(result => {
-                console.log(result)
+                sendNotification("Thank you for your enquiry. We'll get back to you soon!")
             })
             .catch(err => console.log(err))
     }

@@ -14,7 +14,7 @@ import Catalogue from "../components/Catalogue/Catalogue";
 import styles from '../styles/pages/services.module.scss';
 import catalogueStyles from "../components/Catalogue/catalogue.module.scss";
 
-export default function services() {
+export default function Services() {
 
     const handleCatalogueToggle = () => {
         const nav = document.querySelector(`.${catalogueStyles.catalogue}`);

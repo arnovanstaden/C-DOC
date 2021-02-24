@@ -12,7 +12,7 @@ import styles from "../../styles/pages/shop/[id].module.scss";
 
 
 
-export default function product({ product }) {
+export default function Product({ product }) {
     // State
     const [quantity, setQuantity] = useState(1);
 

@@ -27,7 +27,7 @@ export default function Landing(props: TLanding) {
             </div>
             <div className={styles.image}>
                 <div className="next-image next-image--intrinsic">
-                    <Image priority width={800} height="auto" alt="C-DOC Landing Image" src={props.imageURL} />
+                    <Image priority width={1000} height="auto" alt="C-DOC Landing Image" src={props.imageURL} />
                 </div>
             </div>
         </section>

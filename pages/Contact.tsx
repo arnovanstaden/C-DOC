@@ -2,11 +2,36 @@
 import Layout from "../components/Layout/Layout";
 import ContactDetails from "../components/Contact/Contact";
 import Landing from "../components/Landing/Landing";
+import { sendNotification } from "../components/Notification/Notification";
+
 
 // Styles
 import styles from '../styles/pages/contact.module.scss';
 
-export default function contact() {
+export default function Contact() {
+
+    const submitContactForm = (e) => {
+        let enquiry = {}
+        e.preventDefault();
+        const form = document.getElementById("contact-form") as HTMLFormElement;
+        const formData = new FormData(form);
+        formData.forEach((value, key) => enquiry[key] = value);
+
+        fetch(`${process.env.NEXT_PUBLIC_LOCAL_API_URL}/enquiry/contact`, {
+            method: "post",
+            body: JSON.stringify(enquiry),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(result => {
+                sendNotification("Thank you for your message. We'll get back to you soon!");
+                form.reset()
+            })
+            .catch(err => console.log(err))
+    }
+
     return (
         <Layout
             head={{
@@ -32,8 +57,7 @@ export default function contact() {
                         <h1>Send us a Message.</h1>
                         <span />
                     </div>
-                    <form data-netlify="true" name="contact" method="post">
-                        <input type="hidden" name="contact" value="contact" />
+                    <form name="contact-form" id="contact-form">
                         <div className={styles.row}>
                             <label htmlFor="Name">Your Name</label>
                             <input type="text" name="Name" placeholder="Your Name" required />
@@ -46,7 +70,7 @@ export default function contact() {
                             <label htmlFor="Message">Your Message</label>
                             <textarea name="Message" placeholder="Your Message" required></textarea>
                         </div>
-                        <button type="submit" className="button">
+                        <button type="submit" className="button" onClick={(e) => submitContactForm(e)}>
                             <p>Send</p>
                         </button>
                     </form>
