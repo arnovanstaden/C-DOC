@@ -169,4 +169,39 @@
         }
     }
 
+    @media screen and (max-width: 768px) {
+        .content {
+            padding: 2rem 0;
+
+            .form {
+
+                .row {
+                    grid-template-columns: 80% 20%;
+                }
+
+                .intro {
+                    grid-template-columns: 1fr;
+                    row-gap: 1rem;
+
+                    .type {
+                        .row {
+                            justify-content: center;
+                        }
+                    }
+                }
+
+                .group {
+                    &.contact {
+                        .row {
+                            input {
+                                width: 90%;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
 }
