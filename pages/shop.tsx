@@ -31,7 +31,6 @@ export default function Shop({ products }) {
                     <button className={`${styles.button} ${styles.active}`}>All Products</button>
                     <button className={styles.button}>Medical Equipment</button>
                     <button className={styles.button}>Clothing &amp; Gear</button>
-                    <button className={styles.button}>E-Books</button>
                 </div>
                 <div className={styles.filter}>
                     <div className={styles.search}>
