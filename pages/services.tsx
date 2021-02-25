@@ -9,20 +9,33 @@ import Stats from "../components/Stats/Stats";
 import InfoBlock from "../components/InfoBlock/InfoBlock";
 import Cross from "../components/Cross/Cross";
 import Catalogue from "../components/Catalogue/Catalogue";
+import Courses from "../components/Courses/Courses";
 
 // Styles
 import styles from '../styles/pages/services.module.scss';
 import catalogueStyles from "../components/Catalogue/catalogue.module.scss";
+import courseStyles from "../components/Courses/courses.module.scss";
 
 export default function Services() {
 
     const handleCatalogueToggle = () => {
-        const nav = document.querySelector(`.${catalogueStyles.catalogue}`);
-        if (nav.classList.contains(catalogueStyles.open)) {
-            nav.classList.remove(catalogueStyles.open);
+        const catalogue = document.querySelector(`.${catalogueStyles.catalogue}`);
+        if (catalogue.classList.contains(catalogueStyles.open)) {
+            catalogue.classList.remove(catalogueStyles.open);
             document.body.classList.remove("noscroll")
         } else {
-            nav.classList.add(catalogueStyles.open);
+            catalogue.classList.add(catalogueStyles.open);
+            document.body.classList.add("noscroll")
+        }
+    }
+
+    const handleCoursesToggle = () => {
+        const courses = document.querySelector(`.${courseStyles.courses}`);
+        if (courses.classList.contains(courseStyles.open)) {
+            courses.classList.remove(courseStyles.open);
+            document.body.classList.remove("noscroll")
+        } else {
+            courses.classList.add(courseStyles.open);
             document.body.classList.add("noscroll")
         }
     }
@@ -97,6 +110,11 @@ export default function Services() {
                         </ul>
                     </div>
                 </div>
+                <div className={styles.button}>
+                    <button className="button" onClick={() => handleCoursesToggle()}>
+                        <p>Book a Course</p>
+                    </button>
+                </div>
             </Section>
 
             <section className={styles.photoGrid}>
@@ -146,7 +164,7 @@ export default function Services() {
             >
                 <div className={styles.button}>
                     <button className="button" onClick={() => handleCatalogueToggle()}>
-                        <a>Equipment Enquiries</a>
+                        <p>Equipment Enquiries</p>
                     </button>
                 </div>
                 <div className={styles.grid}>
@@ -263,6 +281,7 @@ export default function Services() {
                 </div>
             </Section>
             <Catalogue handleCatalogueToggle={() => handleCatalogueToggle()} />
+            <Courses handleCoursesToggle={() => handleCoursesToggle()} />
         </Layout >
     )
 }

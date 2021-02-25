@@ -71,36 +71,45 @@ export default function About() {
                 classNameProp={styles.memberships}
             >
                 <div className={styles.grid}>
-                    <div className={styles.image}>
-                        <div className="next-image next-image--intrinsic">
-                            <Image src="/images/pages/about/memberships/01-DMER.jpg" alt="Membership Logo" width={400} height="auto" />
-                        </div>
-                    </div>
-                    <div className={styles.image}>
+                    <a className={styles.image} href="https://www.imca-int.com/" target="blank">
+                        <Cross />
                         <div className="next-image next-image--intrinsic">
                             <Image src="/images/pages/about/memberships/02-IMCA.jpg" alt="Membership Logo" width={400} height="auto" />
                         </div>
-                    </div>
-                    <div className={styles.image}>
+                    </a>
+                    <a className={styles.image} href="http://dmerworldwide.com/" target="blank">
+                        <div className="next-image next-image--intrinsic">
+                            <Image src="/images/pages/about/memberships/01-DMER.jpg" alt="Membership Logo" width={400} height="auto" />
+                        </div>
+                    </a>
+                    <a className={styles.image} href="https://www.saoga.org.za/web/homepage" target="blank">
                         <div className="next-image next-image--intrinsic">
                             <Image src="/images/pages/about/memberships/03-SAOGA.png" alt="Membership Logo" width={400} height="auto" />
                         </div>
-                    </div>
-                    <div className={styles.image}>
+                    </a>
+                    <a className={styles.image} href="http://www.sauhma.org/" target="blank">
                         <div className="next-image next-image--intrinsic">
                             <Image src="/images/pages/about/memberships/04-SAUHMA.jpg" alt="Membership Logo" width={400} height="auto" />
                         </div>
-                    </div>
-                    <div className={styles.image}>
+                    </a>
+                    <a className={styles.image} href="https://www.oceans-alive.org/" target="blank">
                         <div className="next-image next-image--intrinsic">
                             <Image src="/images/pages/about/memberships/05-Oceans Alive.png" alt="Membership Logo" width={500} height="auto" />
                         </div>
-                    </div>
-                    <div className={styles.image}>
+                    </a>
+                    <a className={styles.image} href="https://www.saambr.org.za/" target="blank">
                         <div className="next-image next-image--intrinsic">
                             <Image src="/images/pages/about/memberships/06-SAAMBR.jpg" alt="Membership Logo" width={500} height="auto" />
                         </div>
+                    </a>
+                </div>
+                <div className={styles.imca}>
+                    <div>
+                        <Cross />
+                        <h6>IMCA</h6>
                     </div>
+                    <p>DT1 - Training provider offering in-water basic diver training <br />
+                    DT2 - Training provider offering IMCA Diving Division approved courses (TADS and DMT)</p>
                 </div>
             </Section>
 
@@ -141,6 +150,6 @@ export default function About() {
                 </div>
                 <p>C-DOC services and products are designed to support companies to meet their audit compliance and strengthen their operational dive teams in order to move people and their performance in new directions. </p>
             </section>
-        </Layout>
+        </Layout >
     )
 }

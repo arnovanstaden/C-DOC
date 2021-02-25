@@ -29,7 +29,9 @@ export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
             }
         })
             .then(result => {
-                sendNotification("Thank you for your enquiry. We'll get back to you soon!")
+                sendNotification("Thank you for your enquiry. We'll get back to you soon!");
+                form.reset()
+                handleCatalogueToggle();
             })
             .catch(err => console.log(err))
     }
