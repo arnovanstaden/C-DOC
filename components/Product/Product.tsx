@@ -17,7 +17,7 @@ export default function Product(product: IProduct) {
                     <img src={convertImage(product.thumbnail, 300)} alt="" />
                 </div>
                 <h4>{product.name}</h4>
-                <p>R {product.price}</p>
+                <p>{product.price > 0 ? `R ${product.price}` : `Free`}</p>
             </a>
         </Link>
     )

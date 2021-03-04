@@ -125,6 +125,27 @@
                         background-color: $white;
                     }
                 }
+
+                .freebie {
+                    background-color: $red;
+                    outline: none;
+                    border: 2px solid $red;
+                    color: $white;
+                    padding: 0.5rem 1.5rem;
+                    height: 100%;
+                    cursor: pointer;
+                    font-weight: 600;
+
+                    i {
+                        margin-right: 0.5rem;
+                    }
+
+                    &:hover {
+                        color: $darkgrey;
+                        border: 2px solid $red;
+                        background-color: $white;
+                    }
+                }
             }
         }
     }

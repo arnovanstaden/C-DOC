@@ -17,6 +17,29 @@ export default function Product({ product }) {
     // State
     const [quantity, setQuantity] = useState(1);
 
+    const ProductOption = () => {
+        if (product.price === 0 && product.digital) {
+            return (
+                <div className={styles.cart}>
+                    <button className={styles.freebie}>
+                        <a href={product.document} target="blank">Download Freebie</a>
+                    </button>
+                </div>
+            )
+        }
+        return (
+            <div className={styles.cart}>
+                <div className={styles.quantity}>
+                    <input min={1} type="number" name="quantity" value={quantity} onChange={e => setQuantity(parseInt(e.target.value))} />
+                </div>
+                <button className={styles.add} onClick={() => updateCart(product, quantity)}>
+                    <i className="icon-local_grocery_store"></i>
+                            Add To Cart
+                        </button>
+            </div>
+        )
+    }
+
     return (
         <Layout
             head={{
@@ -46,7 +69,7 @@ export default function Product({ product }) {
                     <div className={styles.content}>
                         <p className={styles.category}>{product.category}</p>
                         <h2 className={styles.name}>{product.name}</h2>
-                        <p className={styles.price}>R {product.price}</p>
+                        <p className={styles.price}>{product.price > 0 ? `R ${product.price}` : `Free`}</p>
                         <div className={styles.details}>
                             <p className={styles.active}>Description</p>
                         </div>
@@ -54,15 +77,7 @@ export default function Product({ product }) {
                             {product.description}
                             {product.digital ? <span>This is a Digital Product</span> : null}
                         </p>
-                        <div className={styles.cart}>
-                            <div className={styles.quantity}>
-                                <input min={1} type="number" name="quantity" value={quantity} onChange={e => setQuantity(parseInt(e.target.value))} />
-                            </div>
-                            <button className={styles.add} onClick={() => updateCart(product, quantity)}>
-                                <i className="icon-local_grocery_store"></i>
-                            Add To Cart
-                        </button>
-                        </div>
+                        <ProductOption />
                     </div>
                 </div>
             </Section>
