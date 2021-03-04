@@ -18,11 +18,11 @@ export default function Contact({ page }: IContact) {
             <ul className={styles.options}>
                 <li>
                     <i className="icon-phone"></i>
-                    <a href="tel:+27760972523">+27 76 097 2523</a>
+                    <a href="tel:+27827716351 ">+27 82 771 6351 </a>
                 </li>
                 <li >
                     <i className="icon-whatsapp"></i>
-                    <a href="https://wa.me/+27760972523" target="blank">+27 76 097 2523</a>
+                    <a href="https://wa.me/+27827716351 " target="blank">+27 82 771 6351 </a>
                 </li>
                 <li>
                     <i className="icon-mail"></i>
@@ -35,7 +35,7 @@ export default function Contact({ page }: IContact) {
             </ul>
             <ul className={styles.social}>
                 <li>
-                    <a href="" target="blank">
+                    <a href="https://www.facebook.com/cdocsa/" target="blank">
                         <i className="icon-facebook1"></i>
                     </a>
                 </li>
