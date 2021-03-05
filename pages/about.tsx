@@ -71,12 +71,6 @@ export default function About() {
                 classNameProp={styles.memberships}
             >
                 <div className={styles.grid}>
-                    <a className={styles.image} href="https://www.imca-int.com/" target="blank">
-                        <Cross />
-                        <div className="next-image next-image--intrinsic">
-                            <Image src="/images/pages/about/memberships/02-IMCA.jpg" alt="Membership Logo" width={400} height="auto" />
-                        </div>
-                    </a>
                     <a className={styles.image} href="http://dmerworldwide.com/" target="blank">
                         <div className="next-image next-image--intrinsic">
                             <Image src="/images/pages/about/memberships/01-DMER.jpg" alt="Membership Logo" width={400} height="auto" />
@@ -95,6 +89,12 @@ export default function About() {
                     <a className={styles.image} href="https://www.oceans-alive.org/" target="blank">
                         <div className="next-image next-image--intrinsic">
                             <Image src="/images/pages/about/memberships/05-Oceans Alive.png" alt="Membership Logo" width={500} height="auto" />
+                        </div>
+                    </a>
+                    <a className={styles.image} href="https://www.imca-int.com/" target="blank">
+                        <Cross />
+                        <div className="next-image next-image--intrinsic">
+                            <Image src="/images/pages/about/memberships/02-IMCA.jpg" alt="Membership Logo" width={400} height="auto" />
                         </div>
                     </a>
                     <a className={styles.image} href="https://www.saambr.org.za/" target="blank">
