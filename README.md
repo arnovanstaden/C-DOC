@@ -20,9 +20,6 @@ Full Stack Web Application
 * SASS
 * NextJS
 * Typescript
-* NodeJS
-* ExpressJS
-* MongoDB
 
 ### Industry
 Diving & Training | E-Commerce
