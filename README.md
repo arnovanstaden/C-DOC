@@ -1,5 +1,5 @@
-# C-DOC
-A full-stack online shop & catalogue ordering system combined with a brochure site."
+# C-DO
+A full-stack online shop & catalogue ordering system combined with a brochure site.
 
 ## Link
 You can visit the site [here](https://c-doc.vercel.app/).
