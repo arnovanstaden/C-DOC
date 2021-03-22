@@ -1,4 +1,4 @@
-# C-DO
+# C-DOC
 A full-stack online shop & catalogue ordering system combined with a brochure site.
 
 ## Link
