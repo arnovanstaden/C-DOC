@@ -19,10 +19,12 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
         }
         e.preventDefault();
         let formData = new FormData(form);
-        formData.forEach((value, key) => enquiry[key] = value);
+        for (var key of formData.keys()) {
+            enquiry[key] = formData.get(key)
+        }
 
         // Delete invalid dates
-        let course = courses.find(course => course.name === enquiry.Type);
+        let course = courses.find(course => course.name === formData.get("Type"));
         if (!course.dates || course.dates === []) {
             delete enquiry["Course Date"]
         }
@@ -35,7 +37,6 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
         let ProofOfPayment = fileElement.files[0];
 
         formData.append("ProofOfPayment", ProofOfPayment);
-
 
         axios({
             method: "post",
