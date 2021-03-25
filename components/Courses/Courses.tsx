@@ -43,7 +43,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
             url: `${process.env.NEXT_PUBLIC_LOCAL_API_URL}/courses/book`,
             data: formData
         }).then(result => {
-            sendNotification("Thank you for your enquiry. We'll get back to you soon!");
+            sendNotification("Thank you for your course booking. We'll get back to you soon!");
             form.reset()
             handleCoursesToggle()
         })
