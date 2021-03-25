@@ -35,32 +35,14 @@
         grid-auto-rows: 1fr;
         gap: 2rem;
 
+
         .image {
+
             img {
                 object-fit: contain !important;
-                max-height: 12vh !important;
+                max-height: 18vh !important;
             }
         }
-    }
-
-    .imca {
-        margin-top: 3rem;
-        text-align: center;
-
-        >div {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            column-gap: 1rem;
-
-            h6 {
-                font-weight: 600;
-                font-size: 1.1rem;
-                margin: 0;
-            }
-        }
-
-        p {}
     }
 
     @media screen and (max-width: 768px) {

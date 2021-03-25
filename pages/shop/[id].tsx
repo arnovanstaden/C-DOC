@@ -22,7 +22,7 @@ export default function Product({ product }) {
             return (
                 <div className={styles.cart}>
                     <button className={styles.freebie}>
-                        <a href={product.document} target="blank">Download Freebie</a>
+                        <a href={product.document} target="blank" download>Download Freebie</a>
                     </button>
                 </div>
             )

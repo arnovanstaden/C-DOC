@@ -91,25 +91,16 @@ export default function About() {
                             <Image src="/images/pages/about/memberships/05-Oceans Alive.png" alt="Membership Logo" width={500} height="auto" />
                         </div>
                     </a>
-                    <a className={styles.image} href="https://www.imca-int.com/" target="blank">
-                        <Cross />
-                        <div className="next-image next-image--intrinsic">
-                            <Image src="/images/pages/about/memberships/02-IMCA.jpg" alt="Membership Logo" width={400} height="auto" />
-                        </div>
-                    </a>
                     <a className={styles.image} href="https://www.saambr.org.za/" target="blank">
                         <div className="next-image next-image--intrinsic">
                             <Image src="/images/pages/about/memberships/06-SAAMBR.jpg" alt="Membership Logo" width={500} height="auto" />
                         </div>
                     </a>
-                </div>
-                <div className={styles.imca}>
-                    <div>
-                        <Cross />
-                        <h6>IMCA</h6>
-                    </div>
-                    <p>DT1 - Training provider offering in-water basic diver training <br />
-                    DT2 - Training provider offering IMCA Diving Division approved courses (TADS and DMT)</p>
+                    <a className={styles.image} href="https://www.imca-int.com/" target="blank">
+                        <div className="next-image next-image--intrinsic">
+                            <Image src="/images/pages/about/memberships/02-IMCA.jpg" alt="Membership Logo" width={400} height="auto" />
+                        </div>
+                    </a>
                 </div>
             </Section>
 
