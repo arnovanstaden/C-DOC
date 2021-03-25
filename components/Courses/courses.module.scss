@@ -32,7 +32,6 @@
 
     &.open {
         height: 100vh;
-        border-left: 0.25rem solid $red;
     }
 
     .content {
@@ -43,6 +42,10 @@
             flex-direction: column;
             align-items: center;
 
+            .type {
+                width: 100%;
+            }
+
             .row {
                 display: grid;
                 grid-template-columns: 90% 10%;
@@ -51,6 +54,42 @@
                 border-bottom: 0.5px solid $lightgrey;
                 padding: 0.75rem 0;
                 box-sizing: border-box;
+
+                .details {
+
+
+                    label {
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        display: block;
+                    }
+
+
+                    .price {
+                        color: $white;
+                        padding: 0.25rem 0.75rem;
+                        background-color: $red;
+                        font-size: 0.9rem;
+                        font-weight: 500;
+                        font-style: normal;
+                        display: inline-block;
+                        letter-spacing: 0.25px;
+                    }
+
+                    .date {
+                        span {
+                            font-weight: 500;
+                            color: $red;
+                            margin-right: 0.5rem;
+                        }
+                    }
+
+                    p {
+                        font-weight: 300;
+                        font-size: 0.9rem;
+                        font-style: italic;
+                    }
+                }
 
                 input[type=number] {
                     border: 2px solid $lightgrey;
@@ -151,6 +190,37 @@
                             }
                         }
 
+                    }
+                }
+
+                .paymentDetails {
+                    margin-bottom: 1rem;
+
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        text-align: center;
+
+                        li {
+                            margin: 0.25rem 0;
+
+                            span {
+                                font-weight: 600;
+                            }
+                        }
+                    }
+
+                    h5 {
+                        font-size: 1.15rem;
+                        font-weight: 600;
+                        margin: 0;
+
+                        span {
+                            color: $red;
+                        }
                     }
                 }
 

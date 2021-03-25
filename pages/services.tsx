@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import { GetStaticProps } from 'next';
+
 
 // Components
 import Layout from "../components/Layout/Layout";
@@ -16,7 +17,7 @@ import styles from '../styles/pages/services.module.scss';
 import catalogueStyles from "../components/Catalogue/catalogue.module.scss";
 import courseStyles from "../components/Courses/courses.module.scss";
 
-export default function Services() {
+export default function Services({ courses }) {
 
     const handleCatalogueToggle = () => {
         const catalogue = document.querySelector(`.${catalogueStyles.catalogue}`);
@@ -281,7 +282,19 @@ export default function Services() {
                 </div>
             </Section>
             <Catalogue handleCatalogueToggle={() => handleCatalogueToggle()} />
-            <Courses handleCoursesToggle={() => handleCoursesToggle()} />
+            <Courses handleCoursesToggle={() => handleCoursesToggle()} courses={courses} />
         </Layout >
     )
+}
+
+
+export const getStaticProps: GetStaticProps = async () => {
+    const coursesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`);
+    const courses = await coursesResponse.json();
+
+    return {
+        props: {
+            courses
+        },
+    }
 }

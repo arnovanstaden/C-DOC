@@ -1,13 +1,15 @@
 import { sendNotification } from "../Notification/Notification";
+import axios from 'axios';
 
 // Styles
 import styles from "./courses.module.scss";
 
 interface ICourses {
     handleCoursesToggle: () => void;
+    courses: any[]
 }
 
-export default function Courses({ handleCoursesToggle }: ICourses) {
+export default function Courses({ handleCoursesToggle, courses }: ICourses) {
 
     const submitCourses = (e) => {
         let enquiry = {}
@@ -19,20 +21,69 @@ export default function Courses({ handleCoursesToggle }: ICourses) {
         let formData = new FormData(form);
         formData.forEach((value, key) => enquiry[key] = value);
 
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/enquiry/courses`, {
+        // Delete invalid dates
+        let course = courses.find(course => course.name === enquiry.Type);
+        if (!course.dates || course.dates === []) {
+            delete enquiry["Course Date"]
+        }
+        delete enquiry["Proof of Payment"];
+
+        formData = new FormData();
+        formData.append("enquiry", JSON.stringify(enquiry));
+
+        let fileElement = document.getElementById('ProofOfPayment') as HTMLInputElement;
+        let ProofOfPayment = fileElement.files[0];
+
+        formData.append("ProofOfPayment", ProofOfPayment);
+
+
+        axios({
             method: "post",
-            body: JSON.stringify(enquiry),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
+            // url: `${process.env.NEXT_PUBLIC_API_URL}/courses/book`,
+            url: `${process.env.NEXT_PUBLIC_LOCAL_API_URL}/courses/book`,
+            data: formData
+        }).then(result => {
+            sendNotification("Thank you for your enquiry. We'll get back to you soon!");
+            form.reset()
+            handleCoursesToggle()
         })
-            .then(result => {
-                sendNotification("Thank you for your enquiry. We'll get back to you soon!");
-                form.reset()
-                handleCoursesToggle()
-            })
             .catch(err => console.log(err))
+
+    }
+
+
+    const CourseDates = (course) => {
+        return (
+            <div className={styles.date}>
+                <span>Select Date:</span>
+                <select name="Course Date" id="">
+                    {course.dates.map((date, index) => (
+                        <option value={`${date.from} - ${date.to}`} key={index}>{date.from} - {date.to}</option>
+                    ))}
+                </select>
+            </div>
+
+        )
+    }
+
+    function CourseList() {
+        return (
+            <>
+                {
+                    courses.map((course, index) => (
+                        <div className={styles.row} key={index}>
+                            <div className={styles.details}>
+                                <label>{course.name}</label>
+                                <p className={styles.price}>R {course.price}</p>
+                                {course.dates ? <CourseDates {...course} /> : null}
+                                <p>{course.description}</p>
+                            </div>
+                            <input type="radio" name="Type" value={course.name} required />
+                        </div>
+                    ))
+                }
+            </>
+        )
     }
 
     return (
@@ -48,22 +99,7 @@ export default function Courses({ handleCoursesToggle }: ICourses) {
 
                     <form className={styles.form} id="courses-form" name="courses-form">
                         <div className={styles.type}>
-                            <div className={styles.row}>
-                                <label>IMCA Diver Medic Full Course</label>
-                                <input type="radio" name="Type" value="IMCA Diver Medic Full Course" required />
-                            </div>
-                            <div className={styles.row}>
-                                <label>IMCA Diver Medic Refresher Course</label>
-                                <input type="radio" name="Type" value="IMCA Diver Medic Refresher Course" required />
-                            </div>
-                            <div className={styles.row}>
-                                <label>IMCA Trainee Air Diving Supervisor</label>
-                                <input type="radio" name="Type" value="IMCA Trainee Air Diving Supervisor" required />
-                            </div>
-                            <div className={styles.row}>
-                                <label>DMAC 11 First Aid and Oxygen Administration for the Dive Team</label>
-                                <input type="radio" name="Type" value="DMAC 11 First Aid and Oxygen Administration for the Dive Team" required />
-                            </div>
+                            <CourseList />
                         </div>
 
                         <div className={`${styles.group} ${styles.contact}`}>
@@ -84,7 +120,28 @@ export default function Courses({ handleCoursesToggle }: ICourses) {
                                 <label htmlFor="Country">Country</label>
                                 <input type="text" name="Country" required />
                             </div>
+                            <div className={styles.paymentDetails}>
+                                <h4>Payment Details</h4>
+                                <ul>
+                                    <li><span>Bank:</span> ABSA Bank</li>
+                                    <li><span>Sort Code:</span> 632 005</li>
 
+
+                                    <li><span>Account Number:</span> 405 - 119 - 0044</li>
+
+
+                                    <li><span>SWIFT code:</span> ABSAZAJJXXX</li>
+
+
+                                    <li><span>Reference :</span> FIRST NAME/SURNAME/COURSE START DATE</li>
+                                    <li><span>Amount :</span> Course Price</li>
+
+                                </ul>
+                            </div>
+                            <div className={styles.row}>
+                                <label htmlFor="Proof of Payment">Proof of Payment</label>
+                                <input type="file" name="Proof of Payment" id="ProofOfPayment" required accept="application/pdf" />
+                            </div>
                         </div>
                         <button className="button" type="submit" onClick={(e) => submitCourses(e)}>
                             <p>Submit</p>
@@ -93,6 +150,8 @@ export default function Courses({ handleCoursesToggle }: ICourses) {
                 </div>
 
             </div>
-        </section>
+        </section >
     )
 }
+
+
