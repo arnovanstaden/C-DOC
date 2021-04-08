@@ -16,3 +16,16 @@ export const handleNavToggle = () => {
         document.body.classList.add("noscroll")
     }
 }
+
+
+// Sorting
+
+export const sortProducts = (array: any[], key: string) => {
+    let sortedProducts = array.sort(function (a, b) {
+        if (a[key] < b[key]) { return -1; }
+        if (a[key] > b[key]) { return 1; }
+        return 0;
+    })
+    return sortedProducts
+}
+

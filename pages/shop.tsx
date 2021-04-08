@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GetStaticProps } from 'next';
-import { useState, useEffect } from "react"
+import { useState, useRef } from "react";
+import { sortProducts } from "../utils/utils";
 
 // Styles
 import styles from '../styles/pages/shop.module.scss';
@@ -13,8 +14,14 @@ import Product from "../components/Product/Product";
 
 export default function Shop({ products }) {
 
-    const [filter, setFilter] = useState("All Products")
+    // Refs
+    const sortRef = useRef()
 
+    // State
+    const [filter, setFilter] = useState("All Products");
+    const [productsToShow, setProductsToShow] = useState(sortProducts(products, "name"))
+
+    // Handlers
 
     const handleFilter = (clickedElement) => {
 
@@ -25,23 +32,13 @@ export default function Shop({ products }) {
         })
         clickedElement.target.classList.add(styles.active);
         setFilter(clickedElement.target.textContent)
-
-
-        // Filter
-        // let productGrid = document.querySelector(`.${styles.productGrid}`).children;
-        // for (let j = 0; j < productGrid.length; j++) {
-        //     // Remove Old Filter
-        //     productGrid[j].classList.remove(`${styles.hideFilter}`)
-        //     let category = productGrid[j].getAttribute("data-category");
-        //     if (category !== activeCategory) {
-        //         productGrid[j].classList.add(`${styles.hideFilter}`)
-        //     }
-        // }
     }
 
-    useEffect(() => {
-        console.log("Filter Changed");
-    }, [filter])
+    const handleSort = () => {
+        let select = sortRef.current as HTMLSelectElement;
+        setProductsToShow(sortProducts([...products], select.value));
+        console.log(productsToShow)
+    }
 
     return (
         <Layout
@@ -64,16 +61,15 @@ export default function Shop({ products }) {
                     <button className={styles.button} onClick={(e) => handleFilter(e)}>Medical Equipment</button>
                     <button className={styles.button} onClick={(e) => handleFilter(e)}>Clothing &amp; Gear</button>
                 </div>
-                <div className={styles.filter}>
-                    <div className={styles.search}>
-
-                    </div>
-                    <div className={styles.filter}>
-
-                    </div>
+                <div className={styles.sort}>
+                    <label htmlFor="sort">Sort By:</label>
+                    <select name="sort" id="sort" onChange={handleSort} ref={sortRef}>
+                        <option value="name">Name</option>
+                        <option value="price">Price</option>
+                    </select>
                 </div>
                 <div className={styles.grid}>
-                    {products.map((product, index) => (
+                    {productsToShow.map((product, index) => (
                         (filter === "All Products" || filter === product.category) ? < Product {...product} key={index} /> : null
                     ))}
                 </div>
