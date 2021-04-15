@@ -93,7 +93,7 @@ export const updateCart = (product: IProduct, quantity: number) => {
     sendNotification("Cart Updated")
 }
 
-export const removeFromCart = (productID: string, notify?: string) => {
+export const removeFromCart = (productID: string, notify?: boolean) => {
     // Get Current Cart & Index of Item
     let currentCart = getCart();
     let index = currentCart.findIndex((item => item.id === productID));
