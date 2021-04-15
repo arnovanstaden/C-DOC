@@ -9,6 +9,9 @@ import styles from "./product.module.scss";
 
 export default function Product(product: IProduct) {
 
+    if (!product.visibility) {
+        return null
+    }
 
     return (
         <Link href={`/shop/${product.id}`}>
