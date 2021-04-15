@@ -93,10 +93,10 @@ export const updateCart = (product: IProduct, quantity: number) => {
     sendNotification("Cart Updated")
 }
 
-export const removeFromCart = (product) => {
+export const removeFromCart = (productID: string, notify?: string) => {
     // Get Current Cart & Index of Item
     let currentCart = getCart();
-    let index = currentCart.findIndex((item => item.id === product.id));
+    let index = currentCart.findIndex((item => item.id === productID));
 
     // Update Cart
     currentCart.splice(index, 1);
@@ -104,7 +104,9 @@ export const removeFromCart = (product) => {
         localStorage.setItem("cart", JSON.stringify(currentCart));
     }
     // updateCartCounter();
-    sendNotification("Item removed from cart")
+    if (notify) {
+        sendNotification("Item removed from cart")
+    }
 
 }
 
@@ -121,9 +123,17 @@ export const checkCartValidity = (products) => {
 
     if (currentCart) {
         currentCart.forEach(item => {
-            let itemFound = products.find(product => product.id === item.id)
-            if (!itemFound) {
-                removeFromCart(item)
+
+            // product exists
+            const itemExists = products.find(product => product.id === item.id)
+            if (!itemExists) {
+                removeFromCart(item.id)
+            }
+            console.log(itemExists)
+
+            //  product is visible
+            if (itemExists && !itemExists.visibility) {
+                removeFromCart(item.id)
             }
         })
     }

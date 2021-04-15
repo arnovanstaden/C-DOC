@@ -36,7 +36,7 @@ const CartItem = ({ item, product, handleCartChange }: ICartItemProps) => {
     }
 
     const handleItemRemove = () => {
-        removeFromCart(product);
+        removeFromCart(product.id, true);
         handleCartChange()
     }
 
