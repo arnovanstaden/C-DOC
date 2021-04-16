@@ -158,7 +158,7 @@ export default function Services({ courses }) {
             <Stats />
 
             <Section
-                heading="Equipment."
+                heading=" Medical Equipment for Commercial Dive Operations."
                 classNameProp={styles.equipment}
                 idProp="equipment"
                 dark={true}
@@ -246,8 +246,7 @@ export default function Services({ courses }) {
                     </InfoBlock>
                     <InfoBlock>
                         <h4>Tech Specs</h4>
-                        <p>There is clear guidance to kit dimensions and weight. All modular equipment is specifically designed to:
-</p>
+                        <p>There is clear guidance to kit dimensions and weight. All modular equipment is specifically designed to:</p>
                         <ul>
                             <li>
                                 <Cross size="1rem" />

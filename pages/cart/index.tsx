@@ -82,11 +82,11 @@ export default function Cart({ products, shopSettings }) {
         if (showCart) {
             return (
                 <div className={styles.options}>
-                    <Link href="/shop">
-                        <button className="button button--border">
+                    <button className="button button--border">
+                        <Link href="/shop">
                             <a>Back to Shop</a>
-                        </button>
-                    </Link>
+                        </Link>
+                    </button>
                     {!cart || cart.length < 1 ?
                         null
                         : <button className="button" onClick={() => handleCheckoutShow()}>
@@ -124,7 +124,7 @@ export default function Cart({ products, shopSettings }) {
             >
                 {!loading ?
                     <div className={styles.grid}>
-                        {showCart ? <CartItemGrid /> : <Checkout deliveryFee={shopSettings.deliveryFee} />}
+                        {showCart ? <CartItemGrid /> : <Checkout deliveryFeeSetting={shopSettings.deliveryFee} products={products} />}
                         <Options />
                     </div>
                     : null}

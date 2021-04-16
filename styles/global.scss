@@ -78,8 +78,9 @@ a {
     align-items: center;
     padding: 0.5rem 1.25rem;
     color: $white;
-    font-size: 0.8rem;
-    font-weight: 400;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
     cursor: pointer;
     margin: 0;
 
@@ -206,6 +207,7 @@ a {
     display: inline-block;
     padding-bottom: 0.5rem;
     margin: 0;
+    text-align: center;
   }
 
   span {

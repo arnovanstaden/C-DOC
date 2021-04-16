@@ -1,17 +1,27 @@
-import { useState } from "react";
-import { getCart, getCartTotal } from "../../utils/cart";
+import { useState, useEffect } from "react";
+import { getCart, getCartTotal, checkDigitalOnlyCart } from "../../utils/cart";
 import { sendNotification } from "../Notification/Notification";
+import { GetStaticProps } from 'next';
 
 // Styles
 import styles from "./checkout.module.scss";
 
 // Interface
 interface ICheckout {
-    deliveryFee: number;
+    deliveryFeeSetting: number;
+    products: any
 }
 
-export default function Checkout({ deliveryFee }: ICheckout) {
+export default function Checkout({ deliveryFeeSetting, products }: ICheckout) {
     const [order, setOrder] = useState();
+    const [deliveryFee, setDeliveryFee] = useState(deliveryFeeSetting)
+
+    useEffect(() => {
+        if (checkDigitalOnlyCart(products)) {
+            setDeliveryFee(0)
+        }
+    })
+
 
     const calcTotal = () => {
         return getCartTotal() + deliveryFee
@@ -139,3 +149,4 @@ export default function Checkout({ deliveryFee }: ICheckout) {
         </div>
     )
 }
+

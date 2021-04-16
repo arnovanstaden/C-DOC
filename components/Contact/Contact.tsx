@@ -18,7 +18,7 @@ export default function Contact({ page }: IContact) {
             <ul className={styles.options}>
                 <li>
                     <i className="icon-phone"></i>
-                    <a href="tel:+27827716351">+27 76 097 2523 </a>
+                    <a href="tel:+27827716351">+27 82 771 6351 / +27 22 714 0222 </a>
                 </li>
                 <li >
                     <i className="icon-whatsapp"></i>

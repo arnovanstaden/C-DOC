@@ -125,14 +125,13 @@ export const checkCartValidity = (products) => {
         currentCart.forEach(item => {
 
             // product exists
-            const itemExists = products.find(product => product.id === item.id)
-            if (!itemExists) {
+            const product = products.find(product => product.id === item.id)
+            if (!product) {
                 removeFromCart(item.id)
             }
-            console.log(itemExists)
 
             //  product is visible
-            if (itemExists && !itemExists.visibility) {
+            if (product && !product.visibility) {
                 removeFromCart(item.id)
             }
         })
@@ -155,4 +154,24 @@ export const clearCart = () => {
     if (typeof window !== 'undefined') {
         localStorage.removeItem("cart");
     }
+}
+
+
+export const checkDigitalOnlyCart = (products): boolean => {
+    const currentCart = getCart();
+    let digitalOnly = true;
+
+    if (currentCart) {
+        currentCart.forEach(item => {
+
+            // product exists
+            const product = products.find(product => product.id === item.id)
+
+            //  product is visible
+            if (product && !product.digital) {
+                digitalOnly = false;
+            }
+        })
+    }
+    return digitalOnly
 }

@@ -40,8 +40,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
 
         axios({
             method: "post",
-            // url: `${process.env.NEXT_PUBLIC_API_URL}/courses/book`,
-            url: `${process.env.NEXT_PUBLIC_LOCAL_API_URL}/courses/book`,
+            url: `${process.env.NEXT_PUBLIC_API_URL}/courses/book`,
             data: formData
         }).then(result => {
             sendNotification("Thank you for your course booking. We'll get back to you soon!");
@@ -134,7 +133,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
                                     <li><span>SWIFT code:</span> ABSAZAJJXXX</li>
 
 
-                                    <li><span>Reference :</span> FIRST NAME/SURNAME/COURSE START DATE</li>
+                                    <li><span>Reference :</span> FIRST NAME/SURNAME/COURSE</li>
                                     <li><span>Amount :</span> Course Price</li>
 
                                 </ul>

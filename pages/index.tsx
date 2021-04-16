@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { GetStaticProps } from 'next';
 
 // Components
 import Layout from "../components/Layout/Layout";
@@ -8,11 +9,38 @@ import Landing from "../components/Landing/Landing";
 import Contact from "../components/Contact/Contact";
 import Stats from "../components/Stats/Stats";
 import Cross from "../components/Cross/Cross";
+import Catalogue from "../components/Catalogue/Catalogue";
+import Courses from "../components/Courses/Courses";
+
 
 // Styles
 import styles from '../styles/pages/index.module.scss';
+import catalogueStyles from "../components/Catalogue/catalogue.module.scss";
+import courseStyles from "../components/Courses/courses.module.scss";
 
-export default function Home() {
+export default function Home({ courses }) {
+
+  const handleCatalogueToggle = () => {
+    const catalogue = document.querySelector(`.${catalogueStyles.catalogue}`);
+    if (catalogue.classList.contains(catalogueStyles.open)) {
+      catalogue.classList.remove(catalogueStyles.open);
+      document.body.classList.remove("noscroll")
+    } else {
+      catalogue.classList.add(catalogueStyles.open);
+      document.body.classList.add("noscroll")
+    }
+  }
+
+  const handleCoursesToggle = () => {
+    const courses = document.querySelector(`.${courseStyles.courses}`);
+    if (courses.classList.contains(courseStyles.open)) {
+      courses.classList.remove(courseStyles.open);
+      document.body.classList.remove("noscroll")
+    } else {
+      courses.classList.add(courseStyles.open);
+      document.body.classList.add("noscroll")
+    }
+  }
   return (
     <Layout
       head={{
@@ -40,11 +68,14 @@ export default function Home() {
             Maritime Pharmaceutical Services
           </li>
         </ul>
-        <Link href="/services">
-          <button className="button button--border">
-            <a>Learn More</a>
+        <div className={styles.landingButtons} >
+          <button className="button" onClick={() => handleCoursesToggle()}>
+            <p>Book A Course</p>
           </button>
-        </Link>
+          <button className="button" onClick={() => handleCatalogueToggle()}>
+            <p>Order / Enquire About Medical Equipment</p>
+          </button>
+        </div>
       </Landing>
 
       <Section
@@ -169,6 +200,20 @@ export default function Home() {
       </Section>
 
       <Stats />
+
+      <Catalogue handleCatalogueToggle={() => handleCatalogueToggle()} />
+      <Courses handleCoursesToggle={() => handleCoursesToggle()} courses={courses} />
     </Layout >
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const coursesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`);
+  const courses = await coursesResponse.json();
+
+  return {
+    props: {
+      courses
+    },
+  }
 }

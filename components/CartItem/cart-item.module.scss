@@ -65,13 +65,16 @@
     }
 
     .price {
-        margin: 0;
         color: $red;
+        white-space: nowrap;
+        margin: 0 0.25rem;
     }
 
     .total {
         font-weight: 600;
         font-size: 1.1rem;
+        white-space: nowrap;
+        margin: 0 0.25rem;
     }
 
 
