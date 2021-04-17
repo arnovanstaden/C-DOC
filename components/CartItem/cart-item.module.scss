@@ -83,4 +83,19 @@
         cursor: pointer;
         transition: 0.3s ease-out;
     }
+
+    @media screen and (max-width: 768px) {
+        flex-wrap: wrap;
+
+        .item {
+            width: 100%;
+            padding-top: 0.5rem;
+        }
+
+        .remove {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+        }
+    }
 }
