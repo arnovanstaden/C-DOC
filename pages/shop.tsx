@@ -60,6 +60,7 @@ export default function Shop({ products }) {
                     <button className={`${styles.button} ${styles.active}`} onClick={(e) => handleFilter(e)}>All Products</button>
                     <button className={styles.button} onClick={(e) => handleFilter(e)}>Medical Equipment</button>
                     <button className={styles.button} onClick={(e) => handleFilter(e)}>Clothing &amp; Gear</button>
+                    <button className={styles.button} onClick={(e) => handleFilter(e)}>Guidance Documents</button>
                 </div>
                 <div className={styles.sort}>
                     <label htmlFor="sort">Sort By:</label>
