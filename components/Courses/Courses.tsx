@@ -1,3 +1,4 @@
+import { useState, useRef } from "react";
 import { sendNotification } from "../Notification/Notification";
 import axios from 'axios';
 
@@ -11,7 +12,45 @@ interface ICourses {
 
 export default function Courses({ handleCoursesToggle, courses }: ICourses) {
 
-    const submitCourses = (e) => {
+    // State
+    const [selectedCourse, setSelectedCourse] = useState(undefined);
+    const [coupon, setCoupon] = useState(undefined)
+    const couponRef = useRef<HTMLInputElement>()
+
+
+    // Handlers
+
+    const handleSelectCourse = (course) => {
+        setSelectedCourse(course)
+    }
+
+    const handleCouponVerification = (e) => {
+        e.preventDefault();
+        const code = couponRef.current.value.trim();
+        if (code === "") {
+            return sendNotification("Please enter a valid coupon code");
+        }
+        sendNotification("Validating Code. Hang tight...");
+        axios({
+            method: "post",
+            url: `${process.env.NEXT_PUBLIC_API_URL}/coupons/validate`, // FIX THIS
+            data: {
+                code
+            }
+        }).then(result => {
+            sendNotification(result.data.message);
+            setCoupon({
+                discount: result.data.discount,
+                code: result.data.code
+            })
+        })
+            .catch(err => {
+                console.log(err)
+                sendNotification(err.response.data.message);
+            })
+    }
+
+    const handleSubmitBooking = (e) => {
         let enquiry = {}
         let form = document.getElementById(`courses-form`) as HTMLFormElement;
         if (form.checkValidity() === false) {
@@ -23,12 +62,18 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
             enquiry[key] = formData.get(key)
         }
 
-        // Delete invalid dates
+        // Delete invalid dates from selects
         let course = courses.find(course => course.name === formData.get("Type"));
         if (!course.dates || course.dates === []) {
             delete enquiry["Course Date"]
         }
         delete enquiry["Proof of Payment"];
+
+        if (coupon) {
+            enquiry["Coupon Discount"] = `${coupon.discount}%`;
+        }
+
+
 
         formData = new FormData();
         formData.append("enquiry", JSON.stringify(enquiry));
@@ -37,15 +82,18 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
         let ProofOfPayment = fileElement.files[0];
 
         formData.append("ProofOfPayment", ProofOfPayment);
+        formData.append("Coupon Discount", `${coupon.discount}%`)
+        sendNotification("Booking Course. Hang tight...");
 
         axios({
             method: "post",
-            url: `${process.env.NEXT_PUBLIC_API_URL}/courses/book`,
+            url: `${process.env.NEXT_PUBLIC_LOCAL_API_URL}/courses/book`, // FIX THIS
             data: formData
         }).then(result => {
             sendNotification("Thank you for your course booking. We'll get back to you soon!");
             form.reset()
             handleCoursesToggle()
+            setCoupon(undefined)
         })
             .catch(err => console.log(err))
 
@@ -78,7 +126,11 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
                                 {course.dates ? <CourseDates {...course} /> : null}
                                 <p>{course.description}</p>
                             </div>
-                            <input type="radio" name="Type" value={course.name} required />
+                            <input type="radio" name="Type" required
+                                value={course.name}
+                                onChange={() => handleSelectCourse(course)}
+                                checked={course === selectedCourse ? true : false}
+                            />
                         </div>
                     ))
                 }
@@ -122,19 +174,26 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
                             </div>
                             <div className={styles.paymentDetails}>
                                 <h4>Payment Details</h4>
+                                <div className={styles.coupon}>
+                                    <label>Coupon Code:</label>
+                                    <input type="text" name="coupon-code" ref={couponRef} />
+                                    <button className="button button--border" onClick={handleCouponVerification}>
+                                        <p>Apply Code</p>
+                                    </button>
+                                </div>
                                 <ul>
                                     <li><span>Bank:</span> ABSA Bank</li>
                                     <li><span>Sort Code:</span> 632 005</li>
-
-
                                     <li><span>Account Number:</span> 405 - 119 - 0044</li>
-
-
                                     <li><span>SWIFT code:</span> ABSAZAJJXXX</li>
-
-
                                     <li><span>Reference :</span> FIRST NAME/SURNAME/COURSE</li>
-                                    <li><span>Amount :</span> Course Price</li>
+                                    <li><span>Amount :</span>
+                                        <p className={styles.total}>
+                                            {selectedCourse ?
+                                                `R ${selectedCourse.price - (coupon ? selectedCourse.price * (coupon.discount / 100) : 0)}`
+                                                : "Select Course"}
+                                        </p>
+                                    </li>
 
                                 </ul>
                             </div>
@@ -143,7 +202,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
                                 <input type="file" name="Proof of Payment" id="ProofOfPayment" required accept="application/pdf" />
                             </div>
                         </div>
-                        <button className="button" type="submit" onClick={(e) => submitCourses(e)}>
+                        <button className="button" type="submit" onClick={(e) => handleSubmitBooking(e)}>
                             <p>Submit</p>
                         </button>
                     </form>
