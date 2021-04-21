@@ -174,13 +174,6 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
                             </div>
                             <div className={styles.paymentDetails}>
                                 <h4>Payment Details</h4>
-                                <div className={styles.coupon}>
-                                    <label>Coupon Code:</label>
-                                    <input type="text" name="coupon-code" ref={couponRef} />
-                                    <button className="button button--border" onClick={handleCouponVerification}>
-                                        <p>Apply Code</p>
-                                    </button>
-                                </div>
                                 <ul>
                                     <li><span>Bank:</span> ABSA Bank</li>
                                     <li><span>Sort Code:</span> 632 005</li>
@@ -198,6 +191,13 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
                                     </li>
 
                                 </ul>
+                                <div className={styles.coupon}>
+                                    <label>Coupon Code:</label>
+                                    <input type="text" name="coupon-code" ref={couponRef} />
+                                    <button className="button button--border" onClick={handleCouponVerification}>
+                                        <p>Apply Code</p>
+                                    </button>
+                                </div>
                             </div>
                             <div className={styles.row}>
                                 <label htmlFor="Proof of Payment">Proof of Payment</label>

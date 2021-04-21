@@ -89,7 +89,6 @@ export const updateCart = (product: IProduct, quantity: number) => {
     if (typeof window !== 'undefined') {
         localStorage.setItem("cart", JSON.stringify(currentCart));
     }
-    showCart()
     sendNotification("Cart Updated")
 }
 
@@ -174,4 +173,20 @@ export const checkDigitalOnlyCart = (products): boolean => {
         })
     }
     return digitalOnly
+}
+
+export const calculateDeliveryFee = (total: number, shopSettings: any): number => {
+    let fee = undefined;
+    for (let i = 1; i <= 3; i++) {
+        const thisThreshold = shopSettings[`deliveryFee${i}`].threshold;
+        const thisFee = shopSettings[`deliveryFee${i}`].fee;
+        if (total <= thisThreshold) {
+            fee = thisFee;
+            break
+        }
+    }
+    if (!fee) {
+        fee = shopSettings.upperFee
+    }
+    return fee
 }

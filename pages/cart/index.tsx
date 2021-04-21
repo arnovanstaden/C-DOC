@@ -38,10 +38,8 @@ export default function Cart({ products, shopSettings }) {
     // Handlers
     const handleCartChange = (() => {
         setCart(getCart())
-    })
-
-    const handleCartTotalUpdate = (() => {
         setTotal(getCartTotal())
+
     })
 
     const handleCheckoutShow = () => {
@@ -124,7 +122,7 @@ export default function Cart({ products, shopSettings }) {
             >
                 {!loading ?
                     <div className={styles.grid}>
-                        {showCart ? <CartItemGrid /> : <Checkout deliveryFeeSetting={shopSettings.deliveryFee} products={products} />}
+                        {showCart ? <CartItemGrid /> : <Checkout shopSettings={shopSettings} total={total} products={products} />}
                         <Options />
                     </div>
                     : null}
