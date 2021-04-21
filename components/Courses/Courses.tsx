@@ -32,7 +32,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
         sendNotification("Validating Code. Hang tight...");
         axios({
             method: "post",
-            url: `${process.env.NEXT_PUBLIC_LOCAL_API_URL}/coupons/validate`, // FIX THIS
+            url: `${process.env.NEXT_PUBLIC_API_URL}/coupons/validate`,
             data: {
                 code
             }
@@ -86,7 +86,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
 
         axios({
             method: "post",
-            url: `${process.env.NEXT_PUBLIC_LOCAL_API_URL}/courses/book`, // FIX THIS
+            url: `${process.env.NEXT_PUBLIC_API_URL}/courses/book`,
             data: formData
         }).then(result => {
             sendNotification("Thank you for your course booking. We'll get back to you soon!");
