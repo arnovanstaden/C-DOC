@@ -17,7 +17,6 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
     const [coupon, setCoupon] = useState(undefined)
     const couponRef = useRef<HTMLInputElement>()
 
-
     // Handlers
 
     const handleSelectCourse = (course) => {
@@ -33,7 +32,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
         sendNotification("Validating Code. Hang tight...");
         axios({
             method: "post",
-            url: `${process.env.NEXT_PUBLIC_API_URL}/coupons/validate`, // FIX THIS
+            url: `${process.env.NEXT_PUBLIC_LOCAL_API_URL}/coupons/validate`, // FIX THIS
             data: {
                 code
             }
@@ -69,11 +68,12 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
         }
         delete enquiry["Proof of Payment"];
 
+        // Add Coupon + Total
         if (coupon) {
             enquiry["Coupon Discount"] = `${coupon.discount}%`;
         }
-
-
+        const total = document.getElementById("booking-total").innerHTML;
+        enquiry["Booking Total"] = `${total}`;
 
         formData = new FormData();
         formData.append("enquiry", JSON.stringify(enquiry));
@@ -82,7 +82,6 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
         let ProofOfPayment = fileElement.files[0];
 
         formData.append("ProofOfPayment", ProofOfPayment);
-        formData.append("Coupon Discount", `${coupon.discount}%`)
         sendNotification("Booking Course. Hang tight...");
 
         axios({
@@ -94,6 +93,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
             form.reset()
             handleCoursesToggle()
             setCoupon(undefined)
+            setSelectedCourse(undefined)
         })
             .catch(err => console.log(err))
 
@@ -188,7 +188,9 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
                                     <li><span>SWIFT code:</span> ABSAZAJJXXX</li>
                                     <li><span>Reference :</span> FIRST NAME/SURNAME/COURSE</li>
                                     <li><span>Amount :</span>
-                                        <p className={styles.total}>
+                                        <p className={styles.total}
+                                            id="booking-total"
+                                        >
                                             {selectedCourse ?
                                                 `R ${selectedCourse.price - (coupon ? selectedCourse.price * (coupon.discount / 100) : 0)}`
                                                 : "Select Course"}
