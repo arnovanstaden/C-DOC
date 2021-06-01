@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getCart, getCartTotal, checkDigitalOnlyCart, calculateDeliveryFee } from "../../utils/cart";
 import { sendNotification } from "../Notification/Notification";
-
+import axios from "axios"
 // Styles
 import styles from "./checkout.module.scss";
 
@@ -59,21 +59,16 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
         order.cart_items = getCart()
         order.amount_gross = calcTotal();
 
-        // Send Order
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders/confirmation`, {
-            method: "post",
-            body: JSON.stringify(order),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
+        console.log(order)
+
+        axios({
+            method: "POST",
+            url: `${process.env.NEXT_PUBLIC_API_URL}/orders/confirmation`,
+            data: order
         })
-            .then((response) => {
-                return response.json()
-            })
             .then(result => {
                 console.log(result)
-                initPayment(order, result.order_number)
+                initPayment(order, result.data.order_number)
             })
             .catch(err => {
                 console.log(err)
@@ -123,6 +118,7 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
                     <input type="hidden" name="merchant_id" value={process.env.NEXT_PUBLIC_PAYFAST_MERCHANT_ID} />
                     <input type="hidden" name="merchant_key" value={process.env.NEXT_PUBLIC_PAYFAST_MERCHANT_KEY} />
                     <input type="hidden" name="return_url" value="http://www.c-doc.co.za/success" />
+                    <input type="hidden" name="notify_url" value={`${process.env.NEXT_PUBLIC_API_URL}/orders/`} />
                     <input type="hidden" name="cancel_url" value="http://www.c-doc.co.za/cart" />
                     <input type="hidden" name="item_name" value="C-DOC Cart" />
                     <input type="hidden" name="amount" value="" />

@@ -96,7 +96,6 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
             setSelectedCourse(undefined)
         })
             .catch(err => console.log(err))
-
     }
 
 
