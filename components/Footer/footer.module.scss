@@ -48,17 +48,29 @@
         }
     }
 
+    .bottom {
+        border-top: 1px solid $lightgrey;
+        padding: 0.25rem 0;
+    }
+
+    .privacy {
+        text-align: center;
+        font-weight: 500;
+        color: $red;
+        font-size: 0.8rem;
+        margin-bottom: 0.25rem;
+    }
+
 
     .copy {
-        border-top: 1px solid $lightgrey;
         display: flex;
         column-gap: 1rem;
-        padding: 0.25rem 0;
         justify-content: center;
 
         p {
             font-size: 0.8rem;
             font-weight: 300;
+            margin: 0;
 
             a {
                 font-weight: 400;

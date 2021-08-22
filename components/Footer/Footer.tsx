@@ -50,9 +50,14 @@ export default function Footer() {
                         </ul>
                     </div>
                 </div>
-                <div className={styles.copy}>
-                    <p>© 2020 - C-DOC (PTY) LTD.</p>
-                    <p>Design &amp; Development by <a target="blank" href="https://webdacity.dev">Webdacity</a></p>
+                <div className={styles.bottom}>
+                    <div className={styles.privacy}>
+                        <a href="/documents/C-DOC - POPIA and PAIA Privacy Policy.pdf" target="download">Privacy Policy</a>
+                    </div>
+                    <div className={styles.copy}>
+                        <p>© 2020 - C-DOC (PTY) LTD.</p>
+                        <p>Design &amp; Development by <a target="blank" href="https://webdacity.dev">Webdacity</a></p>
+                    </div>
                 </div>
             </div>
         </footer>
