@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { useState } from "react";
 import { GetStaticProps } from 'next'
 
 
@@ -12,44 +10,44 @@ import Section from "../components/Section/Section";
 import Article from "../components/Article/Article";
 
 export default function News({ articles }) {
-    return (
-        <Layout
-            head={{
-                title: "News | C-DOC",
-                description: "Stay up to date with the latest news and articles from C-DOC.",
-                canonical: "/news"
-            }}
-            noLanding={true}
-        >
-            <Section
-                heading="News &amp; Articles"
-                subHeading="Stay up to date with the latest news and articles from C-DOC"
-                noCross={true}
-                classNameProp={styles.news}
-            >
-                <div className={styles.grid}>
-                    {articles.map((article, index) => (
-                        <Article {...article} key={index} />
-                    ))}
-                </div>
-            </Section>
-        </Layout>
-    )
+  return (
+    <Layout
+      head={{
+        title: "News | C-DOC",
+        description: "Stay up to date with the latest news and articles from C-DOC.",
+        canonical: "/news"
+      }}
+      noLanding={true}
+    >
+      <Section
+        heading="News &amp; Articles"
+        subHeading="Stay up to date with the latest news and articles from C-DOC"
+        noCross={true}
+        classNameProp={styles.news}
+      >
+        <div className={styles.grid}>
+          {articles.map((article, index) => (
+            <Article {...article} key={index} />
+          ))}
+        </div>
+      </Section>
+    </Layout>
+  )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`)
-    const articles = await res.json()
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`)
+  const articles = await res.json()
 
-    if (!articles) {
-        return {
-            notFound: true,
-        }
-    }
-
+  if (!articles) {
     return {
-        props: {
-            articles
-        },
+      notFound: true,
     }
+  }
+
+  return {
+    props: {
+      articles
+    },
+  }
 }

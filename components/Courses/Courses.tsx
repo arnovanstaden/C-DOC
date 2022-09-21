@@ -62,7 +62,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
     }
 
     // Delete invalid dates from selects
-    if (!selectedCourse.dates || selectedCourse.dates === []) {
+    if (!selectedCourse.dates || selectedCourse.dates.length < 1) {
       delete enquiry["Course Date"]
     } else {
       const selectedDate = document.getElementById(selectedCourse.id) as HTMLInputElement;

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.c-doc.co.za
+
+# Sitemaps
+Sitemap: https://www.c-doc.co.za/sitemap.xml
