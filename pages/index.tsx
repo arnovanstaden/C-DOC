@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/future/image';
 import Link from "next/link";
 import { GetStaticProps } from 'next';
 
@@ -94,7 +94,7 @@ export default function Home({ courses }) {
               <article className={styles.item}>
                 <div className={styles.image}>
                   <div className="next-image next-image--intrinsic">
-                    <Image src="/images/pages/home/consulting.jpeg" width={400} height="auto" alt="C-Doc Service Image - Training" />
+                    <Image src="/images/pages/home/consulting.jpeg" fill alt="C-Doc Service Image - Training" />
                   </div>
                 </div>
                 <div className={styles.text}>
@@ -109,7 +109,7 @@ export default function Home({ courses }) {
               <article className={styles.item}>
                 <div className={styles.image}>
                   <div className="next-image next-image--intrinsic">
-                    <Image src="/images/pages/home/training.jpeg" width={400} height="auto" alt="C-Doc Service Image - Training" />
+                    <Image src="/images/pages/home/training.jpeg" fill alt="C-Doc Service Image - Training" />
                   </div>
                 </div>
                 <div className={styles.text}>
@@ -124,7 +124,7 @@ export default function Home({ courses }) {
               <article className={styles.item}>
                 <div className={styles.image}>
                   <div className="next-image next-image--intrinsic">
-                    <Image src="/images/pages/home/products.jpeg" width={400} height="auto" alt="C-Doc Service Image - Products" />
+                    <Image src="/images/pages/home/products.jpeg" fill alt="C-Doc Service Image - Products" />
                   </div>
                 </div>
                 <div className={styles.text}>
@@ -146,9 +146,7 @@ export default function Home({ courses }) {
           <Link href="/services#training">
             <a className={`${styles.item} ${styles.imageBlock}`}>
               <div className={styles.image}>
-                <div className="next-image next-image--intrinsic">
-                  <Image src="/images/pages/home/courses.jpeg" width={500} height="auto" objectFit="cover" alt="C-Doc Service Image - Consulting" />
-                </div>
+                <Image src="/images/pages/home/courses.jpeg" fill alt="C-Doc Service Image - Consulting" />
               </div>
               <div className={styles.text}>
                 <h3>Our Courses</h3>
@@ -171,9 +169,7 @@ export default function Home({ courses }) {
           <Link href="/about#team">
             <a className={`${styles.item} ${styles.imageBlock}`}>
               <div className={styles.image}>
-                <div className="next-image next-image--intrinsic">
-                  <Image src="/images/pages/home/team.jpeg" width={800} height="auto" objectFit="cover" alt="C-Doc Service Image - Consulting" />
-                </div>
+                <Image src="/images/pages/home/team.jpeg" fill alt="C-Doc Service Image - Consulting" />
               </div>
               <div className={styles.text}>
                 <h3>Meet The Team</h3>
