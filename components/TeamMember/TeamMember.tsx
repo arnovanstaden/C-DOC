@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 
 // Components
 import Cross from "../Cross/Cross";
@@ -18,7 +18,7 @@ export default function TeamMember({ name, position }: TeamMember) {
     <article className={styles.member}>
 
       <div className={styles.image}>
-        <Image fill src={`/images/pages/about/team/${imageName}`} alt={`C-DOC Team member Image - ${name}`} />
+        <Image sizes='10vw' layout="fill" src={`/images/pages/about/team/${imageName}`} alt={`C-DOC Team member - ${name}`} />
       </div>
       <div className={styles.text}>
         <h4>{name}</h4>

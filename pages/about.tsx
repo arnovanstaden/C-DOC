@@ -60,8 +60,8 @@ export default function About() {
         idProp="team"
       >
         <div className={styles.grid}>
-          {teamMembers.map((member, index) => (
-            <TeamMember key={index} {...member} />
+          {teamMembers.map((member) => (
+            <TeamMember key={member.name} {...member} />
           ))}
         </div>
       </Section>
