@@ -1,5 +1,5 @@
+import Image from 'next/image';
 import Link from "next/link";
-import { convertImage } from "../../utils/utils";
 import { IProduct } from "../../utils/cart";
 
 
@@ -16,7 +16,11 @@ export default function Product(product: IProduct) {
     <Link href={`/shop/${product.id}`}>
       <a className={styles.product} data-category={product.category}>
         <div className={styles.image}>
-          <img src={convertImage(product.thumbnail, 300)} alt="" />
+          <Image
+            src={product.thumbnail}
+            alt="Article Image"
+            layout='fill'
+          />
         </div>
         <h4>{product.name}</h4>
         <p>{product.price > 0 ? `R ${product.price}` : `Free`}</p>

@@ -1,4 +1,4 @@
-import { convertImage } from "../../utils/utils";
+import Image from 'next/image';
 
 // Styles
 import styles from "./article.module.scss";
@@ -16,7 +16,10 @@ export default function Article(props: IArticle) {
   return (
     <article className={styles.article}>
       <div className={styles.image}>
-        <img src={convertImage(props.image, 400)} alt="Article Image" />
+        <Image
+          src={props.image} alt="Article Image"
+          layout='fill'
+        />
       </div>
       <div className={styles.content}>
         <h3>{props.name}</h3>

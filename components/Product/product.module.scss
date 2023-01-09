@@ -1,42 +1,41 @@
 @import "../../styles/variables.scss";
 
 .product {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 1rem;
-    box-sizing: border-box;
-    border: 0.25rem solid transparent;
-    transition: 0.3s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 0.25rem solid transparent;
+  transition: 0.3s ease-out;
 
-    &:hover {
-        border-color: $red;
+  &:hover {
+    border-color: $red;
+  }
+
+  .image {
+    height: 30vh;
+    width: 100%;
+    position: relative;
+
+    img {
+      width: 100%;
+      object-fit: contain;
+      object-position: center;
     }
+  }
 
-    .image {
-        width: 100%;
-        height: 30vh;
-        // overflow: hidden;
+  h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem 0;
+  }
 
-        img {
-            object-fit: contain;
-            // object-position: center center;
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    h4 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin: 1.5rem 0 0.5rem 0;
-    }
-
-    p {
-        margin: 0;
-        background-color: $red;
-        color: $white;
-        padding: 0.25rem 1rem;
-    }
+  p {
+    margin: 0;
+    background-color: $red;
+    color: $white;
+    padding: 0.25rem 1rem;
+  }
 }
