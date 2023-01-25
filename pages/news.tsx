@@ -8,6 +8,7 @@ import styles from '../styles/pages/news.module.scss';
 import Layout from "../components/Layout/Layout";
 import Section from "../components/Section/Section";
 import Article from "../components/Article/Article";
+import axios from 'axios';
 
 export default function News({ articles }) {
   return (
@@ -36,8 +37,13 @@ export default function News({ articles }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`)
-  const articles = await res.json()
+  const articles = await axios({
+    method: 'GET',
+    url: `${process.env.NEXT_PUBLIC_API_URL}/articles`,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then((res) => res.data);
 
   if (!articles) {
     return {

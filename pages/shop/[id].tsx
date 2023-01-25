@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next';
 import { updateCart } from "../../utils/cart";
 import Link from "next/link";
 import Image from 'next/image';
+import fs from 'fs-extra';
 
 // Components
 import Layout from "../../components/Layout/Layout";
@@ -87,8 +88,15 @@ export default function Product({ product }) {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${params.id}`)
-  const product = await res.json()
+  const products = await fs.readJson('data/products.json');
+  const product = products.find((product) => product.id === params.id);
+
+  if (!product) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: {
       product,
@@ -97,8 +105,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`)
-  const products = await res.json()
+  const products = await fs.readJson('data/products.json');
+
+
   const paths = products.map((product) => `/shop/${product.id}`)
   return { paths, fallback: false }
 }

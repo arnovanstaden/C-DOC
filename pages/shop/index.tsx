@@ -1,18 +1,17 @@
 import Link from "next/link";
 import { GetStaticProps } from 'next';
 import { useState, useRef } from "react";
-import { sortProducts } from "../utils/utils";
-
 // Styles
-import styles from '../styles/pages/shop.module.scss';
+import styles from '../../styles/pages/shop.module.scss';
+import { sortProducts } from '../../utils/utils';
+import Layout from '../../components/Layout/Layout';
+import Section from '../../components/Section/Section';
+import Product from '../../components/Product/Product';
+import fs from 'fs-extra';
 
 // Components
-import Layout from "../components/Layout/Layout";
-import Section from "../components/Section/Section";
-import Product from "../components/Product/Product";
 
 export default function Shop({ products }) {
-
   // Refs
   const sortRef = useRef()
 
@@ -36,7 +35,6 @@ export default function Shop({ products }) {
   const handleSort = () => {
     let select = sortRef.current as HTMLSelectElement;
     setProductsToShow(sortProducts([...products], select.value));
-    console.log(productsToShow)
   }
 
   return (
@@ -70,7 +68,7 @@ export default function Shop({ products }) {
         </div>
         <div className={styles.grid}>
           {productsToShow.map((product, index) => (
-            (filter === "All Products" || filter === product.category) ? < Product {...product} key={index} /> : null
+            (filter === "All Products" || filter === product.category) ? <Product {...product} key={index} /> : null
           ))}
         </div>
       </Section>
@@ -94,8 +92,7 @@ export default function Shop({ products }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const productResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
-  const products = await productResponse.json();
+  const products = await fs.readJson('data/products.json');
 
   return {
     props: {

@@ -16,6 +16,7 @@ import Courses from "../components/Courses/Courses";
 import styles from '../styles/pages/services.module.scss';
 import catalogueStyles from "../components/Catalogue/catalogue.module.scss";
 import courseStyles from "../components/Courses/courses.module.scss";
+import axios from 'axios';
 
 export default function Services({ courses }) {
 
@@ -288,8 +289,13 @@ export default function Services({ courses }) {
 
 
 export const getStaticProps: GetStaticProps = async () => {
-  const coursesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`);
-  const courses = await coursesResponse.json();
+  const courses = await axios({
+    method: 'GET',
+    url: `${process.env.NEXT_PUBLIC_API_URL}/courses`,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then((res) => res.data);
 
   return {
     props: {
