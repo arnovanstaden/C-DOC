@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 const cacheProducts = async () => {
   const products = await axios({
     method: 'GET',
-    url: 'https://c-doc.cyclic.app/products',
+    url: `https://c-doc.cyclic.app/products`,
     headers: {
       'Content-Type': 'application/json'
     }
