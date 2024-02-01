@@ -83,7 +83,7 @@ export default function Cart({ products, shopSettings }) {
         <div className={styles.options}>
           <button className="button button--border">
             <Link href="/shop">
-              <a>Back to Shop</a>
+              Back to Shop
             </Link>
           </button>
           {!cart || cart.length < 1 ?

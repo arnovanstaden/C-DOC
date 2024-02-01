@@ -91,49 +91,43 @@ export default function Home({ courses }) {
         <div className={styles.grid}>
 
           <Link href="/services#consulting">
-            <a>
-              <article className={styles.item}>
-                <div className={styles.image}>
-                  <div className="next-image next-image--intrinsic">
-                    <Image src="/images/pages/home/consulting.jpeg" fill alt="C-Doc Service Image - Training" />
-                  </div>
+            <article className={styles.item}>
+              <div className={styles.image}>
+                <div className="next-image next-image--intrinsic">
+                  <Image src="/images/pages/home/consulting.jpeg" fill alt="C-Doc Service Image - Training" />
                 </div>
-                <div className={styles.text}>
-                  <h3>Consulting</h3>
-                  <p>We offer solutions for Diving Medical Emergency Response Planning. Ensuring the right people with right training and right equipment to ensure optimal outcomes We can do videos and blogs that fall under here or sell consulting session time </p>
-                </div>
-              </article>
-            </a>
+              </div>
+              <div className={styles.text}>
+                <h3>Consulting</h3>
+                <p>We offer solutions for Diving Medical Emergency Response Planning. Ensuring the right people with right training and right equipment to ensure optimal outcomes We can do videos and blogs that fall under here or sell consulting session time </p>
+              </div>
+            </article>
           </Link>
           <Link href="/services#training">
-            <a>
-              <article className={styles.item}>
-                <div className={styles.image}>
-                  <div className="next-image next-image--intrinsic">
-                    <Image src="/images/pages/home/training.jpeg" fill alt="C-Doc Service Image - Training" />
-                  </div>
+            <article className={styles.item}>
+              <div className={styles.image}>
+                <div className="next-image next-image--intrinsic">
+                  <Image src="/images/pages/home/training.jpeg" fill alt="C-Doc Service Image - Training" />
                 </div>
-                <div className={styles.text}>
-                  <h3>Training</h3>
-                  <p>We offer online and face to face skills development highlighting the barriers that exist in the remote diving and hyperbaric environments. Promoting standardised care for all those involved in diving operations.</p>
-                </div>
-              </article>
-            </a>
+              </div>
+              <div className={styles.text}>
+                <h3>Training</h3>
+                <p>We offer online and face to face skills development highlighting the barriers that exist in the remote diving and hyperbaric environments. Promoting standardised care for all those involved in diving operations.</p>
+              </div>
+            </article>
           </Link>
           <Link href="/services#equipment">
-            <a>
-              <article className={styles.item}>
-                <div className={styles.image}>
-                  <div className="next-image next-image--intrinsic">
-                    <Image src="/images/pages/home/products.jpeg" fill alt="C-Doc Service Image - Products" />
-                  </div>
+            <article className={styles.item}>
+              <div className={styles.image}>
+                <div className="next-image next-image--intrinsic">
+                  <Image src="/images/pages/home/products.jpeg" fill alt="C-Doc Service Image - Products" />
                 </div>
-                <div className={styles.text}>
-                  <h3>Equipment</h3>
-                  <p>The C-DOC health and safety team design products with the specific knowledge and experience of commercial diving operations </p>
-                </div>
-              </article>
-            </a>
+              </div>
+              <div className={styles.text}>
+                <h3>Equipment</h3>
+                <p>The C-DOC health and safety team design products with the specific knowledge and experience of commercial diving operations </p>
+              </div>
+            </article>
           </Link>
         </div>
       </Section>
@@ -144,39 +138,31 @@ export default function Home({ courses }) {
         classNameProp={styles.about}
       >
         <div className={styles.grid}>
-          <Link href="/services#training">
-            <a className={`${styles.item} ${styles.imageBlock}`}>
-              <div className={styles.image}>
-                <Image src="/images/pages/home/courses.jpeg" fill alt="C-Doc Service Image - Consulting" />
-              </div>
-              <div className={styles.text}>
-                <h3>Our Courses</h3>
-                <p>C-DOC training centre in Saldanha Bay has been established since 1999 offering training to support commercial diving competency and safety. </p>
-              </div>
-            </a>
+          <Link href="/services#training" className={`${styles.item} ${styles.imageBlock}`}>
+            <div className={styles.image}>
+              <Image src="/images/pages/home/courses.jpeg" fill alt="C-Doc Service Image - Consulting" />
+            </div>
+            <div className={styles.text}>
+              <h3>Our Courses</h3>
+              <p>C-DOC training centre in Saldanha Bay has been established since 1999 offering training to support commercial diving competency and safety. </p>
+            </div>
           </Link>
-          <Link href="/about#story">
-            <a className={`${styles.item} ${styles.textBlock}`}>
-              <h3>Our Story</h3>
-              <p>C-DOC was established in 1999 to ensure an accessible service for products, education and skills development to support health and safety during diving operations. </p>
-            </a>
+          <Link href="/about#story" className={`${styles.item} ${styles.textBlock}`}>
+            <h3>Our Story</h3>
+            <p>C-DOC was established in 1999 to ensure an accessible service for products, education and skills development to support health and safety during diving operations. </p>
           </Link>
-          <Link href="/news">
-            <a className={`${styles.item} ${styles.textBlock}`}>
-              <h3>Latest News</h3>
-              <p>Stay up to date with the latest news of C-DOC and the industry we operate in and learn the impact we make in our community.</p>
-            </a>
+          <Link href="/news" className={`${styles.item} ${styles.textBlock}`}>
+            <h3>Latest News</h3>
+            <p>Stay up to date with the latest news of C-DOC and the industry we operate in and learn the impact we make in our community.</p>
           </Link>
-          <Link href="/about#team">
-            <a className={`${styles.item} ${styles.imageBlock}`}>
-              <div className={styles.image}>
-                <Image src="/images/pages/home/team.jpeg" fill alt="C-Doc Service Image - Consulting" />
-              </div>
-              <div className={styles.text}>
-                <h3>Meet The Team</h3>
-                <p>The C-DOC occupational health team brings together industry specialists with a broad background and skills set to compliment quality assured training.  </p>
-              </div>
-            </a>
+          <Link href="/about#team" className={`${styles.item} ${styles.imageBlock}`}>
+            <div className={styles.image}>
+              <Image src="/images/pages/home/team.jpeg" fill alt="C-Doc Service Image - Consulting" />
+            </div>
+            <div className={styles.text}>
+              <h3>Meet The Team</h3>
+              <p>The C-DOC occupational health team brings together industry specialists with a broad background and skills set to compliment quality assured training.  </p>
+            </div>
           </Link>
         </div>
       </Section>

@@ -57,7 +57,7 @@ export default function Product({ product }) {
         <div className={styles.shop}>
           <Link href="/shop">
             <button className="button button--border">
-              <a>Back to Shop</a>
+              Back to Shop
             </button>
           </Link>
         </div>

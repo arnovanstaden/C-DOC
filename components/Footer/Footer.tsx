@@ -8,42 +8,40 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className="container">
         <div className={styles.grid}>
-          <Link href="/">
-            <a className={styles.logo}>
-              <img src="/images/logos/logo.png" alt="C-Doc Logo" />
-              <p>Commercial Diving and <br /> Offshore Consultancy</p>
-            </a>
+          <Link href="/" className={styles.logo}>
+            <img src="/images/logos/logo.png" alt="C-Doc Logo" />
+            <p>Commercial Diving and <br /> Offshore Consultancy</p>
           </Link>
           <div className={styles.nav}>
             <ul>
               <li>
                 <Link href="/">
-                  <a>Home</a>
+                  Home
                 </Link>
               </li>
               <li>
                 <Link href="/about">
-                  <a>About</a>
+                  About
                 </Link>
               </li>
               <li>
                 <Link href="/services">
-                  <a>Services</a>
+                  Services
                 </Link>
               </li>
               <li>
                 <Link href="/shop/">
-                  <a>Shop</a>
+                  Shop
                 </Link>
               </li>
               <li>
                 <Link href="/news">
-                  <a>News</a>
+                  News
                 </Link>
               </li>
               <li>
                 <Link href="/contact">
-                  <a>Contact</a>
+                  Contact
                 </Link>
               </li>
             </ul>

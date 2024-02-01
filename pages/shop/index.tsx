@@ -81,9 +81,7 @@ export default function Shop({ products }) {
         <p>The C-DOC health and safety team design products with the specific knowledge and experience of commercial diving operations. These kits are not available for puchase online but can be ordered via our order form:</p>
         <button className="button">
           <Link href="/services#equipment">
-            <a>
-              Medical Kits Enquiry
-            </a>
+            Medical Kits Enquiry
           </Link>
         </button>
       </section>
