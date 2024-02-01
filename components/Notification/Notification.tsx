@@ -1,7 +1,7 @@
-import classNames from "classnames"
+import classNames from 'classnames'
 
 // Styles
-import styles from "./notification.module.scss";
+import styles from './notification.module.scss';
 
 export default function Notification() {
     const notificationStyles = classNames(

@@ -9,7 +9,7 @@ const cacheProducts = async () => {
       'Content-Type': 'application/json'
     }
   }).then((res) => res.data)
-    .catch((err) => console.log(err.response));
+    .catch((err) => console.error(err.response));
 
   fs.outputJson('data/products.json', products)
 };

@@ -1,25 +1,25 @@
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 // Components
-import Layout from "../components/Layout/Layout";
-import Section from "../components/Section/Section";
-import Landing from "../components/Landing/Landing";
-import TeamMember from "../components/TeamMember/TeamMember";
-import Cross from "../components/Cross/Cross";
+import Layout from '../components/Layout/Layout';
+import Section from '../components/Section/Section';
+import Landing from '../components/Landing/Landing';
+import TeamMember from '../components/TeamMember/TeamMember';
+import Cross from '../components/Cross/Cross';
 
 // Styles
 import styles from '../styles/pages/about.module.scss';
 
 // Data
-import teamMembers from "../assets/data/team.json";
+import teamMembers from '../assets/data/team.json';
 
 export default function About() {
   return (
     <Layout
       head={{
-        title: "About | C-Doc",
-        description: "Providing Effective Medical Support for 22 Years and Counting.",
-        canonical: "/about"
+        title: 'About | C-Doc',
+        description: 'Providing Effective Medical Support for 22 Years and Counting.',
+        canonical: '/about'
       }}
     >
       <Landing

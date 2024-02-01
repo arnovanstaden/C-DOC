@@ -5,18 +5,18 @@ import { GetStaticProps } from 'next'
 import styles from '../styles/pages/news.module.scss';
 
 // Components
-import Layout from "../components/Layout/Layout";
-import Section from "../components/Section/Section";
-import Article from "../components/Article/Article";
+import Layout from '../components/Layout/Layout';
+import Section from '../components/Section/Section';
+import Article from '../components/Article/Article';
 import axios from 'axios';
 
 export default function News({ articles }) {
   return (
     <Layout
       head={{
-        title: "News | C-DOC",
-        description: "Stay up to date with the latest news and articles from C-DOC.",
-        canonical: "/news"
+        title: 'News | C-DOC',
+        description: 'Stay up to date with the latest news and articles from C-DOC.',
+        canonical: '/news'
       }}
       noLanding={true}
     >

@@ -1,12 +1,12 @@
-import { clearCart } from "../../utils/cart";
-import { useEffect } from "react"
+import { clearCart } from '../../utils/cart';
+import { useEffect } from 'react'
 
 // Components
-import Layout from "../../components/Layout/Layout";
-import Section from "../../components/Section/Section";
+import Layout from '../../components/Layout/Layout';
+import Section from '../../components/Section/Section';
 
 // Styles
-import styles from "../../styles/pages/cart/success.module.scss";
+import styles from '../../styles/pages/cart/success.module.scss';
 
 export default function Success() {
 
@@ -17,9 +17,9 @@ export default function Success() {
     return (
         <Layout
             head={{
-                title: "Success | C-DOC",
-                description: "Transaction Successful",
-                canonical: "/success",
+                title: 'Success | C-DOC',
+                description: 'Transaction Successful',
+                canonical: '/success',
                 robots: false
             }}
             noLanding={true}

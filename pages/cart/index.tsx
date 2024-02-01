@@ -1,18 +1,18 @@
-import { getCart, getCartTotal, checkCartValidity } from "../../utils/cart";
+import { getCart, getCartTotal, checkCartValidity } from '../../utils/cart';
 import { GetStaticProps } from 'next'
-import Link from "next/link";
-import { useState, useEffect } from "react";
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 
 
 // Components
-import CartItem from "../../components/CartItem/CartItem";
-import Section from "../../components/Section/Section";
-import Layout from "../../components/Layout/Layout";
-import Checkout from "../../components/Checkout/Checkout";
+import CartItem from '../../components/CartItem/CartItem';
+import Section from '../../components/Section/Section';
+import Layout from '../../components/Layout/Layout';
+import Checkout from '../../components/Checkout/Checkout';
 
 // Styles
-import styles from "../../styles/pages/cart/index.module.scss";
+import styles from '../../styles/pages/cart/index.module.scss';
 import axios from 'axios';
 
 export default function Cart({ products, shopSettings }) {
@@ -32,7 +32,7 @@ export default function Cart({ products, shopSettings }) {
 
   // Helpers
   const getProduct = (item) => {
-    let product = products.find(product => product.id === item.id);
+    const product = products.find(product => product.id === item.id);
     return product
   }
 
@@ -83,7 +83,7 @@ export default function Cart({ products, shopSettings }) {
         <div className={styles.options}>
           <button className="button button--border">
             <Link href="/shop">
-              <a>Back to Shop</a>
+              Back to Shop
             </Link>
           </button>
           {!cart || cart.length < 1 ?
@@ -108,9 +108,9 @@ export default function Cart({ products, shopSettings }) {
   return (
     <Layout
       head={{
-        title: "Cart | C-DOC",
-        description: "",
-        canonical: "/cart",
+        title: 'Cart | C-DOC',
+        description: '',
+        canonical: '/cart',
         robots: false
       }}
       noLanding={true}

@@ -1,9 +1,9 @@
 
 // Components
-import Header from "../Header/Header";
-import Head from "../Head/Head";
-import Nav from "../Nav/Nav";
-import Notification from "../Notification/Notification";
+import Header from '../Header/Header';
+import Head from '../Head/Head';
+import Nav from '../Nav/Nav';
+import Notification from '../Notification/Notification';
 
 interface ILayout {
     children: React.ReactNode;

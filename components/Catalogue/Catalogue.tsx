@@ -1,8 +1,8 @@
-import Image from "next/future/image";
-import { sendNotification } from "../Notification/Notification";
+import Image from 'next/image';
+import { sendNotification } from '../Notification/Notification';
 
 // Styles
-import styles from "./catalogue.module.scss";
+import styles from './catalogue.module.scss';
 
 interface ICatalogue {
   handleCatalogueToggle: () => void;
@@ -11,29 +11,29 @@ interface ICatalogue {
 export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
 
   const submitCatalogue = (e) => {
-    let enquiry = {}
-    let form = document.getElementById(`catalogue-form`) as HTMLFormElement;
+    const enquiry = {}
+    const form = document.getElementById('catalogue-form') as HTMLFormElement;
     if (form.checkValidity() === false) {
       return
     }
     e.preventDefault();
-    let formData = new FormData(form);
+    const formData = new FormData(form);
     formData.forEach((value, key) => enquiry[key] = value);
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/enquiry/catalogue`, {
-      method: "post",
+      method: 'post',
       body: JSON.stringify(enquiry),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     })
-      .then(result => {
-        sendNotification("Thank you for your enquiry. We'll get back to you soon!");
+      .then(() => {
+        sendNotification('Thank you for your enquiry. We\'ll get back to you soon!');
         form.reset()
         handleCatalogueToggle();
       })
-      .catch(err => console.log(err))
+      .catch(err => console.error(err))
   }
 
   return (

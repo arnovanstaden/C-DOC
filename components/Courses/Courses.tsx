@@ -1,9 +1,9 @@
-import { useState, useRef } from "react";
-import { sendNotification } from "../Notification/Notification";
+import { useState, useRef } from 'react';
+import { sendNotification } from '../Notification/Notification';
 import axios from 'axios';
 
 // Styles
-import styles from "./courses.module.scss";
+import styles from './courses.module.scss';
 
 interface ICourses {
   handleCoursesToggle: () => void;
@@ -26,12 +26,12 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
   const handleCouponVerification = (e) => {
     e.preventDefault();
     const code = couponRef.current.value.trim();
-    if (code === "") {
-      return sendNotification("Please enter a valid coupon code");
+    if (code === '') {
+      return sendNotification('Please enter a valid coupon code');
     }
-    sendNotification("Validating Code. Hang tight...");
+    sendNotification('Validating Code. Hang tight...');
     axios({
-      method: "post",
+      method: 'post',
       url: `${process.env.NEXT_PUBLIC_API_URL}/coupons/validate`,
       data: {
         code
@@ -44,60 +44,60 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
       })
     })
       .catch(err => {
-        console.log(err)
+        console.error(err)
         sendNotification(err.response.data.message);
       })
   }
 
   const handleSubmitBooking = (e) => {
-    let enquiry = {}
-    let form = document.getElementById(`courses-form`) as HTMLFormElement;
+    const enquiry = {}
+    const form = document.getElementById('courses-form') as HTMLFormElement;
     if (form.checkValidity() === false) {
       return
     }
     e.preventDefault();
     let formData = new FormData(form);
-    for (var key of formData.keys()) {
+    for (const key of formData.keys()) {
       enquiry[key] = formData.get(key)
     }
 
     // Delete invalid dates from selects
     if (!selectedCourse.dates || selectedCourse.dates.length < 1) {
-      delete enquiry["Course Date"]
+      delete enquiry['Course Date']
     } else {
       const selectedDate = document.getElementById(selectedCourse.id) as HTMLInputElement;
-      enquiry["Course Date"] = selectedDate.value;
+      enquiry['Course Date'] = selectedDate.value;
     }
-    delete enquiry["Proof of Payment"];
+    delete enquiry['Proof of Payment'];
 
     // Add Coupon + Total
     if (coupon) {
-      enquiry["Coupon Discount"] = `${coupon.discount}%`;
+      enquiry['Coupon Discount'] = `${coupon.discount}%`;
     }
-    const total = document.getElementById("booking-total").innerHTML;
-    enquiry["Booking Total"] = `${total}`;
+    const total = document.getElementById('booking-total').innerHTML;
+    enquiry['Booking Total'] = `${total}`;
 
     formData = new FormData();
-    formData.append("enquiry", JSON.stringify(enquiry));
+    formData.append('enquiry', JSON.stringify(enquiry));
 
-    let fileElement = document.getElementById('ProofOfPayment') as HTMLInputElement;
-    let ProofOfPayment = fileElement.files[0];
+    const fileElement = document.getElementById('ProofOfPayment') as HTMLInputElement;
+    const ProofOfPayment = fileElement.files[0];
 
-    formData.append("ProofOfPayment", ProofOfPayment);
-    sendNotification("Booking Course. Hang tight...");
+    formData.append('ProofOfPayment', ProofOfPayment);
+    sendNotification('Booking Course. Hang tight...');
 
     axios({
-      method: "post",
+      method: 'post',
       url: `${process.env.NEXT_PUBLIC_API_URL}/courses/book`,
       data: formData
-    }).then(result => {
-      sendNotification("Thank you for your course booking. We'll get back to you soon!");
+    }).then(() => {
+      sendNotification('Thank you for your course booking. We\'ll get back to you soon!');
       form.reset()
       handleCoursesToggle()
       setCoupon(undefined)
       setSelectedCourse(undefined)
     })
-      .catch(err => console.log(err))
+      .catch(err => console.error(err))
   }
 
 
@@ -115,7 +115,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
     )
   }
 
-  function CourseList() {
+  const CourseList = () => {
     return (
       <>
         {
@@ -187,7 +187,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
                     >
                       {selectedCourse ?
                         `R ${selectedCourse.price - (coupon ? selectedCourse.price * (coupon.discount / 100) : 0)}`
-                        : "Select Course"}
+                        : 'Select Course'}
                     </p>
                   </li>
 
