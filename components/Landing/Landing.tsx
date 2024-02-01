@@ -1,10 +1,10 @@
 import Image from 'next/image';
 
 // Components
-import Header from "../Header/Header";
+import Header from '../Header/Header';
 
 // Styles
-import styles from "./landing.module.scss";
+import styles from './landing.module.scss';
 
 interface TLanding {
   children: React.ReactNode;

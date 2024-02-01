@@ -1,10 +1,10 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 // Components
-import Cross from "../Cross/Cross";
+import Cross from '../Cross/Cross';
 
 // Styles
-import styles from "./team-member.module.scss";
+import styles from './team-member.module.scss';
 
 interface TeamMember {
   name: string;
@@ -12,7 +12,7 @@ interface TeamMember {
 }
 
 export default function TeamMember({ name, position }: TeamMember) {
-  const imageName = name.slice(0, name.indexOf(" ")).toLocaleLowerCase() + ".jpg";
+  const imageName = name.slice(0, name.indexOf(' ')).toLocaleLowerCase() + '.jpg';
 
   return (
     <article className={styles.member}>

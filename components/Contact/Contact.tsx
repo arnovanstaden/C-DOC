@@ -1,6 +1,6 @@
 
 // Styles
-import styles from "./contact.module.scss";
+import styles from './contact.module.scss';
 
 interface IContact {
     page?: boolean;
@@ -9,7 +9,7 @@ interface IContact {
 export default function Contact({ page }: IContact) {
     return (
 
-        <div className={`${styles.details} ${page ? styles.page : ""}`}>
+        <div className={`${styles.details} ${page ? styles.page : ''}`}>
             <div className="heading heading--small">
                 <h1>Contact Us.</h1>
                 <span />

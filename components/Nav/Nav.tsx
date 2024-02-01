@@ -1,11 +1,11 @@
-import { handleNavToggle } from "../../utils/utils"
+import { handleNavToggle } from '../../utils/utils'
 
 
 // Components
-import Link from "next/link";
+import Link from 'next/link';
 
 // Styles
-import styles from "./nav.module.scss";
+import styles from './nav.module.scss';
 
 export default function Nav() {
 

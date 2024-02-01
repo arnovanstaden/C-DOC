@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-import { getCart, getCartTotal, checkDigitalOnlyCart, calculateDeliveryFee } from "../../utils/cart";
-import { sendNotification } from "../Notification/Notification";
-import axios from "axios"
+/* eslint-disable camelcase */
+import { useState, useEffect } from 'react';
+import { getCart, getCartTotal, checkDigitalOnlyCart, calculateDeliveryFee } from '../../utils/cart';
+import { sendNotification } from '../Notification/Notification';
+import axios from 'axios'
 // Styles
-import styles from "./checkout.module.scss";
+import styles from './checkout.module.scss';
 
 // Interface
 interface ICheckout {
@@ -31,15 +32,14 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
 
   const validateForm = () => {
     'use strict';
-    let form = (document.querySelector('#checkout-form') as HTMLFormElement)
+    const form = (document.querySelector('#checkout-form') as HTMLFormElement)
     if (form.checkValidity() === false) {
-      console.log("Validation Fail");
+      console.error('Validation Fail');
       // event.preventDefault();
       // event.stopPropagation();
-      alert("Please ensure you have completed all the fields.")
+      alert('Please ensure you have completed all the fields.')
       return false
     } else {
-      console.log("Validation Success")
       return true
     }
   }
@@ -49,36 +49,33 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
     if (!validateForm()) {
       return
     }
-    sendNotification("Your order is being processed. You'll be redirected to Payfast momentarily...")
-    let order = {
+    sendNotification('Your order is being processed. You\'ll be redirected to Payfast momentarily...')
+    const order = {
       cart_items: [],
       amount_gross: 0
     }
-    let formData = new FormData(document.querySelector('#checkout-form'));
+    const formData = new FormData(document.querySelector('#checkout-form'));
     formData.forEach((value, key) => order[key] = value);
     order.cart_items = getCart()
     order.amount_gross = calcTotal();
 
-    console.log(order)
-
     axios({
-      method: "POST",
+      method: 'POST',
       url: `${process.env.NEXT_PUBLIC_API_URL}/orders/confirmation`,
       data: order
     })
       .then(result => {
-        console.log(result)
         initPayment(order, result.data.order_number)
       })
       .catch(err => {
-        console.log(err)
+        console.error(err)
       })
   }
 
   const initPayment = (order, order_number) => {
-    (document.querySelector("#checkout-form input[name='amount']") as HTMLInputElement).value = order.amount_gross;
-    (document.querySelector("#checkout-form input[name='custom_str1']") as HTMLInputElement).value = order_number;
-    (document.querySelector("#checkout-form") as HTMLFormElement).submit()
+    (document.querySelector('#checkout-form input[name=\'amount\']') as HTMLInputElement).value = order.amount_gross;
+    (document.querySelector('#checkout-form input[name=\'custom_str1\']') as HTMLInputElement).value = order_number;
+    (document.querySelector('#checkout-form') as HTMLFormElement).submit()
   }
 
   return (

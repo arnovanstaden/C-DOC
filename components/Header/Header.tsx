@@ -1,9 +1,8 @@
-import Link from "next/link";
-import { handleNavToggle } from "../../utils/utils";
-import { getCartLength } from "../../utils/cart";
+import Link from 'next/link';
+import { handleNavToggle } from '../../utils/utils';
 
 // Styles
-import styles from "./header.module.scss";
+import styles from './header.module.scss';
 
 interface IHeader {
   shop?: boolean

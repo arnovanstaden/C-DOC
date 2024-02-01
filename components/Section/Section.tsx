@@ -1,10 +1,10 @@
-import ClassNames from "classnames";
+import ClassNames from 'classnames';
 
 // Components
-import Cross from "../Cross/Cross";
+import Cross from '../Cross/Cross';
 
 // Styles
-import styles from "./section.module.scss";
+import styles from './section.module.scss';
 
 interface ISection {
     children: React.ReactNode;
@@ -33,11 +33,11 @@ export default function Section({ children, heading, subHeading, noCross, classN
 
     const sectionClasses = ClassNames(
         styles.section,
-        classNameProp ? classNameProp : "",
-        dark ? styles.dark : ""
+        classNameProp ? classNameProp : '',
+        dark ? styles.dark : ''
     )
     return (
-        <section className={sectionClasses} id={idProp ? idProp : ""}>
+        <section className={sectionClasses} id={idProp ? idProp : ''}>
             {!noCross ? <Cross classNameProp={styles.cross} size="2rem" /> : null}
             <div className="container">
                 <SectionHeading />

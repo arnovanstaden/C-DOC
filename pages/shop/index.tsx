@@ -1,6 +1,6 @@
-import Link from "next/link";
+import Link from 'next/link';
 import { GetStaticProps } from 'next';
-import { useState, useRef } from "react";
+import { useState, useRef } from 'react';
 // Styles
 import styles from '../../styles/pages/shop.module.scss';
 import { sortProducts } from '../../utils/utils';
@@ -16,8 +16,8 @@ export default function Shop({ products }) {
   const sortRef = useRef()
 
   // State
-  const [filter, setFilter] = useState("All Products");
-  const [productsToShow, setProductsToShow] = useState(sortProducts(products, "name"))
+  const [filter, setFilter] = useState('All Products');
+  const [productsToShow, setProductsToShow] = useState(sortProducts(products, 'name'))
 
   // Handlers
 
@@ -33,16 +33,16 @@ export default function Shop({ products }) {
   }
 
   const handleSort = () => {
-    let select = sortRef.current as HTMLSelectElement;
+    const select = sortRef.current as HTMLSelectElement;
     setProductsToShow(sortProducts([...products], select.value));
   }
 
   return (
     <Layout
       head={{
-        title: "Shop | C-DOC",
-        description: "Browse C-DOC’s wide range of Medical Equipment, Clothing, Gear and E-Books.",
-        canonical: "/shop"
+        title: 'Shop | C-DOC',
+        description: 'Browse C-DOC’s wide range of Medical Equipment, Clothing, Gear and E-Books.',
+        canonical: '/shop'
       }}
       noLanding={true}
       shop={true}
@@ -68,7 +68,7 @@ export default function Shop({ products }) {
         </div>
         <div className={styles.grid}>
           {productsToShow.map((product, index) => (
-            (filter === "All Products" || filter === product.category) ? <Product {...product} key={index} /> : null
+            (filter === 'All Products' || filter === product.category) ? <Product {...product} key={index} /> : null
           ))}
         </div>
       </Section>

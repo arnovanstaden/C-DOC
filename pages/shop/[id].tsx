@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { GetStaticProps } from 'next';
-import { updateCart } from "../../utils/cart";
-import Link from "next/link";
+import { updateCart } from '../../utils/cart';
+import Link from 'next/link';
 import Image from 'next/image';
 import fs from 'fs-extra';
 
 // Components
-import Layout from "../../components/Layout/Layout";
-import Section from "../../components/Section/Section";
+import Layout from '../../components/Layout/Layout';
+import Section from '../../components/Section/Section';
 
 // Styles
-import styles from "../../styles/pages/shop/[id].module.scss";
+import styles from '../../styles/pages/shop/[id].module.scss';
 
 export default function Product({ product }) {
   // State
@@ -71,7 +71,7 @@ export default function Product({ product }) {
           <div className={styles.content}>
             <p className={styles.category}>{product.category}</p>
             <h2 className={styles.name}>{product.name}</h2>
-            <p className={styles.price}>{product.price > 0 ? `R ${product.price}` : `Free`}</p>
+            <p className={styles.price}>{product.price > 0 ? `R ${product.price}` : 'Free'}</p>
             <div className={styles.details}>
               <p className={styles.active}>Description</p>
             </div>

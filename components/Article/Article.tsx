@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 // Styles
-import styles from "./article.module.scss";
+import styles from './article.module.scss';
 
 interface IArticle {
   name: string;

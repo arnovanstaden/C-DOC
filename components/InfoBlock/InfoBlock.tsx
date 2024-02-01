@@ -1,7 +1,7 @@
-import ClassNames from "classnames";
+import ClassNames from 'classnames';
 
 // Styles
-import styles from "./info-block.module.scss";
+import styles from './info-block.module.scss';
 
 interface IBlock {
     children: React.ReactNode;
@@ -12,7 +12,7 @@ export default function InfoBlock({ children, dark }: IBlock) {
 
     const blockClasses = ClassNames(
         styles.block,
-        dark ? styles.dark : ""
+        dark ? styles.dark : ''
     )
 
     return (

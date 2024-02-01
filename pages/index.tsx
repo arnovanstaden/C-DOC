@@ -1,22 +1,22 @@
 import Image from 'next/image';
-import Link from "next/link";
+import Link from 'next/link';
 import { GetStaticProps } from 'next';
 
 // Components
-import Layout from "../components/Layout/Layout";
-import Section from "../components/Section/Section";
-import Landing from "../components/Landing/Landing";
-import Contact from "../components/Contact/Contact";
-import Stats from "../components/Stats/Stats";
-import Cross from "../components/Cross/Cross";
-import Catalogue from "../components/Catalogue/Catalogue";
-import Courses from "../components/Courses/Courses";
+import Layout from '../components/Layout/Layout';
+import Section from '../components/Section/Section';
+import Landing from '../components/Landing/Landing';
+import Contact from '../components/Contact/Contact';
+import Stats from '../components/Stats/Stats';
+import Cross from '../components/Cross/Cross';
+import Catalogue from '../components/Catalogue/Catalogue';
+import Courses from '../components/Courses/Courses';
 
 
 // Styles
 import styles from '../styles/pages/index.module.scss';
-import catalogueStyles from "../components/Catalogue/catalogue.module.scss";
-import courseStyles from "../components/Courses/courses.module.scss";
+import catalogueStyles from '../components/Catalogue/catalogue.module.scss';
+import courseStyles from '../components/Courses/courses.module.scss';
 import axios from 'axios';
 
 export default function Home({ courses }) {
@@ -25,10 +25,10 @@ export default function Home({ courses }) {
     const catalogue = document.querySelector(`.${catalogueStyles.catalogue}`);
     if (catalogue.classList.contains(catalogueStyles.open)) {
       catalogue.classList.remove(catalogueStyles.open);
-      document.body.classList.remove("noscroll")
+      document.body.classList.remove('noscroll')
     } else {
       catalogue.classList.add(catalogueStyles.open);
-      document.body.classList.add("noscroll")
+      document.body.classList.add('noscroll')
     }
   }
 
@@ -36,18 +36,18 @@ export default function Home({ courses }) {
     const courses = document.querySelector(`.${courseStyles.courses}`);
     if (courses.classList.contains(courseStyles.open)) {
       courses.classList.remove(courseStyles.open);
-      document.body.classList.remove("noscroll")
+      document.body.classList.remove('noscroll')
     } else {
       courses.classList.add(courseStyles.open);
-      document.body.classList.add("noscroll")
+      document.body.classList.add('noscroll')
     }
   }
   return (
     <Layout
       head={{
-        title: "C-DOC | Commercial Diving and Offshore Consultancy",
-        description: "C-DOC Provides Effective Medical Support to the Diving and Maritime Industry.",
-        canonical: "/"
+        title: 'C-DOC | Commercial Diving and Offshore Consultancy',
+        description: 'C-DOC Provides Effective Medical Support to the Diving and Maritime Industry.',
+        canonical: '/'
       }}
     >
       <Landing
