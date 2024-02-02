@@ -81,7 +81,7 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
   return (
     <div className={styles.grid}>
       <div className={styles.form}>
-        <form action="https://www.payfast.co.za/eng/process" method="POST" id="checkout-form">
+        <form action={process.env.NEXT_PUBLIC_PAYFAST_PAYMENT_URL} method="POST" id="checkout-form">
           <div className={styles.row}>
             <div>
               <input type="text" name="name_first" placeholder="First Name" required />
@@ -114,7 +114,7 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
           </div>
           <input type="hidden" name="merchant_id" value={process.env.NEXT_PUBLIC_PAYFAST_MERCHANT_ID} />
           <input type="hidden" name="merchant_key" value={process.env.NEXT_PUBLIC_PAYFAST_MERCHANT_KEY} />
-          <input type="hidden" name="return_url" value="http://www.c-doc.co.za/success" />
+          <input type="hidden" name="return_url" value={process.env.NEXT_PUBLIC_PAYFAST_RETURN_URL} />
           <input type="hidden" name="notify_url" value={`${process.env.NEXT_PUBLIC_API_URL}/orders/`} />
           <input type="hidden" name="cancel_url" value="http://www.c-doc.co.za/cart" />
           <input type="hidden" name="item_name" value="C-DOC Cart" />
