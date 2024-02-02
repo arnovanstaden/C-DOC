@@ -6,7 +6,6 @@
     "dev": "npm run prebuild && next dev",
     "build": "next build",
     "start": "next start",
-    "prebuild": "ts-node ./utils/prebuild.ts",
     "postbuild": "next-sitemap --config custom-next-sitemap.js",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."

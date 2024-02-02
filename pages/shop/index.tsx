@@ -7,7 +7,6 @@ import { sortProducts } from '../../utils/utils';
 import Layout from '../../components/Layout/Layout';
 import Section from '../../components/Section/Section';
 import Product from '../../components/Product/Product';
-import fs from 'fs-extra';
 
 // Components
 
@@ -90,7 +89,8 @@ export default function Shop({ products }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const products = await fs.readJson('data/products.json');
+  const productResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
+  const products = await productResponse.json();
 
   return {
     props: {
