@@ -6,6 +6,7 @@ import Cross from '@components/Cross/Cross';
 import styles from './AboutPage.module.scss';
 import teamMembers from '../../../assets/data/team.json';
 import { generateCustomMetaData } from '@utils/metadata';
+import Button from '@components/system/Button/Button';
 
 export const metadata = generateCustomMetaData({
   title: 'About | C-Doc',
@@ -108,9 +109,9 @@ const AboutPage = () => {
           </div>
         </div>
         <div className={styles.button}>
-          <button className="button button--border">
-            <a target="blank" href="http://dmerworldwide.com/">Learn More</a>
-          </button>
+          <Button href="http://dmerworldwide.com/">
+            Learn More
+          </Button>
         </div>
       </Section>
 

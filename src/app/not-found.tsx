@@ -1,7 +1,4 @@
-// Components
-// import Button from '@components/UI/Button/Button';
-
-// Styles
+import Button from '@components/system/Button/Button';
 import styles from './styles.module.scss';
 
 import type { Metadata } from 'next';
@@ -23,7 +20,7 @@ const NotFound = () => {
         <h1>4</h1>
       </div>
       <p>The page you are looking for does not exist.</p>
-      {/* <Button link="/" icon>Go Home</Button> */}
+      <Button href="/" >Go Home</Button>
     </main>
   );
 };

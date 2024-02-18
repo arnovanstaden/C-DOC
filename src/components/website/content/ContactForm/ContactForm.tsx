@@ -2,6 +2,7 @@
 
 import styles from './ContactForm.module.scss';
 import { enqueueSnackbar } from 'notistack';
+import Button from '@components/system/Button/Button';
 
 const ContactForm: React.FC = () => {
   const submitContactForm = (e) => {
@@ -46,9 +47,9 @@ const ContactForm: React.FC = () => {
             <label htmlFor="Message">Your Message</label>
             <textarea name="Message" placeholder="Your Message" required></textarea>
           </div>
-          <button type="submit" className="button" onClick={(e) => submitContactForm(e)}>
-            <p>Send</p>
-          </button>
+          <Button type="submit" onClick={(e) => submitContactForm(e)}>
+            Send
+          </Button>
         </form>
       </div>
     </div>

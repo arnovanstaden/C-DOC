@@ -1,8 +1,7 @@
 import { useState, useRef } from 'react';
 import { enqueueSnackbar } from 'notistack';
 import axios from 'axios';
-
-// Styles
+import Button from '@components/system/Button/Button';
 import styles from './courses.module.scss';
 import Container from '@components/website/layout/Container/Container';
 
@@ -195,9 +194,9 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
                 <div className={styles.coupon}>
                   <label>Coupon Code:</label>
                   <input type="text" name="coupon-code" ref={couponRef} />
-                  <button className="button button--border" onClick={handleCouponVerification}>
-                    <p>Apply Code</p>
-                  </button>
+                  <Button outlined className="button button--border" onClick={handleCouponVerification}>
+                    Apply Code
+                  </Button>
                 </div>
               </div>
               <div className={styles.row}>
@@ -205,9 +204,9 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
                 <input type="file" name="Proof of Payment" id="ProofOfPayment" required accept="application/pdf" />
               </div>
             </div>
-            <button className="button" type="submit" onClick={(e) => handleSubmitBooking(e)}>
-              <p>Submit</p>
-            </button>
+            <Button outlined className="button" type="submit" onClick={(e) => handleSubmitBooking(e)}>
+              Submit
+            </Button>
           </form>
         </div>
 

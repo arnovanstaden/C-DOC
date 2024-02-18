@@ -2,6 +2,7 @@ import Image from 'next/image';
 import styles from './catalogue.module.scss';
 import { enqueueSnackbar } from 'notistack';
 import Container from '@components/website/layout/Container/Container';
+import Button from '@components/system/Button/Button';
 
 interface ICatalogue {
   handleCatalogueToggle: () => void;
@@ -226,9 +227,9 @@ export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
               </div>
 
             </div>
-            <button className="button" type="submit" onClick={(e) => submitCatalogue(e)}>
-              <p>Submit</p>
-            </button>
+            <Button type="submit" onClick={(e) => submitCatalogue(e)}>
+              Submit
+            </Button>
           </form>
         </div>
 

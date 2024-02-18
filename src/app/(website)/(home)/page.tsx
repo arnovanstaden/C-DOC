@@ -7,6 +7,7 @@ import Stats from '@components/website/content/Stats/Stats';
 import Cross from '@components/Cross/Cross';
 import styles from './HomePage.module.scss';
 import { generateCustomMetaData } from '@utils/metadata';
+import Button from '@components/system/Button/Button';
 
 export const metadata = generateCustomMetaData({
   title: 'C-DOC | Commercial Diving and Offshore Consultancy',
@@ -36,14 +37,14 @@ const HomePage = () => {
             Maritime Pharmaceutical Services
           </li>
         </ul>
-        {/* <div className={styles.landingButtons} >
-          <button className="button" onClick={() => handleCoursesToggle()}>
-            <p>Book A Course</p>
-          </button>
-          <button className="button" onClick={() => handleCatalogueToggle()}>
-            <p>Order / Enquire About Medical Equipment</p>
-          </button>
-        </div> */}
+        <div className={styles.landingButtons} >
+          <Button href="/courses">
+            Book A Course
+          </Button>
+          <Button href="/equipment">
+            Order / Enquire About Medical Equipment
+          </Button>
+        </div>
       </Landing>
 
       <Section

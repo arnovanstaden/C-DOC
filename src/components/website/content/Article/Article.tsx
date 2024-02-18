@@ -1,8 +1,7 @@
 import Image from 'next/image';
-
-// Styles
 import styles from './article.module.scss';
 import { IArticle } from '@types';
+import Button from '@components/system/Button/Button';
 
 
 export default function Article(article: IArticle) {
@@ -22,12 +21,9 @@ export default function Article(article: IArticle) {
           <p>Research by: <span>{article.researcher}</span></p>
         </aside>
         <div className={styles.read}>
-          <button className="button-grow">
-            <a target="blank" href={article.file}>
-              <span>Read</span>
-              <i className="icon-arrow-right"></i>
-            </a>
-          </button>
+          <Button href={article.file}>
+            Read
+          </Button>
         </div>
       </div>
     </article>

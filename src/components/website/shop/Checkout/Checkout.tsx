@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { getCart, getCartTotal, checkDigitalOnlyCart, calculateDeliveryFee } from '@utils/cart';
 import { enqueueSnackbar } from 'notistack';
 import axios from 'axios';
-// Styles
+import Button from '@components/system/Button/Button';
 import styles from './checkout.module.scss';
 
 // Interface
@@ -137,9 +137,9 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
           <p>Total</p>
           <h6>R {calcTotal()}</h6>
         </div>
-        <button className="button" type="submit" onClick={() => orderConfirmation()}>
-          <a>Pay Now</a>
-        </ button>
+        <Button type="submit" onClick={() => orderConfirmation()}>
+          Pay Now
+        </Button>
       </div>
     </div>
   );
