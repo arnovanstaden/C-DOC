@@ -1,10 +1,9 @@
 @import "./variables.scss";
 
 // MixIns
-@mixin boxShadow {
-  -moz-box-shadow: inset 0 0 1.5rem $black;
-  -webkit-box-shadow: inset 0 0 1.5rem $black;
-  box-shadow: inset 0 0 1.5rem $black;
+
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -14,18 +13,13 @@ html {
 body {
   background-color: $white;
   font-family: $font;
-  font-size: 1rem;
+  font-size: 16px;
   padding: 0;
   margin: 0;
-  width: 100%;
-  box-sizing: border-box;
+  width: 100vw;
   color: $darkgrey;
   transition: 0.3s ease-out;
-  scroll-behavior: smooth;
   min-height: 100vh;
-}
-
-body {
   position: relative;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -35,7 +29,6 @@ body {
     overflow: hidden;
   }
 }
-
 
 a {
   text-decoration: none;
@@ -264,52 +257,5 @@ a {
 @media (min-width: 1600px) {
   .container {
     max-width: 1500px;
-  }
-}
-
-// Mixins
-
-@mixin box-shadow {
-  box-shadow: 15px 15px 15px rgba(10, 10, 10, 0.05);
-  -webkit-box-shadow: 15px 15px 15px rgba(10, 10, 10, 0.05);
-  -moz-box-shadow: 15px 15px 15px rgba(10, 10, 10, 0.05);
-  box-shadow: 15px 15px 15px rgba(10, 10, 10, 0.05);
-}
-
-
-// Next Images Fix
-.next-image {
-
-  div {
-    position: relative !important;
-    width: 100%;
-    height: 100%;
-
-    img {
-      position: relative !important;
-      object-fit: cover;
-      object-position: center top;
-      height: auto !important;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &--fill {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  &--intrinsic {
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-
-    div {
-      >div {
-        display: none !important;
-      }
-    }
   }
 }

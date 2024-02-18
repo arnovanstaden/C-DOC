@@ -1,0 +1,48 @@
+
+.member {
+  padding: 2rem;
+  background-color: $white;
+  border: 4px solid transparent;
+  box-sizing: border-box;
+  transition: 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  column-gap: 2rem;
+
+  .image {
+    position: relative;
+    height: 6rem;
+    width: 6rem;
+
+    img {
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+  .text {
+    h4 {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      display: flex;
+      align-items: center;
+      margin: 0;
+
+      span {
+        color: $lightgrey;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  &:hover {
+    border-color: $red;
+  }
+}

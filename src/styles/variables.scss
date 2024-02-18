@@ -7,3 +7,22 @@ $font: "Myriad Pro",
 Tahoma,
 Geneva,
 sans-serif;
+
+// Breakpoints
+$breakpoint-xs: 600px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1200px;
+
+@mixin boxShadow {
+  -moz-box-shadow: inset 0 0 1.5rem $black;
+  -webkit-box-shadow: inset 0 0 1.5rem $black;
+  box-shadow: inset 0 0 1.5rem $black;
+}
+
+@mixin box-shadow {
+  box-shadow: 15px 15px 15px rgba(10, 10, 10, 0.05);
+  -webkit-box-shadow: 15px 15px 15px rgba(10, 10, 10, 0.05);
+  -moz-box-shadow: 15px 15px 15px rgba(10, 10, 10, 0.05);
+  box-shadow: 15px 15px 15px rgba(10, 10, 10, 0.05);
+}

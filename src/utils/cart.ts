@@ -1,5 +1,3 @@
-import { sendNotification } from '../components/Notification/Notification';
-
 // Interfaces
 
 export interface ICartItem {
@@ -83,7 +81,7 @@ export const updateCart = (product: IProduct, quantity: number) => {
   if (typeof window !== 'undefined') {
     localStorage.setItem('cart', JSON.stringify(currentCart));
   }
-  sendNotification('Cart Updated')
+  // sendNotification('Cart Updated')
 }
 
 export const removeFromCart = (productID: string, notify?: boolean) => {
@@ -98,7 +96,7 @@ export const removeFromCart = (productID: string, notify?: boolean) => {
   }
   // updateCartCounter();
   if (notify) {
-    sendNotification('Item removed from cart')
+    // sendNotification('Item removed from cart')
   }
 
 }

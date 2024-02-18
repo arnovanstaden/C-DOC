@@ -1,0 +1,22 @@
+.Container {
+  width: 100%;
+  padding: 0 16px; // Default padding
+  margin: 0 auto; // Center the container
+
+  // Adjust the max-width and padding based on breakpoints
+  @media (min-width: $breakpoint-xs) {
+    max-width: 540px;
+  }
+
+  @media (min-width: $breakpoint-sm) {
+    max-width: 720px;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    max-width: 960px;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    max-width: 1140px;
+  }
+}

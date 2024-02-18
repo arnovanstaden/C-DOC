@@ -3,7 +3,10 @@
  */
 const nextConfig = {
   images: {
-    domains: ['res.cloudinary.com'],
+    deviceSizes: [350, 600, 768, 991, 1200, 1920],
+  },
+  sassOptions: {
+    prependData: '@import "@styles/variables.scss";',
   },
 }
 

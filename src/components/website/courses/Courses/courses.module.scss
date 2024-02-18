@@ -1,0 +1,317 @@
+
+.courses {
+    height: 0;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: $white;
+    transition: 0.3s ease-out;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: scroll;
+
+    >i {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        padding: 1rem;
+        font-size: 2rem;
+        color: $lightgrey;
+        transition: 0.3s ease-out;
+        cursor: pointer;
+
+        &:hover {
+            color: $red;
+        }
+    }
+
+    &.open {
+        height: 100vh;
+    }
+
+    .content {
+        padding: 2rem 1rem;
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .type {
+                width: 100%;
+            }
+
+            .row {
+                display: grid;
+                grid-template-columns: 90% 10%;
+                gap: 1rem;
+                align-items: center;
+                border-bottom: 0.5px solid $lightgrey;
+                padding: 0.75rem 0;
+                box-sizing: border-box;
+
+                .details {
+
+
+                    label {
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        display: block;
+                    }
+
+
+                    .price {
+                        color: $white;
+                        padding: 0.25rem 0.75rem;
+                        background-color: $red;
+                        font-size: 0.9rem;
+                        font-weight: 500;
+                        font-style: normal;
+                        display: inline-block;
+                        letter-spacing: 0.25px;
+                    }
+
+                    .date {
+                        span {
+                            font-weight: 500;
+                            color: $red;
+                            margin-right: 0.5rem;
+                        }
+                    }
+
+                    p {
+                        font-weight: 300;
+                        font-size: 0.9rem;
+                        font-style: italic;
+                    }
+                }
+
+                input[type=number] {
+                    border: 2px solid $lightgrey;
+                    text-align: center;
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    padding: 0.25rem 0.5rem;
+                    width: 100%;
+                    max-width: 2rem;
+                    justify-self: center;
+
+                    &:focus {
+                        outline: none;
+                        border-radius: 0;
+                        border-color: $darkgrey;
+                    }
+                }
+            }
+
+            .intro {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                width: 100%;
+
+                .type {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    .row {
+                        display: flex;
+                        margin: 1rem 0;
+                        font-weight: 600;
+                        font-size: 1.1rem;
+                        justify-content: flex-end;
+                        border: none;
+                        padding: 0;
+                    }
+                }
+
+                .image {
+                    max-height: 30vh;
+
+                    img {
+                        object-fit: contain;
+                    }
+                }
+            }
+
+            .group {
+                width: 75%;
+                margin-top: 2rem;
+
+                h4 {
+                    text-align: center;
+                    color: $red;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    border-bottom: 2px solid $darkgrey;
+                    padding-bottom: 0.5rem;
+                }
+
+                p {
+                    margin: 0;
+
+                    span {
+                        color: $red;
+                    }
+                }
+
+                &.contact {
+                    .row {
+                        margin-bottom: 0.5rem;
+                        display: flex;
+                        flex-direction: column;
+                        border: none;
+
+                        label {
+                            display: block;
+                            margin-bottom: 0.5rem;
+                            font-weight: 600;
+                            font-size: 0.9rem;
+                        }
+
+                        input,
+                        textarea {
+                            width: 60%;
+                            border: 1.5px solid $lightgrey;
+                            padding: 0.5rem;
+                            font-family: $font;
+                            resize: none;
+                            transition: 0.3s ease;
+                            outline: none;
+                            text-align: center;
+
+
+                            &:focus {
+                                border-color: $red;
+                                font-weight: 600;
+                            }
+                        }
+
+                    }
+                }
+
+                .paymentDetails {
+                    margin-bottom: 1rem;
+
+                    .coupon {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin: 1rem 0;
+
+                        label {
+                            font-size: 1rem;
+                            color: $black;
+                            font-weight: 600;
+                        }
+
+                        input {
+                            text-align: center;
+                            width: 60%;
+                            border: 1.5px solid $lightgrey;
+                            padding: 0.5rem;
+                            font-family: $font;
+                            resize: none;
+                            transition: 0.3s ease;
+                            outline: none;
+                            margin: 0.75rem 0;
+
+                            &:focus {
+                                border-color: $red;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        text-align: center;
+
+                        li {
+                            margin: 0.25rem 0;
+
+                            span {
+                                font-weight: 600;
+                            }
+
+                            .total {
+                                color: $red;
+                                font-weight: 600;
+                                font-size: 1.1rem;
+                                margin-top: 0.5rem;
+                                background-color: transparent;
+                                text-transform: uppercase;
+                            }
+                        }
+                    }
+
+                    h5 {
+                        font-size: 1.15rem;
+                        font-weight: 600;
+                        margin: 0;
+
+                        span {
+                            color: $red;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    @media screen and (max-width: 991px) {
+        .content {
+            .form {
+                .group {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .content {
+            padding: 2rem 0;
+
+            .form {
+
+                .row {
+                    grid-template-columns: 80% 20%;
+                }
+
+                .intro {
+                    grid-template-columns: 1fr;
+                    row-gap: 1rem;
+
+                    .type {
+                        .row {
+                            justify-content: center;
+                        }
+                    }
+                }
+
+                .group {
+                    &.contact {
+                        .row {
+                            input {
+                                width: 90%;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+}
