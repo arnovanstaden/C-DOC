@@ -14,6 +14,10 @@ const nextConfig = {
   sassOptions: {
     prependData: '@import "@styles/variables.scss";',
   },
+  rewrites: async () => [{
+    source: '/admin',
+    destination: '/admin/products',
+  }]
 };
 
 module.exports = nextConfig;

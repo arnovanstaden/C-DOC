@@ -1,0 +1,13 @@
+.Sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  -webkit-box-shadow: 0px 5px 8px 0px rgba(26, 26, 26, 0.25);
+  -moz-box-shadow: 0px 5px 8px 0px rgba(26, 26, 26, 0.25);
+  box-shadow: 0px 5px 8px 0px rgba(26, 26, 26, 0.25);
+
+  .button {
+    width: 100%;
+  }
+}
