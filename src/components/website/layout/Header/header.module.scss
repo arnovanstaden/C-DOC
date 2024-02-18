@@ -1,102 +1,103 @@
-
 .header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  align-items: center;
+  height: $header-height;
+
+  .logo {
     display: flex;
-    justify-content: space-between;
-    padding: 1rem;
+    align-items: center;
+    column-gap: 1rem;
+
+    img {
+      height: 40px;
+    }
+
+    p {
+      margin: 0;
+      text-transform: uppercase;
+      color: $lightgrey;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      font-size: 14px;
+    }
+  }
+
+  .options {
+    display: flex;
     align-items: center;
 
+    .cart {
+      padding-right: 0.5rem;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      span {
+        background-color: $red;
+        padding: 0.1rem 0.25rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: $white;
+        margin-right: 0.5rem;
+      }
+
+      i {
+        color: $lightgrey;
+        font-size: 1.5rem;
+      }
+    }
+
+    .button {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      border-left: 0.25px solid $lightgrey;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      cursor: pointer;
+      transition: 0.3s ease-out;
+
+      div {
+        height: 3px;
+        background-color: $lightgrey;
+        margin-bottom: 3px;
+        transition: 0.3s ease-out;
+
+        &:nth-child(1) {
+          width: 1.25rem;
+        }
+
+        &:nth-child(2) {
+          width: 1.5rem;
+        }
+
+        &:nth-child(3) {
+          width: 1rem;
+          margin-bottom: 0;
+        }
+      }
+
+      &:hover {
+        padding-left: 1rem;
+        border-color: $white;
+
+        div {
+          width: 1.5rem;
+          background-color: $red;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-xs) {
     .logo {
-        display: flex;
-        align-items: center;
-        column-gap: 1rem;
-
-        img {
-            width: 4rem;
-        }
-
-        p {
-            margin: 0;
-            text-transform: uppercase;
-            color: $lightgrey;
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
+      p {
+        display: none;
+      }
     }
-
-    .options {
-        display: flex;
-        align-items: center;
-
-        .cart {
-            padding-right: 0.5rem;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-
-            span {
-                background-color: $red;
-                padding: 0.1rem 0.25rem;
-                font-size: 0.8rem;
-                font-weight: 600;
-                color: $white;
-                margin-right: 0.5rem;
-            }
-
-            i {
-                color: $lightgrey;
-                font-size: 1.5rem;
-            }
-        }
-
-        .button {
-            background-color: transparent;
-            border: none;
-            outline: none;
-            border-left: 0.25px solid $lightgrey;
-            padding: 0.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            cursor: pointer;
-            transition: 0.3s ease-out;
-
-            div {
-                height: 3px;
-                background-color: $lightgrey;
-                margin-bottom: 3px;
-                transition: 0.3s ease-out;
-
-                &:nth-child(1) {
-                    width: 1.25rem;
-                }
-
-                &:nth-child(2) {
-                    width: 1.5rem;
-                }
-
-                &:nth-child(3) {
-                    width: 1rem;
-                    margin-bottom: 0;
-                }
-            }
-
-            &:hover {
-                padding-left: 1rem;
-                border-color: $white;
-
-                div {
-                    width: 1.5rem;
-                    background-color: $red;
-                }
-            }
-        }
-    }
-
-    @media screen and (max-width: 576px) {
-        .logo {
-            p {
-                display: none;
-            }
-        }
-    }
+  }
 }

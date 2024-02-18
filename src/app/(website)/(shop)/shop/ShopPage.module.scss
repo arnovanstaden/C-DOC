@@ -1,104 +1,103 @@
-
 .shop {
-    padding-top: 4rem;
-    min-height: 60vh;
+  padding-top: 4rem;
+  min-height: 60vh;
+
+  .categories {
+    display: flex;
+    justify-content: center;
+    column-gap: 2rem;
+    row-gap: 1rem;
+
+    .button {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding: 0.5rem 1rem;
+      border: 1.5px solid $darkgrey;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s ease-out;
+      font-weight: 600;
+
+      &:hover {
+        border-color: $red;
+      }
+
+      &.active {
+        border-color: $red;
+        background-color: $red;
+        color: $white;
+      }
+    }
+  }
+
+  .sort {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 1rem;
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-gap: 2rem;
+    margin-top: 3rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (max-width: $breakpoint-md) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-sm) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     .categories {
-        display: flex;
-        justify-content: center;
-        column-gap: 2rem;
-        row-gap: 1rem;
-
-        .button {
-            background-color: transparent;
-            border: none;
-            outline: none;
-            padding: 0.5rem 1rem;
-            border: 1.5px solid $darkgrey;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.3s ease-out;
-            font-weight: 600;
-
-            &:hover {
-                border-color: $red;
-            }
-
-            &.active {
-                border-color: $red;
-                background-color: $red;
-                color: $white;
-            }
-        }
+      flex-wrap: wrap;
     }
 
     .sort {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin-top: 1rem;
-
-        label {
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-right: 0.5rem;
-        }
+      justify-content: center;
+      margin-top: 2rem;
     }
+  }
 
+  @media screen and (max-width: $breakpoint-xs) {
     .grid {
-        display: grid;
-        grid-gap: 2rem;
-        margin-top: 3rem;
-        grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 1fr;
     }
-
-    @media screen and (max-width: 991px) {
-        .grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    @media screen and (max-width: 768px) {
-        .grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .categories {
-            flex-wrap: wrap;
-        }
-
-        .sort {
-            justify-content: center;
-            margin-top: 2rem;
-        }
-    }
-
-    @media screen and (max-width: 576px) {
-        .grid {
-            grid-template-columns: 1fr;
-        }
-    }
+  }
 
 }
 
 .equipment {
-    padding: 4rem 2rem;
-    background-color: $darkgrey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: $white !important;
-    flex-direction: column;
-    text-align: center;
+  padding: 4rem 2rem;
+  background-color: $darkgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $white !important;
+  flex-direction: column;
+  text-align: center;
 
+  p {
+    padding: 0 4rem;
+    margin: -2rem 0 2rem 0
+  }
+
+  @media screen and (max-width: $breakpoint-sm) {
     p {
-        padding: 0 4rem;
-        margin: -2rem 0 2rem 0
+      padding: 0;
     }
-
-    @media screen and (max-width: 768px) {
-        p {
-            padding: 0;
-        }
-    }
+  }
 }

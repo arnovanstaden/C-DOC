@@ -4,15 +4,18 @@ $darkgrey: #222222;
 $lightgrey: #6d6e70;
 $white: #ffffff;
 $font: "Myriad Pro",
-Tahoma,
-Geneva,
-sans-serif;
+  Tahoma,
+  Geneva,
+  sans-serif;
 
 // Breakpoints
 $breakpoint-xs: 600px;
 $breakpoint-sm: 768px;
 $breakpoint-md: 1024px;
 $breakpoint-lg: 1200px;
+
+// OTHER
+$header-height: 70px;
 
 @mixin boxShadow {
   -moz-box-shadow: inset 0 0 1.5rem $black;
