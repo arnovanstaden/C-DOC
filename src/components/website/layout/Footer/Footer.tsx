@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 // Styles
 import styles from './footer.module.scss';
-import { Container } from '@mui/material';
+import Container from '@components/website/layout/Container/Container';
 
 export default function Footer() {
   return (

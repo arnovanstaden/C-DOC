@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // Styles
 import styles from './courses.module.scss';
-import { Container } from '@mui/material';
+import Container from '@components/website/layout/Container/Container';
 
 interface ICourses {
   handleCoursesToggle: () => void;

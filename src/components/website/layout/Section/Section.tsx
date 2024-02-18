@@ -5,7 +5,7 @@ import Cross from '../../../Cross/Cross';
 
 // Styles
 import styles from './section.module.scss';
-import { Container } from '@mui/material';
+import Container from '@components/website/layout/Container/Container';
 
 interface ISection {
   children: React.ReactNode;

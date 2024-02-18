@@ -119,24 +119,10 @@
       height: 100%;
       z-index: 0;
 
-      div {
-        position: relative !important;
+      img {
+        object-fit: cover;
         width: 100%;
         height: 100%;
-
-        >div {
-          display: none !important;
-          padding-top: 0 !important;
-        }
-
-        img {
-          position: relative !important;
-          object-fit: cover;
-          object-position: center center;
-          height: auto !important;
-          width: 100%;
-          height: 100%;
-        }
       }
     }
 

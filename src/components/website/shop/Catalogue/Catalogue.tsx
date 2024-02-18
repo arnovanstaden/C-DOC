@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styles from './catalogue.module.scss';
 import { enqueueSnackbar } from 'notistack';
-import { Container } from '@mui/material';
+import Container from '@components/website/layout/Container/Container';
 
 interface ICatalogue {
   handleCatalogueToggle: () => void;
