@@ -2,13 +2,18 @@ import styles from './NewsPage.module.scss';
 import Section from '@components/website/layout/Section/Section';
 import Article from '@components/website/content/Article/Article';
 import { generateCustomMetaData } from '@utils/metadata';
+import { getArticles } from '@lib/articles';
+
+export const revalidate = process.env.NODE_ENV === 'development' ? 0 : false;
 
 export const metadata = generateCustomMetaData({
   title: 'News | C-DOC',
   description: 'Stay up to date with the latest news and articles from C-DOC.',
 });
 
-const NewsPage = ({ articles = [] }) => {
+const NewsPage = async () => {
+  const articles = await getArticles();
+
   return (
     <main>
       <Section

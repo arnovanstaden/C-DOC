@@ -26,7 +26,11 @@ const Header = () => {
               Services
             </Link>
 
-            <Link href="/shop/">
+            <Link href="/courses">
+              Courses
+            </Link>
+
+            <Link href="/shop">
               Shop
             </Link>
 

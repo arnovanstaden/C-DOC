@@ -2,35 +2,28 @@ import Image from 'next/image';
 
 // Styles
 import styles from './article.module.scss';
+import { IArticle } from '@types';
 
-interface IArticle {
-  name: string;
-  description: string;
-  author: string;
-  researcher: string;
-  image: string;
-  file: string;
-}
 
-export default function Article(props: IArticle) {
+export default function Article(article: IArticle) {
   return (
     <article className={styles.article}>
       <div className={styles.image}>
         <Image
-          src={props.image} alt="Article Image"
+          src={article.image} alt="Article Image"
           layout='fill'
         />
       </div>
       <div className={styles.content}>
-        <h3>{props.name}</h3>
-        <p>{props.description}</p>
+        <h3>{article.name}</h3>
+        <p>{article.description}</p>
         <aside>
-          <p>Written by: <span>{props.author}</span></p>
-          <p>Research by: <span>{props.researcher}</span></p>
+          <p>Written by: <span>{article.author}</span></p>
+          <p>Research by: <span>{article.researcher}</span></p>
         </aside>
         <div className={styles.read}>
           <button className="button-grow">
-            <a target="blank" href={props.file}>
+            <a target="blank" href={article.file}>
               <span>Read</span>
               <i className="icon-arrow-right"></i>
             </a>
