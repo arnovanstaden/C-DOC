@@ -1,24 +1,27 @@
-import { getCart, getCartTotal, checkCartValidity } from '../../utils/cart';
-import { GetStaticProps } from 'next'
+'use client';
+
+import { getCart, getCartTotal, checkCartValidity } from '@utils/cart';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-
-
-
-// Components
 import CartItem from '@components/website/shop/CartItem/CartItem';
 import Section from '@components/website/layout/Section/Section';
-import Layout from '@components/website/layout/Layout';
 import Checkout from '@components/website/shop/Checkout/Checkout';
+import styles from './CartPage.module.scss';
+// import { generateCustomMetaData } from '@utils/metadata';
 
-// Styles
-import styles from '../../styles/pages/cart/index.module.scss';
-import axios from 'axios';
+// export const metadata = generateCustomMetaData({
+//   title: 'Cart | C-DOC',
+//   description: 'Your Cart',
+//   robots: {
+//     index: false,
+//     follow: false,
+//   }
+// });
 
-export default function Cart({ products, shopSettings }) {
-  checkCartValidity(products)
+const CartPage = ({ products, shopSettings }) => {
+  checkCartValidity(products);
   // State
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState(getCart());
   const [showCart, setShowCart] = useState(true);
   const [total, setTotal] = useState(getCartTotal());
@@ -26,32 +29,32 @@ export default function Cart({ products, shopSettings }) {
 
   // Hydrate Cart
   useEffect(() => {
-    setLoading(false)
-  }, [])
+    setLoading(false);
+  }, []);
 
 
   // Helpers
   const getProduct = (item) => {
     const product = products.find(product => product.id === item.id);
-    return product
-  }
+    return product;
+  };
 
   // Handlers
   const handleCartChange = (() => {
-    setCart(getCart())
-    setTotal(getCartTotal())
+    setCart(getCart());
+    setTotal(getCartTotal());
 
-  })
+  });
 
   const handleCheckoutShow = () => {
     // Check Quants
-    setShowCart(false)
+    setShowCart(false);
     handleCartChange();
-  }
+  };
 
   const handleCartShow = () => {
-    setShowCart(true)
-  }
+    setShowCart(true);
+  };
 
 
   // Components
@@ -72,10 +75,10 @@ export default function Cart({ products, shopSettings }) {
             }
           </div>
         </>
-      )
+      );
     }
-    return null
-  }
+    return null;
+  };
 
   const Options = () => {
     if (showCart) {
@@ -93,7 +96,7 @@ export default function Cart({ products, shopSettings }) {
             </button>
           }
         </div>
-      )
+      );
     } else {
       return (
         <div className={styles.options}>
@@ -101,21 +104,12 @@ export default function Cart({ products, shopSettings }) {
             <a>Back to Cart</a>
           </button>
         </div>
-      )
+      );
     }
-  }
+  };
 
   return (
-    <Layout
-      head={{
-        title: 'Cart | C-DOC',
-        description: '',
-        canonical: '/cart',
-        robots: false
-      }}
-      noLanding={true}
-      shop={true}
-    >
+    <main>
       <Section
         heading="Your Cart"
         noCross={true}
@@ -128,32 +122,8 @@ export default function Cart({ products, shopSettings }) {
           </div>
           : null}
       </Section>
-    </Layout >
-  )
-}
+    </main >
+  );
+};
 
-export const getStaticProps: GetStaticProps = async () => {
-  const products = await axios({
-    method: 'GET',
-    url: `${process.env.NEXT_PUBLIC_API_URL}/products`,
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then((res) => res.data);
-
-  const shopSettings = await axios({
-    method: 'GET',
-    url: `${process.env.NEXT_PUBLIC_API_URL}/shopSettings`,
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then((res) => res.data);
-
-  return {
-    props: {
-      products,
-      shopSettings
-    },
-  }
-}
-
+export default CartPage;

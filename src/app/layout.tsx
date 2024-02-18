@@ -1,4 +1,4 @@
-import localFont from 'next/font/local'
+import localFont from 'next/font/local';
 import '@styles/global.scss';
 import ProviderWrapper from 'src/context/ProviderWrapper';
 
@@ -33,7 +33,7 @@ const MyriadPro = localFont({
   ],
   variable: '--font-myriad-pro',
   display: 'swap',
-})
+});
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -45,6 +45,6 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </ProviderWrapper>
       </body>
     </html>
-  )
-}
+  );
+};
 export default RootLayout;

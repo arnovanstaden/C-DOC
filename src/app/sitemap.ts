@@ -11,6 +11,6 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   }));
 
   return basicPagesSitemap;
-}
+};
 
-export default sitemap
+export default sitemap;

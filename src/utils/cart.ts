@@ -24,11 +24,11 @@ export interface IProduct {
 
 export const getCartLength = (): number => {
   if (getCart() === undefined || getCart().length === 0) {
-    return 0
+    return 0;
   } else {
     return getCart().length;
   }
-}
+};
 
 export const searchCart = (productID: string): number => {
   const currentCart = getCart();
@@ -36,12 +36,12 @@ export const searchCart = (productID: string): number => {
   if (currentCart !== null) {
     currentCart.forEach(item => {
       if (item.id === productID) {
-        searchResults++
+        searchResults++;
       }
-    })
+    });
   }
-  return searchResults
-}
+  return searchResults;
+};
 
 // CART FUNCTIONS
 
@@ -64,7 +64,7 @@ export const updateCart = (product: IProduct, quantity: number) => {
       id: product.id,
       quantity: quantity,
       price: product.price
-    }
+    };
 
     // Create New Cart
     if (currentCart === null) {
@@ -82,7 +82,7 @@ export const updateCart = (product: IProduct, quantity: number) => {
     localStorage.setItem('cart', JSON.stringify(currentCart));
   }
   // sendNotification('Cart Updated')
-}
+};
 
 export const removeFromCart = (productID: string, notify?: boolean) => {
   // Get Current Cart & Index of Item
@@ -99,15 +99,15 @@ export const removeFromCart = (productID: string, notify?: boolean) => {
     // sendNotification('Item removed from cart')
   }
 
-}
+};
 
 export const getCart = (): ICartItem[] => {
-  let currentCart
+  let currentCart;
   if (typeof window !== 'undefined') {
     currentCart = JSON.parse(localStorage.getItem('cart'));
   }
-  return currentCart
-}
+  return currentCart;
+};
 
 export const checkCartValidity = (products) => {
   const currentCart = getCart();
@@ -116,36 +116,36 @@ export const checkCartValidity = (products) => {
     currentCart.forEach(item => {
 
       // product exists
-      const product = products.find(product => product.id === item.id)
+      const product = products.find(product => product.id === item.id);
       if (!product) {
-        removeFromCart(item.id)
+        removeFromCart(item.id);
       }
 
       //  product is visible
       if (product && !product.visibility) {
-        removeFromCart(item.id)
+        removeFromCart(item.id);
       }
-    })
+    });
   }
-}
+};
 
 export const getCartTotal = (): number => {
   const currentCart = getCart();
   let total = 0;
   if (currentCart) {
     currentCart.forEach(item => {
-      total += (item.price * item.quantity)
-    })
+      total += (item.price * item.quantity);
+    });
   }
-  return total
-}
+  return total;
+};
 
 
 export const clearCart = () => {
   if (typeof window !== 'undefined') {
     localStorage.removeItem('cart');
   }
-}
+};
 
 
 export const checkDigitalOnlyCart = (products): boolean => {
@@ -156,16 +156,16 @@ export const checkDigitalOnlyCart = (products): boolean => {
     currentCart.forEach(item => {
 
       // product exists
-      const product = products.find(product => product.id === item.id)
+      const product = products.find(product => product.id === item.id);
 
       //  product is visible
       if (product && !product.digital) {
         digitalOnly = false;
       }
-    })
+    });
   }
-  return digitalOnly
-}
+  return digitalOnly;
+};
 
 export const calculateDeliveryFee = (total: number, shopSettings: any): number => {
   let fee = undefined;
@@ -174,11 +174,11 @@ export const calculateDeliveryFee = (total: number, shopSettings: any): number =
     const thisFee = shopSettings[`deliveryFee${i}`].fee;
     if (total <= thisThreshold) {
       fee = thisFee;
-      break
+      break;
     }
   }
   if (!fee) {
-    fee = shopSettings.upperFee
+    fee = shopSettings.upperFee;
   }
-  return fee
-}
+  return fee;
+};

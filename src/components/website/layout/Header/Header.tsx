@@ -29,5 +29,5 @@ export default function Header({ shop }: IHeader) {
         </button>
       </div>
     </header>
-  )
+  );
 }

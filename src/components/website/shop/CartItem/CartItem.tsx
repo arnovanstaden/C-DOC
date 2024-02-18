@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { updateCart, removeFromCart, ICartItem, IProduct } from '../../../../utils/cart';
+import { updateCart, removeFromCart, ICartItem, IProduct } from '@utils/cart';
 
 // Styles
 import styles from './cart-item.module.scss';
@@ -20,25 +20,25 @@ const CartItem = ({ item, product, handleCartChange }: ICartItemProps) => {
     if (currentQuant !== 1) {
       currentQuant--;
     }
-    handleQuantityUpdate(currentQuant)
-  }
+    handleQuantityUpdate(currentQuant);
+  };
 
   const plusQuantity = () => {
     let currentQuant = quantity;
     currentQuant++;
-    handleQuantityUpdate(currentQuant)
-  }
+    handleQuantityUpdate(currentQuant);
+  };
 
   const handleQuantityUpdate = (value) => {
-    setQuantity(value)
-    setTotal(product.price * value)
+    setQuantity(value);
+    setTotal(product.price * value);
     updateCart(product, value);
-  }
+  };
 
   const handleItemRemove = () => {
     removeFromCart(product.id, true);
-    handleCartChange()
-  }
+    handleCartChange();
+  };
 
   return (
     <div className={styles.grid}>
@@ -61,7 +61,7 @@ const CartItem = ({ item, product, handleCartChange }: ICartItemProps) => {
       <p className={styles.total}>R {total}</p>
       <i className={`${styles.remove} icon-clear`} onClick={() => handleItemRemove()}></i>
     </div>
-  )
-}
+  );
+};
 
-export default CartItem
+export default CartItem;

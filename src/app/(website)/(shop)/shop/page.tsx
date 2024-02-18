@@ -1,22 +1,27 @@
 import Link from 'next/link';
-import { GetStaticProps } from 'next';
 import { useState, useRef } from 'react';
-// Styles
 import styles from '../../styles/pages/shop.module.scss';
-import { sortProducts } from '../../utils/utils';
-import Layout from '@components/website/layout/Layout';
+import { sortProducts } from '@utils/utils';
 import Section from '@components/website/layout/Section/Section';
 import Product from '@components/website/content/Product/Product';
+import { generateCustomMetaData } from '@utils/metadata';
 
-// Components
+export const metadata = generateCustomMetaData({
+  title: 'Shop | C-DOC',
+  description: 'Browse C-DOC’s wide range of Medical Equipment, Clothing, Gear and E-Books.',
+});
 
-export default function Shop({ products }) {
+
+const ShopPage = async ({ products }) => {
   // Refs
-  const sortRef = useRef()
+  const sortRef = useRef();
 
   // State
   const [filter, setFilter] = useState('All Products');
-  const [productsToShow, setProductsToShow] = useState(sortProducts(products, 'name'))
+  const [productsToShow, setProductsToShow] = useState(sortProducts(products, 'name'));
+
+  const product = undefined;
+  if (!product) return null;
 
   // Handlers
 
@@ -25,27 +30,19 @@ export default function Shop({ products }) {
     // Active Category
     const tabs = document.querySelectorAll(`.${styles.categories} button`);
     tabs.forEach((elem) => {
-      elem.classList.remove(styles.active)
-    })
+      elem.classList.remove(styles.active);
+    });
     clickedElement.target.classList.add(styles.active);
-    setFilter(clickedElement.target.textContent)
-  }
+    setFilter(clickedElement.target.textContent);
+  };
 
   const handleSort = () => {
     const select = sortRef.current as HTMLSelectElement;
     setProductsToShow(sortProducts([...products], select.value));
-  }
+  };
 
   return (
-    <Layout
-      head={{
-        title: 'Shop | C-DOC',
-        description: 'Browse C-DOC’s wide range of Medical Equipment, Clothing, Gear and E-Books.',
-        canonical: '/shop'
-      }}
-      noLanding={true}
-      shop={true}
-    >
+    <main>
       <Section
         heading="Shop"
         subHeading="Browse C-DOC’s wide range of Medical Equipment, Clothing, Gear and E-Books."
@@ -84,17 +81,8 @@ export default function Shop({ products }) {
           </Link>
         </button>
       </section>
-    </Layout>
-  )
-}
+    </main>
+  );
+};
 
-export const getStaticProps: GetStaticProps = async () => {
-  const productResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
-  const products = await productResponse.json();
-
-  return {
-    props: {
-      products
-    },
-  }
-}
+export default ShopPage;

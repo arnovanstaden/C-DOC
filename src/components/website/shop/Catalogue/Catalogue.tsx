@@ -1,8 +1,6 @@
 import Image from 'next/image';
-import { sendNotification } from '../../../Notification/Notification';
-
-// Styles
 import styles from './catalogue.module.scss';
+import { enqueueSnackbar } from 'notistack';
 
 interface ICatalogue {
   handleCatalogueToggle: () => void;
@@ -11,10 +9,10 @@ interface ICatalogue {
 export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
 
   const submitCatalogue = (e) => {
-    const enquiry = {}
+    const enquiry = {};
     const form = document.getElementById('catalogue-form') as HTMLFormElement;
     if (form.checkValidity() === false) {
-      return
+      return;
     }
     e.preventDefault();
     const formData = new FormData(form);
@@ -29,12 +27,12 @@ export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
       }
     })
       .then(() => {
-        sendNotification('Thank you for your enquiry. We\'ll get back to you soon!');
-        form.reset()
+        enqueueSnackbar('Thank you for your enquiry. We\'ll get back to you soon!');
+        form.reset();
         handleCatalogueToggle();
       })
-      .catch(err => console.error(err))
-  }
+      .catch(err => console.error(err));
+  };
 
   return (
     <section className={styles.catalogue}>
@@ -235,5 +233,5 @@ export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
 
       </div>
     </section>
-  )
+  );
 }

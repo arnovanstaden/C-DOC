@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { IProduct } from '../../../../utils/cart';
+import { IProduct } from '@utils/cart';
 
 
 // Styles 
@@ -9,7 +9,7 @@ import styles from './product.module.scss';
 export default function Product(product: IProduct) {
 
   if (!product.visibility) {
-    return null
+    return null;
   }
 
   return (
@@ -24,5 +24,5 @@ export default function Product(product: IProduct) {
       <h4>{product.name}</h4>
       <p>{product.price > 0 ? `R ${product.price}` : 'Free'}</p>
     </Link>
-  )
+  );
 }

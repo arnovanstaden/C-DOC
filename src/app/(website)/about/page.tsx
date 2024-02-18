@@ -1,27 +1,20 @@
 import Image from 'next/image';
-
-// Components
-import Layout from '@components/website/layout/Layout';
 import Section from '@components/website/layout/Section/Section';
 import Landing from '@components/website/content/Landing/Landing';
 import TeamMember from '@components/website/content/TeamMember/TeamMember';
 import Cross from '@components/Cross/Cross';
+import styles from './AboutPage.module.scss';
+import teamMembers from '../../../assets/data/team.json';
+import { generateCustomMetaData } from '@utils/metadata';
 
-// Styles
-import styles from '../styles/pages/about.module.scss';
+export const metadata = generateCustomMetaData({
+  title: 'About | C-Doc',
+  description: 'Providing Effective Medical Support for 22 Years and Counting.',
+});
 
-// Data
-import teamMembers from '../assets/data/team.json';
-
-export default function About() {
+const AboutPage = () => {
   return (
-    <Layout
-      head={{
-        title: 'About | C-Doc',
-        description: 'Providing Effective Medical Support for 22 Years and Counting.',
-        canonical: '/about'
-      }}
-    >
+    <main>
       <Landing
         imageURL="/images/pages/about/landing.jpeg"
       >
@@ -127,6 +120,8 @@ export default function About() {
         </div>
         <p>C-DOC services and products are designed to support companies to meet their audit compliance and strengthen their operational dive teams in order to move people and their performance in new directions. </p>
       </section>
-    </Layout >
-  )
-}
+    </main >
+  );
+};
+
+export default AboutPage;

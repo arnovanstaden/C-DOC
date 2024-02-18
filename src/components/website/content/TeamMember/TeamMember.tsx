@@ -28,5 +28,5 @@ export default function TeamMember({ name, position }: TeamMember) {
         </p>
       </div>
     </article>
-  )
+  );
 }

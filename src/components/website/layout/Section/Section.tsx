@@ -26,16 +26,16 @@ export default function Section({ children, heading, subHeading, noCross, classN
           <span />
           {subHeading ? <p>{subHeading}</p> : null}
         </div>
-      )
+      );
     }
-    return null
-  }
+    return null;
+  };
 
   const sectionClasses = ClassNames(
     styles.section,
     classNameProp ? classNameProp : '',
     dark ? styles.dark : ''
-  )
+  );
   return (
     <section className={sectionClasses} id={idProp ? idProp : ''}>
       {!noCross ? <Cross classNameProp={styles.cross} size="2rem" /> : null}
@@ -44,5 +44,5 @@ export default function Section({ children, heading, subHeading, noCross, classN
         {children}
       </div>
     </section>
-  )
+  );
 }

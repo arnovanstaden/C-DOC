@@ -1,19 +1,29 @@
 import { useState } from 'react';
-import { GetStaticProps } from 'next';
-import { updateCart } from '../../utils/cart';
+import { updateCart } from '@utils/cart';
 import Link from 'next/link';
 import Image from 'next/image';
-
-// Components
-import Layout from '@components/website/layout/Layout';
 import Section from '@components/website/layout/Section/Section';
-
-// Styles
 import styles from '../../styles/pages/shop/[id].module.scss';
+import { generateCustomMetaData } from '@utils/metadata';
 
-export default function Product({ product }) {
+export const generateMetadata = async () => {
+  const product = {
+    name: 'Product Name',
+    description: 'Product Description',
+  };
+
+  return generateCustomMetaData({
+    title: `${product.name} | C-DOC`,
+    description: product.description,
+  });
+};
+
+const ShopProductPage = async () => {
   // State
   const [quantity, setQuantity] = useState(1);
+
+  const product = undefined;
+  if (!product) return null;
 
   const ProductOption = () => {
     if (product.price === 0 && product.digital) {
@@ -23,7 +33,7 @@ export default function Product({ product }) {
             <a href={product.document} target="blank" download>Download Freebie</a>
           </button>
         </div>
-      )
+      );
     }
     return (
       <div className={styles.cart}>
@@ -35,20 +45,11 @@ export default function Product({ product }) {
           Add To Cart
         </button>
       </div>
-    )
-  }
+    );
+  };
 
   return (
-    <Layout
-      head={{
-        title: `${product.name} | C-DOC`,
-        description: product.description,
-        canonical: `/shop/${product.id}`
-      }}
-      noLanding={true}
-      shop={true}
-    >
-
+    <main>
       <Section
         noCross={true}
         classNameProp={styles.product}
@@ -82,24 +83,8 @@ export default function Product({ product }) {
           </div>
         </div>
       </Section>
-    </Layout>
-  )
-}
+    </main>
+  );
+};
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${params.id}`)
-  const product = await res.json();
-
-  return {
-    props: {
-      product,
-    },
-  }
-}
-
-export async function getStaticPaths() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`)
-  const products = await res.json()
-  const paths = products.map((product) => `/shop/${product.id}`)
-  return { paths, fallback: false }
-}
+export default ShopProductPage;

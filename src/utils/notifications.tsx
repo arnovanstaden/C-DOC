@@ -5,4 +5,4 @@ export const errorNotification = (message: string, error?: Error | unknown) => e
     <p>{message}</p>
     {(error && error instanceof Error) ? <p>Error: {error.message}</p> : undefined}
   </div>
-)
+);

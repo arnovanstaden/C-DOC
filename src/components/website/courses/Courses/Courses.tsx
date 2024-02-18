@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { sendNotification } from '../../../Notification/Notification';
+import { enqueueSnackbar } from 'notistack';
 import axios from 'axios';
 
 // Styles
@@ -14,22 +14,22 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
 
   // State
   const [selectedCourse, setSelectedCourse] = useState(undefined);
-  const [coupon, setCoupon] = useState(undefined)
-  const couponRef = useRef<HTMLInputElement>()
+  const [coupon, setCoupon] = useState(undefined);
+  const couponRef = useRef<HTMLInputElement>();
 
   // Handlers
 
   const handleSelectCourse = (course) => {
-    setSelectedCourse(course)
-  }
+    setSelectedCourse(course);
+  };
 
   const handleCouponVerification = (e) => {
     e.preventDefault();
     const code = couponRef.current.value.trim();
     if (code === '') {
-      return sendNotification('Please enter a valid coupon code');
+      return enqueueSnackbar('Please enter a valid coupon code');
     }
-    sendNotification('Validating Code. Hang tight...');
+    enqueueSnackbar('Validating Code. Hang tight...');
     axios({
       method: 'post',
       url: `${process.env.NEXT_PUBLIC_API_URL}/coupons/validate`,
@@ -37,33 +37,33 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
         code
       }
     }).then(result => {
-      sendNotification(result.data.message);
+      enqueueSnackbar(result.data.message);
       setCoupon({
         discount: result.data.discount,
         code: result.data.code
-      })
+      });
     })
       .catch(err => {
-        console.error(err)
-        sendNotification(err.response.data.message);
-      })
-  }
+        console.error(err);
+        enqueueSnackbar(err.response.data.message);
+      });
+  };
 
   const handleSubmitBooking = (e) => {
-    const enquiry = {}
+    const enquiry = {};
     const form = document.getElementById('courses-form') as HTMLFormElement;
     if (form.checkValidity() === false) {
-      return
+      return;
     }
     e.preventDefault();
     let formData = new FormData(form);
     for (const key of formData.keys()) {
-      enquiry[key] = formData.get(key)
+      enquiry[key] = formData.get(key);
     }
 
     // Delete invalid dates from selects
     if (!selectedCourse.dates || selectedCourse.dates.length < 1) {
-      delete enquiry['Course Date']
+      delete enquiry['Course Date'];
     } else {
       const selectedDate = document.getElementById(selectedCourse.id) as HTMLInputElement;
       enquiry['Course Date'] = selectedDate.value;
@@ -84,21 +84,21 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
     const ProofOfPayment = fileElement.files[0];
 
     formData.append('ProofOfPayment', ProofOfPayment);
-    sendNotification('Booking Course. Hang tight...');
+    enqueueSnackbar('Booking Course. Hang tight...');
 
     axios({
       method: 'post',
       url: `${process.env.NEXT_PUBLIC_API_URL}/courses/book`,
       data: formData
     }).then(() => {
-      sendNotification('Thank you for your course booking. We\'ll get back to you soon!');
-      form.reset()
-      handleCoursesToggle()
-      setCoupon(undefined)
-      setSelectedCourse(undefined)
+      enqueueSnackbar('Thank you for your course booking. We\'ll get back to you soon!');
+      form.reset();
+      handleCoursesToggle();
+      setCoupon(undefined);
+      setSelectedCourse(undefined);
     })
-      .catch(err => console.error(err))
-  }
+      .catch(err => console.error(err));
+  };
 
 
   const CourseDates = (course) => {
@@ -112,8 +112,8 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
         </select>
       </div>
 
-    )
-  }
+    );
+  };
 
   const CourseList = () => {
     return (
@@ -136,8 +136,8 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
           ))
         }
       </>
-    )
-  }
+    );
+  };
 
   return (
     <section className={styles.courses}>
@@ -213,7 +213,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
 
       </div>
     </section >
-  )
+  );
 }
 
 

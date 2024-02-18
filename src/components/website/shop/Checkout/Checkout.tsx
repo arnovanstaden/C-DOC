@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 import { useState, useEffect } from 'react';
-import { getCart, getCartTotal, checkDigitalOnlyCart, calculateDeliveryFee } from '../../../../utils/cart';
-import { sendNotification } from '../../../Notification/Notification';
-import axios from 'axios'
+import { getCart, getCartTotal, checkDigitalOnlyCart, calculateDeliveryFee } from '@utils/cart';
+import { enqueueSnackbar } from 'notistack';
+import axios from 'axios';
 // Styles
 import styles from './checkout.module.scss';
 
@@ -19,44 +19,44 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
 
   useEffect(() => {
     if (checkDigitalOnlyCart(products)) {
-      setDeliveryFee(0)
+      setDeliveryFee(0);
     } else {
-      setDeliveryFee(calculateDeliveryFee(total, shopSettings))
+      setDeliveryFee(calculateDeliveryFee(total, shopSettings));
     }
-  })
+  });
 
 
   const calcTotal = () => {
-    return getCartTotal() + deliveryFee
-  }
+    return getCartTotal() + deliveryFee;
+  };
 
   const validateForm = () => {
     'use strict';
-    const form = (document.querySelector('#checkout-form') as HTMLFormElement)
+    const form = (document.querySelector('#checkout-form') as HTMLFormElement);
     if (form.checkValidity() === false) {
       console.error('Validation Fail');
       // event.preventDefault();
       // event.stopPropagation();
-      alert('Please ensure you have completed all the fields.')
-      return false
+      alert('Please ensure you have completed all the fields.');
+      return false;
     } else {
-      return true
+      return true;
     }
-  }
+  };
 
   const orderConfirmation = () => {
     // Check Validation
     if (!validateForm()) {
-      return
+      return;
     }
-    sendNotification('Your order is being processed. You\'ll be redirected to Payfast momentarily...')
+    enqueueSnackbar('Your order is being processed. You\'ll be redirected to Payfast momentarily...');
     const order = {
       cart_items: [],
       amount_gross: 0
-    }
+    };
     const formData = new FormData(document.querySelector('#checkout-form'));
     formData.forEach((value, key) => order[key] = value);
-    order.cart_items = getCart()
+    order.cart_items = getCart();
     order.amount_gross = calcTotal();
 
     axios({
@@ -65,18 +65,18 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
       data: order
     })
       .then(result => {
-        initPayment(order, result.data.order_number)
+        initPayment(order, result.data.order_number);
       })
       .catch(err => {
-        console.error(err)
-      })
-  }
+        console.error(err);
+      });
+  };
 
   const initPayment = (order, order_number) => {
     (document.querySelector('#checkout-form input[name=\'amount\']') as HTMLInputElement).value = order.amount_gross;
     (document.querySelector('#checkout-form input[name=\'custom_str1\']') as HTMLInputElement).value = order_number;
-    (document.querySelector('#checkout-form') as HTMLFormElement).submit()
-  }
+    (document.querySelector('#checkout-form') as HTMLFormElement).submit();
+  };
 
   return (
     <div className={styles.grid}>
@@ -142,6 +142,6 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
         </ button>
       </div>
     </div>
-  )
+  );
 }
 

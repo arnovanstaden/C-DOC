@@ -38,5 +38,5 @@ export default function Article(props: IArticle) {
         </div>
       </div>
     </article>
-  )
+  );
 }

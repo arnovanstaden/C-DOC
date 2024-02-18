@@ -27,5 +27,5 @@ export default function Landing(props: TLanding) {
         <Image priority fill alt="C-DOC Landing Image" src={props.imageURL} />
       </div>
     </section>
-  )
+  );
 }

@@ -11,9 +11,10 @@ interface IProps {
   title: string;
   description: string;
   image?: string;
+  robots?: Metadata['robots'],
 }
 
-export const generateCustomMetaData = ({ title, description, image }: IProps): Metadata => {
+export const generateCustomMetaData = ({ title, description, image, robots }: IProps): Metadata => {
   const url = 'https://www.c-doc.co.za';
 
   const images = image ?
@@ -26,7 +27,7 @@ export const generateCustomMetaData = ({ title, description, image }: IProps): M
       url: '/images/logos/og_image.png',
       width: 500,
       height: 500,
-    }]
+    }];
 
   const metadata: Metadata = {
     title,
@@ -38,6 +39,10 @@ export const generateCustomMetaData = ({ title, description, image }: IProps): M
       siteName: 'C-DOC | Commercial Diving and Offshore Consultancy',
       images,
     },
+    robots: robots || {
+      index: true,
+      follow: true,
+    }
   };
   return metadata;
 };

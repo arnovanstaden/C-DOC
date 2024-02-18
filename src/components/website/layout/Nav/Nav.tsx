@@ -1,13 +1,8 @@
-import { handleNavToggle } from '../../../../utils/utils'
-
-
-// Components
 import Link from 'next/link';
-
-// Styles
 import styles from './nav.module.scss';
 
 export default function Nav() {
+  const handleNavToggle = () => { };
 
   return (
     <nav className={styles.nav} id="nav">
@@ -45,5 +40,5 @@ export default function Nav() {
         </li>
       </ul>
     </nav>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import styles from './stats.module.scss'
+import styles from './stats.module.scss';
 
 export default function Stats() {
 
@@ -6,7 +6,7 @@ export default function Stats() {
         trainees: 2183,
         equipment: 77,
         experience: 222
-    }
+    };
 
     const startDate = new Date('04/19/2021');
 
@@ -16,14 +16,14 @@ export default function Stats() {
         let value = 0;
         if (interval === 'monthly') {
             diff = Math.round((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 31));
-            value = Math.round(item + (diff * increment))
-            return value
+            value = Math.round(item + (diff * increment));
+            return value;
         } else {
             diff = Math.round((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 31 * 12));
-            value = Math.round(item + (diff * increment))
-            return value
+            value = Math.round(item + (diff * increment));
+            return value;
         }
-    }
+    };
 
     return (
         <section className={styles.stats}>
@@ -44,5 +44,5 @@ export default function Stats() {
                 </div>
             </div>
         </section>
-    )
+    );
 }

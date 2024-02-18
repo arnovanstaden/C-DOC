@@ -5,7 +5,7 @@ export const sortProducts = (array: any[], key: string) => {
     if (a[key] < b[key]) { return -1; }
     if (a[key] > b[key]) { return 1; }
     return 0;
-  })
-  return sortedProducts
-}
+  });
+  return sortedProducts;
+};
 

@@ -1,55 +1,20 @@
 import Image from 'next/image';
-import { GetStaticProps } from 'next';
-
-
-// Components
-import Layout from '@components/website/layout/Layout';
 import Section from '@components/website/layout/Section/Section';
 import Landing from '@components/website/content/Landing/Landing';
 import Stats from '@components/website/content/Stats/Stats';
 import InfoBlock from '@components/website/content/InfoBlock/InfoBlock';
 import Cross from '@components/Cross/Cross';
-import Catalogue from '@components/website/shop/Catalogue/Catalogue';
-import Courses from '@components/website/courses/Courses/Courses';
+import styles from './ServicesPage.module.scss';
+import { generateCustomMetaData } from '@utils/metadata';
 
-// Styles
-import styles from '../styles/pages/services.module.scss';
-import catalogueStyles from '@components/Catalogue/catalogue.module.scss';
-import courseStyles from '@components/Courses/courses.module.scss';
-import axios from 'axios';
+export const metadata = generateCustomMetaData({
+  title: 'Services | C-Doc',
+  description: 'The C-DOC Team Remains Committed and Dedicated to Safety and Competence',
+});
 
-export default function Services({ courses }) {
-
-  const handleCatalogueToggle = () => {
-    const catalogue = document.querySelector(`.${catalogueStyles.catalogue}`);
-    if (catalogue.classList.contains(catalogueStyles.open)) {
-      catalogue.classList.remove(catalogueStyles.open);
-      document.body.classList.remove('noscroll')
-    } else {
-      catalogue.classList.add(catalogueStyles.open);
-      document.body.classList.add('noscroll')
-    }
-  }
-
-  const handleCoursesToggle = () => {
-    const courses = document.querySelector(`.${courseStyles.courses}`);
-    if (courses.classList.contains(courseStyles.open)) {
-      courses.classList.remove(courseStyles.open);
-      document.body.classList.remove('noscroll')
-    } else {
-      courses.classList.add(courseStyles.open);
-      document.body.classList.add('noscroll')
-    }
-  }
-
+const ServicesPage = () => {
   return (
-    <Layout
-      head={{
-        title: 'Services | C-Doc',
-        description: 'The C-DOC Team Remains Committed and Dedicated to Safety and Competence',
-        canonical: '/services'
-      }}
-    >
+    <main>
       <Landing
         imageURL="/images/pages/services/landing.jpeg"
       >
@@ -112,11 +77,11 @@ export default function Services({ courses }) {
             </ul>
           </div>
         </div>
-        <div className={styles.button}>
+        {/* <div className={styles.button}>
           <button className="button" onClick={() => handleCoursesToggle()}>
             <p>Book a Course</p>
           </button>
-        </div>
+        </div> */}
       </Section>
 
       <section className={styles.photoGrid}>
@@ -165,9 +130,9 @@ export default function Services({ courses }) {
         dark={true}
       >
         <div className={styles.button}>
-          <button className="button" onClick={() => handleCatalogueToggle()}>
+          {/* <button className="button" onClick={() => handleCatalogueToggle()}>
             <p>Equipment Enquiries</p>
-          </button>
+          </button> */}
         </div>
         <div className={styles.grid}>
           <InfoBlock>
@@ -271,35 +236,18 @@ export default function Services({ courses }) {
             <div className={styles.text}>
               <h5>Medical Equipment</h5>
               <p>If you’d like to request a quotation or obtain more information regarding any of the medical equipment we provide, please fill out our enquiry form.</p>
-              <button className="button-grow light" onClick={() => handleCatalogueToggle()}>
+              {/* <button className="button-grow light" onClick={() => handleCatalogueToggle()}>
                 <a>
                   <span>Equipment Enquiries</span>
                   <i className="icon-arrow-right"></i>
                 </a>
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
       </Section>
-      <Catalogue handleCatalogueToggle={() => handleCatalogueToggle()} />
-      <Courses handleCoursesToggle={() => handleCoursesToggle()} courses={courses} />
-    </Layout >
-  )
-}
+    </main>
+  );
+};
 
-
-export const getStaticProps: GetStaticProps = async () => {
-  const courses = await axios({
-    method: 'GET',
-    url: `${process.env.NEXT_PUBLIC_API_URL}/courses`,
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then((res) => res.data);
-
-  return {
-    props: {
-      courses
-    },
-  }
-}
+export default ServicesPage;
