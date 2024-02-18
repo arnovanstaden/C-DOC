@@ -47,7 +47,7 @@ const ShopPage = async ({ products }) => {
         heading="Shop"
         subHeading="Browse C-DOC’s wide range of Medical Equipment, Clothing, Gear and E-Books."
         noCross={true}
-        classNameProp={styles.shop}
+        className={styles.shop}
       >
         <div className={styles.categories}>
           <button className={`${styles.button} ${styles.active}`} onClick={(e) => handleFilter(e)}>All Products</button>

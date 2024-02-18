@@ -1,7 +1,6 @@
-
 .landing {
   display: flex;
-  min-height: 100vh;
+  min-height: calc(100vh - $header-height);
 
   .content {
     width: 50%;

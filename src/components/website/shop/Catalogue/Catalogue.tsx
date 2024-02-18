@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styles from './catalogue.module.scss';
 import { enqueueSnackbar } from 'notistack';
+import { Container } from '@mui/material';
 
 interface ICatalogue {
   handleCatalogueToggle: () => void;
@@ -38,7 +39,7 @@ export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
     <section className={styles.catalogue}>
       <i className="icon-clear" onClick={() => handleCatalogueToggle()}></i>
 
-      <div className="container">
+      <Container>
         <div className={styles.content}>
           <div className="heading">
             <h1>C-DOC Medical Kit Order Form.</h1>
@@ -231,7 +232,7 @@ export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
           </form>
         </div>
 
-      </div>
+      </Container>
     </section>
   );
 }

@@ -113,7 +113,7 @@ const CartPage = ({ products, shopSettings }) => {
       <Section
         heading="Your Cart"
         noCross={true}
-        classNameProp={styles.cart}
+        className={styles.cart}
       >
         {!loading ?
           <div className={styles.grid}>

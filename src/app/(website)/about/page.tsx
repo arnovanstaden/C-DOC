@@ -39,7 +39,7 @@ const AboutPage = () => {
 
       <Section
         heading="Our Story."
-        classNameProp={styles.story}
+        className={styles.story}
         idProp="story"
       >
         <p>C-DOC’s founder member and subject matter expert is Bridget Thomson. Bridget and her highly skilled and experienced team remain committed and dedicated to safety and competence in the commercial diving community through effective education, consulting, equipment design and usage. The team strive to ensure continued improvement and development for competency and safety in all dive operations inshore and offshore.</p>
@@ -48,8 +48,8 @@ const AboutPage = () => {
 
       <Section
         heading="Meet the Team."
-        classNameProp={styles.team}
-        dark={true}
+        className={styles.team}
+        colour="lightgrey"
         idProp="team"
       >
         <div className={styles.grid}>
@@ -61,7 +61,7 @@ const AboutPage = () => {
 
       <Section
         heading="Affiliations &amp; Memberships."
-        classNameProp={styles.memberships}
+        className={styles.memberships}
       >
         <div className={styles.grid}>
           <a className={styles.image} href="http://dmerworldwide.com/" target="blank">
@@ -87,8 +87,9 @@ const AboutPage = () => {
 
       <Section
         heading="Partnership."
-        classNameProp={styles.partnership}
-        dark={true}
+        className={styles.partnership}
+        colour="lightgrey"
+
       >
         <div className={styles.intro}>
           <p>C-DOC has partnered with <span>D+MER</span></p>
@@ -113,13 +114,13 @@ const AboutPage = () => {
         </div>
       </Section>
 
-      <section className={styles.value}>
-        <div className="heading">
-          <h1>Value for Money.</h1>
-          <span />
-        </div>
+      <Section
+        colour="darkgrey"
+        heading="Value for Money."
+        className={styles.value}
+      >
         <p>C-DOC services and products are designed to support companies to meet their audit compliance and strengthen their operational dive teams in order to move people and their performance in new directions. </p>
-      </section>
+      </Section>
     </main >
   );
 };

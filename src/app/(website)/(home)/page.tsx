@@ -48,7 +48,7 @@ const HomePage = () => {
 
       <Section
         heading="Our Services."
-        classNameProp={styles.services}
+        className={styles.services}
       >
         <div className={styles.intro}>
           <p>The C-DOC team remains committed and dedicated to safety and competence in the commercial diving community through effective education, consulting, equipment design and usage.</p>
@@ -101,8 +101,8 @@ const HomePage = () => {
 
       <Section
         heading="About Us."
-        dark={true}
-        classNameProp={styles.about}
+        colour="lightgrey"
+        className={styles.about}
       >
         <div className={styles.grid}>
           <Link href="/services#training" className={`${styles.item} ${styles.imageBlock}`}>
@@ -136,7 +136,7 @@ const HomePage = () => {
 
 
       <Section
-        classNameProp={styles.contact}
+        className={styles.contact}
         noCross={true}
       >
         <div className={styles.grid}>
@@ -148,11 +148,7 @@ const HomePage = () => {
           </div>
         </div>
       </Section>
-
       <Stats />
-
-      {/* <Catalogue handleCatalogueToggle={() => handleCatalogueToggle()} />
-      <Courses handleCoursesToggle={() => handleCoursesToggle()} courses={courses} /> */}
     </main >
   );
 };

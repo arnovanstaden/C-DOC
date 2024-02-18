@@ -2,11 +2,12 @@ import Link from 'next/link';
 
 // Styles
 import styles from './footer.module.scss';
+import { Container } from '@mui/material';
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className="container">
+      <Container>
         <div className={styles.grid}>
           <Link href="/" className={styles.logo}>
             <img src="/images/logos/logo.png" alt="C-Doc Logo" />
@@ -56,7 +57,7 @@ export default function Footer() {
             <p>Design &amp; Development by <a target="blank" href="https://webdacity.dev">Webdacity</a></p>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

@@ -39,7 +39,7 @@ const ServicesPage = () => {
 
       <Section
         heading="Training"
-        classNameProp={styles.training}
+        className={styles.training}
         idProp="training"
       >
         <div className={styles.grid}>
@@ -98,7 +98,7 @@ const ServicesPage = () => {
 
       <Section
         heading="Consulting."
-        classNameProp={styles.consulting}
+        className={styles.consulting}
         idProp="consulting"
       >
         <div className={styles.grid}>
@@ -125,9 +125,9 @@ const ServicesPage = () => {
 
       <Section
         heading=" Medical Equipment for Commercial Dive Operations."
-        classNameProp={styles.equipment}
+        className={styles.equipment}
         idProp="equipment"
-        dark={true}
+        colour="lightgrey"
       >
         <div className={styles.button}>
           {/* <button className="button" onClick={() => handleCatalogueToggle()}>

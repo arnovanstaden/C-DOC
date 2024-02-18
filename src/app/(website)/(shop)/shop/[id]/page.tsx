@@ -52,7 +52,7 @@ const ShopProductPage = async () => {
     <main>
       <Section
         noCross={true}
-        classNameProp={styles.product}
+        className={styles.product}
       >
         <div className={styles.shop}>
           <Link href="/shop">

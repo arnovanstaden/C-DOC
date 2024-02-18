@@ -4,6 +4,7 @@ import axios from 'axios';
 
 // Styles
 import styles from './courses.module.scss';
+import { Container } from '@mui/material';
 
 interface ICourses {
   handleCoursesToggle: () => void;
@@ -11,7 +12,6 @@ interface ICourses {
 }
 
 export default function Courses({ handleCoursesToggle, courses }: ICourses) {
-
   // State
   const [selectedCourse, setSelectedCourse] = useState(undefined);
   const [coupon, setCoupon] = useState(undefined);
@@ -143,7 +143,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
     <section className={styles.courses}>
       <i className="icon-clear" onClick={() => handleCoursesToggle()}></i>
 
-      <div className="container">
+      <Container>
         <div className={styles.content}>
           <div className="heading">
             <h1>Training Course Booking.</h1>
@@ -211,7 +211,7 @@ export default function Courses({ handleCoursesToggle, courses }: ICourses) {
           </form>
         </div>
 
-      </div>
+      </Container>
     </section >
   );
 }

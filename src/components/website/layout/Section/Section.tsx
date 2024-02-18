@@ -1,48 +1,42 @@
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 // Components
 import Cross from '../../../Cross/Cross';
 
 // Styles
 import styles from './section.module.scss';
+import { Container } from '@mui/material';
 
 interface ISection {
   children: React.ReactNode;
   heading?: string;
   subHeading?: string;
-  classNameProp?: string;
+  className?: string;
   idProp?: string;
-  dark?: boolean;
+  colour?: 'lightgrey' | 'darkgrey' | 'white';
   noCross?: boolean
 }
 
-export default function Section({ children, heading, subHeading, noCross, classNameProp, idProp, dark }: ISection) {
-
-  const SectionHeading = (): JSX.Element => {
-    if (heading) {
-      return (
-        <div className="heading">
-          <h1>{heading}</h1>
-          <span />
-          {subHeading ? <p>{subHeading}</p> : null}
-        </div>
-      );
-    }
-    return null;
-  };
-
-  const sectionClasses = ClassNames(
-    styles.section,
-    classNameProp ? classNameProp : '',
-    dark ? styles.dark : ''
+export default function Section({ children, heading, subHeading, noCross, className, idProp, colour = 'white' }: ISection) {
+  const sectionClasses = classNames(
+    styles.Section,
+    styles[`colour-${colour}`],
+    className,
   );
+
   return (
     <section className={sectionClasses} id={idProp ? idProp : ''}>
       {!noCross ? <Cross classNameProp={styles.cross} size="2rem" /> : null}
-      <div className="container">
-        <SectionHeading />
+      <Container>
+        {heading && (
+          <div className={styles.heading}>
+            {heading && <h1>{heading}</h1>}
+            <span />
+            {subHeading && <p>{subHeading}</p>}
+          </div>
+        )}
         {children}
-      </div>
+      </Container>
     </section>
   );
 }

@@ -15,7 +15,7 @@ const NewsPage = ({ articles = [] }) => {
         heading="News &amp; Articles"
         subHeading="Stay up to date with the latest news and articles from C-DOC"
         noCross={true}
-        classNameProp={styles.news}
+        className={styles.news}
       >
         <div className={styles.grid}>
           {articles.map((article, index) => (
