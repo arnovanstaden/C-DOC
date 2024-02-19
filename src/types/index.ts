@@ -4,6 +4,7 @@ export interface LoginCredentials {
 }
 
 export interface IArticle {
+  id: string;
   name: string;
   description: string;
   author: string;

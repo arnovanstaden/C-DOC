@@ -23,5 +23,30 @@
   .content {
     padding: 1rem;
     overflow-y: auto;
+
+    form {
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      li {
+        padding: 12px 16px;
+        background-color: rgba($lightgrey, 0.1);
+        transition: 0.3s ease-out;
+
+        &:hover {
+          background-color: rgba($lightgrey, 0.2);
+        }
+      }
+    }
   }
 }

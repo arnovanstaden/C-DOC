@@ -1,6 +1,6 @@
 'use client';
 
-import Sidebar from '@components/admin/Sidebar/Sidebar';
+import Sidebar from '@components/admin/layout/Sidebar/Sidebar';
 import styles from './DashboardLayout.module.scss';
 
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {

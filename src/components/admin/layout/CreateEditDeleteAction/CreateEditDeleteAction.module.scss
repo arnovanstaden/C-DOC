@@ -1,0 +1,11 @@
+.CreateEditDeleteAction {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+
+  div {
+    display: flex;
+    gap: 1rem;
+  }
+}

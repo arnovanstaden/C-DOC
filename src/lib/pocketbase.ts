@@ -9,6 +9,7 @@ interface TypedPocketBase extends PocketBase {
 }
 
 export const pb = new PocketBase(url) as TypedPocketBase;
+pb.autoCancellation(false);
 
 export const authPb = async () => {
   if (!pb.authStore.isValid) {
