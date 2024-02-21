@@ -1,3 +1,4 @@
+import CreateCoupons from '@components/admin/Coupons/CreateCoupons';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 const DashboardCoupons: React.FC = () => {
   return (
     <main>
-      <h1>Coupons</h1>
+      <CreateCoupons />
     </main>
   );
 };

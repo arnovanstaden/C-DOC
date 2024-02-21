@@ -9,14 +9,12 @@ interface ICatalogue {
 }
 
 export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
-
-  const submitCatalogue = (e) => {
+  const submitCatalogue = () => {
     const enquiry = {};
     const form = document.getElementById('catalogue-form') as HTMLFormElement;
     if (form.checkValidity() === false) {
       return;
     }
-    e.preventDefault();
     const formData = new FormData(form);
     formData.forEach((value, key) => enquiry[key] = value);
 
@@ -227,7 +225,7 @@ export default function Catalogue({ handleCatalogueToggle }: ICatalogue) {
               </div>
 
             </div>
-            <Button type="submit" onClick={(e) => submitCatalogue(e)}>
+            <Button type="submit" onClick={submitCatalogue}>
               Submit
             </Button>
           </form>

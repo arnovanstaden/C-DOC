@@ -1,5 +1,9 @@
+'use server';
+
 import { IArticle } from '@types';
 import { authPb, pb } from './pocketbase';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export const getArticle = async (id: string): Promise<IArticle> => {
   await authPb();
@@ -13,7 +17,6 @@ export const getArticle = async (id: string): Promise<IArticle> => {
   return article;
 };
 
-
 export const getArticles = async (): Promise<IArticle[]> => {
   await authPb();
   const result = await pb.collection('articles').getList();
@@ -26,8 +29,18 @@ export const getArticles = async (): Promise<IArticle[]> => {
   return articles;
 };
 
-export const addArticle = async (newArticle: FormData): Promise<IArticle> => {
+export const addArticle = async (newArticle: FormData): Promise<void> => {
   await authPb();
-  const result = await pb.collection('articles').create(newArticle);
-  return result;
+  await pb.collection('articles').create(newArticle);
+  revalidatePath('/admin/articles');
+  revalidatePath('/articles');
+  redirect('/admin/articles');
+};
+
+export const deleteArticle = async (id: string): Promise<void> => {
+  await authPb();
+  await pb.collection('articles').delete(id);
+  revalidatePath('/admin/articles');
+  revalidatePath('/articles');
+  redirect('/admin/articles');
 };

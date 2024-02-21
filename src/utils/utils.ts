@@ -10,7 +10,7 @@ export const sortProducts = (array: any[], key: string) => {
 };
 
 
-export const convertToFormData = (data): FormData => {
+export const convertToFormData = (data: object): FormData => {
   const formData = new FormData();
 
   // Iterate over the data object and append each field and its value to FormData

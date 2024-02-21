@@ -12,6 +12,7 @@ interface ActionProps {
   actionText: string;
   actionOnClick: () => Promise<void>;
   delete?: {
+    text: string;
     deleteOnClick: () => Promise<void>;
   }
 }
@@ -22,8 +23,9 @@ const CreateEditDeleteAction: React.FC<ActionProps> = (props) => {
   const router = useRouter();
 
   const handleDelete = async () => {
+    setOpenDeleteModal(false);
     setLoading(true);
-    await props.actionOnClick();
+    await props.delete.deleteOnClick();
     setLoading(false);
   };
 
@@ -35,7 +37,7 @@ const CreateEditDeleteAction: React.FC<ActionProps> = (props) => {
         </Button>
       </Link>
       <div>
-        {!props.delete && (
+        {props.delete && (
           <Button onClick={() => setOpenDeleteModal(true)} outlined>
             Delete
           </Button>
@@ -44,24 +46,26 @@ const CreateEditDeleteAction: React.FC<ActionProps> = (props) => {
           {props.actionText}
         </Button>
       </div>
-      <Modal
-        open={openDeleteModal}
-        onClose={() => setOpenDeleteModal(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box className={styles.deleteModal}>
-          Are you sure you want to delete this course? This action cannot be undone.
-          <div className={styles.actions}>
-            <Button outlined onClick={() => setOpenDeleteModal(false)}>
-              Cancel
-            </Button>
-            <Button onClick={handleDelete}>
-              Delete Course
-            </Button>
-          </div>
-        </Box>
-      </Modal>
+      {props.delete && (
+        <Modal
+          open={openDeleteModal}
+          onClose={() => setOpenDeleteModal(false)}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className={styles.deleteModal}>
+            {props.delete.text}
+            <div className={styles.actions}>
+              <Button outlined onClick={() => setOpenDeleteModal(false)}>
+                Cancel
+              </Button>
+              <Button onClick={handleDelete}>
+                Delete
+              </Button>
+            </div>
+          </Box>
+        </Modal>
+      )}
       <Loader open={loading} />
     </div>
   );

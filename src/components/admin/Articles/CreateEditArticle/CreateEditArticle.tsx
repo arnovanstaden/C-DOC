@@ -8,7 +8,7 @@ import Loader from '@components/system/Loader';
 import CreateEditDeleteAction from '../../layout/CreateEditDeleteAction/CreateEditDeleteAction';
 import Input from '@components/system/Input';
 import TextArea from '@components/system/TextArea';
-import { addArticle } from '@lib/articles';
+import { addArticle, deleteArticle } from '@lib/articles';
 import { enqueueSnackbar } from 'notistack';
 import { errorNotification } from '@utils/notifications';
 import { convertToFormData } from '@utils/utils';
@@ -17,6 +17,12 @@ interface IArticleForm extends Omit<IArticle, 'image' | 'file'> {
   file: FileList;
   image: FileList;
 }
+
+interface INewArticle extends Omit<IArticle, 'image' | 'file'> {
+  file: File;
+  image: File;
+}
+
 
 const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -28,14 +34,15 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
     reset
   } = useForm<IArticleForm>();
 
-  const handleCreateArticle = async (data) => {
+  const handleCreateArticle = async (data: IArticleForm) => {
     setLoading(true);
-    // const newArticle: IArticle = {
-    //   ...data,
-    //   image: data['image'][0],
-    //   file: data['file'][0],
-    // };
-    const newArticleFormData = convertToFormData(data);
+    const newArticle: INewArticle = {
+      ...data,
+      image: data['image'][0],
+      file: data['file'][0],
+    };
+
+    const newArticleFormData = convertToFormData(newArticle);
 
     try {
       await addArticle(newArticleFormData);
@@ -59,8 +66,12 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
       <CreateEditDeleteAction
         actionText={!article ? 'Create' : 'Update'}
         actionOnClick={!article ? handleSubmit(handleCreateArticle) : handleSubmit(handleUpdateArticle)}
-      // delete
-      // deleteOnClick
+        delete={article
+          ? {
+            deleteOnClick: () => deleteArticle(article.id),
+            text: 'Are you sure you want to delete this article?'
+          }
+          : undefined}
       />
       <form action="">
         <Input
@@ -97,13 +108,13 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
           register={{ ...register('researcher', { required: true, value: article?.researcher }) }}
           error={errors.researcher?.type === 'required' ? 'researcher is required' : undefined}
         />
-        {/* <Input
+        <Input
           label='Image'
           name="image"
           inputProps={{
             type: 'file',
           }}
-          register={{ ...register('image', { required: true, value: article?.image }) }}
+          register={{ ...register('image', { required: true }) }}
           error={errors.image?.type === 'required' ? 'image is required' : undefined}
         />
         <Input
@@ -112,9 +123,9 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
           inputProps={{
             type: 'file',
           }}
-          register={{ ...register('file', { required: true, value: article?.file }) }}
+          register={{ ...register('file', { required: true }) }}
           error={errors.file?.type === 'required' ? 'file is required' : undefined}
-        /> */}
+        />
       </form>
       <Loader open={loading} />
     </div>
