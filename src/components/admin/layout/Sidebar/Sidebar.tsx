@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@components/system/Button/Button';
 import styles from './Sidebar.module.scss';
 import { usePathname } from 'next/navigation';

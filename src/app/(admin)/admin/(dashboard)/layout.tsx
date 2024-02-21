@@ -1,7 +1,9 @@
-'use client';
-
 import Sidebar from '@components/admin/layout/Sidebar/Sidebar';
 import styles from './DashboardLayout.module.scss';
+import Container from '@components/website/layout/Container/Container';
+
+export const revalidate = 0;
+
 
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -11,7 +13,9 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) 
       </header>
       <Sidebar />
       <div className={styles.content}>
-        {children}
+        <Container>
+          {children}
+        </Container>
       </div>
     </div>
   );

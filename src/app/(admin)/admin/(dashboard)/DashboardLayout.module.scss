@@ -39,9 +39,13 @@
       gap: 1rem;
 
       li {
-        padding: 12px 16px;
+        padding: 20px 16px;
         background-color: rgba($lightgrey, 0.1);
         transition: 0.3s ease-out;
+
+        p {
+          margin: 0;
+        }
 
         &:hover {
           background-color: rgba($lightgrey, 0.2);

@@ -1,3 +1,4 @@
+import BookingList from '@components/admin/bookings/BookingList';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 const DashboardBookings: React.FC = () => {
   return (
     <main>
-      <h1>Bookings</h1>
+      <BookingList />
     </main>
   );
 };

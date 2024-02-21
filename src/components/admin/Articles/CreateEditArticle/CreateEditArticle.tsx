@@ -8,7 +8,7 @@ import Loader from '@components/system/Loader';
 import CreateEditDeleteAction from '../../layout/CreateEditDeleteAction/CreateEditDeleteAction';
 import Input from '@components/system/Input';
 import TextArea from '@components/system/TextArea';
-import { addArticle, deleteArticle } from '@lib/articles';
+import { createArticle, deleteArticle } from '@lib/articles';
 import { enqueueSnackbar } from 'notistack';
 import { errorNotification } from '@utils/notifications';
 import { convertToFormData } from '@utils/utils';
@@ -45,7 +45,7 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
     const newArticleFormData = convertToFormData(newArticle);
 
     try {
-      await addArticle(newArticleFormData);
+      await createArticle(newArticleFormData);
       enqueueSnackbar('Article created');
       reset();
     } catch (e) {

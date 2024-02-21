@@ -1,4 +1,4 @@
-import CreateEditArticle from '@components/admin/Articles/CreateEditArticle/CreateEditArticle';
+import CreateEditArticle from '@components/admin/articles/CreateEditArticle/CreateEditArticle';
 import { getArticle } from '@lib/articles';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';

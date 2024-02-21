@@ -1,4 +1,4 @@
-import CreateCoupons from '@components/admin/Coupons/CreateCoupons';
+import CreateCoupons from '@components/admin/coupons/coupons';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

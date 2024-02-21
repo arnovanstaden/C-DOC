@@ -1,4 +1,4 @@
-import CreateEditArticle from '@components/admin/Articles/CreateEditArticle/CreateEditArticle';
+import CreateEditArticle from '@components/admin/articles/CreateEditArticle/CreateEditArticle';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

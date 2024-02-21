@@ -29,9 +29,17 @@ export const getArticles = async (): Promise<IArticle[]> => {
   return articles;
 };
 
-export const addArticle = async (newArticle: FormData): Promise<void> => {
+export const createArticle = async (article: FormData): Promise<void> => {
   await authPb();
-  await pb.collection('articles').create(newArticle);
+  await pb.collection('articles').create(article);
+  revalidatePath('/admin/articles');
+  revalidatePath('/articles');
+  redirect('/admin/articles');
+};
+
+export const updateArticle = async (article: FormData): Promise<void> => {
+  await authPb();
+  await pb.collection('articles').update('', article);
   revalidatePath('/admin/articles');
   revalidatePath('/articles');
   redirect('/admin/articles');
