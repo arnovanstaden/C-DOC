@@ -1,4 +1,4 @@
-import CreateAction from '@components/admin/layout/CreateAction/CreateAction';
+import CreateAction from '@components/admin/atoms/CreateAction/CreateAction';
 import { getArticles } from '@lib/articles';
 import Link from 'next/link';
 

@@ -1,3 +1,4 @@
+import OrderList from '@components/admin/orders/OrderList/OrderList';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 const DashboardOrders: React.FC = () => {
   return (
     <main>
-      <h1>Orders</h1>
+      <OrderList />
     </main>
   );
 };

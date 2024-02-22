@@ -4,6 +4,10 @@
   grid-template-columns: 225px auto;
   height: 100vh;
 
+  a {
+    display: block;
+  }
+
   header {
     display: flex;
     justify-content: space-between;

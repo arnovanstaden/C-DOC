@@ -3,7 +3,14 @@ export interface LoginCredentials {
   password: string
 }
 
-export interface IArticle {
+interface IPocketBaseBase {
+  created: Date;
+  updated: Date;
+  collectionId: string;
+  collectionName: string;
+}
+
+export interface IArticle extends IPocketBaseBase {
   id: string;
   name: string;
   description: string;
@@ -13,7 +20,7 @@ export interface IArticle {
   file: string;
 }
 
-export interface ICoupon {
+export interface ICoupon extends IPocketBaseBase {
   id: string;
   email: string;
   code: string;
@@ -30,7 +37,7 @@ export type TContactMessage = {
 
 export type TCategory = 'Online Distance Learning (ODL)' | 'Blended learning: Online Theory + Onsite skills development and assessment';
 
-export interface ICourse {
+export interface ICourse extends IPocketBaseBase {
   id: string;
   name: string;
   description: string;
@@ -45,7 +52,7 @@ export interface ICourse {
 
 export type TProductCategory = 'Medical Equipment' | 'Clothing & Gear' | 'Guidance Documents';
 
-export interface IProduct {
+export interface IProduct extends IPocketBaseBase {
   id: string;
   category: TProductCategory;
   name: string;
@@ -57,7 +64,7 @@ export interface IProduct {
   visible: boolean;
 }
 
-export interface IBooking {
+export interface IBooking extends IPocketBaseBase {
   id: string;
   name: string;
   email: string;
@@ -65,11 +72,10 @@ export interface IBooking {
   country: string;
   total: number;
   courses: string[];
-  date: Date;
   coupon?: string;
 }
 
-export interface IOrder {
+export interface IOrder extends IPocketBaseBase {
   id: string;
   orderNumber: number;
 
@@ -86,7 +92,6 @@ export interface IOrder {
     quantity: number;
     price: number;
   }[];
-  date: Date;
   status: 'pending' | 'paid';
   payfastPaymentId: string;
 }

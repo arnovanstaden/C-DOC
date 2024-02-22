@@ -5,7 +5,7 @@ import styles from './CreateEditCourse.module.scss';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Loader from '@components/system/Loader';
-import CreateEditDeleteAction from '../../layout/CreateEditDeleteAction/CreateEditDeleteAction';
+import CreateEditDeleteAction from '../../atoms/CreateEditDeleteAction/CreateEditDeleteAction';
 import Input from '@components/system/Input';
 import TextArea from '@components/system/TextArea';
 import { createCourse, deleteCourse } from '@lib/courses';

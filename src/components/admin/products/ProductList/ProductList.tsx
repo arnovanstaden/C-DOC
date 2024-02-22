@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { getProducts } from '@lib/products';
 import styles from './styles.module.scss';
-import CreateAction from '@components/admin/layout/CreateAction/CreateAction';
+import CreateAction from '@components/admin/atoms/CreateAction/CreateAction';
 
 const ProductList = async () => {
   const product = await getProducts();
@@ -17,6 +17,7 @@ const ProductList = async () => {
               {product.map((product) => (
                 <Link href={`/admin/products/${product.id}`} key={product.id}>
                   <li className={styles.Product} >
+                    <img src={product.thumbnail} alt="Thumbnail" />
                     <p>{product.name}</p>
                     <p>{product.category}</p>
                     <p>

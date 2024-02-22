@@ -8,13 +8,26 @@ import { redirect } from 'next/navigation';
 export const getProduct = async (id: string): Promise<IProduct> => {
   await authPb();
   const result = await pb.collection('products').getOne(id);
-  return result;
+
+  const product: IProduct = {
+    ...result,
+    thumbnail: pb.files.getUrl(result, result.thumbnail),
+    images: result.images.map((image) => pb.files.getUrl(result, image))
+  };
+
+  return product;
 };
 
 export const getProducts = async (): Promise<IProduct[]> => {
   await authPb();
   const result = await pb.collection('products').getList();
-  return result.items;
+  const products: IProduct[] = result.items.map((product) => ({
+    ...product,
+    thumbnail: pb.files.getUrl(product, product.thumbnail),
+    images: product.images.map((image) => pb.files.getUrl(result, image))
+  }));
+
+  return products;
 };
 
 export const createProduct = async (product: FormData): Promise<void> => {
