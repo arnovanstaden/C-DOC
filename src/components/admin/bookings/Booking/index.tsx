@@ -16,7 +16,7 @@ const Booking: React.FC<IProps> = ({ booking }) => {
       <div className={styles.top} onClick={() => setExpanded((prev) => !prev)}>
         <p>{booking.name}</p>
         <p>{new Date(booking.date).toISOString().slice(0, 10)}</p>
-        <p>$ {booking.total}</p>
+        <p>R {booking.total}</p>
       </div>
       {expanded && (
         <div className={styles.expanded}>

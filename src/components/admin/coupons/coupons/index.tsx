@@ -10,6 +10,7 @@ import { createCoupon } from '@lib/coupons';
 import Loader from '@components/system/Loader';
 import { useForm } from 'react-hook-form';
 import { errorNotification } from '@utils/notifications';
+import FormRow from '@components/admin/atoms/FormRow/FormRow';
 
 const CreateCoupons: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -55,25 +56,27 @@ const CreateCoupons: React.FC = () => {
           register={{ ...register('email', { required: true }) }}
           error={errors.email?.type === 'required' ? 'Email is required' : undefined}
         />
-        <Input
-          label='Discount %'
-          name="discount"
-          inputProps={{
-            type: 'number',
-          }}
-          register={{ ...register('discount', { required: true, min: 1, max: 100 }) }}
-          error={errors.discount?.type === 'required' ? 'Discount is required' : undefined}
-        />
-        <Input
-          label='Expiry date'
-          name="expiry"
-          inputProps={{
-            type: 'date',
-            defaultValue: threeMonthsLater.toISOString().substring(0, 10)
-          }}
-          register={{ ...register('expiry', { required: true, }) }}
-          error={errors.expiry?.type === 'required' ? 'Expiry is required' : undefined}
-        />
+        <FormRow>
+          <Input
+            label='Discount %'
+            name="discount"
+            inputProps={{
+              type: 'number',
+            }}
+            register={{ ...register('discount', { required: true, min: 1, max: 100 }) }}
+            error={errors.discount?.type === 'required' ? 'Discount is required' : undefined}
+          />
+          <Input
+            label='Expiry date'
+            name="expiry"
+            inputProps={{
+              type: 'date',
+              defaultValue: threeMonthsLater.toISOString().substring(0, 10)
+            }}
+            register={{ ...register('expiry', { required: true, }) }}
+            error={errors.expiry?.type === 'required' ? 'Expiry is required' : undefined}
+          />
+        </FormRow>
       </form>
       <Loader open={loading} />
     </div>

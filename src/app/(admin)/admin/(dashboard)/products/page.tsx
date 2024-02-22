@@ -1,3 +1,4 @@
+import ProductList from '@components/admin/products/ProductList/ProductList';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 const DashboardProducts: React.FC = () => {
   return (
     <main>
-      <h1>Ola</h1>
+      <ProductList />
     </main>
   );
 };

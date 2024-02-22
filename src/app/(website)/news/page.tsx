@@ -3,6 +3,7 @@ import Section from '@components/website/layout/Section/Section';
 import Article from '@components/website/content/Article/Article';
 import { generateCustomMetaData } from '@utils/metadata';
 import { getArticles } from '@lib/articles';
+import Landing from '@components/website/content/Landing/Landing';
 
 export const revalidate = process.env.NODE_ENV === 'development' ? 0 : false;
 
@@ -16,6 +17,12 @@ const NewsPage = async () => {
 
   return (
     <main>
+      <Landing
+        imageURL="/images/pages/news/landing.jpeg"
+        custom={true}
+      >
+        Training Courses
+      </Landing>
       <Section
         heading="News &amp; Articles"
         subHeading="Stay up to date with the latest news and articles from C-DOC"

@@ -1,3 +1,4 @@
+import CourseList from '@components/admin/courses/CourseList/CourseList';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 const DashboardCourses: React.FC = () => {
   return (
     <main>
-      <h1>Courses</h1>
+      <CourseList />
     </main>
   );
 };

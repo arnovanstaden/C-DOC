@@ -1,4 +1,4 @@
-import ListArticles from '@components/admin/articles/ListArticles/ListArticles';
+import ArticleList from '@components/admin/articles/ArticleList/ListArticles';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const DashboardArticles: React.FC = () => {
   return (
     <main>
-      <ListArticles />
+      <ArticleList />
     </main>
   );
 };

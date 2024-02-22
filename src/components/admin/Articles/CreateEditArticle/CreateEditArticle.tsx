@@ -12,6 +12,7 @@ import { createArticle, deleteArticle } from '@lib/articles';
 import { enqueueSnackbar } from 'notistack';
 import { errorNotification } from '@utils/notifications';
 import { convertToFormData } from '@utils/utils';
+import FormRow from '@components/admin/atoms/FormRow/FormRow';
 
 interface IArticleForm extends Omit<IArticle, 'image' | 'file'> {
   file: FileList;
@@ -90,42 +91,46 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
           register={{ ...register('description', { required: true, value: article?.description }) }}
           error={errors.description?.type === 'required' ? 'description is required' : undefined}
         />
-        <Input
-          label='Author'
-          name="author"
-          inputProps={{
-            type: 'text',
-          }}
-          register={{ ...register('author', { required: true, value: article?.author }) }}
-          error={errors.author?.type === 'required' ? 'author is required' : undefined}
-        />
-        <Input
-          label='Researcher'
-          name="researcher"
-          inputProps={{
-            type: 'text',
-          }}
-          register={{ ...register('researcher', { required: true, value: article?.researcher }) }}
-          error={errors.researcher?.type === 'required' ? 'researcher is required' : undefined}
-        />
-        <Input
-          label='Image'
-          name="image"
-          inputProps={{
-            type: 'file',
-          }}
-          register={{ ...register('image', { required: true }) }}
-          error={errors.image?.type === 'required' ? 'image is required' : undefined}
-        />
-        <Input
-          label='File'
-          name="file"
-          inputProps={{
-            type: 'file',
-          }}
-          register={{ ...register('file', { required: true }) }}
-          error={errors.file?.type === 'required' ? 'file is required' : undefined}
-        />
+        <FormRow>
+          <Input
+            label='Author'
+            name="author"
+            inputProps={{
+              type: 'text',
+            }}
+            register={{ ...register('author', { required: true, value: article?.author }) }}
+            error={errors.author?.type === 'required' ? 'author is required' : undefined}
+          />
+          <Input
+            label='Researcher'
+            name="researcher"
+            inputProps={{
+              type: 'text',
+            }}
+            register={{ ...register('researcher', { required: true, value: article?.researcher }) }}
+            error={errors.researcher?.type === 'required' ? 'researcher is required' : undefined}
+          />
+        </FormRow>
+        <FormRow>
+          <Input
+            label='Image'
+            name="image"
+            inputProps={{
+              type: 'file',
+            }}
+            register={{ ...register('image', { required: true }) }}
+            error={errors.image?.type === 'required' ? 'image is required' : undefined}
+          />
+          <Input
+            label='File'
+            name="file"
+            inputProps={{
+              type: 'file',
+            }}
+            register={{ ...register('file', { required: true }) }}
+            error={errors.file?.type === 'required' ? 'file is required' : undefined}
+          />
+        </FormRow>
       </form>
       <Loader open={loading} />
     </div>

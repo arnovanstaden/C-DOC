@@ -31,6 +31,7 @@ export type TContactMessage = {
 export type TCategory = 'Online Distance Learning (ODL)' | 'Blended learning: Online Theory + Onsite skills development and assessment';
 
 export interface ICourse {
+  id: string;
   name: string;
   description: string;
   code: string;
@@ -45,6 +46,7 @@ export interface ICourse {
 export type TProductCategory = 'Medical Equipment' | 'Clothing & Gear' | 'Guidance Documents';
 
 export interface IProduct {
+  id: string;
   category: TProductCategory;
   name: string;
   description: string;
@@ -79,7 +81,11 @@ export interface IOrder {
   deliveryNotes: string;
 
   total: number;
-  products: string[];
+  cart: {
+    product: string;
+    quantity: number;
+    price: number;
+  }[];
   date: Date;
   status: 'pending' | 'paid';
   payfastPaymentId: string;

@@ -6,6 +6,8 @@
 // import Product from '@components/website/content/Product/Product';
 // import { generateCustomMetaData } from '@utils/metadata';
 
+import Landing from '@components/website/content/Landing/Landing';
+
 // export const metadata = generateCustomMetaData({
 //   title: 'Shop | C-DOC',
 //   description: 'Browse C-DOC’s wide range of Medical Equipment, Clothing, Gear and E-Books.',
@@ -13,7 +15,16 @@
 
 
 const ShopPage = async () => {
-  return null;
+  return (
+    <main>
+      <Landing
+        imageURL="/images/pages/shop/landing.jpeg"
+        custom={true}
+      >
+        Training Courses
+      </Landing>
+    </main>
+  );
 
   // Refs
   // const sortRef = useRef();
