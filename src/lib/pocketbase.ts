@@ -1,4 +1,4 @@
-import { IArticle, IBooking, ICoupon, ICourse, IOrder, IProduct } from '@types';
+import { IArticle, IBooking, ICoupon, ICourse, IOrder, IProduct, ISettings } from '@types';
 import PocketBase, { RecordService } from 'pocketbase';
 
 const url = 'https://c-doc.pockethost.io/';
@@ -11,6 +11,7 @@ interface TypedPocketBase extends PocketBase {
   collection(idOrName: 'courses'): RecordService<ICourse>
   collection(idOrName: 'orders'): RecordService<IOrder>
   collection(idOrName: 'products'): RecordService<IProduct>
+  collection(idOrName: 'settings'): RecordService<ISettings>
 }
 
 export const pb = new PocketBase(url) as TypedPocketBase;

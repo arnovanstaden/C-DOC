@@ -1,3 +1,5 @@
+import EditSettings from '@components/admin/settings/EditSettings/EditSettings';
+import { getSettings } from '@lib/settings';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,10 +11,11 @@ export const metadata: Metadata = {
   }
 };
 
-const DashboardSettings: React.FC = () => {
+const DashboardSettings: React.FC = async () => {
+  const settings = await getSettings();
   return (
     <main>
-      <h1>Settings</h1>
+      <EditSettings {...settings} />
     </main>
   );
 };
