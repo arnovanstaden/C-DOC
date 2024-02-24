@@ -19,13 +19,11 @@ const NewsPage = async () => {
     <main>
       <Landing
         imageURL="/images/pages/news/landing.jpeg"
-        custom={true}
       >
-        Training Courses
+        <h1>News &amp; Articles</h1>
+        <p>Stay up to date with the latest news and articles from C-DOC</p>
       </Landing>
       <Section
-        heading="News &amp; Articles"
-        subHeading="Stay up to date with the latest news and articles from C-DOC"
         noCross={true}
         className={styles.news}
       >

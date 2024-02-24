@@ -12,9 +12,8 @@ const CoursesPage = () => {
     <main className={styles.CoursesPage}>
       <Landing
         imageURL="/images/pages/courses/landing.jpeg"
-        custom={true}
       >
-        Training Courses
+        <h1> Book a <span>Training Course</span></h1>
       </Landing>
 
     </main>

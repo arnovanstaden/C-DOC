@@ -39,6 +39,8 @@ interface SendEmail {
 }
 
 export const sendEmail = async ({ subject, body, recipient }: SendEmail): Promise<void> => {
+  return;
+
   const transporter = await getTransporter();
   const to = recipient || process.env.NODEMAILER_CONTACT;
   const message = {

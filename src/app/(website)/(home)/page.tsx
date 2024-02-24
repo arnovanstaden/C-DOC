@@ -61,9 +61,11 @@ const HomePage = () => {
           <Link href="/services#consulting">
             <article className={styles.item}>
               <div className={styles.image}>
-                <div className="next-image next-image--intrinsic">
-                  <Image src="/images/pages/home/consulting.jpeg" fill alt="C-Doc Service Image - Training" />
-                </div>
+                <Image src="/images/pages/home/consulting.jpeg"
+                  height={350}
+                  width={500}
+                  alt="C-Doc Service Image - Training"
+                />
               </div>
               <div className={styles.text}>
                 <h3>Consulting</h3>
@@ -74,9 +76,11 @@ const HomePage = () => {
           <Link href="/services#training">
             <article className={styles.item}>
               <div className={styles.image}>
-                <div className="next-image next-image--intrinsic">
-                  <Image src="/images/pages/home/training.jpeg" fill alt="C-Doc Service Image - Training" />
-                </div>
+                <Image src="/images/pages/home/training.jpeg"
+                  height={350}
+                  width={500}
+                  alt="C-Doc Service Image - Training"
+                />
               </div>
               <div className={styles.text}>
                 <h3>Training</h3>
@@ -87,9 +91,11 @@ const HomePage = () => {
           <Link href="/services#equipment">
             <article className={styles.item}>
               <div className={styles.image}>
-                <div className="next-image next-image--intrinsic">
-                  <Image src="/images/pages/home/products.jpeg" fill alt="C-Doc Service Image - Products" />
-                </div>
+                <Image src="/images/pages/home/products.jpeg"
+                  height={350}
+                  width={500}
+                  alt="C-Doc Service Image - Products"
+                />
               </div>
               <div className={styles.text}>
                 <h3>Equipment</h3>

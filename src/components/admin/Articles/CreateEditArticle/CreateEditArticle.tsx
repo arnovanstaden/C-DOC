@@ -32,7 +32,7 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm<IArticleForm>();
 
   const handleCreateArticle = async (data: IArticleForm) => {
