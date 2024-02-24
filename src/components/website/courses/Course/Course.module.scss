@@ -1,0 +1,47 @@
+.Course {
+  background-color: rgba($lightgrey, 0.05);
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+
+  .details {
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: block;
+      margin: 0;
+    }
+
+    .price {
+      color: $white;
+      padding: 0.25rem 0.75rem;
+      background-color: $red;
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-style: normal;
+      display: inline-block;
+      letter-spacing: 0.25px;
+    }
+
+    .date {
+      span {
+        font-weight: 500;
+        color: $red;
+        margin-right: 0.5rem;
+      }
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+  }
+
+  &:hover {
+    background-color: rgba($lightgrey, 0.1);
+  }
+}

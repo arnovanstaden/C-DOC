@@ -71,8 +71,15 @@ export interface IBooking extends IPocketBaseBase {
   phone: string;
   country: string;
   total: number;
-  courses: string[];
+  course: {
+    id: string;
+    date?: {
+      from: Date;
+      to: Date;
+    }
+  }
   coupon?: string;
+  proofOfPayment: string;
 }
 
 export interface IOrder extends IPocketBaseBase {

@@ -1,0 +1,48 @@
+.BookingForm {
+  display: grid;
+  gap: 16px;
+
+  .paymentDetails {
+    margin-bottom: 1rem;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    .left {
+      ul {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin: 0.25rem 0;
+
+          span {
+            font-weight: 600;
+          }
+
+          .total {
+            color: $red;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            background-color: transparent;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+
+    button {
+      margin-top: 16px;
+    }
+
+    .proofOfPayment {
+      margin-top: 16px;
+
+    }
+  }
+}
