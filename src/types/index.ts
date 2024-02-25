@@ -82,6 +82,14 @@ export interface IBooking extends IPocketBaseBase {
   proofOfPayment: string;
 }
 
+export interface INewBooking extends Omit<IBooking, 'id' | 'proofOfPayment'> {
+  proofOfPayment: File;
+}
+
+export interface IBookingForm extends Omit<IBooking, 'id' | 'proofOfPayment'> {
+  proofOfPayment: FileList;
+}
+
 export interface IOrder extends IPocketBaseBase {
   id: string;
   orderNumber: number;

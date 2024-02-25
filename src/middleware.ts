@@ -1,4 +1,4 @@
-import { verifyJwtToken } from '@lib/auth';
+import { initLogoutFlow, verifyJwtToken } from '@lib/auth';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
@@ -7,11 +7,11 @@ export const middleware = async (req: NextRequest): Promise<NextResponse> => {
   const authCookie = req.cookies.get('CDOC_Auth_Token');
 
   if (!authCookie) {
-    return NextResponse.redirect(new URL('/admin/login', req.url));
+    return initLogoutFlow(req);
   }
   const isAuthenticated = await verifyJwtToken(authCookie.value);
   if (!isAuthenticated) {
-    return NextResponse.redirect(new URL('/admin/login', req.url));
+    return initLogoutFlow(req);
   }
 
 

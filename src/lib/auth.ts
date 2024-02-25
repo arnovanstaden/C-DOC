@@ -5,6 +5,7 @@ import { authPb, pb } from './pocketbase';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import * as jwt from 'jose';
+import { NextRequest, NextResponse } from 'next/server';
 
 const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
@@ -18,7 +19,7 @@ export const createJwtToken = async (): Promise<string> => {
   const token = await new jwt.SignJWT({})
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
-    .setExpirationTime('2h') // Set expiration time to 2 hours
+    .setExpirationTime('24h') // Set expiration time to 2 hours
     .sign(encoder.encode(jwtSecretKey.toString()));
 
   return token;
@@ -44,22 +45,8 @@ export const login = async (loginData: LoginCredentials): Promise<void> => {
   redirect('/admin');
 };
 
-// export const initLogoutFlow = (req: NextRequest): NextResponse => {
-//   let response: NextResponse;
-
-//   if (redirectToLoginPage) {
-//     const intendedPath = req.nextUrl.pathname;
-//     const newUrl = new URL(getSlug('login'), req.url);
-//     response = NextResponse.redirect(newUrl);
-
-//     if (intendedPath && intendedPath !== '/' && !intendedPath.startsWith('/api')) {
-//       response.cookies.set(Config.storage.cookies.returnUrl.key, intendedPath);
-//       newUrl.searchParams.append('returnUrl', intendedPath);
-//     }
-//   } else {
-//     response = NextResponse.next();
-//   }
-//   response.cookies.delete(cookieStorageSessionKey);
-//   response.cookies.delete(cookieStorageHowlToken);
-//   return response;
-// };
+export const initLogoutFlow = (req: NextRequest): NextResponse => {
+  const response = NextResponse.redirect(new URL('/admin/login', req.url));
+  response.cookies.delete('CDOC_Auth_Token');
+  return response;
+};

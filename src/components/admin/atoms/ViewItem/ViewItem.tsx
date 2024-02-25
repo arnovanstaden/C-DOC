@@ -4,6 +4,22 @@ import styles from './ViewItem.module.scss';
 import { useRouter } from 'next/navigation';
 import Button from '@components/system/Button/Button';
 
+const Item = ({ key, value }: { key: string, value: string | number | boolean }) => {
+  if (!value) {
+    return '-';
+  };
+
+  if (key === 'created' && typeof value === 'string') {
+    return `${new Date(value).toLocaleDateString()} ${new Date(value).toLocaleTimeString()}`;
+  }
+
+  if (typeof value === 'string' && /^(https?:\/\/)?([\w-]+\.)+[\w-]+(:\d+)?(\/\S*)?$/.test(value)) {
+    return <a href={value} target="_blank">View</a>;
+  }
+
+  return value;
+};
+
 const ViewItem: React.FC<object> = (item) => {
   const router = useRouter();
 
@@ -23,10 +39,11 @@ const ViewItem: React.FC<object> = (item) => {
           <li key={key}>
             <h5>{key} </h5>
             <p>
-              {key === 'created'
+              <Item key={key} value={item[key]} />
+              {/* {key === 'created'
                 ? `${new Date(item[key]).toLocaleDateString()} ${new Date(item[key]).toLocaleTimeString()}`
-                : item[key] || '-'
-              }
+                :  || '-'
+              } */}
             </p>
           </li>
         ))}

@@ -2,15 +2,14 @@ import Link from 'next/link';
 import ClassNames from 'classnames';
 import styles from './Button.module.scss';
 
-interface IProps extends React.HTMLProps<HTMLButtonElement> {
+interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   children: string;
   outlined?: boolean;
   className?: string;
-  disabled?: boolean;
 }
 
-const Button = ({ href, children, onClick, outlined, className, disabled }: IProps) => {
+const Button = ({ href, children, outlined, className, ...props }: IProps) => {
   const classes = ClassNames(
     styles.Button,
     className,
@@ -19,9 +18,12 @@ const Button = ({ href, children, onClick, outlined, className, disabled }: IPro
 
   const Inner = () => {
     return (
-      <button className={classes} onClick={onClick} disabled={disabled}>
+      <button
+        className={classes}
+        {...props}
+      >
         {children}
-      </button>
+      </button >
     );
   };
 

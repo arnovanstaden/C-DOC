@@ -4,21 +4,29 @@ import { ICoupon } from '@types';
 import { authPb, pb } from './pocketbase';
 import { sendEmail } from './email/server';
 import { buildCouponEmail } from './email/client';
+import voucherCodes from 'voucher-code-generator';
 
 export const getCouponByCode = async (code: string): Promise<ICoupon | undefined> => {
   await authPb();
-  const result = await pb.collection('coupons').getList(1, 1, {
-    filter: `code === ${code}`,
-  });
-  return result.items[0];
+  const result = await pb.collection('coupons').getFirstListItem(`code="${code}"`);
+  return result;
 };
-export const createCoupon = async (newCoupon: Omit<ICoupon, 'id'>): Promise<void> => {
+export const createCoupon = async (newCoupon: Omit<ICoupon, 'id' | 'code'>): Promise<void> => {
+  const coupon = {
+    ...newCoupon,
+    redeemed: false,
+    expiry: new Date(newCoupon.expiry),
+    code: voucherCodes.generate({
+      length: 30,
+      count: 1
+    })[0]
+  };
   await authPb();
-  await pb.collection('coupons').create(newCoupon);
+  await pb.collection('coupons').create(coupon);
   await sendEmail({
-    subject: `${newCoupon.discount}% Off Coupon for a Course at C-DOC`,
-    body: buildCouponEmail(newCoupon),
-    recipient: newCoupon.email,
+    subject: `${coupon.discount}% Off Coupon for a Course at C-DOC`,
+    body: buildCouponEmail(coupon),
+    recipient: coupon.email,
   });
 };
 

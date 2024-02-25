@@ -27,6 +27,7 @@ const AdminLoginForm = (): JSX.Element | null => {
   const {
     register,
     handleSubmit,
+    formState: { errors },
   } = useForm<LoginCredentials>();
 
   const handleLogin = async (loginData) => {
@@ -54,6 +55,7 @@ const AdminLoginForm = (): JSX.Element | null => {
             }}
             name='email'
             register={{ ...register('email', { required: true }) }}
+            error={errors.email?.type === 'required' ? 'Email is required' : undefined}
           />
           <Input
             label='Password'
@@ -63,8 +65,9 @@ const AdminLoginForm = (): JSX.Element | null => {
             }}
             name='password'
             register={{ ...register('password', { required: true }) }}
+            error={errors.password?.type === 'required' ? 'Password is required' : undefined}
           />
-          <Button>Login</Button>
+          <Button type="submit" onClick={handleSubmit(handleLogin)}>Login</Button>
         </form>
       </div>
       <Loader open={loading} />

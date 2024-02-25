@@ -15,7 +15,7 @@ interface IPropsRegister extends IInputPropsBase {
 }
 
 interface IPropsManual extends IInputPropsBase {
-  value: string | number;
+  value?: string | number;
   onChange?: (newValue: string | number) => void; // Assuming onChange handles string to keep it consistent with e.target.value
 }
 
@@ -37,7 +37,10 @@ const Input: React.FC<IPropsRegister | IPropsManual> = (props): JSX.Element => {
     return (
       <div className={styles.inputGroup}>
         <label htmlFor={props.name}>{props.label}</label>
-        <input {...props.inputProps} {...props.register} />
+        <input
+          {...props.inputProps}
+          {...props.register}
+        />
         {props.error && <small>{props.error}</small>}
       </div>
     );

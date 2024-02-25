@@ -25,12 +25,16 @@
           }
 
           .total {
-            color: $red;
+            display: block;
+            width: fit-content;
+            background-color: $red !important;
+            color: $white;
             font-weight: 600;
             font-size: 1.1rem;
             margin-top: 0.5rem;
             background-color: transparent;
             text-transform: uppercase;
+            padding: 4px 8px;
           }
         }
       }
