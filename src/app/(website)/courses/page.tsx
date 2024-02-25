@@ -7,6 +7,7 @@ import Courses from '@components/website/courses/CourseForm/CourseForm';
 export const metadata = generateCustomMetaData({
   title: 'Courses | C-DOC',
   description: '',
+  image: '/images/pages/courses/landing.jpeg',
 });
 
 const CoursesPage = async () => {

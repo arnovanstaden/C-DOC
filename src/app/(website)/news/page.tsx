@@ -10,6 +10,7 @@ export const revalidate = process.env.NODE_ENV === 'development' ? 0 : false;
 export const metadata = generateCustomMetaData({
   title: 'News | C-DOC',
   description: 'Stay up to date with the latest news and articles from C-DOC.',
+  image: '/images/pages/news/landing.jpeg',
 });
 
 const NewsPage = async () => {

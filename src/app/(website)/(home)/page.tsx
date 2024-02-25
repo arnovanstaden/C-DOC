@@ -12,6 +12,7 @@ import Button from '@components/system/Button/Button';
 export const metadata = generateCustomMetaData({
   title: 'C-DOC | Commercial Diving and Offshore Consultancy',
   description: 'C-DOC Provides Effective Medical Support to the Diving and Maritime Industry.',
+  image: '/images/pages/home/landing.jpeg',
 });
 
 

@@ -7,11 +7,13 @@
 // import { generateCustomMetaData } from '@utils/metadata';
 
 import Landing from '@components/website/content/Landing/Landing';
+import { generateCustomMetaData } from '@utils/metadata';
 
-// export const metadata = generateCustomMetaData({
-//   title: 'Shop | C-DOC',
-//   description: 'Browse C-DOC’s wide range of Medical Equipment, Clothing, Gear and E-Books.',
-// });
+export const metadata = generateCustomMetaData({
+  title: 'Shop | C-DOC',
+  description: 'Browse C-DOC’s wide range of Medical Equipment, Clothing, Gear and E-Books.',
+  image: '/images/pages/shop/landing.jpeg',
+});
 
 
 const ShopPage = async () => {

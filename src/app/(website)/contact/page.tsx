@@ -10,6 +10,7 @@ import ContactForm from '@components/website/content/ContactForm/ContactForm';
 export const metadata = generateCustomMetaData({
   title: 'Contact | C-DOC',
   description: 'Don\'t hesitate to get in touch with us if you require more information regarding our services, courses or the products we provide.',
+  image: '/images/pages/contact/landing.jpeg',
 });
 
 const ContactPage = () => {

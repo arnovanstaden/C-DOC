@@ -4,17 +4,19 @@
 // import Image from 'next/image';
 // import Section from '@components/website/layout/Section/Section';
 // import styles from '../../styles/pages/shop/[id].module.scss';
+import { getProduct } from '@lib/products';
 import { generateCustomMetaData } from '@utils/metadata';
+import { notFound } from 'next/navigation';
 
-export const generateMetadata = async () => {
-  const product = {
-    name: 'Product Name',
-    description: 'Product Description',
-  };
+export const generateMetadata = async ({ params }: { params: { id: string } }) => {
+  const product = await getProduct(params.id);
+
+  if (!product) return notFound();
 
   return generateCustomMetaData({
-    title: `${product.name} | C-DOC`,
+    title: `${product} | C-DOC`,
     description: product.description,
+    image: product.thumbnail,
   });
 };
 

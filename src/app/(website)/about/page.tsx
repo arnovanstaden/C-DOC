@@ -11,6 +11,7 @@ import Button from '@components/system/Button/Button';
 export const metadata = generateCustomMetaData({
   title: 'About | C-Doc',
   description: 'Providing Effective Medical Support for 22 Years and Counting.',
+  image: '/images/pages/about/landing.jpeg',
 });
 
 const AboutPage = () => {

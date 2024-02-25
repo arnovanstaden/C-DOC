@@ -5,6 +5,7 @@ import { generateCustomMetaData } from '@utils/metadata';
 export const metadata = generateCustomMetaData({
   title: 'Equipment | C-DOC',
   description: '',
+  image: '/images/pages/equipment/landing.jpeg',
 });
 
 const EquipmentPage = () => {

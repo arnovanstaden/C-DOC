@@ -10,6 +10,7 @@ import { generateCustomMetaData } from '@utils/metadata';
 export const metadata = generateCustomMetaData({
   title: 'Services | C-Doc',
   description: 'The C-DOC Team Remains Committed and Dedicated to Safety and Competence',
+  image: '/images/pages/services/landing.jpeg',
 });
 
 const ServicesPage = () => {
