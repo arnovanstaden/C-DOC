@@ -1,0 +1,25 @@
+.Select {
+  label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .muiSelect {
+    width: 100%;
+    font-size: 0.9rem;
+    border-radius: 0;
+    border: 1px solid $darkgrey;
+
+    .innerSelect {
+      padding: 12px;
+      outline: none;
+      border: none;
+    }
+
+    fieldset {
+      border: none !important;
+    }
+  }
+}

@@ -2,16 +2,17 @@
 
 import { ICourse } from '@types';
 import styles from './CreateEditCourse.module.scss';
-import { useForm } from 'react-hook-form';
+import { Control, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Loader from '@components/system/Loader';
 import CreateEditDeleteAction from '../../atoms/CreateEditDeleteAction/CreateEditDeleteAction';
 import Input from '@components/system/Input';
 import TextArea from '@components/system/TextArea';
-import { createCourse, deleteCourse } from '@lib/courses';
+import { createCourse, deleteCourse, updateCourse } from '@lib/courses';
 import { enqueueSnackbar } from 'notistack';
 import { errorNotification } from '@utils/notifications';
 import FormRow from '@components/admin/atoms/FormRow/FormRow';
+import Select from '@components/system/Select/Select';
 
 const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -20,12 +21,12 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
+    control
   } = useForm<ICourse>();
 
   const handleCreateCourse = async (data: ICourse) => {
     setLoading(true);
-
     try {
       await createCourse(data);
       enqueueSnackbar('Course created');
@@ -37,10 +38,18 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
       setLoading(false);
     }
   };
-
-  const handleUpdateCourse = async () => {
-    setLoading(false);
-    reset();
+  const handleUpdateCourse = async (data: ICourse) => {
+    setLoading(true);
+    try {
+      await updateCourse(course.id, data);
+      enqueueSnackbar('Course updated');
+      reset();
+    } catch (e) {
+      console.error(e);
+      errorNotification('Error updating Course', e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -73,15 +82,6 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
           error={errors.description?.type === 'required' ? 'description is required' : undefined}
         />
         <FormRow>
-          {/* <Input
-            label='Author'
-            name="author"
-            inputProps={{
-              type: 'text',
-            }}
-            register={{ ...register('author', { required: true, value: course?.author }) }}
-            error={errors.author?.type === 'required' ? 'author is required' : undefined}
-          /> */}
           <Input
             label='Price'
             name="price"
@@ -97,10 +97,23 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
             inputProps={{
               type: 'text',
             }}
-            register={{ ...register('code', { required: true, value: course.code }) }}
+            register={{ ...register('code', { required: true, value: course?.code }) }}
             error={errors.code?.type === 'required' ? 'Code is required' : undefined}
           />
         </FormRow>
+        <Select
+          control={control as unknown as Control}
+          label='Category'
+          name='category'
+          options={[{
+            value: 'Online Distance Learning (ODL)',
+            label: 'Online Distance Learning (ODL)',
+          }, {
+            value: 'Blended learning: Online Theory + on-site skills development and assessment',
+            label: 'Blended learning: Online Theory + on-site skills development and assessment',
+          }]}
+          register={{ ...register('category', { required: true, value: course?.category }) }}
+        />
       </form>
       <Loader open={loading} />
     </div>

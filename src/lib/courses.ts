@@ -33,9 +33,9 @@ export const createCourse = async (course: ICourse): Promise<void> => {
   revalidateCourses();
 };
 
-export const updateCourse = async (course: ICourse): Promise<void> => {
+export const updateCourse = async (id: string, course: ICourse): Promise<void> => {
   await authPb();
-  await pb.collection('courses').update('', course);
+  await pb.collection('courses').update(id, course);
   revalidateCourses();
 
 };

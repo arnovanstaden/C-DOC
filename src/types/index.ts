@@ -112,6 +112,7 @@ export interface IOrder extends IPocketBaseBase {
   }[];
   status: 'pending' | 'paid';
   payfastPaymentId: string;
+  paymentFee: number;
 }
 
 export interface ISettings extends IPocketBaseBase {
