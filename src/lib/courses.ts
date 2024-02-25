@@ -5,10 +5,20 @@ import { authPb, pb } from './pocketbase';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-export const getCourse = async (id: string): Promise<ICourse> => {
+export const revalidateCourses = () => {
+  revalidatePath('/', 'layout');
+  redirect('/admin/courses');
+};
+
+export const getCourse = async (id: string): Promise<ICourse | undefined> => {
   await authPb();
-  const course = await pb.collection('courses').getOne(id);
-  return course;
+  try {
+    const course = await pb.collection('courses').getOne(id);
+    return course;
+  }
+  catch (e) {
+    return undefined;
+  }
 };
 
 export const getCourses = async (): Promise<ICourse[]> => {
@@ -20,23 +30,18 @@ export const getCourses = async (): Promise<ICourse[]> => {
 export const createCourse = async (course: ICourse): Promise<void> => {
   await authPb();
   await pb.collection('courses').create(course);
-  revalidatePath('/admin/courses');
-  revalidatePath('/courses');
-  redirect('/admin/courses');
+  revalidateCourses();
 };
 
 export const updateCourse = async (course: ICourse): Promise<void> => {
   await authPb();
   await pb.collection('courses').update('', course);
-  revalidatePath('/admin/courses');
-  revalidatePath('/courses');
-  redirect('/admin/courses');
+  revalidateCourses();
+
 };
 
 export const deleteCourse = async (id: string): Promise<void> => {
   await authPb();
   await pb.collection('courses').delete(id);
-  revalidatePath('/admin/courses');
-  revalidatePath('/courses');
-  redirect('/admin/courses');
+  revalidateCourses();
 };

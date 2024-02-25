@@ -9,7 +9,7 @@ interface IInputPropsBase {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
-interface IPropsRegister extends IInputPropsBase {
+export interface IPropsRegister extends IInputPropsBase {
   register: UseFormRegisterReturn;
   error?: string;
 }

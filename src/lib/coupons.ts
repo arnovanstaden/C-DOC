@@ -1,6 +1,6 @@
 'use server';
 
-import { ICoupon } from '@types';
+import { ICoupon, INewCoupon } from '@types';
 import { authPb, pb } from './pocketbase';
 import { sendEmail } from './email/server';
 import { buildCouponEmail } from './email/client';
@@ -12,7 +12,7 @@ export const getCouponByCode = async (code: string): Promise<ICoupon | undefined
   return result;
 };
 export const createCoupon = async (newCoupon: Omit<ICoupon, 'id' | 'code'>): Promise<void> => {
-  const coupon = {
+  const coupon: INewCoupon = {
     ...newCoupon,
     redeemed: false,
     expiry: new Date(newCoupon.expiry),

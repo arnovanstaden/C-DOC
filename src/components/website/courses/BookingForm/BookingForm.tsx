@@ -41,7 +41,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ register, errors, total, watc
         return;
       }
 
-      if (couponData.expiry < new Date()) {
+      if (new Date(couponData.expiry) < new Date()) {
         enqueueSnackbar('Coupon is Expired');
         return;
       }

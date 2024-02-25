@@ -1,4 +1,4 @@
-import { ICoupon, TContactMessage } from '@types';
+import { INewCoupon, TContactMessage } from '@types';
 
 export const buildContactEmail = (message: TContactMessage): string => {
   let body = '';
@@ -15,7 +15,7 @@ export const buildContactEmail = (message: TContactMessage): string => {
   `;
 };
 
-export const buildCouponEmail = (coupon: Omit<ICoupon, 'id'>) => {
+export const buildCouponEmail = (coupon: INewCoupon) => {
   return `
     <body
     style="color: #333333;max-width: 800px;margin: 0 auto;padding: 50px 0;font-family: Roboto, Verdana, sans-serif;font-size: 14.4px;">

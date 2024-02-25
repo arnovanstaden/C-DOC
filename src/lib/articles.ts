@@ -5,16 +5,26 @@ import { authPb, pb } from './pocketbase';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-export const getArticle = async (id: string): Promise<IArticle> => {
-  await authPb();
-  const result = await pb.collection('articles').getOne(id);
-  const article: IArticle = {
-    ...result,
-    image: pb.files.getUrl(result, result.image),
-    file: `${pb.files.getUrl(result, result.file)}`,
-  };
+export const revalidateArticles = () => {
+  revalidatePath('/', 'layout');
+  redirect('/admin/articles');
+};
 
-  return article;
+export const getArticle = async (id: string): Promise<IArticle | undefined> => {
+  await authPb();
+  try {
+    const result = await pb.collection('articles').getOne(id);
+    const article: IArticle = {
+      ...result,
+      image: pb.files.getUrl(result, result.image),
+      file: `${pb.files.getUrl(result, result.file)}`,
+    };
+
+    return article;
+  }
+  catch (e) {
+    return undefined;
+  }
 };
 
 export const getArticles = async (): Promise<IArticle[]> => {
@@ -32,23 +42,17 @@ export const getArticles = async (): Promise<IArticle[]> => {
 export const createArticle = async (article: FormData): Promise<void> => {
   await authPb();
   await pb.collection('articles').create(article);
-  revalidatePath('/admin/articles');
-  revalidatePath('/articles');
-  redirect('/admin/articles');
+  revalidateArticles();
 };
 
-export const updateArticle = async (article: FormData): Promise<void> => {
+export const updateArticle = async (id: string, article: FormData): Promise<void> => {
   await authPb();
-  await pb.collection('articles').update('', article);
-  revalidatePath('/admin/articles');
-  revalidatePath('/articles');
-  redirect('/admin/articles');
+  await pb.collection('articles').update(id, article);
+  revalidateArticles();
 };
 
 export const deleteArticle = async (id: string): Promise<void> => {
   await authPb();
   await pb.collection('articles').delete(id);
-  revalidatePath('/admin/articles');
-  revalidatePath('/articles');
-  redirect('/admin/articles');
+  revalidateArticles();
 };

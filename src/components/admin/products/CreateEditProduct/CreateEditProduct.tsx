@@ -8,20 +8,23 @@ import Loader from '@components/system/Loader';
 import CreateEditDeleteAction from '../../atoms/CreateEditDeleteAction/CreateEditDeleteAction';
 import Input from '@components/system/Input';
 import TextArea from '@components/system/TextArea';
-import { createProduct, deleteProduct } from '@lib/products';
+import { createProduct, deleteProduct, updateProduct } from '@lib/products';
 import { enqueueSnackbar } from 'notistack';
 import { errorNotification } from '@utils/notifications';
 import { convertToFormData } from '@utils/utils';
 import FormRow from '@components/admin/atoms/FormRow/FormRow';
+import FilePreview from '@components/admin/atoms/FilePreview/FilePreview';
 
-interface IProductForm extends Omit<IProduct, 'image' | 'file'> {
+interface IProductForm extends Omit<IProduct, 'thumbnail' | 'file' | 'images'> {
   file: FileList;
-  image: FileList;
+  thumbnail: FileList;
+  images: FileList;
 }
 
-interface INewProduct extends Omit<IProduct, 'image' | 'file'> {
+interface INewProduct extends Omit<IProduct, 'thumbnail' | 'file' | 'images'> {
   file: File;
-  image: File;
+  thumbnail: File;
+  images: File[];
 }
 
 
@@ -39,8 +42,9 @@ const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
     setLoading(true);
     const newProduct: INewProduct = {
       ...data,
-      image: data['image'][0],
+      thumbnail: data['thumbnail'][0],
       file: data['file'][0],
+      images: data?.images ? Array.from(data['images']) : undefined,
     };
 
     const newProductFormData = convertToFormData(newProduct);
@@ -57,9 +61,39 @@ const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
     }
   };
 
-  const handleUpdateProduct = async () => {
-    setLoading(false);
-    reset();
+  const handleUpdateProduct = async (data: IProductForm) => {
+    setLoading(true);
+    const newProduct: INewProduct = {
+      ...data,
+      thumbnail: data.thumbnail ? data['thumbnail'][0] : undefined,
+      file: data.file ? data['file'][0] : undefined,
+      images: (data?.images && data?.images.length > 0) ? Array.from(data['images']) : undefined,
+    };
+
+    const newProductFormData = convertToFormData(newProduct);
+
+    try {
+      await updateProduct(product.id, newProductFormData);
+      enqueueSnackbar('Product updated');
+    } catch (e) {
+      console.error(e);
+      errorNotification('Error updating Product', e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRemoveImages = async () => {
+    setLoading(true);
+    try {
+      await updateProduct(product.id, { images: null }, false);
+      enqueueSnackbar('Product updated');
+    } catch (e) {
+      console.error(e);
+      errorNotification('Error updating Product', e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -115,25 +149,36 @@ const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
           category
           visibility
         </FormRow>
-        <Input
-          label='Thumbnail'
-          name="thumbnail"
-          inputProps={{
-            type: 'file',
-          }}
-          register={{ ...register('thumbnail', { required: true }) }}
-          error={errors.thumbnail?.type === 'required' ? 'Thumbnail is required' : undefined}
-        />
-        <Input
-          label='File'
-          name="images"
-          inputProps={{
-            type: 'images',
-            multiple: true,
-          }}
-          register={{ ...register('images', { required: true }) }}
-          error={errors.images?.type === 'required' ? 'images is required' : undefined}
-        />
+        <FormRow>
+          <FilePreview
+            type='image'
+            file={product?.thumbnail}
+            inputProps={{
+              label: 'Thumbnail',
+              name: 'thumbnail',
+              required: true,
+              inputProps: {
+                type: 'file',
+              },
+              register,
+              error: errors.thumbnail?.type === 'required' ? 'Thumbnail is required' : undefined
+            }}
+          />
+          <FilePreview
+            type='images'
+            files={product?.images}
+            customRemove={handleRemoveImages}
+            inputProps={{
+              label: 'Images',
+              name: 'images',
+              inputProps: {
+                type: 'file',
+                multiple: true,
+              },
+              register,
+            }}
+          />
+        </FormRow>
       </form>
       <Loader open={loading} />
     </div>

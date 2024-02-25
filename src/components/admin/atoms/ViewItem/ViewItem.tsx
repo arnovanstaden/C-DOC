@@ -3,14 +3,19 @@
 import styles from './ViewItem.module.scss';
 import { useRouter } from 'next/navigation';
 import Button from '@components/system/Button/Button';
+import { camelCaseToTitleCase, formatDate } from '@utils/utils';
 
-const Item = ({ key, value }: { key: string, value: string | number | boolean }) => {
+const Item = ({ name, value }: { name: string, value: string | number | boolean | object }) => {
   if (!value) {
     return '-';
   };
 
-  if (key === 'created' && typeof value === 'string') {
-    return `${new Date(value).toLocaleDateString()} ${new Date(value).toLocaleTimeString()}`;
+  if (typeof value === 'object') {
+    return JSON.stringify(value, null, 2);
+  }
+
+  if (name === 'created' && typeof value === 'string') {
+    return formatDate(value);
   }
 
   if (typeof value === 'string' && /^(https?:\/\/)?([\w-]+\.)+[\w-]+(:\d+)?(\/\S*)?$/.test(value)) {
@@ -37,13 +42,9 @@ const ViewItem: React.FC<object> = (item) => {
       <ul>
         {showKeys.map((key) => (
           <li key={key}>
-            <h5>{key} </h5>
+            <h5>{camelCaseToTitleCase(key)} </h5>
             <p>
-              <Item key={key} value={item[key]} />
-              {/* {key === 'created'
-                ? `${new Date(item[key]).toLocaleDateString()} ${new Date(item[key]).toLocaleTimeString()}`
-                :  || '-'
-              } */}
+              <Item name={key} value={item[key]} />
             </p>
           </li>
         ))}

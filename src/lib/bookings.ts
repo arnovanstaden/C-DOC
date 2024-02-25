@@ -2,15 +2,25 @@
 
 import { IBooking } from '@types';
 import { authPb, pb } from './pocketbase';
+import { revalidatePath } from 'next/cache';
 
-export const getBooking = async (id: string): Promise<IBooking> => {
+export const revalidateBookings = () => {
+  revalidatePath('/', 'layout');
+};
+
+export const getBooking = async (id: string): Promise<IBooking | undefined> => {
   await authPb();
-  const result = await pb.collection('bookings').getOne(id);
-  const booking: IBooking = {
-    ...result,
-    proofOfPayment: `${pb.files.getUrl(result, result.proofOfPayment)}`,
-  };
-  return booking;
+  try {
+    const result = await pb.collection('bookings').getOne(id);
+    const booking: IBooking = {
+      ...result,
+      proofOfPayment: `${pb.files.getUrl(result, result.proofOfPayment)}`,
+    };
+    return booking;
+  }
+  catch (e) {
+    return undefined;
+  }
 };
 
 export const getBookings = async (): Promise<IBooking[]> => {
@@ -27,4 +37,5 @@ export const createBooking = async (booking: FormData): Promise<void> => {
   //   body: buildCouponEmail(coupon),
   //   recipient: coupon.email,
   // });
+  revalidateBookings();
 };

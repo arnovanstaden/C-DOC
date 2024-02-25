@@ -8,11 +8,12 @@ import Loader from '@components/system/Loader';
 import CreateEditDeleteAction from '../../atoms/CreateEditDeleteAction/CreateEditDeleteAction';
 import Input from '@components/system/Input';
 import TextArea from '@components/system/TextArea';
-import { createArticle, deleteArticle } from '@lib/articles';
+import { createArticle, deleteArticle, updateArticle } from '@lib/articles';
 import { enqueueSnackbar } from 'notistack';
 import { errorNotification } from '@utils/notifications';
 import { convertToFormData } from '@utils/utils';
 import FormRow from '@components/admin/atoms/FormRow/FormRow';
+import FilePreview from '@components/admin/atoms/FilePreview/FilePreview';
 
 interface IArticleForm extends Omit<IArticle, 'image' | 'file'> {
   file: FileList;
@@ -33,7 +34,13 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<IArticleForm>();
+  } = useForm<IArticleForm>({
+    defaultValues: {
+      ...article,
+      file: undefined,
+      image: undefined,
+    },
+  });
 
   const handleCreateArticle = async (data: IArticleForm) => {
     setLoading(true);
@@ -57,9 +64,26 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
     }
   };
 
-  const handleUpdateArticle = async () => {
-    setLoading(false);
-    reset();
+  const handleUpdateArticle = async (data: IArticleForm) => {
+    setLoading(true);
+
+    const newArticle: INewArticle = {
+      ...data,
+      image: data.image ? data['image'][0] : undefined,
+      file: data.file ? data['file'][0] : undefined,
+    };
+
+    const newArticleFormData = convertToFormData(newArticle);
+
+    try {
+      await updateArticle(article.id, newArticleFormData);
+      enqueueSnackbar('Article updated');
+    } catch (e) {
+      console.error(e);
+      errorNotification('Error updating Article', e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -81,14 +105,14 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
           inputProps={{
             type: 'text',
           }}
-          register={{ ...register('name', { required: true, value: article?.name }) }}
+          register={{ ...register('name', { required: true }) }}
           error={errors.name?.type === 'required' ? 'Name is required' : undefined}
         />
         <TextArea
           label='Description'
           name="description"
           textareaProps={{ required: true, rows: 4 }}
-          register={{ ...register('description', { required: true, value: article?.description }) }}
+          register={{ ...register('description', { required: true }) }}
           error={errors.description?.type === 'required' ? 'description is required' : undefined}
         />
         <FormRow>
@@ -98,7 +122,7 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
             inputProps={{
               type: 'text',
             }}
-            register={{ ...register('author', { required: true, value: article?.author }) }}
+            register={{ ...register('author', { required: true }) }}
             error={errors.author?.type === 'required' ? 'author is required' : undefined}
           />
           <Input
@@ -107,28 +131,38 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
             inputProps={{
               type: 'text',
             }}
-            register={{ ...register('researcher', { required: true, value: article?.researcher }) }}
+            register={{ ...register('researcher', { required: true }) }}
             error={errors.researcher?.type === 'required' ? 'researcher is required' : undefined}
           />
         </FormRow>
         <FormRow>
-          <Input
-            label='Image'
-            name="image"
+          <FilePreview
+            type='image'
+            file={article?.image}
             inputProps={{
-              type: 'file',
+              label: 'Image',
+              name: 'image',
+              required: true,
+              inputProps: {
+                type: 'file',
+              },
+              register,
+              error: errors.image?.type === 'required' ? 'image is required' : undefined
             }}
-            register={{ ...register('image', { required: true }) }}
-            error={errors.image?.type === 'required' ? 'image is required' : undefined}
           />
-          <Input
-            label='File'
-            name="file"
+          <FilePreview
+            type='document'
+            file={article?.file}
             inputProps={{
-              type: 'file',
+              label: 'File',
+              name: 'file',
+              required: true,
+              inputProps: {
+                type: 'file',
+              },
+              register,
+              error: errors.file?.type === 'required' ? 'File is required' : undefined
             }}
-            register={{ ...register('file', { required: true }) }}
-            error={errors.file?.type === 'required' ? 'file is required' : undefined}
           />
         </FormRow>
       </form>

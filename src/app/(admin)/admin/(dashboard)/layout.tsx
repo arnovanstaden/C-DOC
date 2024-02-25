@@ -3,6 +3,7 @@ import styles from './DashboardLayout.module.scss';
 import Container from '@components/website/layout/Container/Container';
 
 export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
 
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {

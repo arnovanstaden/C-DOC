@@ -1,6 +1,7 @@
 import { getBookings } from '@lib/bookings';
 import Link from 'next/link';
 import styles from './BookingList.module.scss';
+import { formatDate } from '@utils/utils';
 
 const BookingList = async () => {
   const bookings = await getBookings();
@@ -18,7 +19,7 @@ const BookingList = async () => {
                     <p>
                       <b>{booking.name}</b>
                     </p>
-                    <p>{new Date(booking.created).toISOString().slice(0, 10)}</p>
+                    <p>{formatDate(booking.created)}</p>
                     <p>R {booking.total}</p>
                   </li>
                 </Link>

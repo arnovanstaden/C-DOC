@@ -7,9 +7,10 @@ interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: string;
   outlined?: boolean;
   className?: string;
+  target?: HTMLAnchorElement['target'];
 }
 
-const Button = ({ href, children, outlined, className, ...props }: IProps) => {
+const Button = ({ href, children, outlined, className, target, ...props }: IProps) => {
   const classes = ClassNames(
     styles.Button,
     className,
@@ -29,7 +30,7 @@ const Button = ({ href, children, outlined, className, ...props }: IProps) => {
 
   if (href) {
     return (
-      <Link href={href}>
+      <Link href={href} target={target}>
         <Inner />
       </Link>
     );

@@ -4,8 +4,8 @@ export interface LoginCredentials {
 }
 
 interface IPocketBaseBase {
-  created: Date;
-  updated: Date;
+  created: string;
+  updated: string;
   collectionId: string;
   collectionName: string;
 }
@@ -25,8 +25,12 @@ export interface ICoupon extends IPocketBaseBase {
   email: string;
   code: string;
   discount: number;
-  expiry: Date;
+  expiry: string;
   redeemed: boolean;
+}
+
+export interface INewCoupon extends Omit<ICoupon, 'id' | 'expiry'> {
+  expiry: Date;
 }
 
 export type TContactMessage = {
@@ -92,7 +96,6 @@ export interface IBookingForm extends Omit<IBooking, 'id' | 'proofOfPayment'> {
 
 export interface IOrder extends IPocketBaseBase {
   id: string;
-  orderNumber: number;
 
   firstName: string;
   lastName: string;

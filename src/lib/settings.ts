@@ -15,5 +15,5 @@ export const getSettings = async (): Promise<ISettings> => {
 export const updateSettings = async (settings: ISettings): Promise<void> => {
   await authPb();
   await pb.collection('settings').update(settingsId, settings);
-  revalidatePath('/admin/settings');
+  revalidatePath('/', 'layout');
 };
