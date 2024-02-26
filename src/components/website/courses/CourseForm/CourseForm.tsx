@@ -29,12 +29,27 @@ const CourseForm: React.FC<{ courses: ICourse[] }> = ({ courses }) => {
     reset,
   } = useForm<IBookingForm>();
 
+  let total = selectedCourse?.price || 0;
+
+  if (coupon) {
+    total = total - (total * coupon.discount) / 100;
+  }
+
+  const selectedCourseAvailableDates: ICourseDate[] | boolean = selectedCourse?.dates && selectedCourse?.dates.length > 0 && (
+    selectedCourse.dates
+      .filter((date) => new Date(date.from) >= new Date())
+  ) || false;
+  const allDetailsReady = selectedCourse && (!selectedCourseAvailableDates || selectedCourseDates);
+
   useEffect(() => {
+    if (!selectedCourse) return;
+
     const bookingFormElement = document.getElementById('BookingForm');
     const courseDatesElement = document.getElementById('CourseDates');
 
-    if (courseDatesElement && !selectedCourse?.dates) {
+    if (courseDatesElement) {
       courseDatesElement.scrollIntoView({ behavior: 'smooth' });
+      setSelectedCourseDates(selectedCourseAvailableDates[0]);
       return;
     }
 
@@ -43,22 +58,6 @@ const CourseForm: React.FC<{ courses: ICourse[] }> = ({ courses }) => {
     }
   }, [selectedCourse]);
 
-
-  useEffect(() => {
-    const bookingFormElement = document.getElementById('BookingForm');
-    if (bookingFormElement) {
-      bookingFormElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [selectedCourseDates]);
-
-  let total = selectedCourse?.price || 0;
-
-  if (coupon) {
-    total = total - (total * coupon.discount) / 100;
-  }
-
-  const selectedCourseHasDates = selectedCourse?.dates && selectedCourse?.dates.length > 0;
-  const allDetailsReady = selectedCourse && (!selectedCourseHasDates || selectedCourseDates);
 
   const submitBooking = async (data) => {
     if (!allDetailsReady) return;
@@ -113,7 +112,7 @@ const CourseForm: React.FC<{ courses: ICourse[] }> = ({ courses }) => {
           </div>
         </Section>
 
-        {selectedCourseHasDates && (
+        {selectedCourseAvailableDates && (
           <Section
             heading="Select Course Date"
             idProp='CourseDates'
@@ -122,11 +121,12 @@ const CourseForm: React.FC<{ courses: ICourse[] }> = ({ courses }) => {
               <BaseSelect
                 className={styles.select}
                 label='Date'
-                options={selectedCourse.dates.map((date) => ({
+                options={selectedCourseAvailableDates.map((date) => ({
                   value: JSON.stringify(date),
                   label: `${date.from.toLocaleString().substring(0, 10)} - ${date.to.toLocaleString().substring(0, 10)}`,
                 }))}
                 onChange={(newValue) => setSelectedCourseDates(JSON.parse(newValue))}
+                defaultValue={JSON.stringify(selectedCourseAvailableDates[0])}
               />
             </div>
           </Section>

@@ -3,6 +3,7 @@ import styles from './CourseDates.module.scss';
 import { ICourseDate } from '@types';
 import Button from '@components/system/Button/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Checkbox } from '@mui/material';
 
 interface CourseDatesProps {
   setFormDates: (dates: ICourseDate[]) => void;
@@ -33,14 +34,8 @@ const CourseDates: React.FC<CourseDatesProps> = (props) => {
   return (
     <div className={styles.CourseDates}>
       <div className={styles.row}>
-        <input
-          type="checkbox"
-          name="dates"
-          onChange={(e) => e.target.checked ? addEmptyDate() : setDates(undefined)}
-          checked={!!dates}
-        />
+        <Checkbox checked={!!dates} onChange={(e) => e.target.checked ? addEmptyDate() : setDates(undefined)} />
         <label htmlFor="dates">This course has dates</label>
-
       </div>
       {!!dates && (
         <>

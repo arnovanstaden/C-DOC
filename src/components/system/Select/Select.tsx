@@ -3,12 +3,18 @@ import styles from './Select.module.scss';
 import { MenuItem, Select as MUISelect } from '@mui/material';
 import classNames from 'classnames';
 
+interface IOption {
+  value: string;
+  label: string;
+}
+
 interface BaseSelectProps {
   label: string,
-  options: { value: string, label: string }[],
+  options: IOption[],
   field?: ControllerRenderProps<FieldValues, string>;
   className?: string;
   onChange?: (newValue: string) => void;
+  defaultValue?: string;
 }
 
 export const BaseSelect: React.FC<BaseSelectProps> = (props) => (
@@ -22,7 +28,7 @@ export const BaseSelect: React.FC<BaseSelectProps> = (props) => (
       select: styles.innerSelect,
     }}
     onChange={(e) => props.onChange && props.onChange(e.target.value as string)}
-    defaultValue={''}
+    defaultValue={props.defaultValue}
     {...props.field}
   >
     {props.options.map((option) => (
@@ -33,11 +39,12 @@ export const BaseSelect: React.FC<BaseSelectProps> = (props) => (
 
 interface SelectProps {
   label: string,
-  options: { value: string, label: string }[],
+  options: IOption[],
   register: UseFormRegisterReturn;
   control: Control
   name: string;
   error?: string;
+  defaultValue?: string;
 }
 
 const Select: React.FC<SelectProps> = (props) => {
@@ -47,12 +54,13 @@ const Select: React.FC<SelectProps> = (props) => {
       <Controller
         name={props.name}
         control={props.control}
-        defaultValue=""
+        defaultValue={props.defaultValue}
         render={({ field }) => (
           <BaseSelect
             options={props.options}
             field={field}
             label={props.label}
+            defaultValue={props.defaultValue}
           />
         )}
       />
