@@ -68,6 +68,7 @@ export interface IProduct extends IPocketBaseBase {
   images: string[];
   code: string;
   visible: boolean;
+  document?: string
 }
 
 export interface IBooking extends IPocketBaseBase {

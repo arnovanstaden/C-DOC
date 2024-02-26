@@ -25,7 +25,11 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
     reset,
     control,
     setValue
-  } = useForm<ICourse>();
+  } = useForm<ICourse>({
+    defaultValues: {
+      category: 'Online Distance Learning (ODL)',
+    }
+  });
 
   const handleCreateCourse = async (data: ICourse) => {
     setLoading(true);
@@ -116,7 +120,6 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
           }]}
           register={{ ...register('category', { required: true, value: course?.category }) }}
           error={errors.category?.type === 'required' ? 'Category is required' : undefined}
-          defaultValue='Online Distance Learning (ODL)'
         />
         <CourseDates
           setFormDates={(dates: ICourseDate[]) => setValue('dates', dates)}

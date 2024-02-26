@@ -15,15 +15,16 @@ import { convertToFormData } from '@utils/utils';
 import FormRow from '@components/admin/atoms/FormRow/FormRow';
 import FilePreview from '@components/admin/atoms/FilePreview/FilePreview';
 import Select from '@components/system/Select/Select';
+import { Checkbox } from '@mui/material';
 
-interface IProductForm extends Omit<IProduct, 'thumbnail' | 'file' | 'images'> {
-  file: FileList;
+interface IProductForm extends Omit<IProduct, 'thumbnail' | 'document' | 'images'> {
+  document: FileList;
   thumbnail: FileList;
   images: FileList;
 }
 
-interface INewProduct extends Omit<IProduct, 'thumbnail' | 'file' | 'images'> {
-  file: File;
+interface INewProduct extends Omit<IProduct, 'thumbnail' | 'document' | 'images'> {
+  document: File;
   thumbnail: File;
   images: File[];
 }
@@ -31,6 +32,7 @@ interface INewProduct extends Omit<IProduct, 'thumbnail' | 'file' | 'images'> {
 
 const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [isDigitalProduct, setIsDigitalProduct] = useState<boolean>(!!product?.document);
 
   const {
     register,
@@ -38,15 +40,20 @@ const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
     formState: { errors },
     reset,
     control
-  } = useForm<IProductForm>();
+  } = useForm<IProductForm>({
+    defaultValues: {
+      visible: true,
+      category: 'Medical Equipment',
+    }
+  });
 
   const handleCreateProduct = async (data: IProductForm) => {
     setLoading(true);
     const newProduct: INewProduct = {
       ...data,
       thumbnail: data['thumbnail'][0],
-      file: data['file'][0],
       images: data?.images ? Array.from(data['images']) : undefined,
+      document: isDigitalProduct ? data['document'][0] : undefined,
     };
 
     const newProductFormData = convertToFormData(newProduct);
@@ -68,7 +75,7 @@ const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
     const newProduct: INewProduct = {
       ...data,
       thumbnail: data.thumbnail ? data['thumbnail'][0] : undefined,
-      file: data.file ? data['file'][0] : undefined,
+      document: data.document ? data['document'][0] : undefined,
       images: (data?.images && data?.images.length > 0) ? Array.from(data['images']) : undefined,
     };
 
@@ -209,6 +216,27 @@ const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
             }}
           />
         </FormRow>
+        <div className={styles.row}>
+          <Checkbox checked={isDigitalProduct} onChange={(e) => setIsDigitalProduct(e.target.checked)} />
+          <label htmlFor="dates">This is a Digital Product</label>
+        </div>
+        {isDigitalProduct && (
+          <FilePreview
+            type='document'
+            file={product?.document}
+            inputProps={{
+              label: 'Document',
+              name: 'document',
+              required: true,
+              inputProps: {
+                type: 'file',
+                accept: 'application/pdf'
+              },
+              register,
+              error: errors.document?.type === 'required' ? 'Document is required' : undefined
+            }}
+          />
+        )}
       </form>
       <Loader open={loading} />
     </div>

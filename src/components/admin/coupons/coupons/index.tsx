@@ -15,12 +15,19 @@ import FormRow from '@components/admin/atoms/FormRow/FormRow';
 const CreateCoupons: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
+  const currentDate = new Date();
+  const threeMonthsLater = new Date(currentDate.getFullYear(), currentDate.getMonth() + 3, currentDate.getDate());
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset
-  } = useForm<ICoupon>();
+  } = useForm<ICoupon>({
+    defaultValues: {
+      expiry: threeMonthsLater.toISOString().substring(0, 10)
+    }
+  });
 
   const handleCreateCoupon = async (coupon: ICoupon) => {
     setLoading(true);
@@ -36,8 +43,6 @@ const CreateCoupons: React.FC = () => {
     }
   };
 
-  const currentDate = new Date();
-  const threeMonthsLater = new Date(currentDate.getFullYear(), currentDate.getMonth() + 3, currentDate.getDate());
 
   return (
     <div className={styles.CreateCoupons}>
@@ -71,7 +76,6 @@ const CreateCoupons: React.FC = () => {
             name="expiry"
             inputProps={{
               type: 'date',
-              defaultValue: threeMonthsLater.toISOString().substring(0, 10)
             }}
             register={{ ...register('expiry', { required: true, }) }}
             error={errors.expiry?.type === 'required' ? 'Expiry is required' : undefined}

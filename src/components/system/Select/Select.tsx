@@ -44,7 +44,6 @@ interface SelectProps {
   control: Control
   name: string;
   error?: string;
-  defaultValue?: string;
 }
 
 const Select: React.FC<SelectProps> = (props) => {
@@ -54,13 +53,11 @@ const Select: React.FC<SelectProps> = (props) => {
       <Controller
         name={props.name}
         control={props.control}
-        defaultValue={props.defaultValue}
         render={({ field }) => (
           <BaseSelect
             options={props.options}
             field={field}
             label={props.label}
-            defaultValue={props.defaultValue}
           />
         )}
       />

@@ -18,6 +18,7 @@ export const getProduct = async (id: string): Promise<IProduct | undefined> => {
     const product: IProduct = {
       ...result,
       thumbnail: pb.files.getUrl(result, result.thumbnail),
+      document: pb.files.getUrl(result, result.document),
       images: result.images.map((image) => pb.files.getUrl(result, image))
     };
 
