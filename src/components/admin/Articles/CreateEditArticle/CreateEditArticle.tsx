@@ -145,6 +145,7 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
               required: true,
               inputProps: {
                 type: 'file',
+                accept: 'image/*',
               },
               register,
               error: errors.image?.type === 'required' ? 'image is required' : undefined
@@ -159,6 +160,7 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
               required: true,
               inputProps: {
                 type: 'file',
+                accept: 'application/pdf'
               },
               register,
               error: errors.file?.type === 'required' ? 'File is required' : undefined

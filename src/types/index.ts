@@ -41,6 +41,11 @@ export type TContactMessage = {
 
 export type TCategory = 'Online Distance Learning (ODL)' | 'Blended learning: Online Theory + Onsite skills development and assessment';
 
+export interface ICourseDate {
+  from: string;
+  to: string;
+}
+
 export interface ICourse extends IPocketBaseBase {
   id: string;
   name: string;
@@ -48,10 +53,7 @@ export interface ICourse extends IPocketBaseBase {
   code: string;
   price: number;
   category: TCategory;
-  dates?: {
-    from: string;
-    to: string;
-  }[];
+  dates?: ICourseDate[];
 }
 
 export type TProductCategory = 'Medical Equipment' | 'Clothing & Gear' | 'Guidance Documents';
@@ -75,13 +77,8 @@ export interface IBooking extends IPocketBaseBase {
   phone: string;
   country: string;
   total: number;
-  course: {
-    id: string;
-    date?: {
-      from: string;
-      to: string;
-    }
-  }
+  courseId: string;
+  courseDates: ICourseDate;
   coupon?: string;
   proofOfPayment: string;
 }

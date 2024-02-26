@@ -42,6 +42,7 @@ export const getProducts = async (): Promise<IProduct[]> => {
 
 export const createProduct = async (product: FormData): Promise<void> => {
   await authPb();
+
   await pb.collection('products').create(product);
   revalidateProducts();
 };

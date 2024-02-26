@@ -26,12 +26,11 @@ export const convertToFormData = (data: object): FormData => {
       value.forEach((file) => {
         formData.append(key, file);
       });
-    } else if (typeof value === 'object') {
-      formData.append(key, value);
-    }
+    } else if (typeof value === 'string')
+      formData.append(key, String(value));
     else {
       // For other types of values, convert them to strings before appending
-      formData.append(key, String(value));
+      formData.append(key, value);
     }
   });
 

@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import styles from './CourseDates.module.scss';
-import { ICourse } from '@types';
+import { ICourseDate } from '@types';
 import Button from '@components/system/Button/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface CourseDatesProps {
-  setFormDates: (dates: ICourse['dates']) => void;
-  dates?: ICourse['dates'];
+  setFormDates: (dates: ICourseDate[]) => void;
+  dates?: ICourseDate[];
 }
 
 const CourseDates: React.FC<CourseDatesProps> = (props) => {
-  const [dates, setDates] = useState<ICourse['dates'] | undefined>(props.dates);
+  const [dates, setDates] = useState<ICourseDate[] | undefined>(props.dates);
 
   const addEmptyDate = () => {
     const newDate = { from: new Date().toISOString().substring(0, 10), to: new Date().toISOString().substring(0, 10) };

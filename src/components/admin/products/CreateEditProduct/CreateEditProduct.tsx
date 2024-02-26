@@ -188,6 +188,7 @@ const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
               required: true,
               inputProps: {
                 type: 'file',
+                accept: 'image/*',
               },
               register,
               error: errors.thumbnail?.type === 'required' ? 'Thumbnail is required' : undefined

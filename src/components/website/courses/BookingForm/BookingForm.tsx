@@ -140,6 +140,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ register, errors, total, watc
               name="proofOfPayment"
               inputProps={{
                 type: 'file',
+                accept: 'image/*, application/pdf'
               }}
               register={{ ...register('proofOfPayment', { required: true }) }}
               error={errors.proofOfPayment?.type === 'required' ? 'Proof Of Payment is required' : undefined}

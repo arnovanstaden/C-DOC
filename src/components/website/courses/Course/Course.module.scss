@@ -3,8 +3,8 @@
   padding: 24px;
   display: grid;
   grid-template-columns: 1fr auto;
+  align-items: center;
   gap: 1rem;
-  cursor: pointer;
   transition: 0.3s ease-in-out;
 
   .details {
@@ -24,14 +24,6 @@
       font-style: normal;
       display: inline-block;
       letter-spacing: 0.25px;
-    }
-
-    .date {
-      span {
-        font-weight: 500;
-        color: $red;
-        margin-right: 0.5rem;
-      }
     }
 
     p {

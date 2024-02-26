@@ -1,6 +1,6 @@
 'use client';
 
-import { ICourse } from '@types';
+import { ICourse, ICourseDate } from '@types';
 import styles from './CreateEditCourse.module.scss';
 import { Control, useForm } from 'react-hook-form';
 import { useState } from 'react';
@@ -118,7 +118,7 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
           error={errors.category?.type === 'required' ? 'Category is required' : undefined}
         />
         <CourseDates
-          setFormDates={(dates: ICourse['dates']) => setValue('dates', dates)}
+          setFormDates={(dates: ICourseDate[]) => setValue('dates', dates)}
           dates={course?.dates}
         />
       </form>
