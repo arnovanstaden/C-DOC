@@ -8,6 +8,7 @@ interface SelectProps {
   register: UseFormRegisterReturn;
   control: Control
   name: string;
+  error?: string;
 }
 
 const Select: React.FC<SelectProps> = (props) => {
@@ -36,6 +37,7 @@ const Select: React.FC<SelectProps> = (props) => {
           </MUISelect>
         )}
       />
+      {props.error && <small>{props.error}</small>}
     </div>
   );
 };

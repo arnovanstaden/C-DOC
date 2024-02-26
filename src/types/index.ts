@@ -48,10 +48,10 @@ export interface ICourse extends IPocketBaseBase {
   code: string;
   price: number;
   category: TCategory;
-  dates?: [{
-    from: Date;
-    to: Date;
-  }]
+  dates?: {
+    from: string;
+    to: string;
+  }[];
 }
 
 export type TProductCategory = 'Medical Equipment' | 'Clothing & Gear' | 'Guidance Documents';
@@ -78,8 +78,8 @@ export interface IBooking extends IPocketBaseBase {
   course: {
     id: string;
     date?: {
-      from: Date;
-      to: Date;
+      from: string;
+      to: string;
     }
   }
   coupon?: string;

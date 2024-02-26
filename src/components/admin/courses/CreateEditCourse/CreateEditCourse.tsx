@@ -13,6 +13,7 @@ import { enqueueSnackbar } from 'notistack';
 import { errorNotification } from '@utils/notifications';
 import FormRow from '@components/admin/atoms/FormRow/FormRow';
 import Select from '@components/system/Select/Select';
+import CourseDates from './CourseDates/CourseDates';
 
 const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -22,7 +23,8 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
     handleSubmit,
     formState: { errors },
     reset,
-    control
+    control,
+    setValue
   } = useForm<ICourse>();
 
   const handleCreateCourse = async (data: ICourse) => {
@@ -113,6 +115,11 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
             label: 'Blended learning: Online Theory + on-site skills development and assessment',
           }]}
           register={{ ...register('category', { required: true, value: course?.category }) }}
+          error={errors.category?.type === 'required' ? 'Category is required' : undefined}
+        />
+        <CourseDates
+          setFormDates={(dates: ICourse['dates']) => setValue('dates', dates)}
+          dates={course?.dates}
         />
       </form>
       <Loader open={loading} />
