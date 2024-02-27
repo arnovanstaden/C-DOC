@@ -1,6 +1,6 @@
 'use client';
 
-import { IProduct } from '@types';
+import { INewProduct, IProduct, IProductForm } from '@types';
 import styles from './CreateEditProduct.module.scss';
 import { Control, useForm } from 'react-hook-form';
 import { useState } from 'react';
@@ -16,19 +16,6 @@ import FormRow from '@components/admin/atoms/FormRow/FormRow';
 import FilePreview from '@components/admin/atoms/FilePreview/FilePreview';
 import Select from '@components/system/Select/Select';
 import { Checkbox } from '@mui/material';
-
-interface IProductForm extends Omit<IProduct, 'thumbnail' | 'document' | 'images'> {
-  document: FileList;
-  thumbnail: FileList;
-  images: FileList;
-}
-
-interface INewProduct extends Omit<IProduct, 'thumbnail' | 'document' | 'images'> {
-  document: File;
-  thumbnail: File;
-  images: File[];
-}
-
 
 const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -51,6 +38,7 @@ const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
     setLoading(true);
     const newProduct: INewProduct = {
       ...data,
+      deleted: false,
       thumbnail: data['thumbnail'][0],
       images: data?.images ? Array.from(data['images']) : undefined,
       document: isDigitalProduct ? data['document'][0] : undefined,
@@ -74,6 +62,7 @@ const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
     setLoading(true);
     const newProduct: INewProduct = {
       ...data,
+      deleted: false,
       thumbnail: data.thumbnail ? data['thumbnail'][0] : undefined,
       document: data.document ? data['document'][0] : undefined,
       images: (data?.images && data?.images.length > 0) ? Array.from(data['images']) : undefined,

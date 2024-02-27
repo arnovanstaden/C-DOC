@@ -1,6 +1,6 @@
 'use client';
 
-import { ICourse, ICourseDate } from '@types';
+import { ICourse, ICourseDate, INewCourse } from '@types';
 import styles from './CreateEditCourse.module.scss';
 import { Control, useForm } from 'react-hook-form';
 import { useState } from 'react';
@@ -25,13 +25,13 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
     reset,
     control,
     setValue
-  } = useForm<ICourse>({
+  } = useForm<INewCourse>({
     defaultValues: {
       category: 'Online Distance Learning (ODL)',
     }
   });
 
-  const handleCreateCourse = async (data: ICourse) => {
+  const handleCreateCourse = async (data: INewCourse) => {
     setLoading(true);
     try {
       await createCourse(data);
@@ -44,7 +44,7 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
       setLoading(false);
     }
   };
-  const handleUpdateCourse = async (data: ICourse) => {
+  const handleUpdateCourse = async (data: INewCourse) => {
     setLoading(true);
     try {
       await updateCourse(course.id, data);

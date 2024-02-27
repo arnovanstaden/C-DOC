@@ -1,6 +1,6 @@
 'use server';
 
-import { ICourse } from '@types';
+import { ICourse, INewCourse } from '@types';
 import { authPb, pb } from './pocketbase';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
@@ -27,13 +27,17 @@ export const getCourses = async (): Promise<ICourse[]> => {
   return courses.items;
 };
 
-export const createCourse = async (course: ICourse): Promise<void> => {
+export const createCourse = async (course: INewCourse): Promise<void> => {
+  const newCourse: INewCourse = {
+    ...course,
+    deleted: false,
+  };
   await authPb();
-  await pb.collection('courses').create(course);
+  await pb.collection('courses').create(newCourse);
   revalidateCourses();
 };
 
-export const updateCourse = async (id: string, course: ICourse): Promise<void> => {
+export const updateCourse = async (id: string, course: INewCourse): Promise<void> => {
   await authPb();
   await pb.collection('courses').update(id, course);
   revalidateCourses();

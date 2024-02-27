@@ -1,6 +1,6 @@
 'use client';
 
-import { IArticle } from '@types';
+import { IArticle, IArticleForm, INewArticle } from '@types';
 import styles from './CreateEditArticle.module.scss';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
@@ -14,17 +14,6 @@ import { errorNotification } from '@utils/notifications';
 import { convertToFormData } from '@utils/utils';
 import FormRow from '@components/admin/atoms/FormRow/FormRow';
 import FilePreview from '@components/admin/atoms/FilePreview/FilePreview';
-
-interface IArticleForm extends Omit<IArticle, 'image' | 'file'> {
-  file: FileList;
-  image: FileList;
-}
-
-interface INewArticle extends Omit<IArticle, 'image' | 'file'> {
-  file: File;
-  image: File;
-}
-
 
 const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
   const [loading, setLoading] = useState<boolean>(false);

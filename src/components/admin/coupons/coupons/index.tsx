@@ -3,7 +3,7 @@
 import Input from '@components/system/Input';
 import styles from './styles.module.scss';
 import { useState } from 'react';
-import { ICoupon } from '@types';
+import { ICouponForm } from '@types';
 import Button from '@components/system/Button/Button';
 import { enqueueSnackbar } from 'notistack';
 import { createCoupon } from '@lib/coupons';
@@ -23,13 +23,13 @@ const CreateCoupons: React.FC = () => {
     handleSubmit,
     formState: { errors },
     reset
-  } = useForm<ICoupon>({
+  } = useForm<ICouponForm>({
     defaultValues: {
       expiry: threeMonthsLater.toISOString().substring(0, 10)
     }
   });
 
-  const handleCreateCoupon = async (coupon: ICoupon) => {
+  const handleCreateCoupon = async (coupon: ICouponForm) => {
     setLoading(true);
     try {
       await createCoupon(coupon);
