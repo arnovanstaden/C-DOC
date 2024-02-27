@@ -67,7 +67,7 @@ const CourseForm: React.FC<{ courses: ICourse[] }> = ({ courses }) => {
       ...data,
       total,
       proofOfPayment: data['proofOfPayment'][0],
-      courseId: selectedCourse.id,
+      course: selectedCourse.id,
       courseDates: JSON.stringify(selectedCourseDates),
     };
 

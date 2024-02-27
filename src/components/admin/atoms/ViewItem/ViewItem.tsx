@@ -4,6 +4,7 @@ import styles from './ViewItem.module.scss';
 import { useRouter } from 'next/navigation';
 import Button from '@components/system/Button/Button';
 import { camelCaseToTitleCase, formatDate } from '@utils/utils';
+import ViewObject from './ViewObject/ViewObject';
 
 const Item = ({ name, value }: { name: string, value: string | number | boolean | object }) => {
   if (!value) {
@@ -11,18 +12,18 @@ const Item = ({ name, value }: { name: string, value: string | number | boolean 
   };
 
   if (typeof value === 'object') {
-    return JSON.stringify(value, null, 2);
+    return <ViewObject data={value} />;
   }
 
   if (name === 'created' && typeof value === 'string') {
-    return formatDate(value);
+    return <p>{formatDate(value)}</p>;
   }
 
   if (typeof value === 'string' && /^(https?:\/\/)?([\w-]+\.)+[\w-]+(:\d+)?(\/\S*)?$/.test(value)) {
     return <a href={value} target="_blank">View</a>;
   }
 
-  return value;
+  return <p>{value}</p>;
 };
 
 const ViewItem: React.FC<object> = (item) => {
@@ -42,10 +43,8 @@ const ViewItem: React.FC<object> = (item) => {
       <ul>
         {showKeys.map((key) => (
           <li key={key}>
-            <h5>{camelCaseToTitleCase(key)} </h5>
-            <p>
-              <Item name={key} value={item[key]} />
-            </p>
+            <h4>{camelCaseToTitleCase(key)} </h4>
+            <Item name={key} value={item[key]} />
           </li>
         ))}
       </ul>

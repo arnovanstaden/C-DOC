@@ -78,7 +78,7 @@ export interface IBooking extends IPocketBaseBase {
   phone: string;
   country: string;
   total: number;
-  courseId: string;
+  course: string;
   courseDates: ICourseDate;
   coupon?: string;
   proofOfPayment: string;

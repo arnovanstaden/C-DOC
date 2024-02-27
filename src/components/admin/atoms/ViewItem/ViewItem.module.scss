@@ -1,6 +1,6 @@
 .ViewItem {
   ul {
-    margin-top: 24px !important;
+    margin-top: 24px;
 
     li {
       display: grid;
@@ -8,15 +8,16 @@
       border-bottom: 0.25px solid rgba($lightgrey, 0.25);
       background-color: transparent !important;
       padding: 12px 16px !important;
-      align-items: center;
+      // align-items: center;
 
       &:hover {
         background-color: transparent !important;
       }
 
-      h5 {
+      h4 {
         margin: 0;
         text-transform: capitalize;
+        font-size: 14px;
       }
 
       p {
