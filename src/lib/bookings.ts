@@ -1,6 +1,6 @@
 'use server';
 
-import { IBooking } from '@types';
+import { IBooking, IBookingSimple, IExpandedBooking } from '@types';
 import { authPb, pb } from './pocketbase';
 import { revalidatePath } from 'next/cache';
 
@@ -11,10 +11,14 @@ export const revalidateBookings = () => {
 export const getBooking = async (id: string): Promise<IBooking | undefined> => {
   await authPb();
   try {
-    const result = await pb.collection('bookings').getOne(id);
+    const result: IExpandedBooking = await pb.collection('bookings').getOne(id);
+
+    const { expand, ...rest } = result;
+
     const booking: IBooking = {
-      ...result,
+      ...rest,
       proofOfPayment: `${pb.files.getUrl(result, result.proofOfPayment)}`,
+      course: expand.course,
     };
     return booking;
   }
@@ -23,7 +27,7 @@ export const getBooking = async (id: string): Promise<IBooking | undefined> => {
   }
 };
 
-export const getBookings = async (): Promise<IBooking[]> => {
+export const getBookings = async (): Promise<IBookingSimple[]> => {
   await authPb();
   const result = await pb.collection('bookings').getList();
   return result.items;

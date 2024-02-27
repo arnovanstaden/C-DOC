@@ -4,8 +4,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export const metadata: Metadata = {
-  title: 'Edit Order | C-DOC',
-  description: 'Edit Order | C-DOC',
+  title: 'View Order | C-DOC',
+  description: 'View Order | C-DOC',
   robots: {
     index: false,
     follow: false,

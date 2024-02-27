@@ -1,6 +1,6 @@
 'use server';
 
-import { IOrder } from '@types';
+import { IExpandedOrder, IOrder, IOrderSimple } from '@types';
 import { authPb, pb } from './pocketbase';
 import { revalidatePath } from 'next/cache';
 
@@ -13,15 +13,30 @@ export const revalidateOrders = () => {
 export const getOrder = async (id: string): Promise<IOrder | undefined> => {
   await authPb();
   try {
-    const result = await pb.collection('orders').getOne(id);
-    return result;
+    const result: IExpandedOrder = await pb.collection('orders').getOne(id, {
+      expand: 'orderDetails,orderDetails.product',
+    });
+
+    const { expand, ...rest } = result;
+
+    const order: IOrder = {
+      ...rest,
+      orderDetails: expand.orderDetails.map((detail) => {
+        const { expand, ...rest } = detail;
+        return {
+          ...rest,
+          product: expand.product,
+        };
+      }),
+    };
+    return order;
   }
   catch (e) {
     return undefined;
   }
 };
 
-export const getOrders = async (): Promise<IOrder[]> => {
+export const getOrders = async (): Promise<IOrderSimple[]> => {
   await authPb();
   const result = await pb.collection('orders').getList();
   return result.items;

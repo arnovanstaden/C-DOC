@@ -1,12 +1,22 @@
 import { IPocketBaseBase, IProduct } from '@types';
 
-export interface IOrderDetail {
-  product: IProduct;
+export interface IOrderDetailSimple extends IPocketBaseBase {
+  product: string;
   quantity: number;
   price: number;
 }
 
-export interface IOrder extends IPocketBaseBase {
+export interface IOrderDetail extends Omit<IOrderDetailSimple, 'product'> {
+  product: IProduct;
+}
+
+export interface IExpandedOrderDetail extends Omit<IOrderDetailSimple, 'product'> {
+  expand: {
+    product: IProduct;
+  }
+}
+
+export interface IOrderSimple extends IPocketBaseBase {
   id: string;
 
   firstName: string;
@@ -16,11 +26,21 @@ export interface IOrder extends IPocketBaseBase {
   deliveryAddress: string;
   deliveryNotes?: string;
 
-  details: IOrderDetail[];
+  orderDetails: string[];
   total: number;
   status: 'pending' | 'paid';
   payfastPaymentId?: string;
   paymentFee?: number;
+}
+
+export interface IOrder extends Omit<IOrderSimple, 'orderDetails'> {
+  orderDetails: IOrderDetail[];
+}
+
+export interface IExpandedOrder extends Omit<IOrder, 'orderDetails'> {
+  expand: {
+    orderDetails: IExpandedOrderDetail[];
+  }
 }
 
 export interface INewOrder extends Omit<IOrder, 'id' | 'status' | 'payfastPaymentId' | 'paymentFee'> {
