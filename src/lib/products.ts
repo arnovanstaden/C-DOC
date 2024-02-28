@@ -29,9 +29,14 @@ export const getProduct = async (id: string): Promise<IProduct | undefined> => {
   }
 };
 
-export const getProducts = async (): Promise<IProduct[]> => {
+
+export const getProducts = async (sortBy: keyof IProduct = 'updated'): Promise<IProduct[]> => {
   await authPb();
-  const result = await pb.collection('products').getList();
+  const result = await pb.collection('products').getList(undefined, undefined, {
+    sort: `-${sortBy}`,
+    filter: 'deleted = false'
+  });
+
   const products: IProduct[] = result.items.map((product) => ({
     ...product,
     thumbnail: pb.files.getUrl(product, product.thumbnail),

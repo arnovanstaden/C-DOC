@@ -3,7 +3,7 @@ import { getCourses } from '@lib/courses';
 import Link from 'next/link';
 
 const CourseList: React.FC = async () => {
-  const courses = await getCourses();
+  const courses = await getCourses('updated');
 
   return (
     <div>

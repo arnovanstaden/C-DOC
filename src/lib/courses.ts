@@ -21,9 +21,12 @@ export const getCourse = async (id: string): Promise<ICourse | undefined> => {
   }
 };
 
-export const getCourses = async (): Promise<ICourse[]> => {
+export const getCourses = async (sortBy: keyof ICourse = 'name'): Promise<ICourse[]> => {
   await authPb();
-  const courses = await pb.collection('courses').getList();
+  const courses = await pb.collection('courses').getList(undefined, undefined, {
+    sort: `-${sortBy}`,
+    filter: 'deleted = false'
+  });
   return courses.items;
 };
 

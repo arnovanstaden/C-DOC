@@ -11,7 +11,9 @@ export const revalidateBookings = () => {
 export const getBooking = async (id: string): Promise<IBooking | undefined> => {
   await authPb();
   try {
-    const result: IExpandedBooking = await pb.collection('bookings').getOne(id);
+    const result: IExpandedBooking = await pb.collection('bookings').getOne(id, {
+      expand: 'course'
+    });
 
     const { expand, ...rest } = result;
 
@@ -20,6 +22,7 @@ export const getBooking = async (id: string): Promise<IBooking | undefined> => {
       proofOfPayment: `${pb.files.getUrl(result, result.proofOfPayment)}`,
       course: expand.course,
     };
+
     return booking;
   }
   catch (e) {
