@@ -6,7 +6,13 @@
 // import Product from '@components/website/content/Product/Product';
 // import { generateCustomMetaData } from '@utils/metadata';
 
+import Button from '@components/system/Button/Button';
 import Landing from '@components/website/content/Landing/Landing';
+import Section from '@components/website/layout/Section/Section';
+import ShopProducts from '@components/website/shop/ShopProducts/ShopProducts';
+import ShopSortFilter from '@components/website/shop/ShopSortFilter/ShopSortFilter';
+import { getProducts } from '@lib/products';
+import { Container } from '@mui/material';
 import { generateCustomMetaData } from '@utils/metadata';
 
 export const metadata = generateCustomMetaData({
@@ -15,16 +21,31 @@ export const metadata = generateCustomMetaData({
   image: '/images/pages/shop/landing.jpeg',
 });
 
+const ShopPage = async ({ searchParams }) => {
+  const products = await getProducts(searchParams.sortBy, searchParams.category);
+  const categories = [...new Set(products.map((product) => product.category))];
 
-const ShopPage = async () => {
   return (
     <main>
       <Landing
         imageURL="/images/pages/shop/landing.jpeg"
-        custom={true}
       >
-        Training Courses
+        <h1>Shop</h1>
+        <p>Browse C-DOC’s wide range of Medical Equipment, Clothing, Gear and E-Books.</p>
       </Landing>
+      <Container>
+        <ShopSortFilter categories={categories} />
+        <ShopProducts products={products} />
+      </Container>
+      <Section
+        colour="darkgrey"
+        heading="C-DOC Medical Kits."
+      >
+        <p>The C-DOC health and safety team design products with the specific knowledge and experience of commercial diving operations. These kits are not available for puchase online but can be ordered via our order form:</p>
+        <Button href="/services#equipment">
+          Medical Kits Enquiry
+        </Button>
+      </Section>
     </main>
   );
 
@@ -81,18 +102,18 @@ const ShopPage = async () => {
   //       </div>
   //     </Section>
 
-  //     <section className={styles.equipment}>
-  //       <div className="heading">
-  //         <h1>C-DOC Medical Kits.</h1>
-  //         <span />
-  //       </div>
-  //       <p>The C-DOC health and safety team design products with the specific knowledge and experience of commercial diving operations. These kits are not available for puchase online but can be ordered via our order form:</p>
-  //       <button className="button">
-  //         <Link href="/services#equipment">
-  //           Medical Kits Enquiry
-  //         </Link>
-  //       </button>
-  //     </section>
+  // <section className={styles.equipment}>
+  //   <div className="heading">
+  //     <h1>C-DOC Medical Kits.</h1>
+  //     <span />
+  //   </div>
+  //   <p>The C-DOC health and safety team design products with the specific knowledge and experience of commercial diving operations. These kits are not available for puchase online but can be ordered via our order form:</p>
+  //   <button className="button">
+  //     <Link href="/services#equipment">
+  //       Medical Kits Enquiry
+  //     </Link>
+  //   </button>
+  // </section>
   //   </main>
   // );
 };

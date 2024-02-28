@@ -1,0 +1,11 @@
+.ShopSortFilter {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 40px 0;
+
+  .categories {
+    display: flex;
+    gap: 16px;
+  }
+}

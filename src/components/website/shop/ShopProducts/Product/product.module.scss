@@ -1,5 +1,4 @@
-
-.product {
+.Product {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,11 +13,11 @@
   }
 
   .image {
-    height: 30vh;
     width: 100%;
     position: relative;
 
     img {
+      height: 300px;
       width: 100%;
       object-fit: contain;
       object-position: center;

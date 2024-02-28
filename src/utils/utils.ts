@@ -48,3 +48,17 @@ export const camelCaseToTitleCase = (inputString: string) => {
   // Capitalize the first letter and return the result
   return titleCaseString.charAt(0).toUpperCase() + titleCaseString.slice(1);
 };
+
+export const isOneLevelDeep = (obj: object): boolean => {
+  if (typeof obj !== 'object' || obj === null) {
+    return false; // Not an object
+  }
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key) && typeof obj[key] === 'object') {
+      return false;
+    }
+  }
+
+  return true;
+};

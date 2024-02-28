@@ -3,8 +3,8 @@
 import styles from './ViewItem.module.scss';
 import { useRouter } from 'next/navigation';
 import Button from '@components/system/Button/Button';
-import { camelCaseToTitleCase, formatDate } from '@utils/utils';
-// import ViewObject from './ViewObject/ViewObject';
+import { camelCaseToTitleCase, formatDate, isOneLevelDeep } from '@utils/utils';
+import ViewObject from './ViewObject/ViewObject';
 
 const Item = ({ name, value }: { name: string, value: string | number | boolean | object }) => {
   if (!value) {
@@ -12,8 +12,11 @@ const Item = ({ name, value }: { name: string, value: string | number | boolean 
   };
 
   if (typeof value === 'object') {
+    if (isOneLevelDeep(value)) {
+      return <ViewObject data={value} />;
+    }
+
     return 'object';
-    // return <ViewObject data={value} />;
   }
 
   if (name === 'created' && typeof value === 'string') {

@@ -1,24 +1,27 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { IProduct } from '@utils/cart';
 
 
 // Styles 
 import styles from './product.module.scss';
+import { IProduct } from '@types';
 
 export default function Product(product: IProduct) {
-
-  if (!product.visibility) {
+  if (!product.visible) {
     return null;
   }
 
   return (
-    <Link href={`/shop/${product.id}`} className={styles.product} data-category={product.category}>
+    <Link
+      href={`/shop/${product.id}`}
+      className={styles.Product}
+    >
       <div className={styles.image}>
         <Image
           src={product.thumbnail}
-          alt="Article Image"
-          layout='fill'
+          alt="Product Image"
+          width={300}
+          height={300}
         />
       </div>
       <h4>{product.name}</h4>
