@@ -1,9 +1,12 @@
 .landing {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   min-height: calc(100vh - $header-height);
 
   .content {
-    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .text {
       width: 100%;
@@ -64,7 +67,6 @@
   }
 
   .image {
-    width: 50%;
     position: relative;
 
     img {

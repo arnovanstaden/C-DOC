@@ -3,13 +3,8 @@
   padding: 0 16px; // Default padding
   margin: 0 auto; // Center the container
 
-  // Adjust the max-width and padding based on breakpoints
-  @media (min-width: $breakpoint-xs) {
-    max-width: 540px;
-  }
-
   @media (min-width: $breakpoint-sm) {
-    max-width: 720px;
+    padding: 0 32px;
   }
 
   @media (min-width: $breakpoint-md) {

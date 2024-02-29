@@ -3,6 +3,7 @@ import Link from 'next/link';
 // Styles
 import styles from './header.module.scss';
 import Container from '@components/website/layout/Container/Container';
+import MobileNav from '../MobileNav/MobileNav';
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
             <img src="/images/logos/logo.png" alt="C-DOC Logo" />
             <p>Commercial Diving and <br /> Offshore Consultancy</p>
           </Link>
-          <nav className={styles.nav}>
+          <nav className={styles.desktopNav}>
             <Link href="/">
               Home
             </Link>
@@ -42,6 +43,7 @@ const Header = () => {
               Contact
             </Link>
           </nav>
+          <MobileNav />
         </div>
       </Container>
     </header>

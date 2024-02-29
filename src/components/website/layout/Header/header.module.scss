@@ -25,7 +25,7 @@
       }
     }
 
-    nav {
+    .desktopNav {
       display: flex;
       align-items: center;
       gap: 16px;
@@ -37,6 +37,12 @@
           color: $red;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-md) {
+    .content .desktopNav {
+      display: none;
     }
   }
 

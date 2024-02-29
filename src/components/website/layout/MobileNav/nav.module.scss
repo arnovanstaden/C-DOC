@@ -1,0 +1,87 @@
+.MobileNav {
+  display: none;
+
+  .toggleButton * {
+    color: $black;
+    font-size: 1.5rem;
+  }
+
+  .content {
+    height: 100vh;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: rgba($white, 0.9);
+    transition: 0.3s ease-out;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    .closeButton {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      transition: 0.3s ease-out;
+      cursor: pointer;
+
+      * {
+        font-size: 1.5rem;
+        color: $black;
+      }
+    }
+
+    .menu {
+      list-style: none;
+      padding-left: 3rem;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+
+      li {
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        a {
+          font-weight: 600;
+          font-size: 1.4rem;
+          transition: 0.3s ease-out;
+          border-bottom: 2px solid transparent;
+
+          &:hover {
+            border-color: $red;
+          }
+        }
+      }
+    }
+  }
+
+  &.open .content {
+    width: 50%;
+    border-left: 0.25rem solid $red;
+  }
+
+  @media screen and (max-width: $breakpoint-md) {
+    display: block;
+  }
+
+  @media screen and (max-width: $breakpoint-sm) {
+    &.open .content {
+      width: 100%;
+
+      .menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 1rem;
+      }
+    }
+  }
+}
