@@ -115,7 +115,11 @@ const HomePage = () => {
         <div className={styles.grid}>
           <Link href="/services#training" className={`${styles.item} ${styles.imageBlock}`}>
             <div className={styles.image}>
-              <Image src="/images/pages/home/courses.jpeg" fill alt="C-Doc Service Image - Consulting" />
+              <Image
+                src="/images/pages/home/courses.jpeg"
+                fill
+                alt="C-Doc Service Image - Consulting"
+              />
             </div>
             <div className={styles.text}>
               <h3>Our Courses</h3>
@@ -132,7 +136,11 @@ const HomePage = () => {
           </Link>
           <Link href="/about#team" className={`${styles.item} ${styles.imageBlock}`}>
             <div className={styles.image}>
-              <Image src="/images/pages/home/team.jpeg" fill alt="C-Doc Service Image - Consulting" />
+              <Image
+                src="/images/pages/home/team.jpeg"
+                fill
+                alt="C-Doc Service Image - Consulting"
+              />
             </div>
             <div className={styles.text}>
               <h3>Meet The Team</h3>

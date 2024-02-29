@@ -155,26 +155,22 @@
         }
 
         .image {
-          position: absolute;
           height: 100%;
           width: 100%;
           overflow: hidden;
           z-index: 0;
 
-          div {
-            position: relative !important;
-
-            img {
-              position: relative !important;
-              object-fit: cover;
-              height: auto !important;
-              width: 100%;
-            }
+          img {
+            object-fit: cover;
+            object-position: center;
+            height: 100%;
+            width: 100%;
           }
         }
 
         .text {
-          position: relative;
+          position: absolute;
+          width: 100%;
           z-index: 5;
           background-color: rgba($darkgrey, 0.85);
           padding: 2rem;
