@@ -13,7 +13,6 @@ const EquipmentPage = () => {
     <main className={styles.EquipmentPage}>
       <Landing
         imageURL="/images/pages/equipment/landing.jpeg"
-        custom={true}
       >
         Training Courses
       </Landing>

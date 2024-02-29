@@ -23,10 +23,6 @@
         font-size: 2rem;
         line-height: 1.5;
         margin: 0;
-
-        span {
-          border-bottom: 0.25rem solid $red;
-        }
       }
 
       p {
@@ -35,10 +31,6 @@
 
         span {
           color: $red;
-        }
-
-        &:last-child {
-          margin: 0;
         }
       }
 

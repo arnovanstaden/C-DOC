@@ -7,6 +7,7 @@ import styles from './AboutPage.module.scss';
 import teamMembers from '../../../assets/data/team.json';
 import { generateCustomMetaData } from '@utils/metadata';
 import Button from '@components/system/Button/Button';
+import Heading from '@components/website/layout/Heading';
 
 export const metadata = generateCustomMetaData({
   title: 'About | C-Doc',
@@ -20,8 +21,10 @@ const AboutPage = () => {
       <Landing
         imageURL="/images/pages/about/landing.jpeg"
       >
-        <h1>Providing Effective <span>Medical Support</span> for 22 Years and Counting.</h1>
-        <p>C-DOC was <span>established in 1999</span> to ensure an accessible service for:</p>
+        <Heading
+          heading={<>Providing Effective <span>Medical Support</span> for 22 Years and Counting.</>}
+          subHeading={<>C-DOC was <span>established in 1999</span> to ensure an accessible service for:</>}
+        />
         <ul>
           <li>
             <Cross />

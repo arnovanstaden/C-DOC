@@ -18,7 +18,6 @@ const ContactPage = () => {
     <main>
       <Landing
         imageURL="/images/pages/contact/landing.jpeg"
-        custom={true}
       >
         <ContactDetails page />
       </Landing>

@@ -6,6 +6,7 @@ import InfoBlock from '@components/website/content/InfoBlock/InfoBlock';
 import Cross from '@components/Cross/Cross';
 import styles from './ServicesPage.module.scss';
 import { generateCustomMetaData } from '@utils/metadata';
+import Heading from '@components/website/layout/Heading';
 
 export const metadata = generateCustomMetaData({
   title: 'Services | C-Doc',
@@ -19,8 +20,10 @@ const ServicesPage = () => {
       <Landing
         imageURL="/images/pages/services/landing.jpeg"
       >
-        <h1>The C-DOC Team Remains Committed and Dedicated to <span>Safety and Competence</span>.</h1>
-        <p>We service the commercial diving community through:</p>
+        <Heading
+          heading={<>The C-DOC Team Remains Committed and Dedicated to <span>Safety and Competence</span>.</>}
+          subHeading={<>We service the commercial diving community through:</>}
+        />
         <ul>
           <li>
             <Cross size="1rem" />

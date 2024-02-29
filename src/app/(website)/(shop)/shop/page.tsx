@@ -1,13 +1,6 @@
-// import Link from 'next/link';
-// import { useState, useRef } from 'react';
-// import styles from '../../styles/pages/shop.module.scss';
-// import { sortProducts } from '@utils/utils';
-// import Section from '@components/website/layout/Section/Section';
-// import Product from '@components/website/content/Product/Product';
-// import { generateCustomMetaData } from '@utils/metadata';
-
 import Button from '@components/system/Button/Button';
 import Landing from '@components/website/content/Landing/Landing';
+import Heading from '@components/website/layout/Heading';
 import Section from '@components/website/layout/Section/Section';
 import ShopProducts from '@components/website/shop/ShopProducts/ShopProducts';
 import ShopSortFilter from '@components/website/shop/ShopSortFilter/ShopSortFilter';
@@ -30,8 +23,11 @@ const ShopPage = async ({ searchParams }) => {
       <Landing
         imageURL="/images/pages/shop/landing.jpeg"
       >
-        <h1>Shop</h1>
-        <p>Browse C-DOC’s wide range of Medical Equipment, Clothing, Gear and E-Books.</p>
+        <Heading
+          heading={<>Shop</>}
+          subHeading={<>Browse C-DOC’s wide range of Medical Equipment, Clothing, Gear and E-Books.</>}
+          divider
+        />
       </Landing>
       <Container>
         <ShopSortFilter categories={categories} />

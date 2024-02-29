@@ -6,6 +6,7 @@ import Cross from '../../../Cross/Cross';
 // Styles
 import styles from './section.module.scss';
 import Container from '@components/website/layout/Container/Container';
+import Heading from '../Heading';
 
 interface ISection {
   children: React.ReactNode;
@@ -28,13 +29,7 @@ export default function Section({ children, heading, subHeading, noCross, classN
     <section className={sectionClasses} id={idProp ? idProp : ''}>
       {!noCross ? <Cross classNameProp={styles.cross} size="2rem" /> : null}
       <Container>
-        {heading && (
-          <div className={styles.heading}>
-            {heading && <h1>{heading}</h1>}
-            <span />
-            {subHeading && <p>{subHeading}</p>}
-          </div>
-        )}
+        {heading && <Heading heading={heading} subHeading={subHeading} section divider />}
         {children}
       </Container>
     </section>

@@ -4,6 +4,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import Heading from '@components/website/layout/Heading';
 interface IContact {
   page?: boolean;
 }
@@ -11,11 +12,11 @@ interface IContact {
 export default function Contact({ page }: IContact) {
   return (
     <div className={`${styles.details} ${page ? styles.page : ''}`}>
-      <div className="heading heading--small">
-        <h1>Contact Us.</h1>
-        <span />
-      </div>
-      <p>Don't hesitate to get in touch with us if you require more information regarding our services, courses or the products we provide.</p>
+      <Heading
+        heading={<>Contact Us.</>}
+        subHeading={<>Don't hesitate to get in touch with us if you require more information regarding our services, courses or the products we provide.</>}
+        divider
+      />
       <ul className={styles.options}>
         <li>
           <LocalPhoneIcon className={styles.icon} />

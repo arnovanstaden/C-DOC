@@ -4,6 +4,7 @@ import Article from '@components/website/content/Article/Article';
 import { generateCustomMetaData } from '@utils/metadata';
 import { getArticles } from '@lib/articles';
 import Landing from '@components/website/content/Landing/Landing';
+import Heading from '@components/website/layout/Heading';
 
 export const revalidate = process.env.NODE_ENV === 'development' ? 0 : false;
 
@@ -21,8 +22,11 @@ const NewsPage = async () => {
       <Landing
         imageURL="/images/pages/news/landing.jpeg"
       >
-        <h1>News &amp; Articles</h1>
-        <p>Stay up to date with the latest news and articles from C-DOC</p>
+        <Heading
+          heading={<>News &amp; Articles</>}
+          subHeading={<>Stay up to date with the latest news and articles from C-DOC</>}
+          divider
+        />
       </Landing>
       <Section
         noCross={true}
