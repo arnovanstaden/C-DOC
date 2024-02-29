@@ -1,0 +1,15 @@
+.ProductOption {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  .quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @media screen and (max-width: $breakpoint-sm) {
+    flex-direction: column;
+  }
+}

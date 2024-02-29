@@ -1,12 +1,12 @@
-// import { useState } from 'react';
-// import { updateCart } from '@utils/cart';
-// import Link from 'next/link';
-// import Image from 'next/image';
-// import Section from '@components/website/layout/Section/Section';
-// import styles from '../../styles/pages/shop/[id].module.scss';
-import { getProduct } from '@lib/products';
+import Section from '@components/website/layout/Section/Section';
+import styles from './ShopProductPage.module.scss';
+import ProductOption from '@components/website/shop/ProductOption';
+import { getProduct, getProducts } from '@lib/products';
+import { Container } from '@mui/material';
 import { generateCustomMetaData } from '@utils/metadata';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import ShopProducts from '@components/website/shop/ShopProducts/ShopProducts';
 
 export const generateMetadata = async ({ params }: { params: { id: string } }) => {
   const product = await getProduct(params.id);
@@ -22,76 +22,43 @@ export const generateMetadata = async ({ params }: { params: { id: string } }) =
 
 const ShopProductPage = async ({ params }: { params: { id: string } }) => {
   const product = await getProduct(params.id);
+  let similarProducts = await getProducts(product.category);
+  similarProducts = similarProducts.filter((p) => p.id !== product.id);
 
   if (!product) return notFound();
 
-  return null;
-  // State
-  // const [quantity, setQuantity] = useState(1);
-
-  // const product = undefined;
-  // if (!product) return null;
-
-  // const ProductOption = () => {
-  //   if (product.price === 0 && product.digital) {
-  //     return (
-  //       <div className={styles.cart}>
-  //         <button className={styles.freebie}>
-  //           <a href={product.document} target="blank" download>Download Freebie</a>
-  //         </button>
-  //       </div>
-  //     );
-  //   }
-  //   return (
-  //     <div className={styles.cart}>
-  //       <div className={styles.quantity}>
-  //         <input min={1} type="number" name="quantity" value={quantity} onChange={e => setQuantity(parseInt(e.target.value))} />
-  //       </div>
-  //       <button className={styles.add} onClick={() => updateCart(product, quantity)}>
-  //         <i className="icon-local_grocery_store"></i>
-  //         Add To Cart
-  //       </button>
-  //     </div>
-  //   );
-  // };
-
-  // return (
-  //   <main>
-  //     <Section
-  //       noCross={true}
-  //       className={styles.product}
-  //     >
-  //       <div className={styles.shop}>
-  //         <Link href="/shop">
-  //           <button className="button button--border">
-  //             Back to Shop
-  //           </button>
-  //         </Link>
-  //       </div>
-  //       <div className={styles.grid}>
-  //         <div className={styles.image}>
-  //           <Image
-  //             src={product.thumbnail} alt="Article Image"
-  //             layout='fill'
-  //           />
-  //         </div>
-  //         <div className={styles.content}>
-  //           <p className={styles.category}>{product.category}</p>
-  //           <h2 className={styles.name}>{product.name}</h2>
-  //           <p className={styles.price}>{product.price > 0 ? `R ${product.price}` : 'Free'}</p>
-  //           <div className={styles.details}>
-  //             <p className={styles.active}>Description</p>
-  //           </div>
-  //           <p className={styles.description}>
-  //             {product.description}
-  //             {product.digital ? <span>This is a Digital Product</span> : null}
-  //           </p>
-  //           <ProductOption />
-  //         </div>
-  //       </div>
-  //     </Section>
-  //   </main>
-  // );
+  return (
+    <main className={styles.Product}>
+      <Container>
+        <div className={styles.grid}>
+          <div className={styles.image}>
+            <Image
+              src={product.thumbnail}
+              alt="Article Image"
+              layout='fill'
+            />
+          </div>
+          <div className={styles.content}>
+            <p className={styles.category}>{product.category}</p>
+            <h2 className={styles.name}>{product.name}</h2>
+            <p className={styles.price}>{product.price > 0 ? `R ${product.price}` : 'Free'}</p>
+            <p className={styles.description}>
+              {product.description}
+              {product.document ? <span>This is a Digital Product</span> : null}
+            </p>
+            <ProductOption {...product} />
+          </div>
+        </div>
+        {similarProducts.length > 0 && (
+          <Section
+            heading="Similar Products"
+          >
+            <ShopProducts products={similarProducts.slice(0, 4)} />
+          </Section>
+        )}
+      </Container>
+    </main>
+  );
 };
 
 export default ShopProductPage;

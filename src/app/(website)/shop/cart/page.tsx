@@ -12,11 +12,13 @@ export const metadata = generateCustomMetaData({
 
 const CartPage = async () => {
   return (
-    <Section
-      heading='Your Cart'
-    >
-      Hi
-    </Section>
+    <main>
+      <Section
+        heading='Your Cart'
+      >
+        Hi
+      </Section>
+    </main>
   );
 };
 

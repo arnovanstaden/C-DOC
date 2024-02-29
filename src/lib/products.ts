@@ -30,10 +30,11 @@ export const getProduct = async (id: string): Promise<IProduct | undefined> => {
 };
 
 
-export const getProducts = async (): Promise<IProduct[]> => {
+export const getProducts = async (category?: IProduct['category']): Promise<IProduct[]> => {
   await authPb();
   const result = await pb.collection('products').getList(undefined, undefined, {
     sort: 'name',
+    filter: `deleted = false${category ? ` && category = '${category}'` : ''}`,
   });
 
   const products: IProduct[] = result.items.map((product) => ({

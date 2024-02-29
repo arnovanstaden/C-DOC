@@ -1,19 +1,17 @@
-
-.product {
-  padding-top: 4rem;
-
-  .shop {
-    margin-bottom: 2rem;
-  }
+.Product {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 
   .grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 48px;
 
     .image {
-      width: 40%;
       position: relative;
-      margin-right: 2rem;
-      box-sizing: border-box;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -25,13 +23,12 @@
     }
 
     .content {
-      width: 60%;
-      padding-left: 4rem;
       box-sizing: border-box;
       border-left: 0.25rem solid $red;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      padding-left: 40px;
 
       .category {
         color: $red;
@@ -55,21 +52,6 @@
         margin-bottom: 2rem;
       }
 
-      .details {
-        display: flex;
-        width: 100%;
-        border-bottom: 0.5px solid $lightgrey;
-        column-gap: 2rem;
-        padding-bottom: -1px;
-
-        p {
-          margin: 0;
-          padding: 0 0.5rem 0.5rem 0.5rem;
-          cursor: pointer;
-        }
-      }
-
-
       .description {
         font-weight: 300;
         color: $lightgrey;
@@ -82,87 +64,15 @@
           font-weight: 600;
         }
       }
-
-      .cart {
-        display: flex;
-        align-items: center;
-        column-gap: 2rem;
-        margin-top: 2rem;
-
-        .quantity {
-          border: 2px solid $darkgrey;
-          padding: 0.5rem;
-          display: flex;
-          align-items: center;
-
-          input {
-            border: 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: $darkgrey;
-            width: 3rem;
-            outline: none;
-          }
-        }
-
-        .add {
-          background-color: $red;
-          outline: none;
-          border: 2px solid $red;
-          color: $white;
-          padding: 0 1.5rem;
-          height: 100%;
-          cursor: pointer;
-          font-weight: 600;
-
-          i {
-            margin-right: 0.5rem;
-          }
-
-          &:hover {
-            color: $darkgrey;
-            border: 2px solid $red;
-            background-color: $white;
-          }
-        }
-
-        .freebie {
-          background-color: $red;
-          outline: none;
-          border: 2px solid $red;
-          color: $white;
-          height: 100%;
-          cursor: pointer;
-          font-weight: 600;
-          margin: 0;
-
-          a {
-            padding: 0.5rem 1.5rem;
-            display: block;
-          }
-
-          i {
-            margin-right: 0.5rem;
-          }
-
-          &:hover {
-            color: $darkgrey;
-            border: 2px solid $red;
-            background-color: $white;
-          }
-        }
-      }
     }
   }
 
   @media screen and (max-width: $breakpoint-sm) {
     .grid {
-      flex-wrap: wrap;
-      row-gap: 2rem;
+      grid-template-columns: 1fr;
 
       .image {
-        width: 100%;
-        height: 25vh;
+        height: 300px;
         margin-right: 0;
       }
 
@@ -172,10 +82,6 @@
         text-align: center;
         align-items: center;
         padding: 0;
-
-        .details {
-          justify-content: center;
-        }
       }
     }
   }

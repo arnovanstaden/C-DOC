@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
-  children: string;
+  children: React.ReactNode;
   outlined?: boolean;
   className?: string;
   target?: HTMLAnchorElement['target'];
