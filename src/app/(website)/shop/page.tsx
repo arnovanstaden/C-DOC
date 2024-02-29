@@ -15,8 +15,25 @@ export const metadata = generateCustomMetaData({
 });
 
 const ShopPage = async ({ searchParams }) => {
-  const products = await getProducts(searchParams.sortBy, searchParams.category);
+  const products = await getProducts();
   const categories = [...new Set(products.map((product) => product.category))];
+
+  let productsToShow = products;
+  if (searchParams.category) {
+    productsToShow = productsToShow.filter((product) => product.category === searchParams.category);
+  }
+
+  if (searchParams.sort === 'price') {
+    productsToShow = productsToShow.sort((a, b) => {
+      if (a[searchParams.sort] > b[searchParams.sort]) {
+        return 1;
+      }
+      if (a[searchParams.sort] < b[searchParams.sort]) {
+        return -1;
+      }
+      return 0;
+    });
+  };
 
   return (
     <main>
@@ -31,7 +48,7 @@ const ShopPage = async ({ searchParams }) => {
       </Landing>
       <Container>
         <ShopSortFilter categories={categories} />
-        <ShopProducts products={products} />
+        <ShopProducts products={productsToShow} />
       </Container>
 
       <Section
@@ -39,7 +56,7 @@ const ShopPage = async ({ searchParams }) => {
         heading="C-DOC Medical Kits."
         centerAlign
       >
-        <p>The C-DOC health and safety team design products with the specific knowledge and experience of commercial diving operations. These kits are not available for puchase online but can be ordered via our order form:</p>
+        <p>The C-DOC health and safety team design products with the specific knowledge and experience of commercial diving operations. These kits are not available for purchase online but can be ordered via our order form:</p>
         <Button href="/services#equipment">
           Medical Kits Enquiry
         </Button>

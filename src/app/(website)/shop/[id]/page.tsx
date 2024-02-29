@@ -14,13 +14,17 @@ export const generateMetadata = async ({ params }: { params: { id: string } }) =
   if (!product) return notFound();
 
   return generateCustomMetaData({
-    title: `${product} | C-DOC`,
+    title: `${product.name} | C-DOC`,
     description: product.description,
     image: product.thumbnail,
   });
 };
 
-const ShopProductPage = async () => {
+const ShopProductPage = async ({ params }: { params: { id: string } }) => {
+  const product = await getProduct(params.id);
+
+  if (!product) return notFound();
+
   return null;
   // State
   // const [quantity, setQuantity] = useState(1);
