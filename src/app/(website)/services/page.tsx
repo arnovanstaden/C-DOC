@@ -7,6 +7,7 @@ import Cross from '@components/Cross/Cross';
 import styles from './ServicesPage.module.scss';
 import { generateCustomMetaData } from '@utils/metadata';
 import Heading from '@components/website/layout/Heading';
+import Button from '@components/system/Button/Button';
 
 export const metadata = generateCustomMetaData({
   title: 'Services | C-Doc',
@@ -81,11 +82,11 @@ const ServicesPage = () => {
             </ul>
           </div>
         </div>
-        {/* <div className={styles.button}>
-          <button className="button" onClick={() => handleCoursesToggle()}>
-            <p>Book a Course</p>
-          </button>
-        </div> */}
+        <div className={styles.button}>
+          <Button href='/courses'>
+            Book a Course
+          </Button>
+        </div>
       </Section>
 
       <section className={styles.photoGrid}>
@@ -134,9 +135,9 @@ const ServicesPage = () => {
         colour="lightgrey"
       >
         <div className={styles.button}>
-          {/* <button className="button" onClick={() => handleCatalogueToggle()}>
-            <p>Equipment Enquiries</p>
-          </button> */}
+          <Button href='/equipment'>
+            Equipment Enquiries
+          </Button>
         </div>
         <div className={styles.grid}>
           <InfoBlock>
@@ -240,12 +241,9 @@ const ServicesPage = () => {
             <div className={styles.text}>
               <h5>Medical Equipment</h5>
               <p>If you’d like to request a quotation or obtain more information regarding any of the medical equipment we provide, please fill out our enquiry form.</p>
-              {/* <button className="button-grow light" onClick={() => handleCatalogueToggle()}>
-                <a>
-                  <span>Equipment Enquiries</span>
-                  <i className="icon-arrow-right"></i>
-                </a>
-              </button> */}
+              <Button href='/equipment' >
+                Equipment Enquiries
+              </Button>
             </div>
           </div>
         </div>

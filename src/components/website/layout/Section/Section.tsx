@@ -15,13 +15,15 @@ interface ISection {
   className?: string;
   idProp?: string;
   colour?: 'lightgrey' | 'darkgrey' | 'white';
-  noCross?: boolean
+  noCross?: boolean;
+  centerAlign?: boolean;
 }
 
-export default function Section({ children, heading, subHeading, noCross, className, idProp, colour = 'white' }: ISection) {
+export default function Section({ children, heading, subHeading, noCross, className, idProp, colour = 'white', centerAlign }: ISection) {
   const sectionClasses = classNames(
     styles.Section,
     styles[`colour-${colour}`],
+    centerAlign && styles.centerAlign,
     className,
   );
 

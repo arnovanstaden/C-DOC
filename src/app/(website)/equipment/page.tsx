@@ -1,6 +1,7 @@
 import Landing from '@components/website/content/Landing/Landing';
 import styles from './EquipmentPage.module.scss';
 import { generateCustomMetaData } from '@utils/metadata';
+import Heading from '@components/website/layout/Heading';
 
 export const metadata = generateCustomMetaData({
   title: 'Equipment | C-DOC',
@@ -14,7 +15,11 @@ const EquipmentPage = () => {
       <Landing
         imageURL="/images/pages/equipment/landing.jpeg"
       >
-        Training Courses
+        <Heading
+          heading="Equipment Enquiries"
+          subHeading="C-DOC provides a wide range of medical equipment, clothing, gear and e-books."
+          divider
+        />
       </Landing>
     </main>
   );

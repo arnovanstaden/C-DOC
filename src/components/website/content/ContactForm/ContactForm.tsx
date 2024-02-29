@@ -3,28 +3,43 @@
 import styles from './ContactForm.module.scss';
 import { enqueueSnackbar } from 'notistack';
 import Button from '@components/system/Button/Button';
+import { sendEmail } from '@lib/email/server';
+import { buildContactEmail } from '@lib/email/client';
+import { errorNotification } from '@utils/notifications';
+import { useState } from 'react';
+import Loader from '@components/system/Loader';
+import { TContactMessage } from '@types';
+import { useForm } from 'react-hook-form';
+import TextArea from '@components/system/TextArea';
+import Input from '@components/system/Input';
 
 const ContactForm: React.FC = () => {
-  const submitContactForm = (e) => {
-    const enquiry = {};
-    e.preventDefault();
-    const form = document.getElementById('contact-form') as HTMLFormElement;
-    const formData = new FormData(form);
-    formData.forEach((value, key) => enquiry[key] = value);
+  const [loading, setLoading] = useState<boolean>(false);
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/enquiry/contact`, {
-      method: 'post',
-      body: JSON.stringify(enquiry),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(() => {
-        enqueueSnackbar('Thank you for your message. We\'ll get back to you soon!');
-        form.reset();
-      })
-      .catch(err => console.error(err));
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm<TContactMessage>();
+
+  const submitContactForm = async (data: TContactMessage) => {
+    setLoading(true);
+
+    try {
+      await sendEmail({
+        subject: 'C-DOC Website: New Contact Form Submission',
+        body: buildContactEmail(data)
+      });
+      enqueueSnackbar('Thank you for your message. We\'ll get back to you soon!');
+      reset();
+    } catch (e) {
+      console.error(e);
+      errorNotification('Error sending message', e);
+    }
+    finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -34,24 +49,49 @@ const ContactForm: React.FC = () => {
           <h1>Send us a Message.</h1>
           <span />
         </div>
-        <form name="contact-form" id="contact-form">
+        <form >
+
           <div className={styles.row}>
-            <label htmlFor="Name">Your Name</label>
-            <input type="text" name="Name" placeholder="Your Name" required />
+            <Input
+              inputProps={{
+                type: 'text',
+                autoComplete: 'name'
+              }}
+              name='name'
+              register={{ ...register('name', { required: true }) }}
+              label="Full Name"
+              error={errors.name?.type === 'required' ? 'Name is required' : undefined}
+            />
           </div>
           <div className={styles.row}>
-            <label htmlFor="Email">Your Email</label>
-            <input type="email" name="Email" placeholder="Your Email" required />
+            <Input
+              inputProps={{
+                type: 'email',
+                autoComplete: 'email'
+              }}
+              name='email'
+              register={{ ...register('email', { required: true }) }}
+              label="Email"
+              error={errors.email?.type === 'required' ? 'Email is required' : undefined}
+            />
           </div>
           <div className={styles.row}>
-            <label htmlFor="Message">Your Message</label>
-            <textarea name="Message" placeholder="Your Message" required></textarea>
+            <TextArea
+              textareaProps={{
+                rows: 5
+              }}
+              name='message'
+              register={{ ...register('message', { required: true }) }}
+              label="Message"
+              error={errors.message?.type === 'required' ? 'Message is required' : undefined}
+            />
           </div>
-          <Button type="submit" onClick={(e) => submitContactForm(e)}>
+          <Button type="submit" onClick={handleSubmit(submitContactForm)}>
             Send
           </Button>
         </form>
       </div>
+      <Loader open={loading} />
     </div>
   );
 };

@@ -33,9 +33,11 @@ const ShopPage = async ({ searchParams }) => {
         <ShopSortFilter categories={categories} />
         <ShopProducts products={products} />
       </Container>
+
       <Section
         colour="darkgrey"
         heading="C-DOC Medical Kits."
+        centerAlign
       >
         <p>The C-DOC health and safety team design products with the specific knowledge and experience of commercial diving operations. These kits are not available for puchase online but can be ordered via our order form:</p>
         <Button href="/services#equipment">
