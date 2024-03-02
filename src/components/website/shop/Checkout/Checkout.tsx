@@ -1,6 +1,5 @@
-/* eslint-disable camelcase */
-import { useState, useEffect } from 'react';
-import { getCart, getCartTotal, checkDigitalOnlyCart, calculateDeliveryFee } from '@utils/cart';
+'use client';
+
 import { enqueueSnackbar } from 'notistack';
 import axios from 'axios';
 import Button from '@components/system/Button/Button';
@@ -8,47 +7,14 @@ import styles from './checkout.module.scss';
 
 // Interface
 interface ICheckout {
-  shopSettings: any;
-  products: any;
-  total: number
+  deliveryFee: number;
+  subTotal: number
 }
 
-export default function Checkout({ shopSettings, total, products }: ICheckout) {
-  // const [order, setOrder] = useState();
-  const [deliveryFee, setDeliveryFee] = useState(0);
+const Checkout = ({ deliveryFee, subTotal }: ICheckout) => {
+  const total = subTotal + deliveryFee;
 
-  useEffect(() => {
-    if (checkDigitalOnlyCart(products)) {
-      setDeliveryFee(0);
-    } else {
-      setDeliveryFee(calculateDeliveryFee(total, shopSettings));
-    }
-  });
-
-
-  const calcTotal = () => {
-    return getCartTotal() + deliveryFee;
-  };
-
-  const validateForm = () => {
-    'use strict';
-    const form = (document.querySelector('#checkout-form') as HTMLFormElement);
-    if (form.checkValidity() === false) {
-      console.error('Validation Fail');
-      // event.preventDefault();
-      // event.stopPropagation();
-      alert('Please ensure you have completed all the fields.');
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const orderConfirmation = () => {
-    // Check Validation
-    if (!validateForm()) {
-      return;
-    }
+  const handleSubmitOrder = () => {
     enqueueSnackbar('Your order is being processed. You\'ll be redirected to Payfast momentarily...');
     const order = {
       cart_items: [],
@@ -56,8 +22,6 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
     };
     const formData = new FormData(document.querySelector('#checkout-form'));
     formData.forEach((value, key) => order[key] = value);
-    order.cart_items = getCart();
-    order.amount_gross = calcTotal();
 
     axios({
       method: 'POST',
@@ -127,7 +91,7 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
         <h2>Order Summary</h2>
         <div className={styles.row}>
           <p>Subtotal</p>
-          <h6>R {getCartTotal()}</h6>
+          <h6>R {subTotal}</h6>
         </div>
         <div className={styles.row}>
           <p>Shipping</p>
@@ -135,13 +99,14 @@ export default function Checkout({ shopSettings, total, products }: ICheckout) {
         </div>
         <div className={`${styles.total} ${styles.row}`}>
           <p>Total</p>
-          <h6>R {calcTotal()}</h6>
+          <h6>R {total}</h6>
         </div>
-        <Button type="submit" onClick={() => orderConfirmation()}>
+        <Button type="submit" onClick={handleSubmitOrder}>
           Pay Now
         </Button>
       </div>
     </div>
   );
-}
+};
 
+export default Checkout;

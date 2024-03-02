@@ -1,11 +1,13 @@
 'use client';
 
-import { clearCart } from '@utils/cart';
 import { useEffect } from 'react';
 
 import styles from './CartSuccess.module.scss';
+import { useCart } from '@hooks/cart';
 
 const CartSuccess: React.FC = () => {
+  const { clearCart } = useCart();
+
   useEffect(() => {
     clearCart();
   }, []);

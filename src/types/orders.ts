@@ -46,3 +46,8 @@ export interface IExpandedOrder extends Omit<IOrder, 'orderDetails'> {
 export interface INewOrder extends Omit<IOrder, 'id' | 'status' | 'payfastPaymentId' | 'paymentFee'> {
   status: 'pending';
 }
+
+export interface ICartItem {
+  id: string;
+  quantity: number;
+}

@@ -4,11 +4,7 @@ import { useState, useEffect } from 'react';
 import { enqueueSnackbar } from 'notistack';
 import Cookies from 'js-cookie';
 import { revalidateCart } from '@lib/cart';
-
-interface CartItem {
-  id: string;
-  quantity: number;
-}
+import { ICartItem } from '@types';
 
 const cookieName = 'C-DOC_Cart';
 
@@ -16,7 +12,7 @@ const cookieName = 'C-DOC_Cart';
  * Custom hook to manage cart and synchronize it with cookies.
  */
 export const useCart = () => {
-  const [cart, setCart] = useState<CartItem[]>(undefined);
+  const [cart, setCart] = useState<ICartItem[]>(undefined);
 
   // Load cart from cookies on initial render.
   useEffect(() => {
@@ -27,39 +23,25 @@ export const useCart = () => {
   }, []);
 
   /**
-   * Adds an item to the cart.
-   * @param item - The item to add to the cart.
-   */
-  const addItem = (itemId: string) => {
-    // Create a new cart if it doesn't exist.
-    if (cart === undefined) {
-      setCart([{ id: itemId, quantity: 1 }]);
-      enqueueSnackbar('Item added to cart');
-      return;
-    }
-
-    setCart((prevCart) => {
-      enqueueSnackbar('Item added to cart');
-      return [...prevCart, { id: itemId, quantity: 1 }];
-    });
-  };
-
-  /**
    * Increases the quantity of an item in the cart.
    */
-  const increaseItemQuantity = (itemId: string) => {
-    if (cart === undefined) {
-      addItem(itemId);
-      return;
-    }
-
+  const increaseItemQuantity = (itemId: string, digital: boolean) => {
     setCart((prevCart) => {
+      // Create a new cart if it doesn't exist.
+      if (prevCart === undefined) {
+        enqueueSnackbar('Item added to cart');
+        return [{ id: itemId, quantity: 1 }];
+      }
+
       const existingItem = prevCart.find((cartItem) => cartItem.id === itemId);
 
+      // If the item doesn't exist in the cart, add it.
       if (!existingItem) {
-        addItem(itemId);
-        return prevCart;
+        enqueueSnackbar('Item added to cart');
+        return [...prevCart, { id: itemId, quantity: 1 }];
       }
+
+      if (digital) return;
 
       return prevCart.map((cartItem) => {
         if (cartItem.id === itemId) {

@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 import { errorNotification } from '@utils/notifications';
 
 import FormRow from '@components/admin/atoms/FormRow/FormRow';
-import { updateSettings } from '@lib/settings';
+import { updateShopSettings } from '@lib/settings';
 
 const EditSettings: React.FC<ISettings> = (settings) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,7 +25,7 @@ const EditSettings: React.FC<ISettings> = (settings) => {
   const handleSaveSettings = async (newSettings: ISettings) => {
     setLoading(true);
     try {
-      await updateSettings(newSettings);
+      await updateShopSettings(newSettings);
       enqueueSnackbar('Settings Updated');
     } catch (e) {
       console.error(e);

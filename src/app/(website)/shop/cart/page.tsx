@@ -3,9 +3,9 @@ import Section from '@components/website/layout/Section/Section';
 import { generateCustomMetaData } from '@utils/metadata';
 import { cookies } from 'next/headers';
 import styles from './CartPage.module.scss';
-import { ICartItem } from '@utils/cart';
 import { getProductsById } from '@lib/products';
 import CartItem from '@components/website/shop/CartItem/CartItem';
+import { ICartItem } from '@types';
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';
@@ -65,6 +65,14 @@ const CartPage = async () => {
                 quantity={cart.find((item) => item.id === product.id).quantity}
               />
             ))}
+          </div>
+          <div className={styles.buttons}>
+            <Button href='/shop' outlined>
+              Continue Shopping
+            </Button>
+            <Button href='/shop/cart/checkout'>
+              Checkout
+            </Button>
           </div>
         </div>
       </Section>

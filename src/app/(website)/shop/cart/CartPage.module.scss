@@ -3,6 +3,13 @@
     display: grid;
     gap: 16px;
   }
+
+  .buttons {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+  }
 }
 
 .empty {

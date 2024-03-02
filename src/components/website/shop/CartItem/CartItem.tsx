@@ -41,7 +41,7 @@ const CartItem: React.FC<CartItemProps> = ({ product, quantity }) => {
                 <RemoveIcon />
               </IconButton>
               <p>{quantity}</p>
-              <IconButton onClick={() => increaseItemQuantity(product.id)}>
+              <IconButton onClick={() => increaseItemQuantity(product.id, !!product.document)}>
                 <AddIcon />
               </IconButton>
             </div>
