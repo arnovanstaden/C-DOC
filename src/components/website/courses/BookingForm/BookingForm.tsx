@@ -1,4 +1,4 @@
-import FormRow from '@components/admin/atoms/FormRow/FormRow';
+import FormRow from '@components/system/FormRow/FormRow';
 import styles from './BookingForm.module.scss';
 import Button from '@components/system/Button/Button';
 import Input from '@components/system/Input';

@@ -49,4 +49,10 @@
 
     }
   }
+
+  @media (max-width: $breakpoint-sm) {
+    .paymentDetails {
+      grid-template-columns: 1fr;
+    }
+  }
 }

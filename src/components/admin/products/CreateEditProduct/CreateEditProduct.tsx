@@ -12,7 +12,7 @@ import { createProduct, deleteProduct, updateProduct } from '@lib/products';
 import { enqueueSnackbar } from 'notistack';
 import { errorNotification } from '@utils/notifications';
 import { convertToFormData } from '@utils/utils';
-import FormRow from '@components/admin/atoms/FormRow/FormRow';
+import FormRow from '@components/system/FormRow/FormRow';
 import FilePreview from '@components/admin/atoms/FilePreview/FilePreview';
 import Select from '@components/system/Select/Select';
 import { Checkbox } from '@mui/material';

@@ -10,7 +10,7 @@ import Loader from '@components/system/Loader';
 import { useForm } from 'react-hook-form';
 import { errorNotification } from '@utils/notifications';
 
-import FormRow from '@components/admin/atoms/FormRow/FormRow';
+import FormRow from '@components/system/FormRow/FormRow';
 import { updateShopSettings } from '@lib/settings';
 
 const EditSettings: React.FC<ISettings> = (settings) => {

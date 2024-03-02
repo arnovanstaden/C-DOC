@@ -8,7 +8,7 @@ import { ICartItemWIthPrice, INewOrder, IOrder, IOrderForm, IPayfastOrder } from
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Loader from '@components/system/Loader';
-import FormRow from '@components/admin/atoms/FormRow/FormRow';
+import FormRow from '@components/system/FormRow/FormRow';
 import Input from '@components/system/Input';
 import TextArea from '@components/system/TextArea';
 import { createOrder } from '@lib/orders';

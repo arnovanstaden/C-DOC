@@ -109,6 +109,11 @@
   @media screen and (max-width: $breakpoint-md) {
     .grid {
       grid-template-columns: 1fr;
+      gap: 16px;
+
+      .image {
+        min-height: 200px;
+      }
     }
   }
 }

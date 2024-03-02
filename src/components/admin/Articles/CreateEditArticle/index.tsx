@@ -12,7 +12,7 @@ import { createArticle, deleteArticle, updateArticle } from '@lib/articles';
 import { enqueueSnackbar } from 'notistack';
 import { errorNotification } from '@utils/notifications';
 import { convertToFormData } from '@utils/utils';
-import FormRow from '@components/admin/atoms/FormRow/FormRow';
+import FormRow from '@components/system/FormRow/FormRow';
 import FilePreview from '@components/admin/atoms/FilePreview/FilePreview';
 
 const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {

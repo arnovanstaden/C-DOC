@@ -10,7 +10,7 @@ import { createCoupon } from '@lib/coupons';
 import Loader from '@components/system/Loader';
 import { useForm } from 'react-hook-form';
 import { errorNotification } from '@utils/notifications';
-import FormRow from '@components/admin/atoms/FormRow/FormRow';
+import FormRow from '@components/system/FormRow/FormRow';
 
 const CreateCoupons: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);

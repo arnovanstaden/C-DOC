@@ -11,7 +11,7 @@ import TextArea from '@components/system/TextArea';
 import { createCourse, deleteCourse, updateCourse } from '@lib/courses';
 import { enqueueSnackbar } from 'notistack';
 import { errorNotification } from '@utils/notifications';
-import FormRow from '@components/admin/atoms/FormRow/FormRow';
+import FormRow from '@components/system/FormRow/FormRow';
 import Select from '@components/system/Select/Select';
 import CourseDates from './CourseDates/CourseDates';
 
