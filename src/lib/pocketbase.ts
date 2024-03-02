@@ -1,4 +1,4 @@
-import { IArticle, IBookingSimple, ICoupon, ICourse, IOrder, IProduct, ISettings } from '@types';
+import { IArticle, IBooking, ICoupon, ICourse, IOrder, IProduct, ISettings } from '@types';
 import PocketBase, { RecordService } from 'pocketbase';
 
 const url = 'https://c-doc.pockethost.io/';
@@ -6,7 +6,7 @@ const url = 'https://c-doc.pockethost.io/';
 interface TypedPocketBase extends PocketBase {
   collection(idOrName: string): RecordService // default fallback for any other collection
   collection(idOrName: 'articles'): RecordService<IArticle>
-  collection(idOrName: 'bookings'): RecordService<IBookingSimple>
+  collection(idOrName: 'bookings'): RecordService<IBooking>
   collection(idOrName: 'coupons'): RecordService<ICoupon>
   collection(idOrName: 'courses'): RecordService<ICourse>
   collection(idOrName: 'orders'): RecordService<IOrder>

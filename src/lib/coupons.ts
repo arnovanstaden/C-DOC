@@ -30,8 +30,8 @@ export const createCoupon = async (newCoupon: ICouponForm): Promise<void> => {
   });
 };
 
-export const expireCoupon = async (code: string): Promise<void> => {
+export const redeemCoupon = async (code: string): Promise<void> => {
   const coupon = await getCouponByCode(code);
   if (!coupon) return;
-  await pb.collection('coupons').update(coupon.id, { expired: true });
+  await pb.collection('coupons').update(coupon.id, { redeemed: true });
 };

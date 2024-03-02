@@ -1,8 +1,9 @@
 'use server';
 
-import { IBooking, IBookingSimple, IExpandedBooking } from '@types';
+import { IBooking } from '@types';
 import { authPb, pb } from './pocketbase';
 import { revalidatePath } from 'next/cache';
+import { redeemCoupon } from './coupons';
 
 export const revalidateBookings = () => {
   revalidatePath('/', 'layout');
@@ -11,16 +12,13 @@ export const revalidateBookings = () => {
 export const getBooking = async (id: string): Promise<IBooking | undefined> => {
   await authPb();
   try {
-    const result: IExpandedBooking = await pb.collection('bookings').getOne(id, {
-      expand: 'course'
+    const result = await pb.collection('bookings').getOne(id, {
+      filter: 'deleted = false',
     });
 
-    const { expand, ...rest } = result;
-
     const booking: IBooking = {
-      ...rest,
+      ...result,
       proofOfPayment: `${pb.files.getUrl(result, result.proofOfPayment)}`,
-      course: expand.course,
     };
 
     return booking;
@@ -30,7 +28,7 @@ export const getBooking = async (id: string): Promise<IBooking | undefined> => {
   }
 };
 
-export const getBookings = async (): Promise<IBookingSimple[]> => {
+export const getBookings = async (): Promise<IBooking[]> => {
   await authPb();
   const result = await pb.collection('bookings').getList();
   return result.items;
@@ -39,6 +37,7 @@ export const getBookings = async (): Promise<IBookingSimple[]> => {
 export const createBooking = async (booking: FormData): Promise<void> => {
   await authPb();
   await pb.collection('bookings').create(booking);
+  await redeemCoupon(booking.get('coupon') as string);
   // await sendEmail({
   //   subject: `${coupon.discount}% Off Coupon for a Course at C-DOC`,
   //   body: buildCouponEmail(coupon),

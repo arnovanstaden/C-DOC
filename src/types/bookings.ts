@@ -1,7 +1,7 @@
 import { IPocketBaseBase } from '@types';
-import { ICourse, ICourseDate } from './courses';
+import { ICourseDate } from './courses';
 
-export interface IBookingSimple extends IPocketBaseBase {
+export interface IBooking extends IPocketBaseBase {
   id: string;
   name: string;
   email: string;
@@ -12,16 +12,6 @@ export interface IBookingSimple extends IPocketBaseBase {
   courseDates: ICourseDate;
   coupon?: string;
   proofOfPayment: string;
-}
-
-export interface IBooking extends Omit<IBookingSimple, 'course'> {
-  course: ICourse
-}
-
-export interface IExpandedBooking extends Omit<IBooking, 'course'> {
-  expand: {
-    course: ICourse;
-  }
 }
 
 export interface INewBooking extends Omit<IBooking, 'id' | 'proofOfPayment'> {
