@@ -26,11 +26,6 @@
     "jsx": "preserve",
     "downlevelIteration": true,
     "incremental": false,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
     "baseUrl": ".",
     "paths": {
       "@components/*": [
@@ -68,7 +63,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
