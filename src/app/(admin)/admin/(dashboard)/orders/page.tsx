@@ -1,4 +1,5 @@
 import OrderList from '@components/admin/orders/OrderList/OrderList';
+import { getOrders } from '@lib/orders';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,10 +11,12 @@ export const metadata: Metadata = {
   }
 };
 
-const DashboardOrders: React.FC = () => {
+const DashboardOrders: React.FC = async ({ searchParams }: { searchParams: { [key: string]: string | undefined } }) => {
+  const orders = await getOrders(searchParams?.status);
+
   return (
     <main>
-      <OrderList />
+      <OrderList orders={orders} />
     </main>
   );
 };
