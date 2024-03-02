@@ -35,7 +35,8 @@ const ShopProductPage = async ({ params }: { params: { id: string } }) => {
             <Image
               src={product.thumbnail}
               alt="Article Image"
-              layout='fill'
+              width={400}
+              height={400}
             />
           </div>
           <div className={styles.content}>

@@ -6,10 +6,13 @@ import { useState } from 'react';
 import classNames from 'classnames';
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
+import { usePathname } from 'next/navigation';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { IconButton } from '@mui/material';
 
 const MobileNav: React.FC = () => {
   const [navOpen, setNavOpen] = useState(false);
+  const pathname = usePathname();
 
   const handleNavToggle = () => {
     setNavOpen((prev) => !prev);
@@ -25,6 +28,13 @@ const MobileNav: React.FC = () => {
       <IconButton disableRipple onClick={handleNavToggle} className={styles.toggleButton}>
         <MenuIcon />
       </IconButton>
+      {pathname.includes('/shop') && (
+        <Link href="/shop/cart">
+          <IconButton>
+            <ShoppingCartIcon />
+          </IconButton>
+        </Link>
+      )}
       <nav className={styles.content}>
         <IconButton disableRipple onClick={handleNavToggle} className={styles.closeButton} >
           <CloseIcon />

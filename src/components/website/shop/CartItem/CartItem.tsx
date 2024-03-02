@@ -1,65 +1,58 @@
-import React, { useState } from 'react';
-import { updateCart, removeFromCart, ICartItem, IProduct } from '@utils/cart';
+'use client';
 
+import React from 'react';
+import { IconButton } from '@mui/material';
+import RemoveIcon from '@mui/icons-material/Remove';
 // Styles
 import styles from './cart-item.module.scss';
+import { useCart } from '@hooks/cart';
+import { IProduct } from '@types';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import Link from 'next/link';
 
-// Interfaces
-interface ICartItemProps {
-  item: ICartItem;
+interface CartItemProps {
   product: IProduct;
-  handleCartChange: () => void;
+  quantity: number;
 }
 
-const CartItem = ({ item, product, handleCartChange }: ICartItemProps) => {
-  const [quantity, setQuantity] = useState(item.quantity);
-  const [total, setTotal] = useState(product.price * quantity);
-
-  const minusQuantity = () => {
-    let currentQuant = quantity;
-    if (currentQuant !== 1) {
-      currentQuant--;
-    }
-    handleQuantityUpdate(currentQuant);
-  };
-
-  const plusQuantity = () => {
-    let currentQuant = quantity;
-    currentQuant++;
-    handleQuantityUpdate(currentQuant);
-  };
-
-  const handleQuantityUpdate = (value) => {
-    setQuantity(value);
-    setTotal(product.price * value);
-    updateCart(product, value);
-  };
-
-  const handleItemRemove = () => {
-    removeFromCart(product.id, true);
-    handleCartChange();
-  };
+const CartItem: React.FC<CartItemProps> = ({ product, quantity }) => {
+  const { removeItem, increaseItemQuantity, decreaseItemQuantity } = useCart();
 
   return (
     <div className={styles.grid}>
-      <div className={styles.item}>
-        <div className={styles.image}>
-          <img src={product.thumbnail} alt="" />
+      <Link href={`/shop/${product.id}`}>
+        <div className={styles.item}>
+          <div className={styles.image}>
+            <img src={product.thumbnail} alt="" />
+          </div>
+          <div className={styles.details}>
+            <p className={styles.name}>{product.name}</p>
+            <p className={styles.category}>{product.category}</p>
+            {product.document ? <p className={styles.digital}>Digital Product</p> : null}
+          </div>
         </div>
-        <div className={styles.details}>
-          <p className={styles.name}>{product.name}</p>
-          <p className={styles.category}>{product.category}</p>
-          {product.digital ? <p className={styles.digital}>Digital Product</p> : null}
-        </div>
-      </div>
+      </Link>
       <div className={styles.quantity}>
-        <i className="icon-remove" onClick={() => minusQuantity()}></i>
-        <p id="cart-item-quantity">{quantity}</p>
-        <i className="icon-add" onClick={() => plusQuantity()}></i>
+        {!product.document && (
+          <div className={styles.quantity}>
+            <IconButton
+              onClick={() => decreaseItemQuantity(product.id)}
+            >
+              <RemoveIcon />
+            </IconButton>
+            <p>{quantity}</p>
+            <IconButton onClick={() => increaseItemQuantity(product.id)}>
+              <AddIcon />
+            </IconButton>
+          </div>
+        )}
       </div>
       <p className={styles.price}>R {product.price}</p>
-      <p className={styles.total}>R {total}</p>
-      <i className={`${styles.remove} icon-clear`} onClick={() => handleItemRemove()}></i>
+      <p className={styles.total}>R {product.price * quantity}</p>
+      <IconButton onClick={() => removeItem(product.id)}>
+        <DeleteIcon />
+      </IconButton>
     </div>
   );
 };

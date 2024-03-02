@@ -18,7 +18,7 @@ export const getProduct = async (id: string): Promise<IProduct | undefined> => {
     const product: IProduct = {
       ...result,
       thumbnail: pb.files.getUrl(result, result.thumbnail),
-      document: pb.files.getUrl(result, result.document),
+      document: result.document ? `${pb.files.getUrl(result, result.document)}?download=1` : undefined,
       images: result.images.map((image) => pb.files.getUrl(result, image))
     };
 
@@ -35,6 +35,22 @@ export const getProducts = async (category?: IProduct['category']): Promise<IPro
   const result = await pb.collection('products').getList(undefined, undefined, {
     sort: 'name',
     filter: `deleted = false${category ? ` && category = '${category}'` : ''}`,
+  });
+
+  const products: IProduct[] = result.items.map((product) => ({
+    ...product,
+    thumbnail: pb.files.getUrl(product, product.thumbnail),
+    images: product.images.map((image) => pb.files.getUrl(result, image))
+  }));
+
+  return products;
+};
+
+export const getProductsById = async (ids: string[]): Promise<IProduct[]> => {
+  await authPb();
+  const result = await pb.collection('products').getList(undefined, undefined, {
+    sort: 'name',
+    filter: `deleted = false && ${ids.map((id) => `id="${id}"`).join(' || ')}`,
   });
 
   const products: IProduct[] = result.items.map((product) => ({

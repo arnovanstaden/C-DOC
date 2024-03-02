@@ -41,8 +41,12 @@
   }
 
   @media screen and (max-width: $breakpoint-md) {
-    .content .desktopNav {
-      display: none;
+    .content {
+      padding: 0;
+
+      .desktopNav {
+        display: none;
+      }
     }
   }
 
