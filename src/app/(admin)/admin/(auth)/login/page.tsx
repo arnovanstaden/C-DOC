@@ -1,4 +1,4 @@
-import AdminLoginForm from '@components/admin/login';
+import AdminLoginForm from '@components/admin/login/index';
 import styles from './DashboardLoginPage.module.scss';
 import { Metadata } from 'next';
 
