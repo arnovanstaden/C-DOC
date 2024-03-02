@@ -22,7 +22,7 @@ export interface IOrder extends IPocketBaseBase {
   cart: ICartItemWIthPrice[];
   total: number;
   status: 'pending' | 'paid';
-  paymentId?: string;
+  paymentId?: number;
   paymentFee?: number;
 }
 
@@ -47,4 +47,11 @@ export interface IPayfastOrder {
   name_first: string;
   name_last: string;
   email_address: string;
+}
+
+export interface IPayfastOrderResponse extends Omit<IPayfastOrder, 'amount' | 'merchant_key'> {
+  payment_status: string;
+  pf_payment_id: number;
+  amount_gross: string;
+  amount_fee: string;
 }

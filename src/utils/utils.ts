@@ -37,6 +37,31 @@ export const convertToFormData = (data: object): FormData => {
   return formData;
 };
 
+/**
+ * Converts FormData to a JavaScript object.
+ * @param {FormData} formData - The FormData instance to convert.
+ * @returns {T} - The JavaScript object representation of the FormData, typed as T.
+ */
+const formDataToObject = <T extends Record<string, any>>(formData: FormData): T => {
+  const object = {} as T;
+  formData.forEach((value, key) => {
+    // Check if the object already contains the key, and ensure type safety with type assertion
+    if (!Object.prototype.hasOwnProperty.call(object, key)) {
+      object[key as keyof T] = value as any;
+    } else {
+      // Ensure we handle the case where the property is already an array
+      if (!Array.isArray(object[key])) {
+        object[key as keyof T] = [object[key]] as any;
+      }
+      (object[key] as any[]).push(value);
+    }
+  });
+  return object;
+};
+
+export default formDataToObject;
+
+
 export const formatDate = (date: string | Date): string => {
   return dayjs(date).format('ddd MMM D YYYY hh:mm');
 };
@@ -56,6 +81,30 @@ export const isOneLevelDeep = (obj: object): boolean => {
 
   for (const key in obj) {
     if (obj.hasOwnProperty(key) && typeof obj[key] === 'object') {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+/**
+ * Compares two arrays and returns false if an item is missing in one of them.
+ * @param arr1 The first array to be compared.
+ * @param arr2 The second array to be compared.
+ * @returns {boolean} Returns true if both arrays contain the same items, otherwise false.
+ */
+export const compareArrays = <T>(arr1: T[], arr2: T[]): boolean => {
+  // Check if all elements in arr1 are in arr2
+  for (const item of arr1) {
+    if (!arr2.includes(item)) {
+      return false;
+    }
+  }
+
+  // Check if all elements in arr2 are in arr1
+  for (const item of arr2) {
+    if (!arr1.includes(item)) {
       return false;
     }
   }
