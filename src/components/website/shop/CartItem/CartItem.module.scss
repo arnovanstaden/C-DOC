@@ -2,6 +2,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 4fr 1fr 1fr 1fr 0.5fr;
+  grid-template-areas: "item quantity price total remove";
   align-items: center;
   border: 2px solid $red;
   position: relative;
@@ -11,6 +12,7 @@
   .item {
     display: flex;
     align-items: center;
+    grid-area: item;
 
     .image {
       margin-right: 1rem;
@@ -50,6 +52,7 @@
     display: flex;
     align-items: center;
     font-weight: 600;
+    grid-area: quantity;
 
     i {
       font-weight: 400;
@@ -67,6 +70,7 @@
     color: $red;
     white-space: nowrap;
     margin: 0 0.25rem;
+    grid-area: price;
   }
 
   .total {
@@ -74,27 +78,31 @@
     font-size: 1.1rem;
     white-space: nowrap;
     margin: 0 0.25rem;
+    grid-area: total;
   }
 
-
-
   .remove {
-    cursor: pointer;
-    transition: 0.3s ease-out;
+    grid-area: remove;
   }
 
   @media screen and (max-width: $breakpoint-sm) {
-    flex-wrap: wrap;
+    grid-template-columns: 1fr 1fr 1fr 0.5fr;
+    grid-template-areas:
+      "item item item remove"
+      "quantity quantity price price"
+      "total total total total";
+    column-gap: 8px;
+    row-gap: 16px;
 
     .item {
-      width: 100%;
       padding-top: 0.5rem;
     }
 
-    .remove {
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
+    .price,
+    .total,
+    .quantity {
+      text-align: center;
+      justify-content: center;
     }
   }
 }

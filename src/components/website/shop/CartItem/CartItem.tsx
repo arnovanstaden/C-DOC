@@ -4,7 +4,7 @@ import React from 'react';
 import { IconButton } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Remove';
 // Styles
-import styles from './cart-item.module.scss';
+import styles from './CartItem.module.scss';
 import { useCart } from '@hooks/cart';
 import { IProduct } from '@types';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -21,36 +21,36 @@ const CartItem: React.FC<CartItemProps> = ({ product, quantity }) => {
 
   return (
     <div className={styles.grid}>
-      <Link href={`/shop/${product.id}`}>
-        <div className={styles.item}>
-          <div className={styles.image}>
-            <img src={product.thumbnail} alt="" />
-          </div>
-          <div className={styles.details}>
-            <p className={styles.name}>{product.name}</p>
-            <p className={styles.category}>{product.category}</p>
-            {product.document ? <p className={styles.digital}>Digital Product</p> : null}
-          </div>
+      <Link href={`/shop/${product.id}`} className={styles.item}>
+        <div className={styles.image}>
+          <img src={product.thumbnail} alt="" />
+        </div>
+        <div className={styles.details}>
+          <p className={styles.name}>{product.name}</p>
+          <p className={styles.category}>{product.category}</p>
+          {product.document ? <p className={styles.digital}>Digital Product</p> : null}
         </div>
       </Link>
-      <div className={styles.quantity}>
-        {!product.document && (
+      {!product.document && (
+        <>
           <div className={styles.quantity}>
-            <IconButton
-              onClick={() => decreaseItemQuantity(product.id)}
-            >
-              <RemoveIcon />
-            </IconButton>
-            <p>{quantity}</p>
-            <IconButton onClick={() => increaseItemQuantity(product.id)}>
-              <AddIcon />
-            </IconButton>
+            <div className={styles.quantity}>
+              <IconButton
+                onClick={() => decreaseItemQuantity(product.id)}
+              >
+                <RemoveIcon />
+              </IconButton>
+              <p>{quantity}</p>
+              <IconButton onClick={() => increaseItemQuantity(product.id)}>
+                <AddIcon />
+              </IconButton>
+            </div>
           </div>
-        )}
-      </div>
-      <p className={styles.price}>R {product.price}</p>
+          <p className={styles.price}>R {product.price}</p>
+        </>
+      )}
       <p className={styles.total}>R {product.price * quantity}</p>
-      <IconButton onClick={() => removeItem(product.id)}>
+      <IconButton onClick={() => removeItem(product.id)} className={styles.remove}>
         <DeleteIcon />
       </IconButton>
     </div>

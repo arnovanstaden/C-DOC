@@ -39,15 +39,8 @@ export const useCart = () => {
     }
 
     setCart((prevCart) => {
-      const existingItem = prevCart.find((cartItem) => cartItem.id === itemId);
-
-      if (existingItem) {
-        increaseItemQuantity(itemId);
-        return prevCart;
-      } else {
-        enqueueSnackbar('Item added to cart');
-        return [...prevCart, { id: itemId, quantity: 1 }];
-      }
+      enqueueSnackbar('Item added to cart');
+      return [...prevCart, { id: itemId, quantity: 1 }];
     });
   };
 
