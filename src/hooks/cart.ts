@@ -18,7 +18,13 @@ export const useCart = () => {
   useEffect(() => {
     const cartInCookies = Cookies.get(cookieName);
     if (cartInCookies) {
-      setCart(JSON.parse(cartInCookies));
+      try {
+
+        setCart(JSON.parse(cartInCookies));
+      } catch (e) {
+        Cookies.remove(cookieName);
+        setCart([]);
+      }
     }
   }, []);
 
@@ -96,7 +102,11 @@ export const useCart = () => {
   // Synchronize cart with cookies whenever it changes.
   useEffect(() => {
     if (cart === undefined) return;
-    Cookies.set(cookieName, JSON.stringify(cart), { path: '/', sameSite: 'strict', secure: true });
+    Cookies.set(cookieName, JSON.stringify(cart), {
+      path: '/',
+      sameSite: 'strict',
+      secure: true
+    });
     revalidateCart();
   }, [cart]);
 

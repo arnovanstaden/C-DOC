@@ -15,6 +15,8 @@ export const getProduct = async (id: string): Promise<IProduct | undefined> => {
   try {
     const result = await pb.collection('products').getOne(id);
 
+    if (result.deleted) return undefined;
+
     const product: IProduct = {
       ...result,
       thumbnail: pb.files.getUrl(result, result.thumbnail),
@@ -50,7 +52,7 @@ export const getProductsById = async (ids: string[]): Promise<IProduct[]> => {
   await authPb();
   const result = await pb.collection('products').getList(undefined, undefined, {
     sort: 'name',
-    filter: `deleted = false && ${ids.map((id) => `id="${id}"`).join(' || ')}`,
+    filter: `deleted = false && (${ids.map((id) => `id="${id}"`).join(' || ')})`,
   });
 
   const products: IProduct[] = result.items.map((product) => ({
@@ -81,6 +83,6 @@ export const updateProduct = async (id: string, product: FormData | object, redi
 
 export const deleteProduct = async (id: string): Promise<void> => {
   await authPb();
-  await pb.collection('products').delete(id);
+  await pb.collection('products').update(id, { deleted: true });
   revalidateProducts();
 };

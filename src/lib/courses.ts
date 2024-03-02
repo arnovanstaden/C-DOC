@@ -44,11 +44,10 @@ export const updateCourse = async (id: string, course: INewCourse): Promise<void
   await authPb();
   await pb.collection('courses').update(id, course);
   revalidateCourses();
-
 };
 
 export const deleteCourse = async (id: string): Promise<void> => {
   await authPb();
-  await pb.collection('courses').delete(id);
+  await pb.collection('courses').update(id, { deleted: true });
   revalidateCourses();
 };

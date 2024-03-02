@@ -8,6 +8,7 @@ import { redirect } from 'next/navigation';
 import Checkout from '@components/website/shop/Checkout/Checkout';
 import { calculateDeliveryFee } from '@lib/settings';
 import { ICartItem, ICartItemWIthPrice } from '@types';
+import { validateCart } from '@lib/cart';
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';
@@ -31,10 +32,24 @@ const CartCheckoutPage = async () => {
     return redirect('/shop/cart');
   }
 
-  const cart: ICartItem[] = JSON.parse(cookie.value);
+  let cart: ICartItem[];
+
+  try {
+    cart = JSON.parse(cookie.value);
+  } catch (e) {
+    return redirect('/shop/cart');
+  }
+
   if (cart.length === 0) {
     return redirect('/shop/cart');
   }
+
+  const cartIsValid = await validateCart(cart);
+
+  if (!cartIsValid) {
+    return redirect('/shop/cart');
+  }
+
 
   const productsFromCart = await getProductsById(cart.map((item) => item.id));
 

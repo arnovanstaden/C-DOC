@@ -6,11 +6,15 @@ import styles from './CartPage.module.scss';
 import { getProductsById } from '@lib/products';
 import CartItem from '@components/website/shop/CartItem/CartItem';
 import { ICartItem } from '@types';
+import { validateCart } from '@lib/cart';
+import EmptyCart from '@components/website/shop/EmptyCart';
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
 export const fetchCache = 'force-no-store';
+
+const cookieName = 'C-DOC_Cart';
 
 export const metadata = generateCustomMetaData({
   title: 'Cart | C-DOC',
@@ -21,33 +25,31 @@ export const metadata = generateCustomMetaData({
   }
 });
 
-const EmptyCart = () => (
-  <main>
-    <Section
-      heading='Your Cart'
-      centerAlign
 
-    >
-      <div className={styles.empty}>
-        Your Cart is Empty :(
-        <Button href='/shop'>
-          Go Shopping
-        </Button>
-      </div>
-    </Section>
-  </main>
-);
 
 const CartPage = async () => {
   const cookieStore = cookies();
-  const cookie = cookieStore.get('C-DOC_Cart');
+  const cookie = cookieStore.get(cookieName);
 
   if (!cookie) {
     return <EmptyCart />;
   }
 
-  const cart: ICartItem[] = JSON.parse(cookie.value);
+  let cart: ICartItem[];
+
+  try {
+    cart = JSON.parse(cookie.value);
+  } catch (e) {
+    return <EmptyCart clearCart />;
+  }
+
   if (cart.length === 0) return <EmptyCart />;
+
+  const cartIsValid = await validateCart(cart);
+
+  if (!cartIsValid) {
+    return <EmptyCart clearCart />;
+  }
 
   const productsFromCart = await getProductsById(cart.map((item) => item.id));
 
