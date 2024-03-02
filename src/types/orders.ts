@@ -1,22 +1,15 @@
-import { IPocketBaseBase, IProduct } from '@types';
+import { IPocketBaseBase } from '@types';
 
-export interface IOrderDetailSimple extends IPocketBaseBase {
-  product: string;
+export interface ICartItem {
+  id: string;
   quantity: number;
+}
+
+export interface ICartItemWIthPrice extends ICartItem {
   price: number;
 }
 
-export interface IOrderDetail extends Omit<IOrderDetailSimple, 'product'> {
-  product: IProduct;
-}
-
-export interface IExpandedOrderDetail extends Omit<IOrderDetailSimple, 'product'> {
-  expand: {
-    product: IProduct;
-  }
-}
-
-export interface IOrderSimple extends IPocketBaseBase {
+export interface IOrder extends IPocketBaseBase {
   id: string;
 
   firstName: string;
@@ -26,28 +19,32 @@ export interface IOrderSimple extends IPocketBaseBase {
   deliveryAddress: string;
   deliveryNotes?: string;
 
-  orderDetails: string[];
+  cart: ICartItemWIthPrice[];
   total: number;
   status: 'pending' | 'paid';
-  payfastPaymentId?: string;
+  paymentId?: string;
   paymentFee?: number;
 }
 
-export interface IOrder extends Omit<IOrderSimple, 'orderDetails'> {
-  orderDetails: IOrderDetail[];
-}
-
-export interface IExpandedOrder extends Omit<IOrder, 'orderDetails'> {
-  expand: {
-    orderDetails: IExpandedOrderDetail[];
-  }
-}
-
-export interface INewOrder extends Omit<IOrder, 'id' | 'status' | 'payfastPaymentId' | 'paymentFee'> {
+export interface INewOrder extends Omit<IOrder, 'id' | 'status' | 'paymentId' | 'paymentFee'> {
   status: 'pending';
 }
+export interface IOrderForm extends Omit<INewOrder, 'status' | 'orderDetails'> { }
 
-export interface ICartItem {
-  id: string;
-  quantity: number;
+export interface IPayfastOrder {
+  merchant_id: string;
+  merchant_key: string;
+  amount: number;
+  item_name: string;
+  return_url: string;
+  cancel_url: string;
+  notify_url: string;
+  /**
+   * The order number
+   */
+  m_payment_id: string;
+
+  name_first: string;
+  name_last: string;
+  email_address: string;
 }

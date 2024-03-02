@@ -7,7 +7,7 @@ import { getProductsById } from '@lib/products';
 import { redirect } from 'next/navigation';
 import Checkout from '@components/website/shop/Checkout/Checkout';
 import { calculateDeliveryFee } from '@lib/settings';
-import { ICartItem } from '@types';
+import { ICartItem, ICartItemWIthPrice } from '@types';
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';
@@ -38,6 +38,12 @@ const CartCheckoutPage = async () => {
 
   const productsFromCart = await getProductsById(cart.map((item) => item.id));
 
+  const cartWithPrices: ICartItemWIthPrice[] = productsFromCart.map((product) => ({
+    id: product.id,
+    price: product.price,
+    quantity: cart.find((item) => item.id === product.id).quantity,
+  }));
+
   const subTotal: number = productsFromCart.reduce((acc, product) => {
     const productQuantity = cart.find((item) => item.id === product.id).quantity;
     return acc + (product.price * productQuantity);
@@ -51,7 +57,7 @@ const CartCheckoutPage = async () => {
         heading='Checkout'
       >
         <div className={styles.CheckoutPage}>
-          <Checkout subTotal={subTotal} deliveryFee={deliveryFee} />
+          <Checkout subTotal={subTotal} deliveryFee={deliveryFee} cart={cartWithPrices} />
           <div className={styles.buttons}>
             <Button href='/shop/cart' outlined>
               Back to Cart

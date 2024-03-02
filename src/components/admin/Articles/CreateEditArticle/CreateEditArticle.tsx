@@ -102,7 +102,7 @@ const CreateEditArticle: React.FC<{ article?: IArticle }> = ({ article }) => {
           name="description"
           textareaProps={{ required: true, rows: 4 }}
           register={{ ...register('description', { required: true }) }}
-          error={errors.description?.type === 'required' ? 'description is required' : undefined}
+          error={errors.description?.type === 'required' ? 'Description is required' : undefined}
         />
         <FormRow>
           <Input

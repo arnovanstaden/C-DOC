@@ -15,7 +15,6 @@
     "@mui/icons-material": "5.15.11",
     "@mui/material": "5.15.11",
     "@types/jsonwebtoken": "^9.0.5",
-    "axios": "1.6.7",
     "classnames": "2.5.1",
     "dayjs": "^1.11.10",
     "jose": "^5.2.2",
