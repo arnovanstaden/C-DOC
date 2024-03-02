@@ -4,7 +4,7 @@
 import { enqueueSnackbar } from 'notistack';
 import Button from '@components/system/Button/Button';
 import styles from './checkout.module.scss';
-import { ICartItemWIthPrice, INewOrder, IOrder, IOrderForm, IPayfastOrder } from '@types';
+import { ICartItemWithPrice, INewOrder, IOrder, IOrderForm, IPayfastOrder } from '@types';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Loader from '@components/system/Loader';
@@ -18,7 +18,7 @@ import { errorNotification } from '@utils/notifications';
 interface ICheckout {
   deliveryFee: number;
   subTotal: number;
-  cart: ICartItemWIthPrice[];
+  cart: ICartItemWithPrice[];
 }
 
 const Checkout = ({ deliveryFee, subTotal, cart }: ICheckout) => {

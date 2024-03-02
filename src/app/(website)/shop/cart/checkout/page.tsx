@@ -7,7 +7,7 @@ import { getProductsById } from '@lib/products';
 import { redirect } from 'next/navigation';
 import Checkout from '@components/website/shop/Checkout/Checkout';
 import { calculateDeliveryFee } from '@lib/settings';
-import { ICartItem, ICartItemWIthPrice } from '@types';
+import { ICartItem, ICartItemWithPrice } from '@types';
 import { validateCart } from '@lib/cart';
 
 export const revalidate = 0;
@@ -53,7 +53,7 @@ const CartCheckoutPage = async () => {
 
   const productsFromCart = await getProductsById(cart.map((item) => item.id));
 
-  const cartWithPrices: ICartItemWIthPrice[] = productsFromCart.map((product) => ({
+  const cartWithPrices: ICartItemWithPrice[] = productsFromCart.map((product) => ({
     id: product.id,
     price: product.price,
     quantity: cart.find((item) => item.id === product.id).quantity,

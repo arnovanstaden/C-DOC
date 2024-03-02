@@ -16,6 +16,7 @@ import FormRow from '@components/system/FormRow/FormRow';
 import FilePreview from '@components/admin/atoms/FilePreview/FilePreview';
 import Select from '@components/system/Select/Select';
 import { Checkbox } from '@mui/material';
+import DeletedNotice from '@components/admin/atoms/DeletedNotice';
 
 const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -31,7 +32,8 @@ const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
     defaultValues: {
       visible: true,
       category: 'Medical Equipment',
-    }
+    },
+    disabled: product?.deleted,
   });
 
   const handleCreateProduct = async (data: IProductForm) => {
@@ -96,16 +98,20 @@ const CreateEditProduct: React.FC<{ product?: IProduct }> = ({ product }) => {
 
   return (
     <div className={styles.CreateEditProduct}>
-      <CreateEditDeleteAction
-        actionText={!product ? 'Create' : 'Update'}
-        actionOnClick={!product ? handleSubmit(handleCreateProduct) : handleSubmit(handleUpdateProduct)}
-        delete={product
-          ? {
-            deleteOnClick: () => deleteProduct(product.id),
-            text: 'Are you sure you want to delete this product?'
-          }
-          : undefined}
-      />
+      {product?.deleted
+        ? <DeletedNotice />
+        : (
+          <CreateEditDeleteAction
+            actionText={!product ? 'Create' : 'Update'}
+            actionOnClick={!product ? handleSubmit(handleCreateProduct) : handleSubmit(handleUpdateProduct)}
+            delete={product
+              ? {
+                deleteOnClick: () => deleteProduct(product.id),
+                text: 'Are you sure you want to delete this product?'
+              }
+              : undefined}
+          />
+        )}
       <form action="">
         <Input
           label='Name'

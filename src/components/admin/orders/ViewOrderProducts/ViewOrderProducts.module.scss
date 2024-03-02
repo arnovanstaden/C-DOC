@@ -1,0 +1,8 @@
+.ViewOrderProducts {
+  margin-top: 48px;
+
+  .item {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  }
+}

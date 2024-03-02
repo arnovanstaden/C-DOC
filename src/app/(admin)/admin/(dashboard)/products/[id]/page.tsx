@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const DashboardProductsEdit: React.FC<{ params: { id: string } }> = async ({ params }) => {
-  const product = await getProduct(params.id);
+  const product = await getProduct(params.id, false);
 
   if (!product) {
     return notFound();

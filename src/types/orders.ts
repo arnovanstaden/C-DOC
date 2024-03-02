@@ -5,7 +5,7 @@ export interface ICartItem {
   quantity: number;
 }
 
-export interface ICartItemWIthPrice extends ICartItem {
+export interface ICartItemWithPrice extends ICartItem {
   price: number;
 }
 
@@ -19,11 +19,21 @@ export interface IOrder extends IPocketBaseBase {
   deliveryAddress: string;
   deliveryNotes?: string;
 
-  cart: ICartItemWIthPrice[];
+  cart: ICartItemWithPrice[];
   total: number;
   status: 'pending' | 'paid';
   paymentId?: number;
   paymentFee?: number;
+}
+
+export interface ICartItemExtended extends ICartItemWithPrice {
+  name: string
+  link: string;
+  code: string;
+}
+
+export interface IOrderExtended extends Omit<IOrder, 'cart'> {
+  cart: ICartItemExtended[];
 }
 
 export interface INewOrder extends Omit<IOrder, 'id' | 'status' | 'paymentId' | 'paymentFee'> {

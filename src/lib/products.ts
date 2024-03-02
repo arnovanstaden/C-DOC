@@ -10,12 +10,12 @@ export const revalidateProducts = () => {
   redirect('/admin/products');
 };
 
-export const getProduct = async (id: string): Promise<IProduct | undefined> => {
+export const getProduct = async (id: string, filterDeleted = true): Promise<IProduct | undefined> => {
   await authPb();
   try {
     const result = await pb.collection('products').getOne(id);
 
-    if (result.deleted) return undefined;
+    if (filterDeleted && result.deleted) return undefined;
 
     const product: IProduct = {
       ...result,
@@ -48,11 +48,11 @@ export const getProducts = async (category?: IProduct['category']): Promise<IPro
   return products;
 };
 
-export const getProductsById = async (ids: string[]): Promise<IProduct[]> => {
+export const getProductsById = async (ids: string[], filterDeleted = true): Promise<IProduct[]> => {
   await authPb();
   const result = await pb.collection('products').getList(undefined, undefined, {
     sort: 'name',
-    filter: `deleted = false && (${ids.map((id) => `id="${id}"`).join(' || ')})`,
+    filter: `(${ids.map((id) => `id="${id}"`).join(' || ')})${filterDeleted ? '&& deleted = false' : ''}`,
   });
 
   const products: IProduct[] = result.items.map((product) => ({

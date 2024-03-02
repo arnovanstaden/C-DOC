@@ -1,12 +1,16 @@
-import { IOrder } from '@types';
+import { IOrderExtended } from '@types';
 import styles from './Order.module.scss';
 import ViewItem from '@components/admin/atoms/ViewItem/ViewItem';
+import ViewOrderProducts from '../ViewOrderProducts';
 
-const Order: React.FC<IOrder> = (order) => {
+const Order: React.FC<IOrderExtended> = (order) => {
+  const { cart, ...rest } = order;
+
   return (
     <div className={styles.Order}>
       <h4>Order No {order.id}</h4>
-      <ViewItem {...order} />
+      <ViewItem {...rest} />
+      <ViewOrderProducts cart={cart} />
     </div>
   );
 };

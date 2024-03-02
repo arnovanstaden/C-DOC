@@ -1,8 +1,9 @@
 'use server';
 
-import { INewOrder, IOrder } from '@types';
+import { ICartItemExtended, INewOrder, IOrder, IOrderExtended } from '@types';
 import { authPb, pb } from './pocketbase';
 import { revalidatePath } from 'next/cache';
+import { getProductsById } from './products';
 
 
 export const revalidateOrders = () => {
@@ -10,11 +11,27 @@ export const revalidateOrders = () => {
 };
 
 
-export const getOrder = async (id: string): Promise<IOrder | undefined> => {
+export const getOrder = async (id: string): Promise<IOrderExtended | undefined> => {
   await authPb();
   try {
     const result = await pb.collection('orders').getOne(id);
-    return result;
+    const productsInCart = await getProductsById(result.cart.map((item) => item.id), false);
+
+    const cart: ICartItemExtended[] = productsInCart.map((product) => ({
+      name: product.deleted ? `[DELETED] ${product.name}` : product.name,
+      link: `/admin/products/${product.id}`,
+      code: product.code,
+      price: product.price,
+      quantity: result.cart.find((item) => item.id === product.id).quantity,
+      id: product.id,
+    }));
+
+    const order: IOrderExtended = {
+      ...result,
+      cart,
+    };
+
+    return order;
   }
   catch (e) {
     return undefined;

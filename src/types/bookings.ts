@@ -17,6 +17,7 @@ export interface IBooking extends IPocketBaseBase {
 export interface IBookingExtended extends Omit<IBooking, 'course' | 'courseDates'> {
   courseName: string;
   courseLink: string;
+  courseCode: string;
   courseDates?: string;
 }
 

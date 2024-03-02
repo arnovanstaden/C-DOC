@@ -28,6 +28,7 @@ export const getBooking = async (id: string): Promise<IBookingExtended | undefin
       courseName: pbCourse.deleted ? `[DELETED]: ${pbCourse.name}` : pbCourse.name,
       courseLink: `/admin/courses/${pbCourse.id}`,
       courseDates: result.courseDates ? `${result.courseDates.from} - ${result.courseDates.to}` : undefined,
+      courseCode: pbCourse.code,
     };
 
     return booking;
