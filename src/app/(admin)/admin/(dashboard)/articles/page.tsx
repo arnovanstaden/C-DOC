@@ -1,4 +1,4 @@
-import ArticleList from '@components/admin/articles/ArticleList/ListArticles';
+import ArticleList from '@components/admin/articles/ArticleList';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
