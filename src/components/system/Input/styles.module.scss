@@ -17,6 +17,12 @@
     font-family: $font;
     border-radius: 0;
 
+    &:disabled {
+      background-color: rgba(239, 239, 239, 0.3);
+      color: rgb(84, 84, 84);
+      border-color: rgba(118, 118, 118, 0.3);
+    }
+
     &::placeholder {
       font-style: italic;
     }
@@ -29,4 +35,6 @@
   small {
     color: $red;
   }
+
+
 }

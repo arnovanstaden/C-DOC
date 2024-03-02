@@ -9,9 +9,15 @@ export interface IBooking extends IPocketBaseBase {
   country: string;
   total: number;
   course: string;
-  courseDates: ICourseDate;
+  courseDates?: ICourseDate;
   coupon?: string;
   proofOfPayment: string;
+}
+
+export interface IBookingExtended extends Omit<IBooking, 'course' | 'courseDates'> {
+  courseName: string;
+  courseLink: string;
+  courseDates?: string;
 }
 
 export interface INewBooking extends Omit<IBooking, 'id' | 'proofOfPayment'> {

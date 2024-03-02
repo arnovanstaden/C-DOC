@@ -14,6 +14,7 @@ import { errorNotification } from '@utils/notifications';
 import FormRow from '@components/system/FormRow/FormRow';
 import Select from '@components/system/Select/Select';
 import CourseDates from './CourseDates/CourseDates';
+import DeletedNotice from '@components/admin/atoms/DeletedNotice';
 
 const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -28,7 +29,8 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
   } = useForm<INewCourse>({
     defaultValues: {
       category: 'Online Distance Learning (ODL)',
-    }
+    },
+    disabled: course?.deleted,
   });
 
   const handleCreateCourse = async (data: INewCourse) => {
@@ -60,16 +62,18 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
 
   return (
     <div className={styles.CreateEditCourse}>
-      <CreateEditDeleteAction
-        actionText={!course ? 'Create' : 'Update'}
-        actionOnClick={!course ? handleSubmit(handleCreateCourse) : handleSubmit(handleUpdateCourse)}
-        delete={course
-          ? {
-            deleteOnClick: () => deleteCourse(course.id),
-            text: 'Are you sure you want to delete this course?'
-          }
-          : undefined}
-      />
+      {course?.deleted
+        ? <DeletedNotice />
+        : <CreateEditDeleteAction
+          actionText={!course ? 'Create' : 'Update'}
+          actionOnClick={!course ? handleSubmit(handleCreateCourse) : handleSubmit(handleUpdateCourse)}
+          delete={course
+            ? {
+              deleteOnClick: () => deleteCourse(course.id),
+              text: 'Are you sure you want to delete this course?'
+            }
+            : undefined}
+        />}
       <form action="">
         <Input
           label='Name'
@@ -124,6 +128,7 @@ const CreateEditCourse: React.FC<{ course?: ICourse }> = ({ course }) => {
         <CourseDates
           setFormDates={(dates: ICourseDate[]) => setValue('dates', dates)}
           dates={course?.dates}
+          disabled={course?.deleted}
         />
       </form>
       <Loader open={loading} />

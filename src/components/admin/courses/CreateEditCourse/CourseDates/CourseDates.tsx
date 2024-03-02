@@ -8,6 +8,7 @@ import { Checkbox } from '@mui/material';
 interface CourseDatesProps {
   setFormDates: (dates: ICourseDate[]) => void;
   dates?: ICourseDate[];
+  disabled?: boolean;
 }
 
 const CourseDates: React.FC<CourseDatesProps> = (props) => {
@@ -48,6 +49,7 @@ const CourseDates: React.FC<CourseDatesProps> = (props) => {
                   type="date"
                   value={dates[i].from}
                   onChange={(e) => updateDate(i, 'from', e.target.value)}
+                  disabled={props.disabled}
                 />
               </div>
               <div className={styles.date}>
@@ -56,12 +58,13 @@ const CourseDates: React.FC<CourseDatesProps> = (props) => {
                   type="date"
                   value={dates[i].to}
                   onChange={(e) => updateDate(i, 'to', e.target.value)}
+                  disabled={props.disabled}
                 />
               </div>
               <DeleteIcon className={styles.deleteButton} onClick={() => removeDate(i)} />
             </div>
           ))}
-          <Button type='button' onClick={addEmptyDate}>Add Another Date</Button>
+          {!props.disabled && (<Button type='button' onClick={addEmptyDate}>Add Another Date</Button>)}
         </>
       )}
     </div>

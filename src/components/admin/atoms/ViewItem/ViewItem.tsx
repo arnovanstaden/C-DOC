@@ -23,8 +23,12 @@ const Item = ({ name, value }: { name: string, value: string | number | boolean 
     return <p>{formatDate(value)}</p>;
   }
 
-  if (typeof value === 'string' && /^(https?:\/\/)?([\w-]+\.)+[\w-]+(:\d+)?(\/\S*)?$/.test(value)) {
-    return <a href={value} target="_blank">View</a>;
+  if (name.toLowerCase().endsWith('link') || (typeof value === 'string' && /^(https?:\/\/)?([\w-]+\.)+[\w-]+(:\d+)?(\/\S*)?$/.test(value))) {
+    return (
+      <Button href={value as string} target="_blank">
+        View
+      </Button>
+    );
   }
 
   return <p>{value}</p>;

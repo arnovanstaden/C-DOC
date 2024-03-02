@@ -4,7 +4,7 @@ import Landing from '@components/website/content/Landing/Landing';
 import TeamMember from '@components/website/content/TeamMember/TeamMember';
 import Cross from '@components/Cross/Cross';
 import styles from './AboutPage.module.scss';
-import teamMembers from '../../../assets/data/team.json';
+import teamMembers from '../../../data/team.json';
 import { generateCustomMetaData } from '@utils/metadata';
 import Button from '@components/system/Button/Button';
 import Heading from '@components/website/layout/Heading';
