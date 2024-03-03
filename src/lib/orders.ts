@@ -4,6 +4,7 @@ import { ICartItemExtended, INewOrder, IOrder, IOrderExtended } from '@types';
 import { authPb, pb } from './pocketbase';
 import { revalidatePath } from 'next/cache';
 import { getProductsById } from './products';
+import { sendOrderEmailBuyer, sendOrderEmailMerchant } from './email/orders';
 
 
 export const revalidateOrders = () => {
@@ -97,6 +98,8 @@ export const markOrderAsPaid = async ({ id, amount, paymentId, paymentFee }: IMa
     });
 
     revalidateOrders();
+    await sendOrderEmailMerchant(updatedOrder);
+    await sendOrderEmailBuyer(updatedOrder);
     return updatedOrder;
   } catch (e) {
     console.error(e.message);

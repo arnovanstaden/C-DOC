@@ -5,7 +5,6 @@ import { getEquipment } from '@lib/equipment';
 import { IBooking, IEquipmentForm, INewCoupon, TContactMessage } from '@types';
 import { sendEmail } from './server';
 import { camelCaseToTitleCase } from '@utils/utils';
-import { getCourse } from '@lib/courses';
 import { getBooking } from '@lib/bookings';
 
 export const sendContactEmail = async (message: TContactMessage) => {

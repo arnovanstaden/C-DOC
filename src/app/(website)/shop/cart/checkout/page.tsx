@@ -64,7 +64,7 @@ const CartCheckoutPage = async () => {
     return acc + (product.price * productQuantity);
   }, 0);
 
-  const deliveryFee = await calculateDeliveryFee(10000);
+  const deliveryFee = await calculateDeliveryFee(subTotal);
 
   return (
     <main>

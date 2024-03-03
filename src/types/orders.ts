@@ -24,6 +24,7 @@ export interface IOrder extends IPocketBaseBase {
   status: 'pending' | 'paid';
   paymentId?: number;
   paymentFee?: number;
+  deliveryFee: number;
 }
 
 export interface ICartItemExtended extends ICartItemWithPrice {

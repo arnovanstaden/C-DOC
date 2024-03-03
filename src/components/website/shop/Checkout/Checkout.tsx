@@ -77,6 +77,7 @@ const Checkout = ({ deliveryFee, subTotal, cart }: ICheckout) => {
         cart,
         total,
         status: 'pending',
+        deliveryFee,
       };
 
       const order = await createOrder(pbOrder);
