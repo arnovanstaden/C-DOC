@@ -58,7 +58,8 @@ export const getProductsById = async (ids: string[], filterDeleted = true): Prom
   const products: IProduct[] = result.items.map((product) => ({
     ...product,
     thumbnail: pb.files.getUrl(product, product.thumbnail),
-    images: product.images.map((image) => pb.files.getUrl(result, image))
+    images: product.images.map((image) => pb.files.getUrl(result, image)),
+    document: product.document ? `${pb.files.getUrl(product, product.document)}?download=1` : undefined,
   }));
 
   return products;

@@ -24,6 +24,7 @@ const buildProducts = async (cart: IOrder['cart']): Promise<string> => {
                                   </p>
                                   <span style="font-size: 12px;color: #969696;">${product.category}</span><br>
                                   <span style="font-size: 12px;color: #969696;">#${product.code}</span>
+                                  ${product.document ? `<br><a href="${product.document}" style="font-size: 14px;color: #da222d; font-weight:500">Download Product</a>` : ''}
                                   <br>
                               </td>
                           </tr>
