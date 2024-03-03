@@ -1,0 +1,49 @@
+ .EquipmentList {
+   margin-top: 48px;
+
+   .category {
+     h4 {
+       text-align: center;
+       color: $red;
+       font-size: 18px;
+       font-weight: 600;
+       border-bottom: 1px solid $darkgrey;
+       padding-bottom: 0.5rem;
+     }
+
+     ul {
+       @include reset-list;
+       display: grid;
+       gap: 8px;
+       padding: 0 32px;
+
+       li {
+         display: grid;
+         grid-template-columns: 1fr auto;
+         border-bottom: 1px solid rgba($lightgrey, 0.5);
+         align-items: center;
+         padding: 8px 0;
+
+         label {
+           display: block;
+           margin-bottom: 0.5rem;
+           font-weight: 400;
+           font-size: 0.9rem;
+         }
+
+         input {
+           width: 50px;
+           border: 1px solid $darkgrey;
+           padding: 8px 12px;
+           font-size: 0.9rem;
+           background-color: transparent;
+           outline: none;
+           transition: 0.3s ease-in-out;
+           font-family: $font;
+           border-radius: 0;
+           text-align: center;
+         }
+       }
+     }
+   }
+ }

@@ -1,4 +1,4 @@
-import { INewCoupon, TContactMessage } from '@types';
+import { IEquipmentForm, INewCoupon, TContactMessage } from '@types';
 
 export const buildContactEmail = (message: TContactMessage): string => {
   let body = '';
@@ -40,4 +40,8 @@ export const buildCouponEmail = (coupon: INewCoupon) => {
     </p>
 
     </body>`;
+};
+
+export const buildEquipmentEnquiryEmail = (enquiry: IEquipmentForm) => {
+  return enquiry;
 };

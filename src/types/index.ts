@@ -4,6 +4,7 @@ export interface LoginCredentials {
 }
 
 export interface IPocketBaseBase {
+  id: string;
   created: string;
   updated: string;
   collectionId: string;
@@ -32,3 +33,4 @@ export * from './coupons';
 export * from './courses';
 export * from './orders';
 export * from './products';
+export * from './equipment';

@@ -1,0 +1,39 @@
+{
+  "C-DOC SYSTEMS MODULES (Includes Medical Content)": [
+    "Reflective Jacket",
+    "Hand Held First Aid Kit",
+    "Module 1 Airway",
+    "Module 2 Dressings",
+    "Module 3 IV Access (includes spring loaded IO)",
+    "Module 3 IV Access (includes manual IO)",
+    "Module 4 Sutures",
+    "Module 5 Chest Drain",
+    "Module 6 Urinary",
+    "Module 7 Diagnostics",
+    "Module 8 Needles / Syringes"
+  ],
+  "DMAC 015 AIR DIVING SUPPORT EQUIPMENT": [
+    "Automated External Defibrillator (AED)",
+    "BIBS Bag Valve Mask Connector (BIBS) (SCOTTS BIBS excluded)",
+    "Air Chamber (AC) Medical Kit",
+    "Advanced Adult Airway (AAA)"
+  ],
+  "DMAC 015 SATURATION DIVING SUPPORT EQUIPMENT": [
+    "Saturation Chamber (SC) Living Chamber Medical Kit",
+    "Diving Bell (DB) Medical Kit",
+    "Hyperbaric Evacuation System (HES) Medical Kit (12 PAX)"
+  ],
+  "ADDITIONAL SUPPLIES": [
+    "Portable Oxygen",
+    "AED",
+    "DMAC 015 Prescription Pharmaceutical Module (Drug Module)",
+    "Inshore Commercial Dive Operations Compliant Medical Kit"
+  ],
+  "C-DOC SYSTEMS": [
+    "DMAC 015 Rev.4 C-DOC Offshore Medical Kit (System Only - NO medical Contents)",
+    "DMAC 015 Rev.4 C-DOC Offshore Medical Kit (Fully Compliant with Medical Contents. Excludes drug module, Portable Oxygen and AED)",
+    "DMAC 015 Rev.4 C-DOC Offshore Medical Kit (Minimum Medical Content - Stretcher Bag)",
+    "DMAC 015 Rev.4 C-DOC Offshore Medical Kit (Minimum Medical Content - Back Pack)",
+    "DMAC COMPLIANCE CONSULTANCY"
+  ]
+}

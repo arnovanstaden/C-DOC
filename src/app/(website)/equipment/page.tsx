@@ -2,6 +2,8 @@ import Landing from '@components/website/content/Landing/Landing';
 import styles from './EquipmentPage.module.scss';
 import { generateCustomMetaData } from '@utils/metadata';
 import Heading from '@components/website/layout/Heading';
+import EquipmentForm from '@components/website/equipment/EquipmentForm/EquipmentForm';
+import { getEquipment } from '@lib/equipment';
 
 export const metadata = generateCustomMetaData({
   title: 'Equipment | C-DOC',
@@ -9,7 +11,9 @@ export const metadata = generateCustomMetaData({
   image: '/images/pages/equipment/landing.jpeg',
 });
 
-const EquipmentPage = () => {
+const EquipmentPage = async () => {
+  const equipment = await getEquipment();
+
   return (
     <main className={styles.EquipmentPage}>
       <Landing
@@ -21,6 +25,7 @@ const EquipmentPage = () => {
           divider
         />
       </Landing>
+      <EquipmentForm equipment={equipment} />
     </main>
   );
 };
