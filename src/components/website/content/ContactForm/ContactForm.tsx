@@ -3,8 +3,6 @@
 import styles from './ContactForm.module.scss';
 import { enqueueSnackbar } from 'notistack';
 import Button from '@components/system/Button/Button';
-import { sendEmail } from '@lib/email/server';
-import { buildContactEmail } from '@lib/email/client';
 import { errorNotification } from '@utils/notifications';
 import { useState } from 'react';
 import Loader from '@components/system/Loader';
@@ -12,6 +10,7 @@ import { TContactMessage } from '@types';
 import { useForm } from 'react-hook-form';
 import TextArea from '@components/system/TextArea';
 import Input from '@components/system/Input';
+import { sendContactEmail } from '@lib/email';
 
 const ContactForm: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -27,10 +26,7 @@ const ContactForm: React.FC = () => {
     setLoading(true);
 
     try {
-      await sendEmail({
-        subject: 'C-DOC Website: New Contact Form Submission',
-        body: buildContactEmail(data)
-      });
+      await sendContactEmail(data);
       enqueueSnackbar('Thank you for your message. We\'ll get back to you soon!');
       reset();
     } catch (e) {

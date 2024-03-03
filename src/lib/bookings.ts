@@ -52,10 +52,6 @@ export const createBooking = async (booking: FormData): Promise<void> => {
   if (coupon) {
     await redeemCoupon(coupon);
   }
-  // await sendEmail({
-  //   subject: `${coupon.discount}% Off Coupon for a Course at C-DOC`,
-  //   body: buildCouponEmail(coupon),
-  //   recipient: coupon.email,
-  // });
+  // SEND EMAIL
   revalidateBookings();
 };

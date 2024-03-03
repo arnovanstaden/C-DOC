@@ -1,3 +1,5 @@
+'use server';
+
 import { IEquipment } from '@types';
 import { authPb, pb } from './pocketbase';
 
@@ -12,3 +14,4 @@ export const getEquipment = async (): Promise<IEquipment[]> => {
     return undefined;
   }
 };
+

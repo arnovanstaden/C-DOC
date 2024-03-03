@@ -12,7 +12,7 @@ import Button from '@components/system/Button/Button';
 import Loader from '@components/system/Loader';
 import { useState } from 'react';
 import { enqueueSnackbar } from 'notistack';
-import { buildEquipmentEnquiryEmail } from '@lib/email/client';
+import { sendEquipmentEnquiryEmail } from '@lib/email';
 
 const EquipmentForm: React.FC<{ equipment: IEquipment[] }> = ({ equipment }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -35,7 +35,7 @@ const EquipmentForm: React.FC<{ equipment: IEquipment[] }> = ({ equipment }) => 
     setLoading(true);
     try {
       enqueueSnackbar('Thank you for your request. We will get back to you soon.');
-      buildEquipmentEnquiryEmail(enquiry);
+      await sendEquipmentEnquiryEmail(enquiry);
       reset();
     } catch (e) {
       console.error(e);

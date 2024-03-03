@@ -2,8 +2,7 @@
 
 import { ICoupon, ICouponForm, INewCoupon } from '@types';
 import { authPb, pb } from './pocketbase';
-import { sendEmail } from './email/server';
-import { buildCouponEmail } from './email/client';
+import { sendCouponEmail } from './email';
 import voucherCodes from 'voucher-code-generator';
 
 export const getCouponByCode = async (code: string): Promise<ICoupon | undefined> => {
@@ -23,11 +22,7 @@ export const createCoupon = async (newCoupon: ICouponForm): Promise<void> => {
   };
   await authPb();
   await pb.collection('coupons').create(coupon);
-  await sendEmail({
-    subject: `${coupon.discount}% Off Coupon for a Course at C-DOC`,
-    body: buildCouponEmail(coupon),
-    recipient: coupon.email,
-  });
+  await sendCouponEmail(coupon);
 };
 
 export const redeemCoupon = async (code: string): Promise<void> => {
