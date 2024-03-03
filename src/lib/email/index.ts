@@ -2,9 +2,11 @@
 'use server';
 
 import { getEquipment } from '@lib/equipment';
-import { IEquipmentForm, INewCoupon, TContactMessage } from '@types';
+import { IBooking, IEquipmentForm, INewCoupon, TContactMessage } from '@types';
 import { sendEmail } from './server';
 import { camelCaseToTitleCase } from '@utils/utils';
+import { getCourse } from '@lib/courses';
+import { getBooking } from '@lib/bookings';
 
 export const sendContactEmail = async (message: TContactMessage) => {
   let body = '';
@@ -21,7 +23,7 @@ export const sendContactEmail = async (message: TContactMessage) => {
   `;
 
   await sendEmail({
-    subject: 'C-DOC Website: New Contact Form Submission',
+    subject: 'C-DOC Website: Contact Form Submission',
     body: emailBody,
   });
 };
@@ -91,6 +93,53 @@ export const sendEquipmentEnquiryEmail = async (enquiry: IEquipmentForm) => {
 
   await sendEmail({
     subject: 'C-DOC Website: Equipment Enquiry',
+    body: emailBody,
+  });
+};
+
+export const sendBookingEmailMerchant = async (id: string) => {
+  const booking = await getBooking(id);
+  let body = '';
+  const keys = Object.keys(booking).filter((key) => !['id', 'collectionId', 'collectionName', 'created', 'updated', 'courseLink', 'proofOfPayment'].includes(key));
+  keys.forEach(key => {
+    body += `<p> <span style="font-weight: 600;">${camelCaseToTitleCase(key)}</span>: ${booking[key as keyof Omit<IBooking, 'id'>] || '-'}</p>`;
+  });
+
+  body += `<p> <span style="font-weight: 600;">Proof Of Payment</span>: <a href="${booking.proofOfPayment}?download=1" target="_blank">View</a></p>`;
+
+  const emailBody = `
+  <p> Dear C-DOC </p>
+  <p>You received a new course booking via your website:</p>
+  ${body}
+  `;
+
+  await sendEmail({
+    subject: 'C-DOC Website: Course Booking',
+    body: emailBody,
+  });
+};
+
+export const sendBookingEmailBuyer = async (id: string) => {
+  const booking = await getBooking(id);
+  let body = '';
+  const keys = Object.keys(booking).filter((key) => !['id', 'collectionId', 'collectionName', 'created', 'updated', 'courseLink', 'proofOfPayment', 'courseCode'].includes(key));
+  keys.forEach(key => {
+    body += `<p> <span style="font-weight: 600;">${camelCaseToTitleCase(key)}</span>: ${booking[key as keyof Omit<IBooking, 'id'>] || '-'}</p>`;
+  });
+
+  body += `<p> <span style="font-weight: 600;">Proof Of Payment</span>: <a href="${booking.proofOfPayment}?download=1" target="_blank">View</a></p>`;
+
+  const emailBody = `
+  <p> Dear ${booking.name} </p>
+  <p>We received the following booking from you:</p>
+  ${body}
+
+  <p>We'll be in touch soon!</p>
+  `;
+
+  await sendEmail({
+    subject: 'C-DOC Course Booking',
+    recipient: booking.email,
     body: emailBody,
   });
 };
