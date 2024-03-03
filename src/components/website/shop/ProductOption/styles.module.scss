@@ -1,12 +1,12 @@
 .ProductOption {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 20px;
+  align-items: flex-start;
 
-  .quantity {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  small {
+    color: $red;
+    display: block;
   }
 
   @media screen and (max-width: $breakpoint-sm) {

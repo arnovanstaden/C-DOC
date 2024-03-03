@@ -6,7 +6,9 @@ import Button from '@components/system/Button/Button';
 import { useCart } from '@hooks/cart';
 
 const ProductOption: React.FC<IProduct> = (product) => {
-  const { increaseItemQuantity } = useCart();
+  const { increaseItemQuantity, cart } = useCart();
+
+  const alreadyInCart = !!cart?.find((item) => item.id === product.id);
 
   if (product.price === 0 && product.document) {
     return (
@@ -23,9 +25,17 @@ const ProductOption: React.FC<IProduct> = (product) => {
       <Button
         className={styles.add}
         onClick={() => increaseItemQuantity(product.id, !!product.document)}
+        disabled={alreadyInCart}
       >
         Add To Cart
       </Button>
+      {alreadyInCart && (
+        <small>
+          This item is already in your cart.
+          <br />
+          You can update the quantity during chekcout.
+        </small>
+      )}
     </div>
   );
 };
