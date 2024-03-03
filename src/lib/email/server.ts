@@ -48,12 +48,22 @@ export const sendEmail = async ({ subject, body, recipient }: SendEmail): Promis
     html: body,
   };
 
-  await transporter.sendMail(message, (error) => {
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    console.log(`Email Sent to ${to}`);
-  });
+  try {
+    // Await the promise returned by the sendMail method
+    await new Promise((resolve, reject) => {
+      transporter.sendMail(message, (error: unknown, info: unknown) => {
+        if (error) {
+          console.error(error);
+          reject(new Error('Error sending email'));
+        } else {
+          console.log(`Email Sent to ${to}`);
+          resolve(info);
+        }
+      });
+    });
+  } catch (error) {
+    // Handle any errors that occur during the sending process
+    console.error(error);
+    throw error; // Rethrowing the error after logging it
+  }
 };
