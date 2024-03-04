@@ -13,6 +13,7 @@ import Loader from '@components/system/Loader';
 import { useState } from 'react';
 import { enqueueSnackbar } from 'notistack';
 import { sendEquipmentEnquiryEmail } from '@lib/email';
+import { errorNotification } from '@utils/notifications';
 
 const EquipmentForm: React.FC<{ equipment: IEquipment[] }> = ({ equipment }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -34,10 +35,11 @@ const EquipmentForm: React.FC<{ equipment: IEquipment[] }> = ({ equipment }) => 
 
     setLoading(true);
     try {
-      enqueueSnackbar('Thank you for your request. We will get back to you soon.');
       await sendEquipmentEnquiryEmail(enquiry);
+      enqueueSnackbar('Thank you for your request. We will get back to you soon.');
       reset();
     } catch (e) {
+      errorNotification('Error sending request');
       console.error(e);
     } finally {
       setLoading(false);

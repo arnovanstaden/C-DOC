@@ -84,7 +84,7 @@ const Checkout = ({ deliveryFee, subTotal, cart }: ICheckout) => {
       handleSubmitInvisibleForm(order);
     } catch (e) {
       console.error(e);
-      errorNotification('Error processing your order', e);
+      errorNotification('Error processing your order');
     } finally {
       setLoading(false);
     }
