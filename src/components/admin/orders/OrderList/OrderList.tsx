@@ -1,13 +1,11 @@
 import { camelCaseToTitleCase, formatDate } from '@utils/utils';
 import Link from 'next/link';
 import styles from './OrderList.module.scss';
-import OrderFilter from '../OrderFilter';
 import { IOrder } from '@types';
 
 const OrderList = async ({ orders }: { orders: IOrder[] }) => {
   return (
     <div>
-      <OrderFilter />
       {
         orders.length === 0
           ? <p>You have no orders</p>

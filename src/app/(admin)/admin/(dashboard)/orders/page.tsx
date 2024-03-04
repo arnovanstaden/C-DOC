@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   }
 };
 
-const DashboardOrders: React.FC = async ({ searchParams }: { searchParams: { [key: string]: string | undefined } }) => {
-  const orders = await getOrders(searchParams?.status);
+const DashboardOrders: React.FC = async () => {
+  const orders = await getOrders();
 
   return (
     <main>
