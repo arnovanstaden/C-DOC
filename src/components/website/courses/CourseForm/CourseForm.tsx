@@ -82,7 +82,7 @@ const CourseForm: React.FC<{ courses: ICourse[] }> = ({ courses }) => {
       setSelectedCourseDates(undefined);
     } catch (e) {
       console.error(e);
-      errorNotification('Error creating Booking', e);
+      errorNotification('Error creating Booking');
     } finally {
       setLoading(false);
     }
