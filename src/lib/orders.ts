@@ -42,11 +42,10 @@ export const getOrder = async (id: string): Promise<IOrderExtended | undefined> 
   }
 };
 
-export const getOrders = async (status?: string): Promise<IOrder[]> => {
+export const getOrders = async (): Promise<IOrder[]> => {
   await authPb();
 
   const result = await pb.collection('orders').getList(undefined, undefined, {
-    filter: status ? `status = '${status}'` : '',
     sort: '-updated',
   });
 
