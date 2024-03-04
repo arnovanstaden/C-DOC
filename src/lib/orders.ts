@@ -18,14 +18,17 @@ export const getOrder = async (id: string): Promise<IOrderExtended | undefined> 
     const result = await pb.collection('orders').getOne(id);
     const productsInCart = await getProductsById(result.cart.map((item) => item.id), false);
 
-    const cart: ICartItemExtended[] = productsInCart.map((product) => ({
-      name: product.deleted ? `[DELETED] ${product.name}` : product.name,
-      link: `/admin/products/${product.id}`,
-      code: product.code,
-      price: product.price,
-      quantity: result.cart.find((item) => item.id === product.id).quantity,
-      id: product.id,
-    }));
+    const cart: ICartItemExtended[] = productsInCart.map((product) => {
+      const cartItem = result.cart.find((item) => item.id === product.id);
+      return {
+        name: product.deleted ? `[DELETED] ${product.name}` : product.name,
+        link: `/admin/products/${product.id}`,
+        code: product.code,
+        price: cartItem.price,
+        quantity: cartItem.quantity,
+        id: product.id,
+      };
+    });
 
     const order: IOrderExtended = {
       ...result,

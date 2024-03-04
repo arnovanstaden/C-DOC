@@ -64,7 +64,11 @@ const CartCheckoutPage = async () => {
     return acc + (product.price * productQuantity);
   }, 0);
 
-  const deliveryFee = await calculateDeliveryFee(subTotal);
+  let deliveryFee = 0;
+  const digitalProductsOnly = productsFromCart.every((product) => product.document);
+  if (!digitalProductsOnly) {
+    deliveryFee = await calculateDeliveryFee(subTotal);
+  }
 
   return (
     <main>
