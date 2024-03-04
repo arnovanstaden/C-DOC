@@ -44,7 +44,7 @@ export const sendCouponEmail = async (coupon: INewCoupon) => {
     <h4 style="background-color: #da222d;color: white;padding: 5px 16px;text-align: center">${coupon.code}</h4>
 
     <div  style="text-align: center;">
-    <a href="https://dmerworldwide.com/courses/book" style="text-align: center;padding: 6px 16px;border:2px solid #da222d;margin: auto;text-decoration:none;color: #333333;font-weight:600">Book A Course</a>
+    <a href="https://www.c-doc.co.za/courses" style="text-align: center;padding: 6px 16px;border:2px solid #da222d;margin: auto;text-decoration:none;color: #333333;font-weight:600">Book A Course</a>
     </div>
     <br/ >
     <p style="font-size: 14.4px;font-style: italic;text-align: center">
