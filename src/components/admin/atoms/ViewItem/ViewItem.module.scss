@@ -1,4 +1,11 @@
 .ViewItem {
+  .buttons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   ul {
     margin-top: 24px;
 

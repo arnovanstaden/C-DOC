@@ -47,6 +47,7 @@ export const getOrders = async (status?: string): Promise<IOrder[]> => {
 
   const result = await pb.collection('orders').getList(undefined, undefined, {
     filter: status ? `status = '${status}'` : '',
+    sort: '-updated',
   });
 
   return result.items;

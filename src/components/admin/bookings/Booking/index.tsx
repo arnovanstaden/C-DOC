@@ -5,7 +5,7 @@ const Booking: React.FC<IBookingExtended> = async (booking) => {
   return (
     <div >
       <h4>Booking No {booking.id}</h4>
-      <ViewItem {...booking} />
+      <ViewItem item={booking} />
     </div>
   );
 };

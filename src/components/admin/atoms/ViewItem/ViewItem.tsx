@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Button from '@components/system/Button/Button';
 import { camelCaseToTitleCase, formatDate, isOneLevelDeep } from '@utils/utils';
 import ViewObject from './ViewObject/ViewObject';
+import React from 'react';
 
 const Item = ({ name, value }: { name: string, value: string | number | boolean | object }) => {
   if (!value) {
@@ -34,7 +35,11 @@ const Item = ({ name, value }: { name: string, value: string | number | boolean 
   return <p>{value}</p>;
 };
 
-const ViewItem: React.FC<object> = (item) => {
+interface IProps {
+  item: object;
+  customAction?: React.ReactNode;
+}
+const ViewItem: React.FC<IProps> = ({ item, customAction }) => {
   const router = useRouter();
 
   const keys = Object.keys(item);
@@ -45,9 +50,13 @@ const ViewItem: React.FC<object> = (item) => {
 
   return (
     <div className={styles.ViewItem}>
-      <Button onClick={() => router.back()}>
-        Back
-      </Button>
+      <div className={styles.buttons}>
+        <Button onClick={() => router.back()}>
+          Back
+        </Button>
+        {customAction}
+      </div>
+
       <ul>
         {showKeys.map((key) => (
           <li key={key}>
