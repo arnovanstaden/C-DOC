@@ -31,7 +31,7 @@ const ContactForm: React.FC = () => {
       reset();
     } catch (e) {
       console.error(e);
-      errorNotification('Error sending message', e);
+      errorNotification('Error sending message');
     }
     finally {
       setLoading(false);
