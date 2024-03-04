@@ -1,0 +1,39 @@
+.inputGroup {
+  label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  textarea {
+    width: 100%;
+    border: 1px solid $lightgrey;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    background-color: transparent;
+    outline: none;
+    transition: 0.3s ease-in-out;
+    font-family: $font;
+    border-radius: 0;
+
+    &::placeholder {
+      font-style: italic;
+    }
+
+    &:focus {
+      border-color: red;
+    }
+
+
+    &:disabled {
+      background-color: rgba(239, 239, 239, 0.3);
+      color: rgb(84, 84, 84);
+      border-color: rgba(118, 118, 118, 0.3);
+    }
+  }
+
+  small {
+    color: $red;
+  }
+}

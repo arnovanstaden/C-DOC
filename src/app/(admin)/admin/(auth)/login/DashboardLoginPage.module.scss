@@ -1,0 +1,27 @@
+.DashboardLoginPage {
+  display: grid;
+  grid-template-rows: 50px auto;
+  height: 100vh;
+
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: $breakpoint-xs;
+    width: 100%;
+    height: $header-height;
+    -webkit-box-shadow: 0px 5px 8px 0px rgba(26, 26, 26, 0.25);
+    -moz-box-shadow: 0px 5px 8px 0px rgba(26, 26, 26, 0.25);
+    box-shadow: 0px 5px 8px 0px rgba(26, 26, 26, 0.25);
+
+    img {
+      object-fit: contain;
+      height: 80%;
+    }
+  }
+
+  .content {
+    padding: 1rem;
+    overflow-y: auto;
+  }
+}

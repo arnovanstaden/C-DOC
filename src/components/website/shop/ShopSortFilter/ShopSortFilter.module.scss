@@ -1,0 +1,25 @@
+.ShopSortFilter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 40px 0;
+
+  .categories {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+
+    .categories {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: $breakpoint-xs) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

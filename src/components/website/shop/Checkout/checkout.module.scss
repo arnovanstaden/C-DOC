@@ -1,0 +1,57 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+
+  .form {
+    display: grid;
+    gap: 16px;
+  }
+
+  .summary {
+    background-color: rgba($lightgrey, 0.2);
+    align-self: flex-start;
+    padding: 2rem;
+
+    h2 {
+      font-weight: 600;
+      font-size: 1.25rem;
+      margin: 0;
+      margin-bottom: 1rem;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 0.5rem;
+
+      p {
+        margin: 0;
+      }
+
+      h6 {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin: 0;
+      }
+    }
+
+    .total {
+      border-top: 1px solid $darkgrey;
+      padding: 0.5rem 0;
+
+      h6 {
+        color: $red;
+      }
+    }
+
+    button {
+      float: right;
+      margin-top: 1rem;
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}

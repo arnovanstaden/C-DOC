@@ -1,0 +1,15 @@
+.ProductList {
+  .Product {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 75px 1fr 0.4fr 0.2fr;
+    align-items: center;
+
+    img {
+      object-fit: contain;
+      height: 50px;
+      width: 50px;
+      object-position: center;
+    }
+  }
+}

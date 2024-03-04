@@ -1,0 +1,27 @@
+.CreateEditDeleteAction {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+
+  div {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.deleteModal {
+  background-color: $white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+}

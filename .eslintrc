@@ -49,7 +49,7 @@
     "@next/next/no-img-element": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    
+    "@typescript-eslint/semi": ["error", "always"],
     "react/jsx-filename-extension": [
       1,
       {

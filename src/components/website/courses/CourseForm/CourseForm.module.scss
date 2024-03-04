@@ -1,0 +1,22 @@
+.CourseForm {
+  .courseList {
+    display: grid;
+    gap: 24px;
+  }
+
+  .courseDates {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    .select {
+      min-width: 400px;
+    }
+  }
+
+  .submitButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+}

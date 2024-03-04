@@ -1,0 +1,15 @@
+.ProductOption {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+
+  small {
+    color: $red;
+    display: block;
+  }
+
+  @media screen and (max-width: $breakpoint-sm) {
+    flex-direction: column;
+  }
+}

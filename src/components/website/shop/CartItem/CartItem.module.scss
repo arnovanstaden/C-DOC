@@ -1,0 +1,108 @@
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr 1fr auto;
+  grid-template-areas: "item quantity price total remove";
+  align-items: center;
+  border: 2px solid $red;
+  position: relative;
+  padding: 1rem;
+  gap: 8px;
+
+  .item {
+    display: flex;
+    align-items: center;
+    grid-area: item;
+
+    .image {
+      margin-right: 1rem;
+
+      img {
+        width: 3rem;
+      }
+    }
+
+    .details {
+      .name {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .category {
+        color: $red;
+        margin: 0;
+        margin-top: 0.25rem;
+        font-weight: 600;
+        font-size: 0.8rem;
+      }
+
+      .digital {
+        margin-top: 0.25rem;
+        font-size: 0.7rem;
+        background-color: $red;
+        color: $white;
+        padding: 0.25rem 0.5rem;
+        display: inline-block;
+      }
+    }
+  }
+
+  .quantity {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    grid-area: quantity;
+
+    i {
+      font-weight: 400;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: 0.3s ease-out;
+
+      &:hover {
+        color: $red;
+      }
+    }
+  }
+
+  .price {
+    color: $red;
+    white-space: nowrap;
+    margin: 0 0.25rem;
+    grid-area: price;
+  }
+
+  .total {
+    font-weight: 600;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    margin: 0 0.25rem;
+    grid-area: total;
+  }
+
+  .remove {
+    grid-area: remove;
+  }
+
+  @media screen and (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr 1fr 1fr 0.5fr;
+    grid-template-areas:
+      "item item item remove"
+      "quantity quantity price price"
+      "total total total total";
+    column-gap: 8px;
+    row-gap: 16px;
+
+    .item {
+      padding-top: 0.5rem;
+    }
+
+    .price,
+    .total,
+    .quantity {
+      text-align: center;
+      justify-content: center;
+    }
+  }
+}

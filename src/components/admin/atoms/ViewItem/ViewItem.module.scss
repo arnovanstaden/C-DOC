@@ -1,0 +1,35 @@
+.ViewItem {
+  .buttons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  ul {
+    margin-top: 24px;
+
+    li {
+      display: grid;
+      grid-template-columns: 0.5fr 2fr;
+      border-bottom: 0.25px solid rgba($lightgrey, 0.25);
+      background-color: transparent !important;
+      padding: 12px 16px !important;
+      // align-items: center;
+
+      &:hover {
+        background-color: transparent !important;
+      }
+
+      h4 {
+        margin: 0;
+        text-transform: capitalize;
+        font-size: 14px;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
