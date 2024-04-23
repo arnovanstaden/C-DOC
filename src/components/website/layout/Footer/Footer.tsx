@@ -53,8 +53,7 @@ export default function Footer() {
             <a href="/documents/C-DOC - POPIA and PAIA Privacy Policy.pdf" target="download">Privacy Policy</a>
           </div>
           <div className={styles.copy}>
-            <p>© 2020 - C-DOC (PTY) LTD.</p>
-            <p>Design &amp; Development by <a target="blank" href="https://webdacity.dev">Webdacity</a></p>
+            <p>© {new Date().getFullYear()} - Academy of Diving and Offshore Medicine (Pty) Ltd | T/A C-DOC  - Reg: 2018/398732/07</p>
           </div>
         </div>
       </Container>

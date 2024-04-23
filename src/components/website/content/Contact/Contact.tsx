@@ -4,6 +4,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import Heading from '@components/website/layout/Heading';
 interface IContact {
   page?: boolean;
@@ -17,6 +18,16 @@ export default function Contact({ page }: IContact) {
         subHeading={<>Don't hesitate to get in touch with us if you require more information regarding our services, courses or the products we provide.</>}
         divider
       />
+      <div className={styles.legal}>
+        <ApartmentIcon className={styles.icon} />
+        <div>
+          <p className={styles.legal}>
+            Academy of Diving and Offshore Medicine (Pty) Ltd
+          </p>
+          <p>Trading As: C-DOC</p>
+          <p>Reg: 2018/398732/07</p>
+        </div>
+      </div>
       <ul className={styles.options}>
         <li>
           <LocalPhoneIcon className={styles.icon} />
@@ -42,6 +53,6 @@ export default function Contact({ page }: IContact) {
           </a>
         </li>
       </ul>
-    </div>
+    </div >
   );
 };
