@@ -18,16 +18,6 @@ export default function Contact({ page }: IContact) {
         subHeading={<>Don't hesitate to get in touch with us if you require more information regarding our services, courses or the products we provide.</>}
         divider
       />
-      <div className={styles.legal}>
-        <ApartmentIcon className={styles.icon} />
-        <div>
-          <p className={styles.legal}>
-            Academy of Diving and Offshore Medicine (Pty) Ltd
-          </p>
-          <p>Trading As: C-DOC</p>
-          <p>Reg: 2018/398732/07</p>
-        </div>
-      </div>
       <ul className={styles.options}>
         <li>
           <LocalPhoneIcon className={styles.icon} />
@@ -46,6 +36,16 @@ export default function Contact({ page }: IContact) {
           <a href="https://goo.gl/maps/XLbwP14yF4yy43w2A" target="blank">23 Main Rd, Saldanha, 7395, Western Cape, South Africa</a>
         </li>
       </ul>
+      <div className={styles.legal}>
+        <ApartmentIcon className={styles.icon} />
+        <div>
+          <p className={styles.legal}>
+            <b>Academy of Diving and Offshore Medicine (Pty) Ltd</b>
+          </p>
+          <p>Trading As: C-DOC</p>
+          <p>Reg: 2018/398732/07</p>
+        </div>
+      </div>
       <ul className={styles.social}>
         <li>
           <a href="https://www.facebook.com/cdocsa/" target="blank">

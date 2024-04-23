@@ -34,14 +34,14 @@
   .legal {
     display: flex;
     align-items: center;
-    margin-top: 16px;
+    margin-top: 24px;
 
     div {
       display: grid;
       gap: 4px;
 
       p {
-        margin: 0;
+        margin: 0 !important;
       }
     }
   }
@@ -74,9 +74,7 @@
     .options,
     .social {
       margin-top: 0rem;
-
     }
-
   }
 
   @media screen and (max-width: $breakpoint-sm) {
@@ -86,6 +84,4 @@
       padding: 4rem 2rem;
     }
   }
-
-
 }
